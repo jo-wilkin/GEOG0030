@@ -7,7 +7,7 @@ bookdown::gitbook:
       collapse: section
       before: |
         <li class="toc-logo">
-        <a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/UCL_geography.png">
+        <a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl-logo.jpg">
         </a></li>
     edit: https://github.com/jo-wilkin/GEOG0030/edit/master/%s
     download: ["rmd"]
