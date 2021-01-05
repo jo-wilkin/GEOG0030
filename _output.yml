@@ -1,12 +1,21 @@
 bookdown::gitbook:
-  css: style.css
+  includes:
+    before_body: assets/hero-image.html
+  css: assets/style.css
   config:
     toc:
+      collapse: section
       before: |
-        <li><a href="./">A Minimal Book Example</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+        <li class="toc-logo">
+        <a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/UCL_geography.png">
+        </a></li>
+    edit: https://github.com/jo-wilkin/GEOG0030/edit/master/%s
+    download: ["rmd"]
+    sharing:
+          github: yes
+          facebook: no
+          twitter: no
+          all: no
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

@@ -1,0 +1,56 @@
+# Course information {-}
+
+## Module structure {-}
+This module consists of ten self-led workshops, ten interactive seminar discussions and ten help sessions. Each week, we'll provide an online workshop, provided as a worksheet with videos and instructions to complete the practical component of the workshop. All online classes will be held on the Principles of Spatial Analysis 'team'.
+
+In addition, each week will have its own reading list or additional 'recommended' (optional, not required!) online tutorials we know of that you might want to also complete.
+
+## Weekly topics {-}
+| Week          | Date          | Topic |
+| :------ |:-----|:--------------|
+| 1             | 05/10/2020    | Spatial analysis for data science |
+| 2             | 12/10/2020    | Representation, scale and geography in spatial analysis |
+| 3             | 19/10/2020    | Spatial properties, relationships and operations |
+| 4             | 26/10/2020    | Spatial dependence, spatial autocorrelation and defining neighbours |
+| 5             | 02/11/2020    | Exploratory Spatial Data Analysis |
+| *reading week*  | *reading week*  | *reading week* |
+| 6             | 16/11/2020    | Point pattern analysis |
+| 7             | 23/11/2020    | Raster data and geostatistics |
+| 8             | 30/11/2020    | Spatial analysis for urban (mapping) applications |
+| 9             | 07/12/2020    | Geodemographics |
+| 10            | 14/12/2020    | Reproducible research |
+
+## Learning objectives {-}
+By the end of the module, you should:
+
+- have a good understanding of the principles underlying the analysis of spatial data in general and spatial statistics in particular;
+-	be able to use GIS software and tools for generating and visualising summary statistics;
+-	be able to examine, analyse and simulate a range of spatial patterns and processes;
+-	be able to use geostatistical tools to analyze and interpolate spatial patterns;
+-	appreciate the many different sources of uncertainty in spatial data and spatial processing and how to address such issues in analysis and research;
+-	be able to master the key concepts in network analysis with a focus on social and spatial networks (now in Intro to Data Science and Advanced Data Science modules);
+-	be able to explain several novel applications of spatial analysis techniques within geographic and social data science applications.
+
+## Reading list {-}
+We link to books and resources throughout each practical. The [full reading list for the course](https://rl.talis.com/3/ucl/lists/3FB0C66A-F603-A402-A31C-28F2DA091AB6.html?lang=en-gb&login=1) is provided on the UCL library reading list page for the course. Alternatively, you can always easily find the link to the Reading List in the top right of any Moodle page for our module, under "Library Resources". 
+
+This Reading List will be updated on a weekly basis, in preparation for the week to come, so you may see some weeks without reading for now. But please check back at the **start of each week** as the lecture, seminar and/or workshop material is released for that week to check for new readings. All reading for that week will be provided by the time your learning materials are released - so you will not need to check the reading list for updates as the week progresses.
+
+## Module assessment details {-}
+
+The assessment for Principles of Spatial Analysis is set across two pieces of separate coursework, weighted at 50% each. 
+
+1) The first piece of coursework will involve the completion of a spatial analysis project, based on the theory, concepts and application learnt during the module. A 1,500 word report will be submitted, alongside the code used within the project, which describes the analysis undertaken and the results of the analysis. Further guidance is available on Moodle.
+
+2) The second piece of coursework will be a written (1,500 word) review on a current data science application that uses spatial analysis as its core methodology. The application can be drawn from the lecture material, particularly during Weeks 8 and 9, or one of your own choice. Further guidance us available on Moodle.
+
+## Useful additional resources {-}
+Besides the mandatory and recommended reading for this course, there are some additional resources that are worth checking out:
+
+1. MIT's introduction course on mastering the command line: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 
+
+2. A useful tool to unpack command line instructions: [explainshell.com](https://www.explainshell.com/)
+
+3. Online resource to develop and check your regular expressions: [regexr.com](https://regexr.com/5d21d)
+
+4. Selecting colour palettes for your map making and data visualisation: [colorbrewer 2.0](https://colorbrewer2.org)
