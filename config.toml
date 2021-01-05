@@ -1,7 +1,7 @@
 baseurl = "/"
 languageCode = "en-us"
 title = "GEOG0030: Geocomputation 2020/2021"
-theme = "hugo-lithium"
+theme = "hugo-tanka"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
