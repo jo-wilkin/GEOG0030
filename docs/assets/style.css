@@ -66,7 +66,7 @@ pre code {
  /* -----------Sidebar div tips------------- */
 /* from r-pkgs.org*/
 
-  div.puzzle, div.fyi, div.demo, div.note {
+  div.puzzle, div.fyi, div.demo, div.note, div.reading, div.sds {
     padding: 1em;
     margin: 1em 0;
     padding-left: 100px;

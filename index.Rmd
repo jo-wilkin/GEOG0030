@@ -1,7 +1,5 @@
 --- 
-title: "GEOG0030: Geocomputation"
-author: "Joanna Wilkin^[Department of Geography, https://www.geog.ucl.ac.uk/people/academic-staff/joanna-wilkin]"
-date: "`r Sys.Date()`"
+title: "Geocomputation 2020-2021 Course Handbook"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -12,28 +10,44 @@ url: 'https\://jo-wilkin.github.io/GEOG0030/'
 
 ---
 
-# Welcome to Geocomputation 2020 - 2021  {-}
+# Course Introduction  {-}
 
-```{r echo=FALSE, out.width = "100%", fig.align='center', cache=TRUE,}
-knitr::include_graphics('images/general/image.jpg') 
+Welcome to this year's **Geocomputation** module, a course that introduces you to both the principles of spatial analysis and the use of programming for data analysis.
+
+Over the next ten weeks, you'll learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using Q-GIS, and then using the R programming language within R-Studio. You'll learn how to find, manage and clean spatial, demographic and socio-economic datasets, and then analyse them using core spatial and statistical analysis techniques. The course is an excellent precursor for those of you interested in a career in (spatial) data science! 
+
+The course will consist of approximately 10 lectures, 10 self-led practicals and 5 seminars (held online), further details of which are provided on the next page, **Course Information**.
+
+For now, if you've not watched the **Introduction** video on Moodle, you can catch up below:
+
+### Geocomputation Introductory Video {-}
+
+```{r 00-intro-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_msstream('') %>% use_align('left')
 ```
-<br />
 
-Welcome to **Geocomputation**, one of the four core modules for the MSc in Geographic and Social Data Science here at [UCL Geography](https://www.geog.ucl.ac.uk/).
+**Remember you must have joined our Geocomputation Team on Microsoft Teams to be able to watch our lecture videos - instructions are provided on Moodle.**
 
-This module provides an 
+## Using this Handbook {-}
 
-It provides an introduction into: the theory, methods and tools of spatial analysis alongside
+All course content, including lectures and practical material, will be contained within this Handbook. As outlined above, you will also need to be part of our Geocomputation Team to have access to the lectures within the handbook. 
+
+Each week's content will be uploaded for Tuesday 10am UK time after the third seminar or coding help sessions. 
+
+Key things to look out for in the handbook are **Assignments**, which are short *optional* submissions, **Practical Instructions**, **Key Readings** and **Points of Information**. 
+
+To help, we'll highlight as follows:
+
+:::reading
+**Reading**<br>
+The recommended readings for this week will be highlighted in a Reading box as and when appropriate in the week's content. You'll be able to find direct links to them within the E-Reading list provided here.
+:::
 
 
-This module has been designed in conjunction with your module on [Geographic Information Systems (GIS) and Science (GIScience)](https://www.ucl.ac.uk/module-catalogue/modules/geographic-information-systems-and-science-CASA0005) from CASA to provide you with an extensive introduction into GIScience, spatial analysis and their associated tools. It has a specific focus on the principles, properties and parameters that are part of spatial analysis and how to understand and apply these effectively within geographic and data science-oriented research.
+## Getting in touch during the module {-}
 
-The first half of the module provides detailed introductions into spatial concepts such as scale and geography, 
-spatial dependency and autocorrelation, and spatial heterogeneity and spatial regression models. The second half then focuses 
-on the applications of spatial analysis within current data science research, including cluster analysis and Bayesian modelling.
-
-## Get in touch {-}
-Dr Jo Wilkin will be taking **Week 1-4**, **8**, and **10** of the module. You can contact her at <nobr>**j.wilkin [at] ucl.ac.uk**</nobr> or, for online office hours, you can book a half hour slot with Jo [using MS Bookings](https://outlook.office365.com/owa/calendar/JoWilkinBookableOfficeHours@ucl.ac.uk/bookings/).
+The module is convened and taught by Dr Joanna Wilkin - you can contact her at <nobr>**j.wilkin [at] ucl.ac.uk**</nobr> or, for online office hours, you can book a half hour slot [using MS Bookings](https://outlook.office365.com/owa/calendar/JoWilkinBookableOfficeHours@ucl.ac.uk/bookings/).
 
 The module is further supported by two Postgraduate Teaching Assistants: Jakub (Kuba) Wyszomierski and Nikki Tang.
 
