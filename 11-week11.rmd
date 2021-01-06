@@ -2,17 +2,19 @@
 
 # Assessment Information  {-}
 
-## Module assessment details {-}
+Geocomputation is assessed through two separate Assessments:
 
-The assessment for Principles of Spatial Analysis is set across two pieces of separate coursework, weighted at 50% each. 
+1) **Social Atlas:** The first assessment will involve the completion of a spatial analysis project, based on the theory, concepts and application learnt during the module. For this coursework you are required to create a small “social atlas” on a topic or area that interests you.
 
-1) The first piece of coursework will involve the completion of a spatial analysis project, based on the theory, concepts and application learnt during the module. A 1,500 word report will be submitted, alongside the code used within the project, which describes the analysis undertaken and the results of the analysis. Further guidance is available on Moodle.
+2) **Exam:** The second assessment will take the form of an Exam, the exact format to be confirmed.
 
-2) The second piece of coursework will be a written (1,500 word) review on a current data science application that uses spatial analysis as its core methodology. The application can be drawn from the lecture material, particularly during Weeks 8 and 9, or one of your own choice. Further guidance us available on Moodle.
+<br>
+**More information on your Assessments will be provided at the end of Week 5 (i.e. 12th February 2021).**
 
 
 ## Useful additional resources {-}
-Besides the mandatory and recommended reading for this course, there are some additional resources that are worth checking out:
+
+Besides the mandatory and recommended reading for this course, there are some additional resources that are worth checking out that may be useful for your first Assessment:
 
 1. MIT's introduction course on mastering the command line: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 
 

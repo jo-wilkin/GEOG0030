@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="spatial-regression.html"/>
+<link rel="prev" href="rasters-zonal-statistics-and-interpolation.html"/>
 <link rel="next" href="optional-road-network-analysis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -73,17 +73,22 @@
 <li class="part"><span><b>Module Overview</b></span></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#geocomputation-introductory-video"><i class="fa fa-check"></i>Geocomputation Introductory Video</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-in-touch-during-the-module"><i class="fa fa-check"></i>Getting in touch during the module</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#noticed-a-mistake-in-this-resource"><i class="fa fa-check"></i>Noticed a mistake in this resource?</a></li>
 </ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module Information</a><ul>
-<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#weekly-topics"><i class="fa fa-check"></i>Weekly topics</a></li>
-<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning"><i class="fa fa-check"></i>Self guided learning</a></li>
-<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#online-help-resources"><i class="fa fa-check"></i>Online Help &amp; Resources</a></li>
-<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading list</a></li>
-<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#more-help"><i class="fa fa-check"></i>More help</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning-for-geocomputation"><i class="fa fa-check"></i>Self-guided learning for Geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#geocomputation-timetable"><i class="fa fa-check"></i>Geocomputation Timetable</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#what-will-i-be-learning-each-week"><i class="fa fa-check"></i>What will I be learning each week?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading List</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#troubleshooting-module-content"><i class="fa fa-check"></i>Troubleshooting Module Content</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#additional-online-help-resources"><i class="fa fa-check"></i>Additional Online Help &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#feedback-weekly-and-end-of-module"><i class="fa fa-check"></i>Feedback: Weekly and End of Module</a></li>
 </ul></li>
 <li class="part"><span><b>Getting Started</b></span></li>
 <li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html"><i class="fa fa-check"></i>What is this Workbook?</a><ul>
@@ -92,50 +97,35 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html"><i class="fa fa-check"></i>Software Installation</a><ul>
 <li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#qgis"><i class="fa fa-check"></i>QGIS</a></li>
-<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r"><i class="fa fa-check"></i>R</a><ul>
-<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#setup-1"><i class="fa fa-check"></i>Setup 1</a></li>
-<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#setup-2"><i class="fa fa-check"></i>Setup 2</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-and-r-studio"><i class="fa fa-check"></i>R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-1"><i class="fa fa-check"></i>R-Studio Setup 1</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-2"><i class="fa fa-check"></i>R-Studio Setup 2</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#arcgis"><i class="fa fa-check"></i>ArcGIS</a></li>
 <li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#installation-issues"><i class="fa fa-check"></i>Installation Issues</a></li>
-<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#confirm-installation"><i class="fa fa-check"></i>Confirm Installation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html"><i class="fa fa-check"></i>External Usage</a><ul>
-<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / contributions</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / Contributions</a></li>
 <li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#license"><i class="fa fa-check"></i>License</a></li>
 <li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#version"><i class="fa fa-check"></i>Version</a></li>
 </ul></li>
 <li class="part"><span><b>I Foundational Concepts</b></span></li>
-<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#file-management"><i class="fa fa-check"></i><b>1.1</b> File management</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="an-introduction-to-giscience-and-gis-software.html"><a href="an-introduction-to-giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> An introduction to GIScience and GIS software</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="an-introduction-to-giscience-and-gis-software.html"><a href="an-introduction-to-giscience-and-gis-software.html#spatial-data-models"><i class="fa fa-check"></i><b>2.0.1</b> Spatial Data Models</a></li>
-<li class="chapter" data-level="2.0.2" data-path="an-introduction-to-giscience-and-gis-software.html"><a href="an-introduction-to-giscience-and-gis-software.html#spatial-properties"><i class="fa fa-check"></i><b>2.0.2</b> Spatial Properties</a></li>
-<li class="chapter" data-level="2.0.3" data-path="an-introduction-to-giscience-and-gis-software.html"><a href="an-introduction-to-giscience-and-gis-software.html#geographical-representation"><i class="fa fa-check"></i><b>2.0.3</b> Geographical Representation</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="an-introduction-to-cartography-and-visualisation.html"><a href="an-introduction-to-cartography-and-visualisation.html"><i class="fa fa-check"></i><b>3</b> An introduction to Cartography and Visualisation</a><ul>
-<li class="chapter" data-level="3.1" data-path="an-introduction-to-cartography-and-visualisation.html"><a href="an-introduction-to-cartography-and-visualisation.html#projections"><i class="fa fa-check"></i><b>3.1</b> Projections</a></li>
-<li class="chapter" data-level="3.2" data-path="an-introduction-to-cartography-and-visualisation.html"><a href="an-introduction-to-cartography-and-visualisation.html#cartography-conventions"><i class="fa fa-check"></i><b>3.2</b> Cartography Conventions</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="an-introduction-to-programming.html"><a href="an-introduction-to-programming.html"><i class="fa fa-check"></i><b>4</b> An Introduction to Programming</a><ul>
-<li class="chapter" data-level="4.1" data-path="an-introduction-to-programming.html"><a href="an-introduction-to-programming.html#file-management-1"><i class="fa fa-check"></i><b>4.1</b> File management</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="using-programming-for-giscience-and-spatial-analysis.html"><a href="using-programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Using Programming for GIScience and Spatial Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="using-programming-for-giscience-and-spatial-analysis.html"><a href="using-programming-for-giscience-and-spatial-analysis.html#exploratory-spatial-data-analysis"><i class="fa fa-check"></i><b>5.1</b> Exploratory Spatial Data Analysis</a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a></li>
+<li class="chapter" data-level="4" data-path="programming-for-statistical-analysis.html"><a href="programming-for-statistical-analysis.html"><i class="fa fa-check"></i><b>4</b> Programming (for Statistical Analysis)</a></li>
+<li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a></li>
 <li class="part"><span><b>II Core Spatial Analysis</b></span></li>
-<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-clusters-and-correlation.html"><a href="analysing-spatial-patterns-clusters-and-correlation.html"><i class="fa fa-check"></i><b>6</b> Analysing spatial patterns: clusters and correlation</a></li>
-<li class="chapter" data-level="7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>7</b> Rasters, zonal statistics and interpolation</a></li>
-<li class="chapter" data-level="8" data-path="spatial-regression.html"><a href="spatial-regression.html"><i class="fa fa-check"></i><b>8</b> Spatial Regression</a></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-clusters.html"><a href="analysing-spatial-patterns-ii-clusters.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Clusters</a></li>
+<li class="chapter" data-level="8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>8</b> Rasters, zonal statistics and Interpolation</a></li>
 <li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
 <li class="chapter" data-level="9" data-path="geodemographics.html"><a href="geodemographics.html"><i class="fa fa-check"></i><b>9</b> Geodemographics</a></li>
 <li class="chapter" data-level="" data-path="optional-road-network-analysis.html"><a href="optional-road-network-analysis.html"><i class="fa fa-check"></i>OPTIONAL: Road Network Analysis</a></li>
 <li class="part"><span><b>IV Cartography &amp; Visualisation</b></span></li>
-<li class="chapter" data-level="10" data-path="creating-maps-for-print-with-r-studio-and-q-gis.html"><a href="creating-maps-for-print-with-r-studio-and-q-gis.html"><i class="fa fa-check"></i><b>10</b> Creating maps for print with R-Studio and Q-GIS</a></li>
+<li class="chapter" data-level="10" data-path="cartography-and-visualisation-ii.html"><a href="cartography-and-visualisation-ii.html"><i class="fa fa-check"></i><b>10</b> Cartography and Visualisation II</a></li>
 <li class="part"><span><b>Assessment</b></span></li>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
-<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#module-assessment-details"><i class="fa fa-check"></i>Module assessment details</a></li>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
 </ul></li>
 </ul>
@@ -161,6 +151,7 @@
 </div>
 <div id="geodemographics" class="section level1">
 <h1><span class="header-section-number">9</span> Geodemographics</h1>
+<p><strong>Content for this week will be released at 10am on the 16th March 2021.</strong></p>
 
 </div>
             </section>
@@ -168,7 +159,7 @@
           </div>
         </div>
       </div>
-<a href="spatial-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rasters-zonal-statistics-and-interpolation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="optional-road-network-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

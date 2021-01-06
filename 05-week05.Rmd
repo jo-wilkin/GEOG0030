@@ -1,4 +1,5 @@
-# Using Programming for GIScience and Spatial Analysis
+# Programming for GIScience and Spatial Analysis
 
+**Content for this week will be released at 10am on the 9th February 2021.**
 
-## Exploratory Spatial Data Analysis
+<!-- ## Exploratory Spatial Data Analysis -->

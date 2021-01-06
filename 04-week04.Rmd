@@ -1,3 +1,5 @@
-# An Introduction to Programming
+# Programming (for Statistical Analysis)
 
-## File management
+**Content for this week will be released at 10am on the 2nd February 2021.**
+
+<!-- ## File management -->

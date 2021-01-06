@@ -1,3 +1,6 @@
 # (PART) Core Spatial Analysis {-}
 
-# Analysing spatial patterns: clusters and correlation
+# Analysing Spatial Patterns I: Spatial Auto-Correlation & Regression
+
+**Content for this week will be released at 10am on the 23rd February 2021.**
+

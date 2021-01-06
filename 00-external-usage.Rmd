@@ -1,16 +1,18 @@
 # External Usage  {-}
 
-All the required data to run this course or individual practicals is publicly available through the direct links provided in the practicals. For UCL students, access to the Geocomputation Moodle page will enable you to access the pre-formatted datasets, when appropriate.
+All the required data to run this course or individual practicals is publicly available through the direct links provided in the practicals. 
 
-There are two main options to adopt this course:
+For UCL students, access to the Geocomputation Moodle page will enable you to access the pre-formatted datasets, when appropriate.
+
+There are two main options to adopt the written content and practicals of this course:
 
 1. Adopt the course in its entirety by forking the repository on GitHub and Pulling to your local machine or simply download a `.zip` file containing the entire course.
 
-2. Adopt a single practical by downloading the `.rmd` file and associated data. 
+2. Adopt a single practical by downloading the `.rmd` file. 
 
-Instructions can be found in the section [How to download data and files from GitHub]
+You will still need to follow the instructions within each practical to download the data - and format it as appropriate. For external users, you are welcome to get in touch with Jo (see previous details)  directly if you would like access to the formatted files or help in how to format them.
 
-## Issues / contributions {-}
+## Issues / Contributions {-}
 
 To raise an issue simply log it on the [GitHub issues tab for the repository](https://github.com/jo-wilkin/GEOG0030/issues).
 
@@ -42,7 +44,7 @@ The code within this pracical book is available under the [MIT license](https://
 
 ## Version {-}
 
-This is version 1.0 of the practical book.
+This is version 1.0 of the Workbook.
 
 #### Acknowledgements {-}
 

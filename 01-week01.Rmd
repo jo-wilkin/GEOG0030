@@ -2,13 +2,14 @@
 
 # Geocomputation: An Introduction
 
-https://youtu.be/osAbJeTho5w
+**Content for this week will be released at 10am on the 12th January 2021.**
 
-spatial analysis, programming and statistics
+<!-- https://youtu.be/osAbJeTho5w -->
 
-Transition from GIS analysis to spatial data scientist
+<!-- spatial analysis, programming and statistics -->
 
-Many learning curves 
+<!-- Transition from GIS analysis to spatial data scientist -->
 
-## File management
+<!-- Many learning curves  -->
 
+<!-- ## File management -->

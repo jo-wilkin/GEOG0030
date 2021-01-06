@@ -1,6 +1,7 @@
-# An introduction to Cartography and Visualisation
+# Cartography and Visualisation I
 
+**Content for this week will be released at 10am on the 26th January 2021.**
 
-## Projections
+<!-- ## Projections -->
 
-## Cartography Conventions
+<!-- ## Cartography Conventions -->

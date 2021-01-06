@@ -1,3 +1,7 @@
 # (PART) Cartography & Visualisation {-}
 
-# Creating maps for print with R-Studio and Q-GIS
+# Cartography and Visualisation II
+
+**Content for this week will be released at 10am on the 23rd March 2021.**
+
+<!-- ## Creating maps for print with R-Studio and Q-GIS -->

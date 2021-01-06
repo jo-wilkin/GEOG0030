@@ -1,1 +1,3 @@
-# Spatial Regression
+# Rasters, zonal statistics and Interpolation
+
+**Content for this week will be released at 10am on the 9th March 2021.**

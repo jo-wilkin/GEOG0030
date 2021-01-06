@@ -1,7 +1,9 @@
-# An introduction to GIScience and GIS software
+# GIScience and GIS software
 
-### Spatial Data Models
+**Content for this week will be released at 10am on the 19th January 2021.**
 
-### Spatial Properties
+<!-- ### Spatial Data Models -->
 
-### Geographical Representation
+<!-- ### Spatial Properties -->
+
+<!-- ### Geographical Representation -->
