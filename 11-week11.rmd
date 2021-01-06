@@ -1,0 +1,23 @@
+# (PART\*) Assessment {-}
+
+# Assessment Information  {-}
+
+## Module assessment details {-}
+
+The assessment for Principles of Spatial Analysis is set across two pieces of separate coursework, weighted at 50% each. 
+
+1) The first piece of coursework will involve the completion of a spatial analysis project, based on the theory, concepts and application learnt during the module. A 1,500 word report will be submitted, alongside the code used within the project, which describes the analysis undertaken and the results of the analysis. Further guidance is available on Moodle.
+
+2) The second piece of coursework will be a written (1,500 word) review on a current data science application that uses spatial analysis as its core methodology. The application can be drawn from the lecture material, particularly during Weeks 8 and 9, or one of your own choice. Further guidance us available on Moodle.
+
+
+## Useful additional resources {-}
+Besides the mandatory and recommended reading for this course, there are some additional resources that are worth checking out:
+
+1. MIT's introduction course on mastering the command line: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 
+
+2. A useful tool to unpack command line instructions: [explainshell.com](https://www.explainshell.com/)
+
+3. Online resource to develop and check your regular expressions: [regexr.com](https://regexr.com/5d21d)
+
+4. Selecting colour palettes for your map making and data visualisation: [colorbrewer 2.0](https://colorbrewer2.org)

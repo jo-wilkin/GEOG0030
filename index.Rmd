@@ -1,22 +1,23 @@
 --- 
-title: "Geocomputation 2020-2021 Course Handbook"
+title: "Geocomputation 2020-2021 Work Book"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 link-citations: yes
 github-repo: "jo-wilkin/GEOG0030"
-description: "GEOG0030: Geocomputation Handbook"
+description: "GEOG0030: Geocomputation Work Book"
 url: 'https\://jo-wilkin.github.io/GEOG0030/'
 
 ---
+# (PART\*) Module Overview {-}
 
-# Course Introduction  {-}
+# Module Introduction  {-}
 
 Welcome to this year's **Geocomputation** module, a course that introduces you to both the principles of spatial analysis and the use of programming for data analysis.
 
-Over the next ten weeks, you'll learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using Q-GIS, and then using the R programming language within R-Studio. You'll learn how to find, manage and clean spatial, demographic and socio-economic datasets, and then analyse them using core spatial and statistical analysis techniques. The course is an excellent precursor for those of you interested in a career in (spatial) data science! 
+Over the next ten weeks, you'll learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using Q-GIS, and then using the R programming language within the  R-Studio software environment. You'll learn how to find, manage and clean spatial, demographic and socio-economic datasets, and then analyse them using core spatial and statistical analysis techniques. The course is an excellent precursor for those of you interested in a career in (spatial) data science! 
 
-The course will consist of approximately 10 lectures, 10 self-led practicals and 5 seminars (held online), further details of which are provided on the next page, **Course Information**.
+The course will consist of approximately 10 lectures, 10 self-led practicals, 5 seminars (held online) and 5 coding help sessions (held online), further details of which are provided on the next page, **Course Information**.
 
 For now, if you've not watched the **Introduction** video on Moodle, you can catch up below:
 
@@ -29,27 +30,22 @@ embed_msstream('') %>% use_align('left')
 
 **Remember you must have joined our Geocomputation Team on Microsoft Teams to be able to watch our lecture videos - instructions are provided on Moodle.**
 
-## Using this Handbook {-}
-
-All course content, including lectures and practical material, will be contained within this Handbook. As outlined above, you will also need to be part of our Geocomputation Team to have access to the lectures within the handbook. 
-
-Each week's content will be uploaded for Tuesday 10am UK time after the third seminar or coding help sessions. 
-
-Key things to look out for in the handbook are **Assignments**, which are short *optional* submissions, **Practical Instructions**, **Key Readings** and **Points of Information**. 
-
-To help, we'll highlight as follows:
-
-:::reading
-**Reading**<br>
-The recommended readings for this week will be highlighted in a Reading box as and when appropriate in the week's content. You'll be able to find direct links to them within the E-Reading list provided here.
-:::
-
-
-## Getting in touch during the module {-}
+### Getting in touch during the module {-}
 
 The module is convened and taught by Dr Joanna Wilkin - you can contact her at <nobr>**j.wilkin [at] ucl.ac.uk**</nobr> or, for online office hours, you can book a half hour slot [using MS Bookings](https://outlook.office365.com/owa/calendar/JoWilkinBookableOfficeHours@ucl.ac.uk/bookings/).
 
-The module is further supported by two Postgraduate Teaching Assistants: Jakub (Kuba) Wyszomierski and Nikki Tang.
+The module is further supported by two Postgraduate Teaching Assistants: [Jakub (Kuba) Wyszomierski](https://www.geog.ucl.ac.uk/people/research-students/jakub-wyszomierski) and [Nikki Tanu](https://www.geog.ucl.ac.uk/people/research-students/nikki-tanu). They will host coding help sessions on the alternative weeks to our scheduled seminar sessions.
 
-## Noticed a mistake in this resource? {-}
+### Acknowledgements {-}
+
+Putting together a workbook such as this is no easy feat - but it's also something that after a little time with R-Studio, you'd be able to produce! The reason for this, as we'll repeat throughout the course, is that there is **an incredible amount of resources** available online that can help you learn the skills required to produce a website like this (e.g. using Git with R, using GitHub to host websites, R-Markdown, basic CSS styling). These skills firmly fall outside of the requirements for this course, but something you can build on in your spare time *and over your future career*. Believe it or not, we as lecturers are also always still learning - particularly, as you'll find if you continue in spatial data science, the tools and technology available to us is continuously changing!
+
+**Content-wise**, the lectures and practicals for this course are all original this year to the Geography Department at UCL. There is some overlap between this course and the *Principles of Spatial Analysis* module that is run at the Master's level, e.g. the extensions offered in several of the practicals.
+
+**Aesthetics-wise**, the R package and analysis artwork used within this book has been produced by [allison_horst](https://twitter.com/allison_horst), whilst much of the artwork used in information boxes has been produced by [Desirée De Leon](https://twitter.com/dcossyle), as well as myself. You can find Allison's images on the [stats illustration GitHub repository](https://github.com/allisonhorst/stats-illustrations) and Desirée's on the [rstudio4edu GitHub repository](https://github.com/rstudio4edu/rmd4edu).
+
+[Yihui Xie's](https://bookdown.org/yihui/bookdown/) *Authoring Books with R Markdown* and  [rstudio4edu's](https://rstudio4edu.github.io/rstudio4edu-book/) book, *A Handbook for Teaching and Learning with R and RStudio* were key resources in the creation and editing of this book. In addition, the [CASA0005](https://andrewmaclachlan.github.io/CASA0005repo/index.html) practical handbook (by Dr Andy MacLachan and Adam Dennett) alongside our own [Principles of Spatial Analysis](https://jtvandijk.github.io/GEOG0114/) practical handbook (by myself and Justin van Dijk) served as inspiration for the structure and formatting of this book. For some practicals, additional acknowledgements are made at the end where code or inspiration has also been borrowed!
+
+### Noticed a mistake in this resource? {-}
+
 Please let us know through the GitHub issues tab, send us a message over MS Teams, or contact us by e-mail.

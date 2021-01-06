@@ -6,6 +6,9 @@ language:
 rmd_files:
 - index.Rmd
 - 00-course-info.Rmd
+- 00-howto.Rmd
+- 00-softwareinstall.Rmd
+- 00-external-usage.Rmd
 - 01-week01.Rmd
 - 02-week02.Rmd
 - 03-week03.Rmd
@@ -15,5 +18,7 @@ rmd_files:
 - 07-week07.Rmd
 - 08-week08.Rmd
 - 09-week09.Rmd
+- 09b-week09b.Rmd
 - 10-week10.Rmd
-output_dir: "docs"
+- 11-week11.Rmd
+output_dir: "coursebook"

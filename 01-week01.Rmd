@@ -1,3 +1,14 @@
+# (PART) Foundational Concepts {-}
+
 # Geocomputation: An Introduction
 
+https://youtu.be/osAbJeTho5w
+
+spatial analysis, programming and statistics
+
+Transition from GIS analysis to spatial data scientist
+
+Many learning curves 
+
 ## File management
+

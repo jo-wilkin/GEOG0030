@@ -1,1 +1,3 @@
+# (PART) Core Spatial Analysis {-}
+
 # Analysing spatial patterns: clusters and correlation

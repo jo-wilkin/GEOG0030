@@ -1,0 +1,55 @@
+# Software Installation  {-}
+
+This course primarily uses the R data science programming language and we strongly advise you complete the assignment using it. We briefly touch upon QGIS in the first few weeks to give you a basic foundation in spatial analysis alongside the range of spatial software available. Please follow the instructions below before completing the first practical session to install the software on your local computer if you are planning to use it throughout the course. 
+
+## QGIS {-}
+
+QGIS is an open-source graphic user interface GIS with many community developed add-on packages (or plugins) that provide additional functionality to the software.  
+
+To get QGIS on your personal machine go to: https://qgis.org/en/site/forusers/download.html
+
+I install the OSGeo4W version. The nature of open-source means that several programs will rely on each other for features. OSGeo4W tracks all the shared requirements and does not install any duplicates. 
+
+## R {-}
+
+R is both a programming language and software environment, originally designed for statistical computing and graphics. R’s great strength is that it is open-source, can be used on any computer operating system and free for anyone to use and contribute to. Because of this, it is rapidly becoming the statistical language of choice for many academics and has a huge user community with people constantly contributing new packages to carry out all manner of statistical, graphical and importantly for us, geographical tasks.
+
+### Setup 1 {-}
+
+Search for and open RStudio.
+
+You can install R Studio on your own machine from: https://www.rstudio.com/products/rstudio/download/#download
+
+R studio requires R which you can download from: https://cran.rstudio.com/
+
+RStudio is a free and open-source integrated development environment for R --- it makes R much easier to use.
+
+If you are using a Mac and run into issues, firstly follow the instructions below then check out the [Mac R issues] section if the problem persists. 
+
+### Setup 2 {-}
+
+UCL students (and staff) can now also make use of R Studio Server. It's RStudio on a webpage, so no installation is required. Access information will be provided on Moodle in Week 2.
+
+## ArcGIS {-}
+
+ArcGIS Pro (previously ArcMap) is the main commercial GIS software that you may have already used - or seen/heard about through other modules or even job aderts. We do not use ArcGIS Pro in our Practicals for several reasons:
+
+* Computing requirements for ArcGIS Pro are substantial and it **only** operates on the Windows Operating System. For Mac users, using ArcGIS Pro (and ArcMap) would require using iether a Virtual Machine or "splitting your own harddrive" to install a Windows OS.
+* It is **proprietary** software, which means you need a license to use the software. For those of us in education, the University covers the cost of this license, but when you leave, you will need to pay for a personal license (around £100!) to continue using the software and repeat any analysis you've used the software for.
+* Whilst ArcPro can use pure Python (and even R) as a programming language within it through scripts and notebooks, it primarily relies on its own **ArcPy** and **ArcGIS API for Python**  packages to run the in-built tools and analytical functions. To use these packages, you still need a license which makes it difficult to share your code with others *if* they do not have their own ArcGIS license.
+
+Recent developments in the ArcPro software however does make it an attractive - it has cross-user functionality, from data analyts to those focused more on cartography and visualisation with in-built bridges to Adobe's Creative Suite. We therefore do not want to put you off looking into ArcGIS in the future, but be 
+
+**However**, the analysis for your coursework **must be done in either R and/or QGIS** (where permissible, see guidance in Week 5).
+
+## Installation Issues  {-}
+
+If you have any issues with installing either Q-GIS or R, please let us know during Week 1 via the **tech-help** channel within the Geocomputation Team. 
+
+## Confirm Installation  {-}
+
+We would appreciate it if you can fill in this Installation confirmation form to confirm whether you have been able to install the relevant software.
+
+#### Acknowledgements {-}
+
+Part of this page is adapted from [CASA0005](https://andrewmaclachlan.github.io/CASA0005repo/index.html).

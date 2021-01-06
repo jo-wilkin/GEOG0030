@@ -66,7 +66,7 @@ pre code {
  /* -----------Sidebar div tips------------- */
 /* from r-pkgs.org*/
 
-  div.puzzle, div.fyi, div.demo, div.note, div.reading, div.sds {
+  div.puzzle, div.assignment, div.fyi, div.codetime, div.note, div.reading, div.sds {
     padding: 1em;
     margin: 1em 0;
     padding-left: 100px;
@@ -78,23 +78,29 @@ pre code {
   }
 
 div.puzzle {
-  background-image: url("../images/ilos/Your-turn.png");
+  background-image: url("../images/illos/Your-turn.png");
   background-color: #bed3ec;
 }
 
+div.assignment {
+  background-image: url("../images/illos/Gears.jpg");
+  border: solid 5px #7ba1ad;
+}
+
+
 div.fyi {
- background-image: url("../images/ilos/fyi.png");
+ background-image: url("../images/illos/fyi.png");
  background-color: #70db70;
 }
 
 div.codetime {
-  background-image: url("../images/ilos/Live-code.png");
+  background-image: url("../images/illos/Live-code.png");
   background-color: #ffbf00;
 }
 
 div.note {
-  background-image: url("../images/ilos/lightbulb2.png");
-  background-color: #ffff00;
+  background-image: url("../images/illos/Lightbulb2.png");
+  background-color: #FADA5E;
 }
 
 div.reading {
@@ -104,7 +110,6 @@ div.reading {
 
 div.sds {
   background-image: url("../images/jolos/rocket_square.png");
-  border: solid 5px #b0ced8;
 }
 
 /*------------ TOC --------------*/

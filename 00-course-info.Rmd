@@ -1,14 +1,13 @@
-# Course information {-}
+# Module Information {-}
 
-## Module structure {-}
-This module consists of ten self-led workshops, ten interactive seminar discussions and ten help sessions. Each week, we'll provide an online workshop, provided as a worksheet with videos and instructions to complete the practical component of the workshop. All online classes will be held on the Principles of Spatial Analysis 'team'.
+## Learning Objectives {-}
 
-In addition, each week will have its own reading list or additional 'recommended' (optional, not required!) online tutorials we know of that you might want to also complete.
+
 
 ## Weekly topics {-}
 | Week          | Date          | Topic |
 | :------ |:-----|:--------------|
-| 1             | 05/10/2020    | Spatial analysis for data science |
+| 1             | 05/10/2020    | What is Geocomputation? |
 | 2             | 12/10/2020    | Representation, scale and geography in spatial analysis |
 | 3             | 19/10/2020    | Spatial properties, relationships and operations |
 | 4             | 26/10/2020    | Spatial dependence, spatial autocorrelation and defining neighbours |
@@ -20,37 +19,63 @@ In addition, each week will have its own reading list or additional 'recommended
 | 9             | 07/12/2020    | Geodemographics |
 | 10            | 14/12/2020    | Reproducible research |
 
-## Learning objectives {-}
-By the end of the module, you should:
+## Self guided learning {-}
 
-- have a good understanding of the principles underlying the analysis of spatial data in general and spatial statistics in particular;
--	be able to use GIS software and tools for generating and visualising summary statistics;
--	be able to examine, analyse and simulate a range of spatial patterns and processes;
--	be able to use geostatistical tools to analyze and interpolate spatial patterns;
--	appreciate the many different sources of uncertainty in spatial data and spatial processing and how to address such issues in analysis and research;
--	be able to master the key concepts in network analysis with a focus on social and spatial networks (now in Intro to Data Science and Advanced Data Science modules);
--	be able to explain several novel applications of spatial analysis techniques within geographic and social data science applications.
+The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading and explore new methods and approaches. We have provided guidance on useful resources throughout the course to use as a starting point but you are encouraged to go beyond our recommedations and fully engage with applied GIS research, methods and visualisation techniques.
+
+If you find a practical particularly easy or straightforward then please move on to the next one. Practicals that look at analytical relationships also have extension activities for you to try.
+
+## Online Help & Resources  {-}
+
+Spatial analysis can yield fascinating insights into geographical relationships. However, at times it can be difficult to work with. You will get lots of error messages and have software crash. The academic staff are here to help you work through these practicals but we do not know everything. It's a good idea to become familar with online sources of help, such as:
+
+* [Stack Exchange](https://stackexchange.com/)
+* [RStudio community](https://community.rstudio.com/)
+* [QGIS documemtation](https://docs.qgis.org/3.4/en/docs/index.html)
+* [R documentation](https://www.rdocumentation.org/)
+* [ArcGIS help pages](https://support.esri.com/en)
+
+
 
 ## Reading list {-}
+
 We link to books and resources throughout each practical. The [full reading list for the course](https://rl.talis.com/3/ucl/lists/3FB0C66A-F603-A402-A31C-28F2DA091AB6.html?lang=en-gb&login=1) is provided on the UCL library reading list page for the course. Alternatively, you can always easily find the link to the Reading List in the top right of any Moodle page for our module, under "Library Resources". 
 
 This Reading List will be updated on a weekly basis, in preparation for the week to come, so you may see some weeks without reading for now. But please check back at the **start of each week** as the lecture, seminar and/or workshop material is released for that week to check for new readings. All reading for that week will be provided by the time your learning materials are released - so you will not need to check the reading list for updates as the week progresses.
 
-## Module assessment details {-}
+## More help {-}
 
-The assessment for Principles of Spatial Analysis is set across two pieces of separate coursework, weighted at 50% each. 
+If you need specific assistance with this course please:
 
-1) The first piece of coursework will involve the completion of a spatial analysis project, based on the theory, concepts and application learnt during the module. A 1,500 word report will be submitted, alongside the code used within the project, which describes the analysis undertaken and the results of the analysis. Further guidance is available on Moodle.
+* Check the Moodle assessment tab for queries relating to assignments / deadlines. There is also an expected assignment timeline and frequently asked questions section within the assessment outline document.
 
-2) The second piece of coursework will be a written (1,500 word) review on a current data science application that uses spatial analysis as its core methodology. The application can be drawn from the lecture material, particularly during Weeks 8 and 9, or one of your own choice. Further guidance us available on Moodle.
+* Speak to a member of the teaching team in the computer lab sessions
 
-## Useful additional resources {-}
-Besides the mandatory and recommended reading for this course, there are some additional resources that are worth checking out:
+* Ask a question at the end of a lecture (time permitting)
 
-1. MIT's introduction course on mastering the command line: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 
+* Ask a question on slack under the GIS channel--- you should have recevied an invite email from Steve Gray otherwise use [this link](https://join.slack.com/t/casastudents2019-2020/signup). The teaching team will monitor this --- use the #gis channel for this course.
 
-2. A useful tool to unpack command line instructions: [explainshell.com](https://www.explainshell.com/)
+Due to the size of the class we will **only reply** to messages **on slack** so all students can see the discussion. If you have a personal matter in relation to completing the course then please speak to or email Andy or Adam.
 
-3. Online resource to develop and check your regular expressions: [regexr.com](https://regexr.com/5d21d)
+If you are struggling to use R don't worry...here is some advice from a tweet and  [interview](https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/) with Hadley Wickham, chief scientist at RStudio...
 
-4. Selecting colour palettes for your map making and data visualisation: [colorbrewer 2.0](https://colorbrewer2.org)
+<blockquote class="twitter-tweet tw-align-center"><p lang="en" dir="ltr">You&#39;re doing it right if you get frustrated: if you&#39;re not frustrated, you&#39;re (probably) not stretching yourself mentally</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/565516733516349441?ref_src=twsrc%5Etfw">11. Februar 2015</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+<br/>
+
+> It’s easy when you start out programming to get really frustrated and think, “Oh it’s me, I’m really stupid,” or, “I’m not made out to program.” But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.
+
+You can also go through other free resources including: 
+
+* [Free RStudio Education resources](https://education.rstudio.com)
+
+* [Codeacademy](https://www.codecademy.com/learn/learn-r)
+
+* [YaRrr! The Pirate's Guide to R](https://bookdown.org/ndphillips/YaRrr/)
+
+At the end of every practical there is a link anonymous Google feeback form, let us know if something is unclear and we will go over it in a future session.
+
+If after pursuing all these avenues you still need help you can book into our office hours. These meetings are **to discuss a geographical concept in relation to the material/assessment or for any personal matters relevant to the completion of the module**.
+
+#### Acknowledgements {-}
+
+Part of this page is adapted from [CASA0005](https://andrewmaclachlan.github.io/CASA0005repo/index.html).

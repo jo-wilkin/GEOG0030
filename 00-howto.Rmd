@@ -1,0 +1,69 @@
+# (PART\*) Getting Started {-}
+
+# What is this Workbook?  {-}
+
+All course content, including lectures and practical material, will be contained within this Workbook (hence it's name!). 
+
+As outlined earlier, you will also need to be part of our Geocomputation Team to have access to the lectures within the workbook. Any official course requirements (e.g. submission links for assessments) will be on Moodle.
+
+**Each week's content will be uploaded to the Workbook for Tuesday 10am UK time after the third seminar or coding help sessions.**
+
+## Using this Workbook {-}
+
+Alongisde the recorded lectures and practical instructions, key things to look out for in the Workbook are **Assignments**, which are short *optional* submissions, **Key Reading(s)** and Points of Information, including **Learning Objectives**, **Tips** and **Recap**. 
+
+To help, we'll try to highlight them as follows:
+
+:::assignment
+**Assignment**<br>
+Each week, you'll have 1-3 short assignments where we would like you to submit either a response, map or code prior to our seminar session or have it ready to present during the session itself.
+:::
+
+:::reading
+**Key Reading(s)**<br>
+The recommended readings for this week will be highlighted in a Reading Box as and when appropriate in the week's content. You'll be able to find direct links to them within the E-Reading list.
+:::
+
+:::puzzle
+**Learning Objectives**<br>
+Each week, we'll start with a highlight of the learning objectives we hope you'll achieve through the practical and lecture content.
+:::
+
+:::note
+**Get Ahead Tips**<br>
+Tips for effective note-taking during the practicals such as recording the functions you end up using in our practicals and your understanding of the arguments that they require.
+:::
+
+:::sds
+**Recap**<br>
+A recap at the end of each section or week - make sure you take a note of these and are confident that you understand the points addressed.
+:::
+
+## Workbook Functionality {-}
+
+To get the most out of this book spend a few minutes learning how to control it, in the top left of this webpage you will see this toolbar:
+
+```{r echo=FALSE, out.width = "600pt", fig.align='center', cache=TRUE, message=FALSE}
+knitr::include_graphics('images/general/Book_controls.png')
+```
+
+These buttons will let you:
+
+* <i class="fa fa-bars fa-lg"></i> control the side bar
+
+* <i class="fa fa-search fa-lg"></i> search the entire book for a specific word
+
+* <i class ="fa fa-font settings fa-lg"></i> change the text size, font, colour
+
+* <i class ="fa fa-edit fa-lg"></i> propose an edit if you see a mistake that I can review
+
+* <i class="fa fa-download fa-lg"></i> view the webpage in the 'raw' RMarkdown format, we cover RMarkdown in the course 
+
+* <i class="fa fa-info" fa-lg></i> information about shortcuts for this book and most others like it
+
+In addition the <i class="fa fa-github fa-lg"></i> icon in the top right of the page takes you to the GitHub repository for this book, where the online files for the book are stored.
+
+
+#### Acknowledgements {-}
+
+Part of this page is adapted from [CASA0005](https://andrewmaclachlan.github.io/CASA0005repo/index.html).
