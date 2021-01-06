@@ -1,0 +1,4 @@
+# Using Programming for GIScience and Spatial Analysis
+
+
+## Exploratory Spatial Data Analysis

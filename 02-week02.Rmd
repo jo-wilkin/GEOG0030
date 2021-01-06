@@ -1,0 +1,7 @@
+# An introduction to GIScience and GIS software
+
+### Spatial Data Models
+
+### Spatial Properties
+
+### Geographical Representation
