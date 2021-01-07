@@ -48,7 +48,7 @@ ArcGIS Pro (previously ArcMap) is the main commercial GIS software that you may 
 
 Recent developments in the ArcPro software however does make it an attractive tool for spatial data science - it has cross-user functionality, from data analysts who like to use a tool called Notebooks for their code development, to those focused more on cartography and visualisation with in-built bridges to Adobe's Creative Suite. We therefore do not want to put you off looking into ArcGIS in the future, but for this course, we want to ensure the reproducibility of work (you'll learn more about this in Week 1's lectures).
 
-**Therefore, the analysis for your coursework must be completed in R/R-Studio and QGIS (where permissible, see guidance in Week 5).
+**Therefore, the analysis for your coursework must be completed in R/R-Studio and QGIS (where permissible, see guidance in Week 5).**
 
 ## Installation Issues  {-}
 
@@ -56,7 +56,7 @@ If you have any issues with installing either Q-GIS or R, please let us know **d
 <br>
 
 :::codetime
-**PLEASE CONFIRM YOU SOFTWARE INSTALLATION**<br>
+**PLEASE CONFIRM YOUR SOFTWARE INSTALLATION**<br>
 We would appreciate it if you can fill in this [Installation Confirmation Form](https://forms.office.com/Pages/ResponsePage.aspx?id=_oivH5ipW0yTySEKEdmlwrFgXiSd9pNOh1CPqE7-T55UNkRJMkMwRUFVU0xYWVVCVTBCWVo0T1BLMS4u) to confirm whether you have been able to install the relevant software by **Friday 15th January 2021 5pm UK time**.
 :::
 

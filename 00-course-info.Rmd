@@ -55,11 +55,11 @@ The topics covered over the next ten weeks are:
 | 4             | 01/02/2021    | Foundational Concepts | Programming (for Statistical Analysis) | Seminar |
 | 5             | 08/02/2021    | Foundational Concepts | Programming for Spatial Analysis & ESDA | Help/Study Groups |
 | **READING WEEK** | **READING WEEK**  | **READING WEEK CODING CHALLENGE** | - | - |
-| 6             | 16/11/2021    | Core Spatial Analysis | Analysing Spatial Patterns I: Spatial Auto-Correlation & Regression | Seminar |
-| 7             | 23/11/2021    | Core Spatial Analysis | Analysing Spatial Patterns II: Clusters | Help/Study Groups |
-| 8             | 30/11/2021    | Core Spatial Analysis | Rasters, Zonal Statistics and Interpolation | Seminar |
-| 9             | 07/12/2021    | Advanced Spatial Analysis | Geodemographics | Help/Study Groups |
-| 10            | 14/12/2021    | Cartography & Visualisation | Cartography and Visualisation II | Seminar |
+| 6             | 22/02/2021    | Core Spatial Analysis | Analysing Spatial Patterns I: Spatial Auto-Correlation & Regression | Seminar |
+| 7             | 01/03/2021    | Core Spatial Analysis | Analysing Spatial Patterns II: Clusters | Help/Study Groups |
+| 8             | 08/03/2021    | Core Spatial Analysis | Rasters, Zonal Statistics and Interpolation | Seminar |
+| 9             | 15/03/2021    | Advanced Spatial Analysis | Geodemographics | Help/Study Groups |
+| 10            | 22/03/2021    | Cartography & Visualisation | Cartography and Visualisation II | Seminar |
 
 The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading (see the Reading List below), particularly to help with your second assessment. 
 

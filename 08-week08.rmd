@@ -1,3 +1,3 @@
-# Rasters, zonal statistics and Interpolation
+# Rasters, Zonal Statistics and Interpolation
 
 **Content for this week will be released at 10am on the 9th March 2021.**
