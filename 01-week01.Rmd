@@ -4,12 +4,3 @@
 
 **Content for this week will be released at 10am on the 12th January 2021.**
 
-<!-- https://youtu.be/osAbJeTho5w -->
-
-<!-- spatial analysis, programming and statistics -->
-
-<!-- Transition from GIS analysis to spatial data scientist -->
-
-<!-- Many learning curves  -->
-
-<!-- ## File management -->

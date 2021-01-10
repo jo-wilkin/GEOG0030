@@ -61,7 +61,7 @@ The topics covered over the next ten weeks are:
 | 9             | 15/03/2021    | Advanced Spatial Analysis | Geodemographics | Help/Study Groups |
 | 10            | 22/03/2021    | Cartography & Visualisation | Cartography and Visualisation II | Seminar |
 
-The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading (see the Reading List below), particularly to help with your second assessment. 
+The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading (see the [Reading List] below), particularly to help with your second assessment. 
 
 In addition to our course, there are many other online resources and tutorials that can help expand on the topics and content we cover - whilst it is not necessary for your assessments, you are encouraged to go beyond our recommendations and fully engage with applied GIS research, methods and visualisation techniques. 
 

@@ -17,7 +17,7 @@ Welcome to this year's **Geocomputation** module, a course that introduces you t
 
 Over the next ten weeks, you'll learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using Q-GIS, and then using the R programming language within the  R-Studio software environment. You'll learn how to find, manage and clean spatial, demographic and socio-economic datasets, and then analyse them using core spatial and statistical analysis techniques. The course is an excellent precursor for those of you interested in a career in (spatial) data science! 
 
-The course will consist of approximately 10 lectures, 10 self-led practicals, 5 seminars (held online) and 5 coding help sessions (held online), further details of which are provided on the next page, **Course Information**.
+The course will consist of approximately 10 lectures, 10 self-led practicals, 5 seminars (held online) and 5 coding help sessions (held online), further details of which are provided on the next page, **[Module Information]**.
 
 For now, if you've not watched the **Introduction** video on Moodle, you can catch up below:
 
@@ -25,7 +25,7 @@ For now, if you've not watched the **Introduction** video on Moodle, you can cat
 
 ```{r 00-intro-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('') %>% use_align('left')
+embed_msstream('16418799-e840-4948-94ae-bca03cb4cf8a') %>% use_align('center')
 ```
 
 **Remember you must have joined our Geocomputation Team on Microsoft Teams to be able to watch our lecture videos - instructions are provided on Moodle.**
