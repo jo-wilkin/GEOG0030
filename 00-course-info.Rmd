@@ -69,7 +69,7 @@ Following certain 'movers and shakers' in the GIScience / Spatial Data Science w
 
 ## Reading List {-}
 
-We link to books and resources throughout each practical. The [full reading list for the course](LINK) is provided on the UCL library reading list page for the course. Alternatively, you can always easily find the link to the Reading List in the top right of any Moodle page for our module, under "Library Resources". 
+We link to books and resources throughout each practical. The [full reading list for the course](http://readinglists.ucl.ac.uk/modules/geog0030) is provided on the UCL library reading list page for the course. Alternatively, you can always easily find the link to the Reading List in the top right of any Moodle page for our module, under "Library Resources". 
 
 This Reading List will be updated on a weekly basis, in preparation for the week to come, so you may see some weeks without reading for now. But please check back at the **start of each week** as the lecture, seminar and/or workshop material is released for that week to check for new readings. All reading for that week will be provided by the time your learning materials are released - so you will not need to check the reading list for updates as the week progresses.
 
