@@ -2,5 +2,323 @@
 
 # Geocomputation: An Introduction
 
-**Content for this week will be released at 10am on the 12th January 2021.**
+Welcome to the first week of Geocomputation!
 
+#### Week 1 in Geocomp {-}
+
+```{r 01-welcome, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_msstream('d47fbd7c-3a3b-4856-a09f-c91165ef58bc') %>% use_align('center')
+```
+
+This week's content provides you with a thorough introduction into what is Geocomputation, outlining how and why it is different to a traditional 'GIScience' course. 
+
+We set the scene for the remainder of the module and explain how the foundational concepts that you'll learn about in the first half of term fit together to form the overall Geocomputation curriculum. 
+
+We also outline how the course is a great step towards those interested in a career in (spatial) data science.
+
+For this week only, there is **no** practical per se, but you will need to complete a few practical tasks in preparation for our future practicals. 
+
+We appreciate that to get to this point in our content, you will have read a lot on both the Moodle and Coursebook and we do have a few readings we'd like you to do in anticipation of next week's seminar. 
+
+There are however **3 assignments** that we'd like you to complete, two of which involve setting up your computer ready for next week's practical.
+
+:::puzzle
+**Learning Objectives**<br>
+By the end of this week, you should be able to:
+
+* Understand the differences between traditional GIScience and Geocomputation
+* Explain what spatial analysis is and why it is important for Geocomputation
+* Understand why we will use programming as our main tool for data analysis
+* Know how you will access both of required software for this course: **QGIS** and **R-Studio**
+* Establish good file management practices, ready for the module's practical content, starting next week.
+:::
+
+### What is Geocomputation? {-}
+
+According to Lovelace et al (2020):
+
+> Geocomputation is a young term, dating back to the first conference on the subject in 1996...[Geocomputation] is closely related to other terms including: Geographic Information Science (GIScience); Geomatics; Geoinformatics; Spatial Information Science; [Spatial Data Science]; and Geographic Data Science (GDS). Each term shares an emphasis on a ‘scientific’ (implying reproducible and falsifiable) approach influenced by GIS, although their origins and main fields of application differ. GDS, for example, emphasizes ‘data science’ skills and large datasets, while Geoinformatics tends to focus on data structures...Geocomputation is a recent term but is influenced by old ideas. It can be seen as a part of Geography, which has a 2000+ year history (Talbert 2014); and an extension of Geographic Information Science and Systems (Neteler and Mitasova 2008), which emerged in the 1960s (Coppock and Rhind 1991).
+
+Geocomputation is part of but also separate to the wider discipline of GIScience (and Systems). As geographers, particularly ones at UCL, you are likely to have come across GIScience in one of its many forms, including the use of GIScience software, known simply as GIS software, such as ArcGIS Pro or ArcMap.
+
+What differentiates Geocomputation from traditional GIScience is that it is:
+
+> **working with geographic data in a computational way, focusing on code, reproducibility and modularity.**<br>
+> *Lovelace et al, 2020*
+
+We would also add that its main focus is on the **analysis** of data, rather than wider technological and informational challenges that GIScience also addresses. 
+
+:::sugreading
+**Suggested Reading**<br><br>
+If you'd like to read where the above quote is from, you're welcome to get ahead of Week 5's reading by looking at Lovelace et al (2020) linked below. 
+
+This is just suggested reading for this week - and may make a little more sense when we come to Week 5. But there's always benefits in doing (and reading!) things twice.<br><br>
+**Book Chapter (10 mins):** Lovelace et al, An Introduction to Geocomputation with R, [Preface](https://geocompr.robinlovelace.net/preface.html) and [Introduction](https://geocompr.robinlovelace.net/intro.html).
+:::
+
+What is important to recognise is that Geocomputation benefits from many of the **epistemological** and **ontological** developments that were made in the 1960s onwards within GIScience to enable us now to process substantial amount of spatial data, geographic and non-geographic, at signficiant speeds and visualise our results accordingly. 
+
+This includes how we capture, record and store the world around us in a digital format, how to take this *data* and turn it into *insight* and also the more technical issues of data formats, storing assigned metadata such as projections, and ensuring cross-compatibility across different GIS software and programming languages.
+
+:::note
+**Key Definitions**<br>
+
+* **Geographic** refers to space on the earth’s surface and near-surface.
+* **Non-geographic** can refer to other types of space, such as network and graph space. 
+* The use of **spatial** incorporates both geographic and non-geographic space.
+
+You’ll also see geospatial analysis mentioned which subset of spatial analysis applied specifically to the Earth’s surface and near-surface.
+ 
+Although there are subtle distinctions between the terms geographic(al), spatial, and geospatial, for many practical purposes they can be used interchangeably.
+:::
+
+Within this module, our focus will be on how we can **analyse spatial data in a computational way to address specific research questions** - we will try to focus on issues that often concern geographers, including socio-economic and environmental challenges, such as driving factors of crime and deprivation, inequalities in access to greenspace and food and health establishments, and exposure to environmental concerns, such as poor air quality.
+
+To achieve this, we need to draw on specific foundational concepts from **GIScience**, such as **spatial data models** and  **data interoperability** (Week 2), **Cartography and Visualisation**, including **map projections** (Week 3), alongside traditional **Data Analysis**, including using **Statistics** (Week 4), and also learn how to **Program** effectively and efficiently, particularly when it comes to using spatial data (Week 4 and 5). 
+
+The remainder of this week's content provides you with a brief introduction into each of these foundational concepts for Geocomputation. 
+
+Before you get started with the rest of this week's content, however, we'd like you to make sure you've **installed the software ready for next week**. It should also serve as a good break between reading and watching our lecture videos.
+
+:::assignment
+**Assignment 1: Download Q-GIS and R-Studio software**<br><br>
+Your first assignment for this week is to complete the steps found in [Software Installation] and complete the [Installation Confirmation Form](https://forms.office.com/Pages/ResponsePage.aspx?id=_oivH5ipW0yTySEKEdmlwrFgXiSd9pNOh1CPqE7-T55UNkRJMkMwRUFVU0xYWVVCVTBCWVo0T1BLMS4u) once done.
+:::
+
+### GIScience: A Short History {-}
+
+> Almost everything that happens, happens somewhere.<br>
+>*Longley et al, 2015*
+
+Geographic information has an important role across a multitude of applications, from epidemiology, disaster management and demography, to resource management, urban and transport planning, infrastructure modelling and many more. With almost all human activities involving an important geographic component, understanding where something happens – and also why – can often be the most critically important piece of information when decisions need to be made that are likely to affect individuals, communities, our increasingly connected societies, as well as the environment and ecology that exist in the area of study.
+
+Current methods of analysing geographic information have its roots firmly within the discipline of Geographic Information Science (GIScience), which first came into prominence in the 60s and 70s as the first Geographic Information System (GIS) was conceptualised by the “Father of Geographic Information Science and Systems”: Roger Tomlinson.
+
+He formalised the ideas within his [Doctoral Thesis](https://discovery.ucl.ac.uk/id/eprint/1563584/1/Tomlinson_Thesis.pdf) here at UCL in 1974, under the title “The application of electronic computing methods and techniques to the storage, compilation, and assessment of mapped data”. Whilst the thesis is nearly fifty years old, much of its content remains extensively relevant to the problems faced by the collection and processing of geographic data and analysis of geographic information today. Furthermore, he identifies two important requirements for the success of GIScience:
+
+>Within the discipline of geography, it is suggested that the mutual development of formal spatial models and geographic information systems will lead to future beneficial shifts of emphasis in both fields of endeavour.<br>
+>*Tomlinson, 1974*
+
+For GIScience to work as a discipline, there was a need to focus on both the development of **spatial modelling** (i.e. how to represent and analyse real world spatial phenomena in digital systems as spatial data) and of **geographic information systems** (i.e. how this data is stored, managed, retrieved, queried and visualised as information). Much of Tomlinson's work contributed to establishing both the spatial models and GISystems we use today - and UCL has remained active in the development of this knowledge, culminating in our course textbook by [Professor Paul Longley](https://www.geog.ucl.ac.uk/people/academic-staff/paul-longley) et al, who you will find in our Department. 
+
+The foundations of GIScience have been built upon, with fifty years of development in the digital collection, recording, management, sharing and analysis of geographic data and information. 
+
+For spatial modelling, the discipline has seen researchers develop and implement new methods and techniques of spatial representation and analysis to augment and extend the capabilities of working with spatial data. 
+
+For GIS, the discipline has spawned a new industry focusing on the (commercial) development of GIS tools, software and applications. These tools have enabled different types of GIS, from databases to analytical software to online data services and servers. 
+
+Furthermore, for both to work in unison with one another, GIScience has seen the establishment of the **Open Geospatial Consortium**, which aims to provide consensus on the standards and codes used with geographic data, information, content and services.
+
+The following short lecture provides an introduction to GIScience, including the topics that we'll cover in more detail in next week's lecture and practical.
+
+#### What is GIScience: past, present and future {-}
+
+```{r 01-gissicence-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_msstream('367d8d09-037d-4cd5-b271-6203a9447d9e') %>% use_align('center')
+```
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EVzCTpff7MpHkwgTLRBjw68B8cWUgCuTndhMSpmcMMO4-g?e=9qjq3x) | [Video on Stream](https://web.microsoftstream.com/video/367d8d09-037d-4cd5-b271-6203a9447d9e)</center>
+
+In addition to the short lecture, and in preparation for next week's seminar, please read the following two Book Chapters:
+
+:::reading
+**Key Reading(s)**<br>
+
+**Book (15 mins):** Longley et al, 2015, Geographic Information Science & Systems, *Chapter 1: Geographic information: Science, Systems, and Society.*
+
+**Article (15 mins):** Albrecht, J. (2020). *Philosophical Perspectives.* The Geographic Information Science & Technology Body of Knowledge.
+:::
+
+We'll cover the history of GIS software in a little more detail next week.
+
+### Spatial Analysis: An Overview {-}
+
+>"80% of all data is geographic."<br>
+>*A geographer*
+
+Whilst no one really knows the origin of this urban legend within GIScience, it is a quote that has been heavily used across the GIScience industry to explain the importance of spatial analysis and the untapped potential of spatial data. 
+
+It is incredible to believe that just over a decade ago, when I was in your exact position, there was a need to justify why studying, collecting and analysing geographic information was important. 
+
+In just over a decade, we have now seen a substantial transformation where analysing geographic data is no longer a niche activity, but almost omnipresent to our personal lives and our society at large.
+
+:::sugreading
+**Suggested Reading**<br><br>
+**Article (3 mins):** Forbes, 2020, [Mapping the way forward: GIS is powering solutions to global challenges](https://www.forbes.com/sites/vickiphillips/2020/09/21/mapping-the-way-forward-gis-is-powering-solutions-to-global-challenges/?sh=20abb47726d5)
+:::
+
+We now have an entire map in our pocket, which not only provides us with spatial analysis on the fly, but the device on which this map exists itself provides data to others to conduct spatial analysis on our own behaviours. Not only can we find out the best route for us to drive to our favourite park at the touch of a button, we can also passively inform others on how long it will take them to get there too.
+
+We all now actively create, use and analyse spatial data - whether we are aware of it or not!
+
+The question that has faced those working in GIScience - and now in fields and disciplines beyond - is how to formalise these analyses into identifiable and, importantly, **rigorous** methods and techniques. 
+
+Over the course of this module, we'll introduce you to some of the core and advanced analysis methods that  will be essential to analysing spatial data, including geometric operations, spatial autocorrelation, spatial regression, cluster analysis, interpolation and network analysis. 
+
+These methods have been developed by those working actively in GIScience and spatial analysis, such as [Dr Luc Anselin](https://spatial.uchicago.edu/directory/luc-anselin-phd) and his development of spatial autocorrelation methods.
+
+What you'll learn - and quickly find out through your own application of these analysis methods - is that understanding the theory and principles behind them is just essential as knowing how to implement them, either through GIS software or programming.
+
+The following short lecture provides an introduction to spatial analysis and the techniques you'll come across in the following weeks.
+
+#### Spatial Analysis: A key component of GIScience and beyond {-}
+
+```{r 01-spatialanalysis-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_msstream('3b5c4c64-9361-4fb9-820a-c3d4fd354d65') %>% use_align('center')
+```
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/ESTJKDPQWrxBtHdtDT-V4xsBcmpOdkJcWf6HiMTO9yflgg?e=mDksIu) | [Video on Stream](https://web.microsoftstream.com/video/3b5c4c64-9361-4fb9-820a-c3d4fd354d65)</center>
+
+:::assignment
+**Assignment 2: Spatial Analysis and the COVID-19 Pandemic**<br><br>
+For your second assignment this week, we'd like to you think about how spatial analysis has been used in the current pandemic (*don't worry, this is one of the few times we'll reference it moving forward!*). 
+
+Prior to next's week seminar (and preferably by **Friday 5pm**), we'd like you to submit a short description (100~ words or less!) of an application you may be using, or have seen in the news, where you think spatial analysis has been critical to its success. You don't need to know *exactly* how spatial analysis is being used, but you're welcome to make a guess - you can also submit a reference as well, if you'd like. Also - an application does not necessary mean a phone app, but can be a tool, website, or dashboard - or anything else you can think of that has a spatial component to it! 
+
+Please submit your description [**here**](https://forms.office.com/Pages/ResponsePage.aspx?id=_oivH5ipW0yTySEKEdmlwrFgXiSd9pNOh1CPqE7-T55UNzZXV1I2OUNXVUxIUkNHQThDNFJMUU9WTC4u)! 
+:::
+
+### Programming for Data Analysis {-}
+
+Concurrent to the developments within GIScience and spatial analysis, particularly over the last twenty years or so, we have begun to see a growing dataficaton of our everyday lives, where we:
+
+>“take all aspects of life and turn them into data.”<br>
+> *Cukier & Mayer-Schöenberg, 2013*
+
+Our personal use of digital sensors - from our mobile phone data, use of online social networks and fitness trackers, to our travel and credit card - has created a deluge of data, most commonly known as 'big data'. 
+
+What sets 'big data' apart from traditional data is these data are often substantial in their volume, velocity and variety - making them difficult to manage, store, process and analyse. 
+
+The hope, however, has been with big data is that by harnessing and 'wrangling' ita, we will be able to derive new insight from this data that can help address real world challenges, from something as simple as Google's Traffic alerts within its Maps application, to tracking food security in areas where access for surveys are unfeasible.
+
+For GIScience and spatial analysis, what is important to note is that this data deluge and resulting specialisation has created a new approach to the analysis of data that goes beyond traditional data analysis, known as **data science**, which has worked its way into analysis streams and lexicon of many industries, from commercial organisations to academic research institutions. 
+
+What distinguishes data science from traditional data analysis is that data scientists are able extract knowledge from these substantial datasets by using an intersection of three skills: hacking skills (or computational skills), statistical analysis and domain expertise. 
+
+These computational skills - in the form of 1) programming, 2) distributed computing and 3) large-scale (complex) analysis - often set these data analysts apart from their traditional counterparts.
+
+The increasing popularity of data science is having a signficant impact on how we "do" spatial anaysis as more and more data scientists become involved with spatial analysis as, for many of these datasets, location is a key component for its management, processing and analysis - after all, **everything happens somewhere**. 
+
+Concomittantly, there has also been an growing availability and accessibility of other geographical data, such as satellite and UAV imagery, that have significant interest to those working in these computational fields, such as computer vision and machine learning, such as extracting building and/or roads from true-colour satellite imagery. 
+
+As a result, the “world” of geographic information has transformed rapidly from a data-scarce to a data-rich environment (Miller and Goodchild, 2015) and has garnered significant interest from those who do not necessarily consider themselves as working within the GIScience discipline. 
+
+Their involvement has increased the utility of computational tools, such as programming languages and data servers, to ensure that traditional programming, data analysis and statistical langauges, such as **Python** and **R** can incorporate and conduct spatial analysis. This has involved the creation of many GIScience and spatial analysis focused *libraries* or *packages* (to be explained further in Week 4) within these programming languages, that have enabled analysts and researchers to run specific techniques or algorithms (such as calculating a buffer around a specific point) but for substantially larger datasets than traditional software can normally handle.
+
+Whilst this adoption of spatial analysis and GIS by non-GIScience practitioners certainly has (and continues to have) its pitfalls (as you’ll see later on in the module), there is also a growing influence and appeal of data science to many working in GIScience (and its related fields) – including its focus on analysing large-scale datasets that may have the potential to study geographic phenomena at unprecedented scales and detail.
+
+Unlike GIScience of ten years ago, there is, as a result, a pertinent need to teach these computational skills - first in the form of programming - to you as future GIS analysts, researchers or even data scientists, alongside the theory and principles of spatial analysis **and** the wider GIScience knowledge base. 
+
+As you might guess where this is going, our focus on **Geocomputation** is a first step in this direction - which you may build upon in your third year, following through with modules such as *Mining Social and Geographic Datasets*.
+
+The following short lecture outlines the key reasons why we should program for spatial analysis:
+
+```{r 01-programming-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_msstream('74c9020e-442d-4b9d-b091-a5dad1340002') %>% use_align('center')
+```
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/ET15xRr4rFhCsHenl3UdYK4B-IwJ0sW9J74UlxMDW6R9pw?e=behMON) | [Video on Stream](https://web.microsoftstream.com/video/74c9020e-442d-4b9d-b091-a5dad1340002)</center>
+
+:::note
+**Programmming vs. GUI-GIS**<br><br>
+If you've not programmed before, the learning curve to program can be daunting - and also very frustrating! To be honest, even when you know how to program, it can still be incredibly frustrating! 
+
+But the benefits of being able to program your data processing and analysis using a **Command Line Interface (CLI)** program, compared to using a traditional **Graphical User Interface (GUI)** sotware, are substantial. 
+
+This does not mean using a GUI GIS does not have purpose or its own advantages. 
+
+**In my opinion, GUI GIS are incredibly useful tools to understand the "spatialness" of your spatial data and your spatial analysis**, particularly when looking at spatial operations and spatial neighbours. 
+
+The scripting aspect of R/Python often shield or hide you from this spatiality, which when you're starting out with GIS and spatial analysis, is also an important learning curve! 
+
+Furthermore, with GUI GIS, if you are interested in making paper-based maps and establishing your own "James Cheshire and Oliver Uberti" coffee table map books, learning map-making in a GUI GIS can be incredibly helpful in terms of understanding the flexibility of styling, label placement etc. ArcGIS, for example, has bridges with Adobe and its Creative Suite catalogue of software, enabling you to easily format maps you've made in ArcGIS Pro within Illustrator and/or InDesign.
+
+As a result, for the first two weeks of practicals - and part of the final practical - we will use **Q-GIS** so you have a basic understanding of how to use the software, and can then develop your use of the software outside of our course if and when you need.
+:::
+
+To understand more about what spatial (geographic) data science is (and why we program!), please read our other two key readings for this week:
+
+:::reading
+**Key Reading(s)**<br><br>
+**Article (25 mins):** Brunsdon and Comber, 2020, *Opening Practice: Supporting Reproducibility and Critical Spatial Data Scinece*<br>
+**Article (10 mins):** Singleton and Arribas-Bel, 2019, *Geographic Data Science*, Geographic Analysis<br>
+:::
+
+In addition, you can watch this short video from **Carto**, a major commercial organisation working in several aspects of spatial data science. 
+
+It outlines these key skills you'll need to learn to become a competent spatial data scientist, **including an understanding of spatial data**, which many data scientists often lack prior to engaging with spatial data.
+
+```{r 01-carto-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_youtube('osAbJeTho5w') %>% use_align('center')
+```
+<center>*Carto's 'What is spatial data science' video*</center>
+
+### What's next for us in Geocomputation {-}
+
+>We believe strongly that effective users of GI systems require some awareness of all aspects of geographic information, from the basic principles and techniques to concepts of management and familiarity with applications.<br>
+>*Longley et al, 2015 pg.32*
+
+For the next few weeks, we'll be taking a deeper look at many of these foundational concepts that will ultimately enable you to be able to confidently and competently analyse spatial data using both programming and GIS software.
+
+As you might guess, you'll therefore be going on many learning curves over the coming weeks - some that may feel familiar (e.g. applying descriptive statistics) and others that are more challenging (e.g. learning how to write code **and** debug it as you find errors). 
+
+To help with this, I highly recommend that you try to stay organised with your work, including taking notes and making yourself a coding handbook. I'd also list the different datasets you come across - and importantly, the scales and different projections you use them at - more on this in the next two weeks. Finally, you should also make notes about the different spatial analysis techniques you'll come across, including the different properties they assess and parameters they require to run.
+
+Furthermore, over the next nine weeks, you’ll learn how to plan, structure and conduct your own spatial analysis using programming – whilst making decisions on how to best present your work, which is a crucial aspect of any type of investigation but of particular relevance to your dissertation. 
+
+Establishing an organised file system, for both your data and your documents, is essential to working effectively and efficiently as a researcher, whether in Gecomputation, Spatial Data Science or any other application you might think of! 
+
+To this end, we move to the final part of our content for this week: *creating our folders to establish good File Management procedures*.
+
+## Getting Ready for our Practicals {-}
+
+To get ready for our practicals, which start next week, we would like you to set-up a file management system as follows (either on your local computer or DesktopAnywhere VM) - this will also help ensure any code you use from Week 4 onwards works without issue (*theoretically!):
+
+1. Create a **GEOG0030** folder in your Documents folder on your computer (most likely inside a UCL or Undergrad or Geography folder, and then again within a Year 2 folder - although we are not mindreaders here ;) ).
+
+2. Next, within your **GEOG0030** folder, create the following subfolders:
+* **data**
+* **lecture_slides**
+* **maps**
+* **qgis**
+* **notes**
+* any other folder types you may think you need for this course (although you can of course add these as the module continues)
+
+<center>*Note the _ separating the two words in lecture_slides folder. PLEASE DO NOT LEAVE ANY GAPS INBETWEEN YOUR FOLDER NAMES (OR FILE NAMES). We will explain why in our seminar next week. Also note we do not use any capitals in our folder names.*</center><br>
+
+3. Within your **data** folder, create the following subfolders:
+* **raw**
+* **working**
+* **final**
+
+4. If you've downloaded the lecture slides, move these into your **lecture_slides** folder.
+
+We'll explain more about establishing good file management procedures in the seminar at the beginning of next week.
+
+:::assignment
+**Assignment 3**<br><br>
+Follow the above guidelines to create your folders in your local system ready for our practicals to begin next week.
+:::
+
+And that's it. You're now ready to start our practicals next week.
+
+We look forward to meeting you all in our first seminars next week and address any questions you might have from this week's content!
+
+:::sds
+**Week 1 Recap**<br><br>
+This week, we've provided you with an introduction to the Foundational Concepts you'll be coming across in our course as we train you to become competent spatial data analysist. 
+
+You should now:
+
+* Understand the differences between traditional GIScience and Geocomputation.
+
+* Be able to explain what spatial analysis is and why it is important for Geocomputation.
+
+* Understand why we will use programming as our main tool for data analysis.
+
+* Know how you will access both of required software for this course: **QGIS** and **R-Studio** - or flagged this as an issue to us via the form!
+
+* Have created your file system for **GEOG0030**ready to practice good file management for the module's practical content, starting next week.
+:::
