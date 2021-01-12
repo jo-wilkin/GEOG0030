@@ -320,5 +320,5 @@ You should now:
 
 * Know how you will access both of required software for this course: **QGIS** and **R-Studio** - or flagged this as an issue to us via the form!
 
-* Have created your file system for **GEOG0030**ready to practice good file management for the module's practical content, starting next week.
+* Have created your file system for **GEOG0030** ready to practice good file management for the module's practical content, starting next week.
 :::
