@@ -147,9 +147,9 @@
 </ul></li>
 <li class="part"><span><b>Alternate Tutorials</b></span></li>
 <li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
-<li class="chapter" data-level="10.0.1" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i><b>10.0.1</b> A short introduction to ArcGIS Online</a></li>
-<li class="chapter" data-level="10.0.2" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#signing-up-to-arcgis-online"><i class="fa fa-check"></i><b>10.0.2</b> Signing Up to ArcGIS Online</a></li>
-<li class="chapter" data-level="10.0.3" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i><b>10.0.3</b> Practical Instructions</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i>A short introduction to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#sign-up-to-arcgis-online"><i class="fa fa-check"></i>Sign Up to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i>Practical Instructions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a></li>
 </ul>
@@ -949,10 +949,12 @@ They originate from the Roman era who used these geographies, usually defined by
 <strong>Cleaning our Population Datasets</strong>
 </center>
 <p><br></p>
-<p>If you open up the 2011 ward spreadsheet in Excel (or another spreadsheet program: this could be Numbers or you can upload your data to use it with Google Docs, for example), you’ll quickly see that there are several worksheets to this workbook.</p>
+If you open up the 2011 ward spreadsheet in Excel (or another spreadsheet program: this could be Numbers or you can upload your data to use it with Google Docs, for example), you’ll quickly see that there are several worksheets to this workbook.
+<br>
 <center>
 <strong>We are interested in the Mid-2011 Persons.</strong>
 </center>
+<p><br></p>
 <ol style="list-style-type: decimal">
 <li>Click on the <strong>Mid-2011 Persons</strong> tab and have a look at the data.
 <ul>
@@ -1141,7 +1143,7 @@ They originate from the Roman era who used these geographies, usually defined by
 <li>You can click <strong>Apply</strong> to see what your labels look like. In my case, incredibly busy!:</li>
 </ul></li>
 </ol>
-<p><img src="images/w2/wardlabels.png" width="5500pt" style="display: block; margin: auto;" /></p>
+<p><img src="images/w2/wardlabels.png" width="750pt" style="display: block; margin: auto;" /></p>
 <center>
 <em>As its very busy, you may actually want to remove the labels from your dataset for the remaining processing - but hopefully this helps you understand how to add simple labels to your data. We’ll show you some more complex approaches in Week 10.</em>
 </center>
@@ -1149,6 +1151,15 @@ They originate from the Roman era who used these geographies, usually defined by
 <ol start="11" style="list-style-type: decimal">
 <li>Click <strong>OK</strong> once you’re done changing the Symbology and Label style of your data to return to the main window.</li>
 </ol>
+<div class="fyi">
+<p><strong>Turning layers on/off &amp; drawing orders</strong><br><br>
+The main strength of a GUI GIS system is that is really helps us understand how we can visualise spatial data. Even with just these two shapefiles loaded, we can understand two key concepts of using spatial data within GIS.</p>
+<p>The first, and this is only really relevant to GUI GIS systems, is that each layer can either be turned on or off, to make it visible or not (try clicking the tick box to the left of each layer). This is probably a feature you’re used to working with if you’ve played with interactive web mapping applications before!</p>
+<p>The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as ggplot2 in R-Studio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.</p>
+<p>Being aware of this need for “order” is important when we shift to using R-Studio and ggoplot2 to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!</p>
+<p>For us using Q-GIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we’ll need to display them individually to export them at the end.</p>
+</div>
+<p><strong>Joining our population data to our ward shapefile</strong></p>
 <p>We’re now going to join our 2011 population data to our 2011 shapefile.</p>
 <p>First, we need to add the 2011 population data to our project.</p>
 <ol start="12" style="list-style-type: decimal">
@@ -1203,9 +1214,11 @@ They originate from the Roman era who used these geographies, usually defined by
 <li>Right-click on the <code>London_Ward</code> layer and open the <strong>Attribute Table</strong> and check that the population data column has been added to the table.</li>
 </ol>
 <p>As long as it has joined, you can move forward with the next steps. If your join has not worked, try the steps again - and if you’re still struggling, do let us know.</p>
-<p><strong>Now, the join that you have created between your ward and population datasets in only held in Q-GIS’s memory.</strong>
-* <strong>If you were to close the program now, you would lose this join and have to repeat it the next time you opened Q-GIS.</strong>
-* <strong>To prevent this from happening, we need to export our dataset to a new shapefile - and then re-add this to the map.</strong></p>
+<center>
+<p><strong>Now, the join that you have created between your ward and population datasets in only held in Q-GIS’s memory.</strong></p>
+<p><strong>If you were to close the program now, you would lose this join and have to repeat it the next time you opened Q-GIS.</strong></p>
+<strong>To prevent this from happening, we need to export our dataset to a new shapefile - and then re-add this to the map.</strong>
+</center>
 <p>Let’s do this now:</p>
 <ol start="17" style="list-style-type: decimal">
 <li>Right-click on your <code>London_Ward</code> shapefile and click <strong>Export</strong> –&gt; <strong>Save Vector Layer as..</strong>.
@@ -1244,14 +1257,14 @@ Understanding what classification is appropriate to visualise your data is an im
 <p>You should now be looking at something like this:</p>
 <p><img src="images/w2/ward_2011.png" width="750pt" style="display: block; margin: auto;" />
 <br>
-You’ll be able to see that we have <strong>some</strong> missing data - and this is for several wards within the City of London.</p>
-<p>This is because census data is <strong>only recorded for 8 out of the 25 wards</strong> and therefore we have <strong>no data</strong> for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a <strong>NODATA</strong> value.</p>
+You’ll be able to see that we have <strong>some</strong> missing data - and this is for several wards within the City of London.
+This is because census data is <strong>only recorded for 8 out of the 25 wards</strong> and therefore we have <strong>no data</strong> for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a <strong>NODATA</strong> value.</p>
 <p>One thing to flag is that <strong>NODATA</strong> means no data - whereas 0, particularly in a scenario like this, would be an actual numeric value. It’s important to remember this when processing and visualising data, to make sure you do not represent a NODATA value incorrectly.</p>
-<p><strong>Next Steps: Joining our 2015 and 2019 data</strong></p>
+<p><strong>Next Steps: Joining our 2014/2015 and 2018/2019 data</strong></p>
 <p>You now need to <strong>repeat this whole process</strong> for your 2015 and 2019 datasets. Remember, you need to:</p>
 <ul>
-<li><p>Load the Ward dataset as a Vector Layer</p></li>
-<li><p>Load the Population dataset as a Delimited Text File Layer (remember the settings!)</p></li>
+<li><p>Load the respective Ward dataset as a Vector Layer</p></li>
+<li><p>Load the respective Population dataset as a Delimited Text File Layer (remember the settings!)</p></li>
 <li><p>Join the two datasets together using the Join tool in the Ward dataset Properties box.</p></li>
 <li><p>Export your joined dataset into a new dataset within your <code>final</code> folder.</p></li>
 <li><p>Style your data appropriately.</p></li>

@@ -839,8 +839,8 @@ Now it's time to do some quite **extensive** data cleaning.
 <center>**Cleaning our Population Datasets**</center><br>
 
 If you open up the 2011 ward spreadsheet in Excel (or another spreadsheet program: this could be Numbers or you can upload your data to use it with Google Docs, for example), you'll quickly see that there are several worksheets to this workbook. 
-
-<center>**We are interested in the Mid-2011 Persons.**</center>
+<br>
+<center>**We are interested in the Mid-2011 Persons.**</center><br>
 
 1. Click on the **Mid-2011 Persons** tab and have a look at the data. 
     + As you should be able to see, we have a set of different fields (e.g. Ward Code, Ward Name), including population statistics. 
@@ -1019,13 +1019,28 @@ Before adding our population data, we can make a quick map of the wards in Londo
         + I'll add a thin buffer to my labels and change the font to Futura and size 8. 
     + You can click **Apply** to see what your labels look like. In my case, incredibly busy!:
     
-```{r echo=FALSE, out.width = "5500pt", fig.align='center', cache=TRUE}
+```{r echo=FALSE, out.width = "750pt", fig.align='center', cache=TRUE}
 knitr::include_graphics('images/w2/wardlabels.png')
 ```
 
 <center>*As its very busy, you may actually want to remove the labels from your dataset for the remaining processing - but hopefully this helps you understand how to add simple labels to your data. We'll show you some more complex approaches in Week 10.*</center><br>
 
 11. Click **OK** once you're done changing the Symbology and Label style of your data to return to the main window. 
+
+:::fyi
+**Turning layers on/off & drawing orders**<br><br>
+The main strength of a GUI GIS system is that is really helps us understand how we can visualise spatial data. Even with just these two shapefiles loaded, we can understand two key concepts of using spatial data within GIS.
+
+The first, and this is only really relevant to GUI GIS systems, is that each layer can either be turned on or off, to make it visible or not (try clicking the tick box to the left of each layer). This is probably a feature you’re used to working with if you’ve played with interactive web mapping applications before!
+
+The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as ggplot2 in R-Studio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.
+
+Being aware of this need for “order” is important when we shift to using R-Studio and ggoplot2 to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!
+
+For us using Q-GIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we'll need to display them individually to export them at the end.
+:::
+
+**Joining our population data to our ward shapefile**
 
 We're now going to join our 2011 population data to our 2011 shapefile.
 
@@ -1090,9 +1105,11 @@ We can now check to see if our join has worked by opening up our `London_Ward` *
 
 As long as it has joined, you can move forward with the next steps. If your join has not worked, try the steps again - and if you're still struggling, do let us know.
 
-**Now, the join that you have created between your ward and population datasets in only held in Q-GIS's memory.** 
-    * **If you were to close the program now, you would lose this join and have to repeat it the next time you opened Q-GIS.** 
-    * **To prevent this from happening, we need to export our dataset to a new shapefile - and then re-add this to the map.**
+<center>**Now, the join that you have created between your ward and population datasets in only held in Q-GIS's memory.** 
+
+**If you were to close the program now, you would lose this join and have to repeat it the next time you opened Q-GIS.** 
+
+**To prevent this from happening, we need to export our dataset to a new shapefile - and then re-add this to the map.**</center>
     
 Let's do this now:
 
@@ -1132,18 +1149,17 @@ knitr::include_graphics('images/w2/ward_2011.png')
 ```
 <br>
 You'll be able to see that we have **some** missing data - and this is for several wards within the City of London. 
-
 This is because census data is **only recorded for 8 out of the 25 wards** and therefore we have **no data** for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a **NODATA** value. 
 
 One thing to flag is that **NODATA** means no data - whereas 0, particularly in a scenario like this, would be an actual numeric value. It's important to remember this when processing and visualising data, to make sure you do not represent a NODATA value incorrectly.
 
-**Next Steps: Joining our 2015 and 2019 data**
+**Next Steps: Joining our 2014/2015 and 2018/2019 data**
 
 You now need to **repeat this whole process** for your 2015 and 2019 datasets. Remember, you need to:
 
-* Load the Ward dataset as a Vector Layer
+* Load the respective Ward dataset as a Vector Layer
 
-* Load the Population dataset as a Delimited Text File Layer (remember the settings!)
+* Load the respective Population dataset as a Delimited Text File Layer (remember the settings!)
 
 * Join the two datasets together using the Join tool in the Ward dataset Properties box.
 
