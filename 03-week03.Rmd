@@ -4,46 +4,49 @@
 
 <!-- ## Projections -->
 
-<!-- ### Spatial Properties -->
+
 
 <!-- ## Cartography Conventions -->
 
-The role of scale in spatial analysis using administrative geographies
-When we have data about individuals or individual events and want to analyse patterns across substantial scales, it is often not useful or even possible to analyse these data as these individual units.
-For example, in our practical this week, we are looking at 220,000 occurrences of theft in London in 2019 – when you load the data onto your map, you will see that the data in this format only really tells you one thing – there is a lot of theft in London, which decreases as you move away from the city centre!
-To be able to analyse these patterns in more detail – and to reduce processing requirements - it is better to generalise this data into more interpretable formats, for example, using smoothing to create a Kernel Density Estimation (Week 6!) or in the case of our practical this week, we will aggregate the individual events to an areal unit using ‘administrative geographies’.
-In addition to the need to improve the efficacy of your analysis, there are substantial privacy concerns that analyses of individual level data (such as socio- economic information or disease cases) would raise. We therefore have to be able to generalise our individual level data as well – and this is primarily facilitated through the same process of aggregation, where areal units average these datasets to represent populations as a whole – again primarily using administrative geographies.
-What are administrative geographies?
-Put simply, administrative geography is a way of dividing the country into smaller sub-divisions or areas that correspond with the area of responsibility of local authorities and government bodies.
-These administrative sub-divisions and their associated geography have several important uses, including assigning electoral constituencies, defining jurisdiction of courts, planning public healthcare provision, as well as what we are concerned with:
 
-used as a mechanism for collecting census data and assigning the resulting datasets to a specific administrative unit.
-Administrative areas ensure that each public body has a clearly defined area of responsibility, which can be measured and budgeted for appropriately.
-They originate from the Roman era who used these geographies, usually defined by topographical and geographical features, to administer these regions including collecting the relevant tax from those living in these areas.
-These geographies are updated as populations evolve and as a result, the boundaries of the administrative geographies are subject to either periodic or occasional change. For any country in which you are using administrative geographies, it is good practice therefore to research into their history and how they have changed over the period of your dataset.
-In the modern spatial analysis, we use administrative geographies to aggregate individual level data and individual event data. One of the motivations for this is the fact that census data (and many other sources of socio-economic and public health data) are provided at specific administrative levels, whilst other datasets can often be easily georeferenced or aggregated to these levels.
-Furthermore, administrative geographies are concerned with the hierarchy of areas – hence we are able to conduct analyses at a variety of scales to understand local and global trends.
-The UK has quite a complex administrative geography, particularly due to having several countries within one overriding administration and then multiple ways of dividing the countries according to specific applications:
+<!-- ### Modifialbe Area Unit Problem -->
 
-Don’t worry, we won’t expect you to memorise the above. For the majority of your practicals, we will be keeping it simple with a focus on London, which is divided into BoroughsàWardsàMiddle Super Output AreasàLower Super Output Areas à Output Areas. We’ll be looking at boroughs and wards in our practical analysis – although even at these scales, the City of London is a little pesky and introduces complexities into our analysis, which we’ll discuss further in our seminar.
-As a note of interest at this point, in the U.K., it is generally understood that for publishable research, we do not analyse data at a smaller scale than something called the Lower Super Output Area (LSOA). There is another administrative unit below the LSOA, known as the Output Area, which (again due to ensure confidentiality of data) has a minimum size of 40 resident households and 100 resident people but for particular types of research, this level of detail can still lead to unintended consequences, such as households being identified within the data.
-For other countries, you can find data on their Administrative Geographies at gadm.org, which allows you to download and use the data for non-commercial purposes.
+<!-- The role of scale in spatial analysis using administrative geographies -->
+<!-- When we have data about individuals or individual events and want to analyse patterns across substantial scales, it is often not useful or even possible to analyse these data as these individual units. -->
+<!-- For example, in our practical this week, we are looking at 220,000 occurrences of theft in London in 2019 – when you load the data onto your map, you will see that the data in this format only really tells you one thing – there is a lot of theft in London, which decreases as you move away from the city centre! -->
+<!-- To be able to analyse these patterns in more detail – and to reduce processing requirements - it is better to generalise this data into more interpretable formats, for example, using smoothing to create a Kernel Density Estimation (Week 6!) or in the case of our practical this week, we will aggregate the individual events to an areal unit using ‘administrative geographies’. -->
+<!-- In addition to the need to improve the efficacy of your analysis, there are substantial privacy concerns that analyses of individual level data (such as socio- economic information or disease cases) would raise. We therefore have to be able to generalise our individual level data as well – and this is primarily facilitated through the same process of aggregation, where areal units average these datasets to represent populations as a whole – again primarily using administrative geographies. -->
+<!-- What are administrative geographies? -->
+<!-- Put simply, administrative geography is a way of dividing the country into smaller sub-divisions or areas that correspond with the area of responsibility of local authorities and government bodies. -->
+<!-- These administrative sub-divisions and their associated geography have several important uses, including assigning electoral constituencies, defining jurisdiction of courts, planning public healthcare provision, as well as what we are concerned with: -->
 
-Generally, they contain 4-5 levels of administrative boundaries, starting at Level 0, with the outline of the country, Level 1, the next regional division, Level 2, the division below that etc. Each country will have a different way of determining their levels and their associated names – and when you start to add in differentiating between urban and rural areas, it becomes a whole new level of complexity. Again, before using administrative geographies to aggregate your data, you should always check that you understand what they represent and how/if they’ve changed recently.
-What are the advantages and limitations of using administrative geographies for spatial analysis?
-Beyond the above technical complexity and currency issues, there are definitely a few hurdles in understanding how you can use administrative geographies for spatial analysis.
-Two substantial issues as data analysts that you need to be aware of are issues of the “Ecological Fallacy” and the “Modifiable Areal Unit Problem”.
-When using aggregated data, you must avoid falling for the ecological fallacy – which is when you try to make inferences about the nature of individuals based on the group to which those individuals belong (e.g. administrative unit). This applies when looking at correlations between two variables when using administrative geographies or looking at averages within these units.
-W
-Using the smallest areal unit (or administrative geography) can help minimise the variation in the aggregated data – but this also can lead to our second issue, known as the Modifiable Areal Unit Problem (MAUP).
-MAUP is in fact one of the most stubborn problems in spatial analysis when spatially aggregated data are used.
-This is because (and the following is paraphrased Wong, 2009) geographical data possess unique characteristics that are not present in aspatial data – and in particular, they are scale dependent.
+<!-- used as a mechanism for collecting census data and assigning the resulting datasets to a specific administrative unit. -->
+<!-- Administrative areas ensure that each public body has a clearly defined area of responsibility, which can be measured and budgeted for appropriately. -->
+<!-- They originate from the Roman era who used these geographies, usually defined by topographical and geographical features, to administer these regions including collecting the relevant tax from those living in these areas. -->
+<!-- These geographies are updated as populations evolve and as a result, the boundaries of the administrative geographies are subject to either periodic or occasional change. For any country in which you are using administrative geographies, it is good practice therefore to research into their history and how they have changed over the period of your dataset. -->
+<!-- In the modern spatial analysis, we use administrative geographies to aggregate individual level data and individual event data. One of the motivations for this is the fact that census data (and many other sources of socio-economic and public health data) are provided at specific administrative levels, whilst other datasets can often be easily georeferenced or aggregated to these levels. -->
+<!-- Furthermore, administrative geographies are concerned with the hierarchy of areas – hence we are able to conduct analyses at a variety of scales to understand local and global trends. -->
+<!-- The UK has quite a complex administrative geography, particularly due to having several countries within one overriding administration and then multiple ways of dividing the countries according to specific applications: -->
 
-As evident from above, spatial data can be aggregated to or tabulated at different spatial scales, such as the different levels within our administrative geographies.
-This means that we are able to partition space into different scales – but, even if we keep the spatial scale somewhat constant, there are many, or even infinite ways to form the regions within these scales.
-But when data are tabulated according to different zonal systems and are then analyzed, it is unlikely that they will provide consistent results - even though the same variables are used and the same areas are ultimately analyzed.
-This variability or inconsistency of the analytical results is mainly due to the fact that we can modify areal unit boundaries and thus the problem is known as the MAUP.
-Ultimately, the results from your analysis are only relatable to those precise areal units used - you cannot extrapolate your findings at one scale to another, i.e. any conclusions
-Since spatially aggregated data are often used not just in geographical research, but also in other social science and physical science disciplines, the MAUP can have broad impacts. Whilst several general approaches have been suggested to handle the MAUP, a clear framework has yet to be developed.
-In summary, whenever you conduct spatial analysis using areal units – you cannot infer about the individuals within those units nor can you assume your findings will apply at coarser scales.
-We will begin to look at MAUP in this week’s practical and seminar and continue accounting for and considering its impact over the next few weeks of our analysis.
+<!-- Don’t worry, we won’t expect you to memorise the above. For the majority of your practicals, we will be keeping it simple with a focus on London, which is divided into BoroughsàWardsàMiddle Super Output AreasàLower Super Output Areas à Output Areas. We’ll be looking at boroughs and wards in our practical analysis – although even at these scales, the City of London is a little pesky and introduces complexities into our analysis, which we’ll discuss further in our seminar. -->
+<!-- As a note of interest at this point, in the U.K., it is generally understood that for publishable research, we do not analyse data at a smaller scale than something called the Lower Super Output Area (LSOA). There is another administrative unit below the LSOA, known as the Output Area, which (again due to ensure confidentiality of data) has a minimum size of 40 resident households and 100 resident people but for particular types of research, this level of detail can still lead to unintended consequences, such as households being identified within the data. -->
+<!-- For other countries, you can find data on their Administrative Geographies at gadm.org, which allows you to download and use the data for non-commercial purposes. -->
+
+<!-- Generally, they contain 4-5 levels of administrative boundaries, starting at Level 0, with the outline of the country, Level 1, the next regional division, Level 2, the division below that etc. Each country will have a different way of determining their levels and their associated names – and when you start to add in differentiating between urban and rural areas, it becomes a whole new level of complexity. Again, before using administrative geographies to aggregate your data, you should always check that you understand what they represent and how/if they’ve changed recently. -->
+<!-- What are the advantages and limitations of using administrative geographies for spatial analysis? -->
+<!-- Beyond the above technical complexity and currency issues, there are definitely a few hurdles in understanding how you can use administrative geographies for spatial analysis. -->
+<!-- Two substantial issues as data analysts that you need to be aware of are issues of the “Ecological Fallacy” and the “Modifiable Areal Unit Problem”. -->
+<!-- When using aggregated data, you must avoid falling for the ecological fallacy – which is when you try to make inferences about the nature of individuals based on the group to which those individuals belong (e.g. administrative unit). This applies when looking at correlations between two variables when using administrative geographies or looking at averages within these units. -->
+<!-- W -->
+<!-- Using the smallest areal unit (or administrative geography) can help minimise the variation in the aggregated data – but this also can lead to our second issue, known as the Modifiable Areal Unit Problem (MAUP). -->
+<!-- MAUP is in fact one of the most stubborn problems in spatial analysis when spatially aggregated data are used. -->
+<!-- This is because (and the following is paraphrased Wong, 2009) geographical data possess unique characteristics that are not present in aspatial data – and in particular, they are scale dependent. -->
+
+<!-- As evident from above, spatial data can be aggregated to or tabulated at different spatial scales, such as the different levels within our administrative geographies. -->
+<!-- This means that we are able to partition space into different scales – but, even if we keep the spatial scale somewhat constant, there are many, or even infinite ways to form the regions within these scales. -->
+<!-- But when data are tabulated according to different zonal systems and are then analyzed, it is unlikely that they will provide consistent results - even though the same variables are used and the same areas are ultimately analyzed. -->
+<!-- This variability or inconsistency of the analytical results is mainly due to the fact that we can modify areal unit boundaries and thus the problem is known as the MAUP. -->
+<!-- Ultimately, the results from your analysis are only relatable to those precise areal units used - you cannot extrapolate your findings at one scale to another, i.e. any conclusions -->
+<!-- Since spatially aggregated data are often used not just in geographical research, but also in other social science and physical science disciplines, the MAUP can have broad impacts. Whilst several general approaches have been suggested to handle the MAUP, a clear framework has yet to be developed. -->
+<!-- In summary, whenever you conduct spatial analysis using areal units – you cannot infer about the individuals within those units nor can you assume your findings will apply at coarser scales. -->
+<!-- We will begin to look at MAUP in this week’s practical and seminar and continue accounting for and considering its impact over the next few weeks of our analysis. -->
