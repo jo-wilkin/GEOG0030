@@ -8,3 +8,7 @@ analysing-spatial-patterns-ii-clusters
 rasters-zonal-statistics-and-interpolation
 geodemographics
 cartography-and-visualisation-ii
+a-short-introduction-to-arcgis-online
+what-is-arcgis-online
+signing-up-to-arcgis-online
+practical-instructions

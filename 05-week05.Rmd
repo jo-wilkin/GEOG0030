@@ -3,7 +3,7 @@
 **Content for this week will be released at 10am on the 9th February 2021.**
 
 <!-- ## Exploratory Spatial Data Analysis -->
-
+<!-- [GIS Software - a more thorough introduction]~~ (Postponed until Week 5) -->
 <!-- :::note -->
 <!-- **Spatial Analysis, Statistics, Spatial Statistics and Geostatistics**<br> -->
 

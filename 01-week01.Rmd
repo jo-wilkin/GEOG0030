@@ -4,7 +4,7 @@
 
 Welcome to the first week of Geocomputation!
 
-#### Week 1 in Geocomp {-}
+### Week 1 in Geocomp {-}
 
 ```{r 01-welcome, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)

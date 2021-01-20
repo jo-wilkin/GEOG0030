@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Week 2 Practical Alternate: Using AGOL for Population Mapping | Geocomputation 2020-2021 Work Book</title>
+  <meta name="description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Week 2 Practical Alternate: Using AGOL for Population Mapping | Geocomputation 2020-2021 Work Book" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jo-wilkin.github.io/GEOG0030/" />
+  
+  <meta property="og:description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="github-repo" content="jo-wilkin/GEOG0030" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Week 2 Practical Alternate: Using AGOL for Population Mapping | Geocomputation 2020-2021 Work Book" />
+  
+  <meta name="twitter:description" content="GEOG0030: Geocomputation Work Book" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="assessment-information.html"/>
+<link rel="next" href="week-3-practical-alternate-using-agol-for-crime-mapping.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
+
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+<a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl-logo.jpg">
+</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>Module Overview</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#geocomputation-introductory-video"><i class="fa fa-check"></i>Geocomputation Introductory Video</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-in-touch-during-the-module"><i class="fa fa-check"></i>Getting in touch during the module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#noticed-a-mistake-in-this-resource"><i class="fa fa-check"></i>Noticed a mistake in this resource?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module Information</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning-for-geocomputation"><i class="fa fa-check"></i>Self-guided learning for Geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#geocomputation-timetable"><i class="fa fa-check"></i>Geocomputation Timetable</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#what-will-i-be-learning-each-week"><i class="fa fa-check"></i>What will I be learning each week?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading List</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#troubleshooting-module-content"><i class="fa fa-check"></i>Troubleshooting Module Content</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#additional-online-help-resources"><i class="fa fa-check"></i>Additional Online Help &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#feedback-weekly-and-end-of-module"><i class="fa fa-check"></i>Feedback: Weekly and End of Module</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Started</b></span></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html"><i class="fa fa-check"></i>What is this Workbook?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#using-this-workbook"><i class="fa fa-check"></i>Using this Workbook</a></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#workbook-functionality"><i class="fa fa-check"></i>Workbook Functionality</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html"><i class="fa fa-check"></i>Software Installation</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#qgis"><i class="fa fa-check"></i>QGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-and-r-studio"><i class="fa fa-check"></i>R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-1"><i class="fa fa-check"></i>R-Studio Setup 1</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-2"><i class="fa fa-check"></i>R-Studio Setup 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#arcgis"><i class="fa fa-check"></i>ArcGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#installation-issues"><i class="fa fa-check"></i>Installation Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html"><i class="fa fa-check"></i>External Usage</a><ul>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / Contributions</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#version"><i class="fa fa-check"></i>Version</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundational Concepts</b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#week-1-in-geocomp"><i class="fa fa-check"></i>Week 1 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#what-is-geocomputation"><i class="fa fa-check"></i>What is Geocomputation?</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#giscience-a-short-history"><i class="fa fa-check"></i>GIScience: A Short History</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#spatial-analysis-an-overview"><i class="fa fa-check"></i>Spatial Analysis: An Overview</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#programming-for-data-analysis"><i class="fa fa-check"></i>Programming for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#whats-next-for-us-in-geocomputation"><i class="fa fa-check"></i>What’s next for us in Geocomputation</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-ready-for-our-practicals"><i class="fa fa-check"></i>Getting Ready for our Practicals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a><ul>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#week-2-in-geocomp"><i class="fa fa-check"></i>Week 2 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#what-is-representation"><i class="fa fa-check"></i>What is Representation?</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#geographic-representation"><i class="fa fa-check"></i>Geographic Representation</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-structure-sampling-and-scale"><i class="fa fa-check"></i>Spatial Structure, Sampling and Scale</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-models"><i class="fa fa-check"></i>Spatial Data Models</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-file-formats"><i class="fa fa-check"></i>Spatial Data File Formats</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#gis-software---a-more-thorough-introduction-moved-to-week-5"><i class="fa fa-check"></i>GIS Software - a more thorough introduction (moved to Week 5)</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#practical-1-exploring-population-changes-across-london"><i class="fa fa-check"></i>Practical 1: Exploring Population Changes Across London</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a></li>
+<li class="chapter" data-level="4" data-path="programming-for-statistical-analysis.html"><a href="programming-for-statistical-analysis.html"><i class="fa fa-check"></i><b>4</b> Programming (for Statistical Analysis)</a></li>
+<li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a></li>
+<li class="part"><span><b>II Core Spatial Analysis</b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-clusters.html"><a href="analysing-spatial-patterns-ii-clusters.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Clusters</a></li>
+<li class="chapter" data-level="8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>8</b> Rasters, Zonal Statistics and Interpolation</a></li>
+<li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
+<li class="chapter" data-level="9" data-path="geodemographics.html"><a href="geodemographics.html"><i class="fa fa-check"></i><b>9</b> Geodemographics</a></li>
+<li class="chapter" data-level="" data-path="optional-road-network-analysis.html"><a href="optional-road-network-analysis.html"><i class="fa fa-check"></i>OPTIONAL: Road Network Analysis</a></li>
+<li class="part"><span><b>IV Cartography &amp; Visualisation</b></span></li>
+<li class="chapter" data-level="10" data-path="cartography-and-visualisation-ii.html"><a href="cartography-and-visualisation-ii.html"><i class="fa fa-check"></i><b>10</b> Cartography and Visualisation II</a></li>
+<li class="part"><span><b>Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
+</ul></li>
+<li class="part"><span><b>Alternate Tutorials</b></span></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
+<li class="chapter" data-level="10.0.1" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i><b>10.0.1</b> A short introduction to ArcGIS Online</a></li>
+<li class="chapter" data-level="10.0.2" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#signing-up-to-arcgis-online"><i class="fa fa-check"></i><b>10.0.2</b> Signing Up to ArcGIS Online</a></li>
+<li class="chapter" data-level="10.0.3" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i><b>10.0.3</b> Practical Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation 2020-2021 Work Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<link href="style.css" rel="stylesheet">
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="../images/general/overview.png">
+</div>
+<div id="week-2-practical-alternate-using-agol-for-population-mapping" class="section level1 unnumbered">
+<h1>Week 2 Practical Alternate: Using AGOL for Population Mapping</h1>
+<p>For this week’s Practical Alternate, we’ll be using ArcGIS Online.</p>
+<div id="a-short-introduction-to-arcgis-online" class="section level3">
+<h3><span class="header-section-number">10.0.1</span> A short introduction to ArcGIS Online</h3>
+<p>*Feel free to skip this part and head straight to the [Sign Up for ArcGIS Online] section.</p>
+<div id="what-is-arcgis-online" class="section level4">
+<h4><span class="header-section-number">10.0.1.1</span> What is ArcGIS Online?</h4>
+<p>ArcGIS Online (AGO) is Esri’s “Software-as-a-service” GIS offering, that enables you to conduct some basic (as well as some quite advanced!) spatial analysis, as well as create interactive maps for sharing with others.</p>
+<p>It has some very similar features to Esri’s GIS Desktop software (ArcMap and ArcPro) discussed in last week’s lecture, but it does not have all of their capabilities, for example, it is not a tool I would use to create paper maps/ones for use in publication. In contrast, it does offer a lot of web interactivity, as we’ll see when we share our maps with one another at the end of the practical. It also has some really useful analysis tools that are quick and easy to use, in compared to their counterparts in the Desktop software, such as creating something called “drive-time” or “network” buffers – we’ll have a look at these next week when looking at spatial properties.</p>
+<p>#####The Esri Ecosystem</p>
+<p>AGO is just one of the may additional tools Esri offers. Their entire ecosystem of products is huge - you can see their list of products <a href="https://www.esri.com/en-us/arcgis/products/index">here</a>.</p>
+<p>Whilst many of the products and/or extensions are created for specific industries and purposes, there are other web-based tools that I can recommend you looking into during your time on this course, to at least be aware of the capabilities moving forward.</p>
+<p>The first would be ArcGIS StoryMaps, where you can create a webpage a bit like the ones you are using for these workshops, but also integrate any maps you make within the page as well!</p>
+<p>In addition to StoryMaps, Esri has its own survey collector application – ArcGIS Survey123. Within this application, you can create online forms to collect spatial and non-spatial data – which can then be directly used as inputs within AGO or StoryMap applications.</p>
+<p>You might see why I call this an “ecosystem” – Esri have constructed their software, tools and applications to work well together and sync across their respective platforms (e.g. web, desktop and mobile)! You just need to be able to afford the license to use them in the first place – we have an educational license which enables ArcMap usage, whilst Esri (as you’ll see) offers AGO for free for non-commercial purposes.</p>
+<p><strong>Using ArcGIS Online – limitations to be aware of!</strong></p>
+<p>AGO is a very useful solution to conducting GIS and spatial analysis within the Esri ecosystem when you, as an analyst, are in a scenario where computing resources may be (and therefore downloading ArcMap or ArcPro is not a good idea) but internet access is ok – or if, for example, you own a Mac and do not want to split your hard drive to install a Windows operating system, or, finally, when Virtual Machine alternatives may not be up to the needs .</p>
+<p>One thing to flag before we get started with AGO though, is that the platform does simplify some aspects of the traditional GIS workflow – for example, defining your Coordinate Reference Systems and Projection System (CRS/PS). This will be an issue in next week’s practical - but I will address this in more detail then.</p>
+<p>Another aspect of using AGO instead of Desktop software is that your data is ultimately hosted on the AGO server, rather than on your hard drive. One critical aspect of GIS is to practice good file management, including establishing a good use of folders and data storage protocols, so you know where to access your data and where your outputs from any analysis are stored. Normally in Desktop GIS, or even in R-Studio, you would establish a project folder, and within this folder create folders for your data, scripts and outputs (e.g. maps, figures). With ArcGIS specifically, you can use geodatabases to store any spatial data you use or create, whilst R-Studio can create a project in which your work will be saved. QGIS in comparison will rely primarily on your use of folders. For AGO, your data and layers will be managed in their server, under your content page - so in a way you still need to organise your files somewhat.</p>
+</div>
+</div>
+<div id="signing-up-to-arcgis-online" class="section level3">
+<h3><span class="header-section-number">10.0.2</span> Signing Up to ArcGIS Online</h3>
+<p>With all of this in mind, let’s get ourselves set up to continue with the practical!</p>
+<p>First head to: <a href="https://learn.arcgis.com/en/become-a-member/" class="uri">https://learn.arcgis.com/en/become-a-member/</a> and fill in your details as below:</p>
+<p><img src="images/w2/ago/signup.png" width="694" style="display: block; margin: auto;" /></p>
+<p>By signing up here, you will become part of the Learn ArcGIS organisation, which Esri has created to help support teaching of GIS online for non-commercial purposes, i.e. what we’re doing here!</p>
+<p>Once you’ve clicked on Join, you’ll need to go authorise your account from your UCL email. The sign-up box may not disappear (it did not for me), but check your emails first before clicking on Join again!</p>
+<p>Once you’ve authorised your account, you’ll be taken to the ArcGIS online home screen – feel free to navigate around the website yourself before starting the practical.</p>
+</div>
+<div id="practical-instructions" class="section level3">
+<h3><span class="header-section-number">10.0.3</span> Practical Instructions</h3>
+<p>In Progress.</p>
+<div class="assignment">
+<p><strong>Assignment 3: Submit your final maps and a brief write-up</strong><br><br>
+Your final assignment for this week’s practical is to submit your maps to the second part of the Powerpoint presentation in your seminar’s folder.</p>
+<p>In addition to your maps, I would like you to write 1-3 bullet points summarising the changing spatial distributions of population (and population growth) in London at the ward level.</p>
+<p>You can find the Powerpoint <a href="https://liveuclac-my.sharepoint.com/:f:/g/personal/ucfailk_ucl_ac_uk/Eg85j1kdr8JNpCvyZyPLvB4BiPEu2pgb9CZpJx4cyuB0Tg?e=ppFjrC">here</a> with an example template.</p>
+<p>Please make sure to submit your maps prior to your seminar in Week 4.</p>
+</div>
+<p>And that’s it for this week’s practical!</p>
+<p>Whilst this has been a relatively straight-forward practical to introduce you to a) spatial data and b) ArcGIS Online, it is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical. We’ll delve into some of these in more detail in our discussion on Friday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.</p>
+<p>I really want to make sure these concepts are clear to you will be really important as we move forward with using R-Studio and the Command Line Interface for our spatial analysis and as we add in more technical requirements, such as thinking about projection systems, as well as a higher complexity of analysis techniques.</p>
+<hr />
+<div id="extension-population-as-a-raster-dataset-1" class="section level4 unnumbered">
+<h4>Extension: Population as a Raster Dataset</h4>
+<!-- This short extension task will show you how population can be represented as a raster dataset, i.e. in a grid format. We have completed the pre-processing of the datasets for you, which you'll be able to download shortly. -->
+<!-- We will look at rasters and raster analysis in Week 8 - but hopefully this has shown to you that the raster data format does have some significant advantages over vector datasets for specific purposes. We however can't really use this dataset for any future data analysis (e.g. normalisation purposes) as the majority of the data we'll use in the coming weeks is provided using Administrative Geographies. -->
+<p>This Extension Task will be updated at the end of Week 2.</p>
+<hr />
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Understand how we represent geographical phenomena and processes digitally within GIScience</li>
+<li>Explain the differences between discrete (object) and continuous (field) spatial data models</li>
+<li>Explain the differences between raster and vector spatial data formats and recognise their respective file types</li>
+<li>Know how to manage and import different vector and table data into a GIS software</li>
+<li>Learn how to use attributes to join table data to vector data</li>
+<li>Know a little more about <em>Administrative Geographies</em> within London.</li>
+<li>Symbolise a map in Q-GIS using graduated symbolisation.</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="assessment-information.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week-3-practical-alternate-using-agol-for-crime-mapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jo-wilkin/GEOG0030/edit/master/02-week02b.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/jo-wilkin/GEOG0030/raw/master/02-week02b.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

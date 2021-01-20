@@ -21,4 +21,6 @@ rmd_files:
 - 09b-week09b.Rmd
 - 10-week10.Rmd
 - 11-week11.Rmd
+- 02-week02b.Rmd
+- 03-week03b.Rmd
 output_dir: "coursebook"

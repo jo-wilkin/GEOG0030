@@ -1,8 +1,8 @@
 {
-    "path" : "~/Code/GEOG0030",
+    "path" : "~/Code/GEOG0030/assets",
     "sortOrder" : [
         {
-            "ascending" : true,
+            "ascending" : false,
             "columnIndex" : 2
         }
     ]
