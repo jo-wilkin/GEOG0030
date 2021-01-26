@@ -129,7 +129,13 @@
 <li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#gis-software---a-more-thorough-introduction-moved-to-week-5"><i class="fa fa-check"></i>GIS Software - a more thorough introduction (moved to Week 5)</a></li>
 <li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#practical-1-exploring-population-changes-across-london"><i class="fa fa-check"></i>Practical 1: Exploring Population Changes Across London</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a><ul>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#week-3-in-geocomp"><i class="fa fa-check"></i>Week 3 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#coordinate-systems-and-map-projections"><i class="fa fa-check"></i>Coordinate Systems and Map Projections</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#effective-data-visualisation"><i class="fa fa-check"></i>Effective Data Visualisation</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#the-modifiable-areal-unit-problem"><i class="fa fa-check"></i>The Modifiable Areal Unit Problem</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#practical-2-mapping-crime-across-london-wards-and-boroughs"><i class="fa fa-check"></i>Practical 2: Mapping Crime Across London Wards and Boroughs</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="programming-for-statistical-analysis.html"><a href="programming-for-statistical-analysis.html"><i class="fa fa-check"></i><b>4</b> Programming (for Statistical Analysis)</a></li>
 <li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a></li>
 <li class="part"><span><b>II Core Spatial Analysis</b></span></li>
@@ -175,46 +181,981 @@
 </div>
 <div id="cartography-and-visualisation-i" class="section level1">
 <h1><span class="header-section-number">3</span> Cartography and Visualisation I</h1>
-<p><strong>Content for this week will be released at 10am on the 26th January 2021.</strong></p>
-<!-- ## Projections -->
-<!-- ## Cartography Conventions -->
-<!-- ### Modifialbe Area Unit Problem -->
-<!-- The role of scale in spatial analysis using administrative geographies -->
-<!-- When we have data about individuals or individual events and want to analyse patterns across substantial scales, it is often not useful or even possible to analyse these data as these individual units. -->
-<!-- For example, in our practical this week, we are looking at 220,000 occurrences of theft in London in 2019 – when you load the data onto your map, you will see that the data in this format only really tells you one thing – there is a lot of theft in London, which decreases as you move away from the city centre! -->
-<!-- To be able to analyse these patterns in more detail – and to reduce processing requirements - it is better to generalise this data into more interpretable formats, for example, using smoothing to create a Kernel Density Estimation (Week 6!) or in the case of our practical this week, we will aggregate the individual events to an areal unit using ‘administrative geographies’. -->
-<!-- In addition to the need to improve the efficacy of your analysis, there are substantial privacy concerns that analyses of individual level data (such as socio- economic information or disease cases) would raise. We therefore have to be able to generalise our individual level data as well – and this is primarily facilitated through the same process of aggregation, where areal units average these datasets to represent populations as a whole – again primarily using administrative geographies. -->
-<!-- What are administrative geographies? -->
-<!-- Put simply, administrative geography is a way of dividing the country into smaller sub-divisions or areas that correspond with the area of responsibility of local authorities and government bodies. -->
-<!-- These administrative sub-divisions and their associated geography have several important uses, including assigning electoral constituencies, defining jurisdiction of courts, planning public healthcare provision, as well as what we are concerned with: -->
-<!-- used as a mechanism for collecting census data and assigning the resulting datasets to a specific administrative unit. -->
-<!-- Administrative areas ensure that each public body has a clearly defined area of responsibility, which can be measured and budgeted for appropriately. -->
-<!-- They originate from the Roman era who used these geographies, usually defined by topographical and geographical features, to administer these regions including collecting the relevant tax from those living in these areas. -->
-<!-- These geographies are updated as populations evolve and as a result, the boundaries of the administrative geographies are subject to either periodic or occasional change. For any country in which you are using administrative geographies, it is good practice therefore to research into their history and how they have changed over the period of your dataset. -->
-<!-- In the modern spatial analysis, we use administrative geographies to aggregate individual level data and individual event data. One of the motivations for this is the fact that census data (and many other sources of socio-economic and public health data) are provided at specific administrative levels, whilst other datasets can often be easily georeferenced or aggregated to these levels. -->
-<!-- Furthermore, administrative geographies are concerned with the hierarchy of areas – hence we are able to conduct analyses at a variety of scales to understand local and global trends. -->
-<!-- The UK has quite a complex administrative geography, particularly due to having several countries within one overriding administration and then multiple ways of dividing the countries according to specific applications: -->
-<!-- Don’t worry, we won’t expect you to memorise the above. For the majority of your practicals, we will be keeping it simple with a focus on London, which is divided into BoroughsàWardsàMiddle Super Output AreasàLower Super Output Areas à Output Areas. We’ll be looking at boroughs and wards in our practical analysis – although even at these scales, the City of London is a little pesky and introduces complexities into our analysis, which we’ll discuss further in our seminar. -->
-<!-- As a note of interest at this point, in the U.K., it is generally understood that for publishable research, we do not analyse data at a smaller scale than something called the Lower Super Output Area (LSOA). There is another administrative unit below the LSOA, known as the Output Area, which (again due to ensure confidentiality of data) has a minimum size of 40 resident households and 100 resident people but for particular types of research, this level of detail can still lead to unintended consequences, such as households being identified within the data. -->
-<!-- For other countries, you can find data on their Administrative Geographies at gadm.org, which allows you to download and use the data for non-commercial purposes. -->
-<!-- Generally, they contain 4-5 levels of administrative boundaries, starting at Level 0, with the outline of the country, Level 1, the next regional division, Level 2, the division below that etc. Each country will have a different way of determining their levels and their associated names – and when you start to add in differentiating between urban and rural areas, it becomes a whole new level of complexity. Again, before using administrative geographies to aggregate your data, you should always check that you understand what they represent and how/if they’ve changed recently. -->
-<!-- What are the advantages and limitations of using administrative geographies for spatial analysis? -->
-<!-- Beyond the above technical complexity and currency issues, there are definitely a few hurdles in understanding how you can use administrative geographies for spatial analysis. -->
-<!-- Two substantial issues as data analysts that you need to be aware of are issues of the “Ecological Fallacy” and the “Modifiable Areal Unit Problem”. -->
-<!-- When using aggregated data, you must avoid falling for the ecological fallacy – which is when you try to make inferences about the nature of individuals based on the group to which those individuals belong (e.g. administrative unit). This applies when looking at correlations between two variables when using administrative geographies or looking at averages within these units. -->
-<!-- W -->
-<!-- Using the smallest areal unit (or administrative geography) can help minimise the variation in the aggregated data – but this also can lead to our second issue, known as the Modifiable Areal Unit Problem (MAUP). -->
-<!-- MAUP is in fact one of the most stubborn problems in spatial analysis when spatially aggregated data are used. -->
-<!-- This is because (and the following is paraphrased Wong, 2009) geographical data possess unique characteristics that are not present in aspatial data – and in particular, they are scale dependent. -->
-<!-- As evident from above, spatial data can be aggregated to or tabulated at different spatial scales, such as the different levels within our administrative geographies. -->
-<!-- This means that we are able to partition space into different scales – but, even if we keep the spatial scale somewhat constant, there are many, or even infinite ways to form the regions within these scales. -->
-<!-- But when data are tabulated according to different zonal systems and are then analyzed, it is unlikely that they will provide consistent results - even though the same variables are used and the same areas are ultimately analyzed. -->
-<!-- This variability or inconsistency of the analytical results is mainly due to the fact that we can modify areal unit boundaries and thus the problem is known as the MAUP. -->
-<!-- Ultimately, the results from your analysis are only relatable to those precise areal units used - you cannot extrapolate your findings at one scale to another, i.e. any conclusions -->
-<!-- Since spatially aggregated data are often used not just in geographical research, but also in other social science and physical science disciplines, the MAUP can have broad impacts. Whilst several general approaches have been suggested to handle the MAUP, a clear framework has yet to be developed. -->
-<!-- In summary, whenever you conduct spatial analysis using areal units – you cannot infer about the individuals within those units nor can you assume your findings will apply at coarser scales. -->
-<!-- We will begin to look at MAUP in this week’s practical and seminar and continue accounting for and considering its impact over the next few weeks of our analysis. -->
+<p>Welcome to Week 3 in Geocomputation!</p>
+<p>Well done on making it through Week 2 - and welcome to wht is a more practical introduction to GIScience where we will be focusing on: <strong>how to make a good map</strong>.</p>
+<p>It’s not quite as “light” as promised, but this and the previous week will hold you in good stead as you come to learn about more technical analytical techniques after Reading Week.</p>
+<p>As always, we have broken the content into smaller chunks to help you take breaks and come back to it as and when you can over the next week.</p>
+<div class="note">
+<p><em>If you do not get through everything this week, do not worry. Week 4</em> <strong>will</strong> <em>be shorter in content, therefore you will have time to catch up after the seminars at the start of Week 4. The seminar will go through aspects of this week’s work, so it will still be incredibly useful if you do not manage to complete everything we outline in this workshop.</em></p>
+</div>
+<div id="week-3-in-geocomp" class="section level3 unnumbered">
+<h3>Week 3 in Geocomp</h3>
+<center>
+<strong>LECUTURE VIDEOS COMING WEDS, SLIDES ARE AVAILABLE NOW</strong></censter>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="">Video on Stream</a>
+</center>
+<p><br></p>
+<p>This week’s content introduces you to foundational concepts associated with <strong>Cartography and Visualisation</strong>, where we have three areas of work to focus on:</p>
+<ol style="list-style-type: decimal">
+<li>Map Projections</li>
+<li>Data Visualisation</li>
+<li>The Modifiable Areal Unit</li>
+</ol>
+<p>This week’s content is split into <strong>4</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li><a href="cartography-and-visualisation-i.html#coordinate-systems-and-map-projections">Coordinate Systems and Map Projections</a> (40 minutes)</li>
+<li><a href="cartography-and-visualisation-i.html#effective-data-visualisation">Effective Data Visualisation</a> (40 minutes)</li>
+<li><a href="cartography-and-visualisation-i.html#the-modifiable-areal-unit-problem">The Modifiable Areal Unit Problem</a> (20 minutes)</li>
+<li><a href="cartography-and-visualisation-i.html#practical-2-mapping-crime-across-london-wards-and-boroughs">Practical 2: Mapping Crime Across London Wards and Boroughs</a> (1 hour)</li>
+</ol>
+<p><strong>Videos</strong> can be found in <strong>Parts 1-3</strong>, alongisde <strong>Key</strong> and <strong>Suggested Reading</strong>.</p>
+<p>This week, your <strong>1 assignment</strong> is creating the final output from our practical.</p>
+<p><strong>Part 4</strong> is our Practical for this week, where you will be introduced to using the Map Composer with <strong>Q-GIS</strong> and apply the knowledge gained in the previous parts from Parts 1-3 in a practical setting.</p>
+<p>If you have been unable to download Q-GIS or cannot access it via Desktop@UCL Anywhere, we have provided an alternative browser-based practical but we recommend reading through the Q-GIS practical as unfortunately we are unable to repeat everything within the AGOL practical.</p>
+<div class="puzzle">
+<p><strong>Learning Objectives</strong><br><br>
+By the end of this week, you should be able to:</p>
+<ul>
+<li>Explain what a Geographic Coordinate System and a Projected Coordinate System is and their differences.</li>
+<li>Understand the limitations of different PCSs and recognise when to use each for specific anlaysis.</li>
+<li>Know what to include - and what not to include - on a map.</li>
+<li>Know how to represent different types of spatial data on a map.</li>
+<li>Explain what the Modifiable Areal Unit Problem is and why poses issues for spatial analysis.</li>
+<li>Map event data using a ‘best-practice’ approach.</li>
+<li>Produce a map of publishable quality.</li>
+</ul>
+</div>
+<p>We will build on the data analysis we completed last week and create accurate maps that show changes in crime across our London wards.</p>
+<hr />
+</div>
+<div id="coordinate-systems-and-map-projections" class="section level3 unnumbered">
+<h3>Coordinate Systems and Map Projections</h3>
+<p>Maps, as we saw last week, are representations of reality. But not only are they are designed to represent features, processes and pheonomena in their ‘form’, they also need to represent, with fidelity, their location, shape and spatial arrangement.</p>
+<p>To be able to locate, integrate and visualise spatial data accurately within a GIS system or digtal map, spatial data needs to have two things:</p>
+<p><strong>1. A coordinate reference system</strong> <em>(often written as CRS)</em></p>
+<p><strong>2. An associated map projection</strong></p>
+<p>A CRS is a <strong>reference system</strong> that is used to represent the <strong>locations of the relevant spatial data within a common geographic framework</strong>. It enables spatial datasets to use common locations for co-location, integration and visualisation.</p>
+<p>Each coordinate system is defined by:</p>
+<ul>
+<li>Its measurement framework</li>
+<li>Unit of measurement (typically either decimal degrees or feet/metres, depending on the framework)</li>
+<li>Other measurement system properties such as a spheroid of reference, a datum, and projection parameters</li>
+</ul>
+<p>Its measurement framework will be one of two types:</p>
+<ul>
+<li><strong>Geographic</strong>: in which spherical coordinates are measured from the earth’s center</li>
+<li><strong>Planimetric</strong>: in which the earth’s coordinates are projected onto a two-dimensional planar surface.</li>
+</ul>
+<p>For planimetric CRS, a <strong>map projection</strong> is required. This projection details the mathematical transformation to project the globe’s three-dimensional surface onto a flat map.</p>
+<p>As a result, there are <strong>two common types</strong> of coordinate systems that you will come across when using spatial data:</p>
+<p><strong>1. Geographic Coordinate Systems (GCS)</strong>: a global or spherical coordinate system such as latitude-longitude.</p>
+<p><strong>2. Projected Coordinate System (PCS)</strong>: a CRS which has the mechanisms to project maps of the earth’s spherical surface onto a two-dimensional Cartesian coordinate plane. These PCS are sometimes reference to as <strong>map projections</strong>, although combine both location <strong>and</strong> the projection in their use.</p>
+<div id="understanding-coordinate-systems" class="section level5 unnumbered">
+<h5>Understanding Coordinate Systems</h5>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EcNliVzRaY5FuQLLpNO61QsBbJxVjrLvGUNjOQko8XulJQ?e=oKhasm">Slides</a> | <a href="">Video on Stream</a>
+</center>
+<p><br></p>
+<p>In summary, a GCS defines where the data is located on the earth’s surface, whereas a a PCS tells the data how to draw on a flat surface, like on a paper map or a computer screen.</p>
+<p>As a result, a GCS is spherical, and so records locations in angular units (usually degrees). Conversely, a PCS is flat, so it records locations in linear units (usually meters):</p>
+<img src="images/w3/grid2.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Visualising the differences between a GCS and a PCS. Image: Esri</em>
+</center>
+<p><br></p>
+<p>For a GCS, graticules are used as the referencing system, which are tied directly to the Earth’s ellipsoidal shape.</p>
+<p>In comparison, within a PCS, a grid is a network of perpendicular lines are used, much like graph paper, which are then superimposed on a flat paper map to provide relative referencing from some fixed point as origin.</p>
+<p>Your data must have a GCS before it knows where it is on earth. But, whilst theoretically projecting your data is optional, projecting your map is not. Maps are flat, so <strong>your map will have a PCS in order accurately draw the data</strong>.</p>
+<p>In most GIS systems, <strong>a default projection will be used to draw the map</strong> and therefore the system will project your data to match this projection.</p>
+<p>For example, if you do not specify the projection of the map or data, both ArcGIS and Q-GIS will draw your map and corresponding data using a pseudo Plate Carrée or ‘geographic’ projection.</p>
+<div class="fyi">
+<p><strong>The Plate Carrée Projection</strong><br><br>
+This projection is actually just latitude and longitude represented as a simple grid of squares and called pseudo because it is measured in angular units (degrees) rather than linear units (meters). It is easy to understand and easy to compute, but it also distorts all areas, angles, and distances, so it is senseless to use it for analysis and measurement and as a result, before you start your work, you should choose a different PCS!</p>
+</div>
+<p><strong>Which CS you will choose will depend on where you are mapping:</strong> most often, you will not need to choose a GCS as the data you are using was already collected and/or stored in a pre-selected system.</p>
+<p><em>For example, all GPS receivers collect data using only one datum or coordinate system, which is WGS84. Therefore any GPS data you use will be provided in the WGS84 GCS.</em></p>
+<p><strong>However, you will often need to choose your PCS</strong>: which PCS you use depends on where you are mapping, but also the nature of your map — for example, should you distort area to preserve angles, or vice versa?</p>
+<p><em>For example, if you are using GPS data from the U.K, it is likely that you will transform this data into British National Grid (a PCS).</em></p>
+</div>
+<div id="understanding-map-projections" class="section level4 unnumbered">
+<h4>Understanding Map Projections</h4>
+<p>Either CS provides a framework for defining real-world locations - however, <strong>when it comes to much of GIScience and spatial analysis work, we will use a PCS to help locate, project, analyse and visualise our data in 2D.</strong></p>
+<p>To locate, project, analyse and visualise our data in 2D, the PCS has, through mathematical transformations known as <strong>map projections</strong>, transformed the surface of our three-dimensional earth into a two-dimensional map canvas (whether paper or digital).</p>
+<center>
+<strong>This ability to create a flat surface from a 3D sphere is however not so simple!</strong>
+</center>
+<p><br></p>
+<p>From a classic geographical metaphor, the easiest way to think about this is to think about peeling an orange - how could you peel an orange to ultimately result in a flat (preferably square/rectangular - computers really like squares!) shape?</p>
+<p>Well, luckily, you don’t need to think too hard about it - as Esri’s resident cartographer <strong>John Nelson</strong> (another <a href="https://twitter.com/John_M_Nelson?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Twitter</a> recommendation) has done it for us:<br><br></p>
+<img src="images/w3/orangepeels.png" width="750pt" style="display: block; margin: auto;" />
+<center>
+<em>Trying to flatten an orange - our earth - into a flat map. Image: John Nelson, Esri</em>
+</center>
+<p><br></p>
+<p>As he shows, to create just a <em>flat</em> version of our earth from the spheriod itself, it takes some very interesting shapes and direction maniuplation - let alone achieving a rectangle!
+<br>(You can see the original blog post these images are taken from <a href="https://www.esri.com/arcgis-blog/products/arcgis-pro/education/earth-peel/">here</a>.)</p>
+<p>To create a classic square or rectangular map that we are so used to seeing, we have to use other geometric shapes that can be flattened without stretching their surface to help determine our projection.</p>
+<p>These shapes are called <strong>developable</strong> surfaces and consist of three types:</p>
+<ul>
+<li><strong>Cylindrical</strong></li>
+<li><strong>Conical</strong></li>
+<li><strong>Plane</strong></li>
+</ul>
+<p><br></p>
+<img src="images/w3/projection_families.png" width="650pt" style="display: block; margin: auto;" />
+<br>
+<center>
+<em>The three types of projection families: cyclindrical, conical and plane. Image: QGIS</em>
+</center>
+<p><br></p>
+<p>However when any of using these shapes to representing the earth’s surface in two dimensions, there is always some sort of distortion in the shape, area, distance, or direction of the data.</p>
+<p>This distortion is explained through Vox’s excellent video:</p>
+<center>
+**Why all world maps are wrong*
+</center>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://www.youtube.com/embed/kIID5FDi2JQ" width="533" height="300" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+<p>We can actually test out this distortion ourselves.</p>
+<p>You can head to <strong>The True Size</strong> (<a href="https://thetruesize.com" class="uri">https://thetruesize.com</a>) and see how our use of the <strong>Web Mercator</strong> has skewed our understanding of the <strong>size</strong> of countries in respect to one another.</p>
+<p>In addition, I highly recommend looking through this short (2 minutes!) blog post where a keen mapper got creative with his own orange peel:</p>
+<div class="sugreading">
+<p><strong>Blog post:</strong> Visualising the distortion of web mercator maps with an orange peel, Chris M. Whong, Online <a href="https://medium.com/@chris.m.whong/visualizing-the-distortion-of-webmercator-maps-with-an-orange-peel-cb04460b6415">here</a></p>
+</div>
+<p>Different projections can therefore cause different types of distortions. Some projections are designed to minimize the distortion of one or two of the data’s characteristics. A projection could, for example, maintain the area of a feature but alter its shape.</p>
+<p>Our second short lecture explains how to think through choosing a map projection:</p>
+</div>
+<div id="choosing-a-map-projection" class="section level4 unnumbered">
+<h4>Choosing a Map Projection</h4>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EYzaTaOU43JBvoFQoYvDot4BSRcMbODbFluD7EeVY8RT9w?e=tUK5d3">Slides</a> | <a href="">Video on Stream</a>
+</center>
+<p><br></p>
+<p>As explained in our lecture, each map projection therefore has advantages and disadvantages.</p>
+<p>Ultimately, the best projection for a map depends on the scale of the map, and on the purposes for which it will be used.</p>
+<p>As the excellent Q-GIS Projection <a href="https://docs.qgis.org/3.16/en/docs/user_manual/working_with_projections/working_with_projections.html">documentation</a> explains:</p>
+<blockquote>
+<p>For example, a projection may have unacceptable distortions if used to map the entire African continent, but may be an excellent choice for a large-scale (detailed) map of your country. The properties of a map projection may also influence some of the design features of the map. Some projections are good for small areas, some are good for mapping areas with a large East-West extent, and some are better for mapping areas with a large North-South extent.</p>
+</blockquote>
+<p>When it comes to choosing your map projection, think about:</p>
+<ul>
+<li>Is there a default projection for your area of study (e.g. London and British National Grid)?</li>
+<li>What analysis are you completing? What properties are important to this analysis?</li>
+<li>At what scale and direction are you visualising your data?</li>
+</ul>
+<p>What is critical to remember though, is that map projections are never absolutely accurate representations of our spherical earth.</p>
+<p>As a result of the map projection process, <strong>every map shows distortions of angular conformity, distance and area</strong>.</p>
+</div>
+<div id="why-should-we-care-about-projection-systems" class="section level4 unnumbered">
+<h4>Why should we care about projection systems?</h4>
+<p>In summary, <strong>the projection system you use can have impact on both analytical aspects of your work</strong>, e.g. using measurement tools effectively, such as buffers, alongside visualisation.</p>
+<p>It is usually <strong>impossible to preserve all characteristics at the same time</strong> in a map projection.</p>
+<p>This means that when you want to carry out accurate analytical operations, you will need to use a map projection that provides the best characteristics for your analyses.</p>
+<p>For example, if you need to measure distances on your map, you should try to use a map projection for your data that provides high accuracy for distances.</p>
+<p>Furthermore, you need to be aware of the CS that your data is in, particularly when you are using multiple datasets.</p>
+<p>In order to analyse and visualise data accurately together, they must <strong>all be in the same CS</strong>.</p>
+<div class="note">
+<p><strong>Transforming/Reprojecting Data</strong><br><br></p>
+<p>If you are using datasets that are based on different geographic or projected coordinate systems, you will need transform all your data to one singular system: these are known as <strong>transformations</strong>.</p>
+<p>Between any two coordinate systems, there may be zero, one, or many transformations.</p>
+<p>Some geographic coordinate systems do not have any publicly known transformations because that information is considered to have strategic importance to a government or company.</p>
+<p>For many GCS, multiple transformations exist. They may differ by areas of use or by accuracies. Accuracies will usually reflect the transformation method.</p>
+<p>A geographic transformation is always defined in a particular direction, like from <strong>NAD 1927 to WGS 1984</strong>. Transformation names will reflect this: <strong>NAD_1927_To_WGS_1984_1</strong>.</p>
+<p>The name may also include a trailing number, as the above example has _1. This number represents the order in which the transformations were defined.</p>
+<p>A larger number does not necessarily mean a more accurate transformation.</p>
+<p>Even though a geographic transformation has a built-in directionality, all transformation methods are inversible. That is, a transformation can be used in either direction.</p>
+</div>
+</div>
+<div id="moving-for-with-crs-in-geocomputation" class="section level4 unnumbered">
+<h4>Moving for with CRS in Geocomputation</h4>
+<p>Keep in mind that map projection is a very complex topic. There are hundreds of different projections available that aim to portray a certain portion of the earth’s surface as accurately as possible on a digital screen/flat paper.</p>
+<p>In reality, the choice of which projection to use will often be made for you.</p>
+<p>When it comes to geocomputation and spatial analysis, you need to choose your CRS carefully - thinking through what is appropriate for your dataset, incuding what analysis you are completing and at what scale.</p>
+<p>You will find there are specific recommendations by country and, fortunately for us, most countries have commonly used projections. This is particularly useful when data is shared and exchanged as people will follow the national trend.</p>
+<p>Often, most countries will utilise the relevant zone within the <strong>Universal Transverse Mercator</strong>.</p>
+<p>In addition, a great resource is Esri’s documentation on <a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/coverage-toolbox/choosing-a-map-projection.html">Choosing a Map Projection</a>.</p>
+<div class="fyi">
+<p><strong>The Tyranny of Web Mercator</strong><br><br>
+One thing to watch out for though is the general (over)reliance on what is known as the Pseudo-Mercator projection (EPSG:3857) by web applications such as Google Maps.</p>
+<p>The projected Pseudo-Mercator coordinate system takes the WGS84 coordinate system and projects it onto a square. (This projection is also called Spherical Mercator or Web Mercator.)</p>
+<p>This method results in a square-shaped map but there is no way to programmatically represent a coordinate system that relies on two different ellipsoids, which means software programs have to improvise. And when software programs improvise, there is no way to know if the coordinates are consistent across programs.</p>
+<p>This makes EPSG:3857 great for visualizing on computers but not reliable for data storage or analysis.</p>
+</div>
+<p><br></p>
+<p>Luckily for us in Geocomputation, for the majority of our work, we will be using the <strong>British National Grid</strong> for our mapping and analysis as we are focusing on analysis on London.</p>
+<p>In this week’s practical, we will look at how we can <strong>reproject</strong> our spatial data from one a GCS to a PRS (in this case WGS84 to OSGB1936).</p>
+<div class="reading">
+<p><strong>Key Reading(s)</strong><br><br>
+<strong>Book (30 mins):</strong> Longley et al, 2015, Geographic Information Science &amp; Systems, <em>Chapter 2: Geo-referencing.</em></p>
+</div>
+<hr />
+<div class="sugreading">
+<p><strong>Optional: The Power of the Map</strong><br></p>
+<p>Maps and map projections have had a long and complicated history with our politics and geopolitics. For example, whilst maps have existed in many forms prior to the periods, we cannot ignore their signficant use for land acquisition and resource exploitation during the “Age of Discovery” and resulting colonialism eras.</p>
+<p>There is significant <strong>power</strong> embedded within a map and, even to this day, as we see with the use of the Mercator projection in web technology, a map can be a substantial propaganda tool when it comes to political issues.</p>
+<p>Google Maps, for example, has found itself at the centre of various border disputes across the world - resulting, in several occasions, with troop mobilisation and threats of war:</p>
+<blockquote>
+<p>By misplacing a portion of the border between Costa Rica and Nicaragua, Google effectively moved control of an island from one country to the other and was cited as the justification for troop movements in the region in 2010.<br />
+<em>The Washington Post, 2020</em></p>
+</blockquote>
+<p>To further avoid this, Google has created a new techno-political approach within its Google Maps platform in that the world’s borders will look different depending on where you’re viewing them from.</p>
+<p>You can read more about this a recent article by The Washington Post: <a href="https://www.washingtonpost.com/technology/2020/02/14/google-maps-political-borders/"><em>Google redraws the borders on maps depending on who’s looking</em></a> (10 minutes).</p>
+<p>Maps therefore are never true representations of reality, but will always include some <strong>bias</strong> - after all, maps are still very much made by humans.</p>
+<p>Whilst we won’t cover this in any more detail in our lecture or practical content this week, we do hope you enjoy discussing these issues in your Study Group sessions.</p>
+<p>In addition, there are many excellent books on this <strong>power of maps</strong>, including Denis Wood’s <em>The Power of Maps</em> and follow-up, <em>Rethinking the Power of Maps</em> and Mark Monmonier’s <em>How to Lie with Maps</em>. These books all outline how both paper and modern digital maps offer opportunities for cartographic mischief, deception, and propaganda.</p>
+<p>If you’d like to avoid reading for a little longer, I would also highly recommend this excerpt from the “before your time” show, the West Wing, which summarises quite a few of the debates well:</p>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://www.youtube.com/embed/vVX-PrBRtTY" width="533" height="300" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+</div>
+<p><br></p>
+<hr />
+</div>
+</div>
+<div id="effective-data-visualisation" class="section level3 unnumbered">
+<h3>Effective Data Visualisation</h3>
+<p>In addition to choosing the correct map projection for your spatial data and map, to visualise your data correctly as a map - for visual analysis and publishing - you need to consider:</p>
+<ul>
+<li><p>How you represent your spatial data effectively.</p></li>
+<li><p>How you present this data on a map that communicates your data and analysis accurately.</p></li>
+</ul>
+<p>We will first focus on the latter aspect and look at how you can achieve <strong>effective</strong> data visualisation, including how to make a good map as well as detailing the common <strong>cartographic conventions</strong> we’d expect you to include in your map.</p>
+<p>Then we look at common types of spatial data and focus on how we can accurately represent <strong>event</strong> and <strong>survey</strong> data that are commonly aggregated to areal units (such as the Administrative Geographies we came across last week) for use within <strong>choropleth</strong> maps.</p>
+<div id="cartographic-conventions" class="section level4 unnumbered">
+<h4>Cartographic Conventions</h4>
+<p>Making a <strong>good</strong> map is a highly subjective process - what you think looks good versus what someone else thinks looks good maybe entirely different.</p>
+<p>That’s why there is a whole discipline out there on <strong>cartography</strong> - it’s also why good data visualisation skills are becoming essential within data scientist roles. As a result, I can highly recommend taking the <strong>Cartography and Visualisation</strong> module by Prof James Cheshire next year!</p>
+<p>At its most fundamental, a map can be composed of many different map elements.</p>
+<p>They may include:</p>
+<ul>
+<li>The main map</li>
+<li>Map graticules</li>
+<li>A legend (including symbols)</li>
+<li>A title</li>
+<li>A scale bar or indicator</li>
+<li>An orientation indicator, i.e. a North Arrow</li>
+<li>An inset map (to locate your map within a wider area)</li>
+<li>Data Source information</li>
+<li>Any ancillary information</li>
+</ul>
+<p>These elements are all part of the <strong>expected cartographic conventions</strong>, i.e. what should be included on/within your map in order to accurately convey all the information contained within your visualisation.</p>
+<img src="images/w3/Map_elements.png" width="750pt" style="display: block; margin: auto;" />
+<center>
+<em>Map elements. Image: Manuel Gimond</em>
+</center>
+<p><br></p>
+<p>However, not all elements need to be present in a map at all times. In fact, in some cases they may not be appropriate at all. A scale bar, for instance, may not be appropriate if the coordinate system used does not preserve distance across the map’s extent.</p>
+<p>Knowing why and for whom a map is being made will dictate its layout:</p>
+<ul>
+<li>If it’s to be included in a paper as a figure, then simplicity and restraint should be the guiding principles.</li>
+<li>If it’s intended to be a standalone map, then additional map elements may be required, such as customised borders, graphics etc.</li>
+</ul>
+<p>Knowing the intended audience should also dictate what you will convey and how:</p>
+<ul>
+<li>If it’s a general audience with little technical expertise then a simpler presentation may be in order.</li>
+<li>If the audience is well versed in the topic, then the map may be more complex.</li>
+</ul>
+<p>Ultimately, to make a <strong>good</strong> map there are several <em>rules</em> you can follow:</p>
+<ul>
+<li><p><strong>Visual hierarchy:</strong> Making sure the most important elements are the most <em>visible</em> on the map (e.g. size, placement on map, colour scheme).</p></li>
+<li><p><strong>Colour schemes:</strong> Keeping colour schemes simple (less than 12 colour at max) and representative of the data you are showing (more on this later) as well as suitable to all audiences (e.g. being aware of mixing colours indetectable to those colourblind/visually impaired)</p></li>
+<li><p><strong>Scale bars and north arrows:</strong> Should be used judiciously! They are not needed in every map, nor do they need to be extremely large - just readable. I advise trying to locate the two together and keeping their design as simple as possible.</p></li>
+<li><strong>Title and other text elements:</strong> Again, less is more!
+<ul>
+<li>Never use “A map of…” in your title - we know it’s a map!</li>
+<li>Keep font choices simple and reflective of the topic you are mapping.</li>
+<li>Titles are not needed on maps with figure captions.</li>
+<li>Make legends readable - including simplifying their values. Utilise font size effectively to ensure communication of the most important aspects.</li>
+</ul></li>
+</ul>
+<p>The following short lecture explains in more detail how to make a good map:</p>
+<div id="cartographic-conventions-and-effective-data-visualisation" class="section level5 unnumbered">
+<h5>Cartographic Conventions and Effective Data Visualisation</h5>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EdooT1odYgdMheJBfM8ETNoBiMLl503AklIny3mJgPwq_Q?e=Zk5KAg">Slides</a> | <a href="">Video on Stream</a>
+</center>
+<p><br></p>
+</div>
+</div>
+<div id="representing-spatial-data" class="section level4 unnumbered">
+<h4>Representing Spatial Data</h4>
+<p>The second aspect of creating effective maps is to ensure that you are representing the type of data you are using effectively and accurately.</p>
+<p>As we saw last week, spatial data itself is only a representation of reality.</p>
+<p>Some of the types of data we use can be very close representations of reality, such as ‘raw’ geographic data (including satellite imagery or elevation models), whilst other datasets, when used in maps, may be far abstract representations of reality.</p>
+<p>The different common types of spatial data you might come across in spatial analysis are outlined in the table below:</p>
+<center>
+<strong>Common Types of Spatial Data</strong>
+</center>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="37%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Data Type</th>
+<th align="left">Examples</th>
+<th align="left">Digital Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">‘Raw’ Geographic Data</td>
+<td align="left">Satellite Imagery<br> LIDAR/RADAR imagery<br> Environmental Measurements (e.g. elevation, air quality, water levels)</td>
+<td align="left">Raster/Grids<br> Coordinates / Point Data, with attributes</td>
+</tr>
+<tr class="even">
+<td align="left">Processed or Derived Spatial Data</td>
+<td align="left">Geographic Reference Data (e.g. buildings, roads, rivers, greenspace)<br> Gridded Population (Density) Data<br> Digital Elevation Models<br> Air Quality Maps</td>
+<td align="left">Points, Lines and Polygons<br> Raster/Grids</td>
+</tr>
+<tr class="odd">
+<td align="left">(Spatial) Event (Count) Data</td>
+<td align="left">Human Activities ( e.g. crime, phone calls, house sales)<br> Scientific Recordings (e.g. animal and plant sightings)</td>
+<td align="left">Coordinates / Point Data, with attributes</td>
+</tr>
+<tr class="even">
+<td align="left">Statistical Survey or Indicator Data</td>
+<td align="left">Human Characteristics (e.g. demographic, socio-economic &amp; health information)<br> Scientific Recordings (e.g. total animal counts, leaf size measurements)<br> Voting</td>
+<td align="left">Tabular Data, representative at a <em>specific</em> spatial aggregate scale, i.e. areal unit</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+Whilst we will come across a variety of these types of spatial data on this course, our main focus for the first few weeks are looking at <strong>Event</strong> and <strong>Statistical</strong> data - because these are the two types of data that are primarily used within the most common data visualisation map tool: a <strong>choropleth</strong> map.</p>
+<p><strong>Choropleth Maps</strong></p>
+<p>At its most basic, <strong>a choropleth map is a type of thematic map in which a set of pre-defined areas is colored or patterned in proportion to a statistical variable that represents an aggregate summary of a geographic characteristic within each area</strong>, such as population density or crime rate.</p>
+<p>When using either Event Data or Statistical Data, we tend to aggregate these types of data into areal units, such as the Administrative Geographies we came across last week, in order to create these <strong>choropleth</strong> maps.</p>
+<p>Because we see choropleth maps in our everyday lives, choropleth maps, I would say, out of any type of map-based data visualisation are the maps most vulnerable to poor use and data representation. We often think it’s a simple case of linking some table data with our areal units and then choosing some pretty colour scheme…</p>
+<img src="images/w3/choropleth.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<em>An Example Choropleth: London’s Wasted Heat Energy at the MSOA scale. The question is: do you think it looks good? What would you change? Image: Mapping London</em>
+</center>
+<p><br></p>
+<p>…However, within a choropleth map, many decisions need to be made in terms of thinking through their classification (categorical or continuous/graduated), the ‘class breaks’ used, as well as the type of colour schemes used.</p>
+<p>Furthermore, a key challenge to using choropleth maps is that often the <strong>areal units</strong> we use are not of <strong>equal area</strong> - as a result, we have to be careful in how we represent our chosen dataset.</p>
+<p>Showing population as a ‘raw’ geographic fact across London Wards as we did last week, for example, would actually be a big no-no in terms of mapping population. Instead, we would want to show the population density - by normalising our population by the area of each ward.</p>
+<img src="images/w3/ward_pop_density.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<em>What’s still missing from this map? London Ward Population Density 2019. Data: ONS</em>
+</center>
+<p><br></p>
+<p>Without taking these normalisation approaches, we can create incredibly misleading maps. At the most basic, our brain sees the larger areal units within our map as having <strong>more</strong> of whatever quantity we are representing, irrespective of thinking through the underlying area (and/or population) it is actually representing.</p>
+<p>This was common amongst the US election maps, for example, where many of the Republican states have a large landmass - but ultimately a low population. Therefore, when representing the results of the election as a categorical choropleth, it presents an overwhelming Republican landslide. However, as we all know, whilst the Party won the Electoral College vote, the Democrats actually won the Popular Vote by 3 million votes.</p>
+<p>Hence, when mapping by number of votes rather than state outcome, a different message is conveyed, as we see below. Alas, despite this difference in total votes, the US runs an Electoral College System and in the end, the winner is the winner of the Electoral College vote and no map coud or can change that!<br></p>
+<img src="images/w3/election_map.png" width="750pt" style="display: block; margin: auto;" />
+<center>
+<em>Different approaches to mapping the 2016 election result in different information communicated <br>(L-&gt;R: Business Insider, Time, xkcd)</em>
+</center>
+<p><br></p>
+<p>Despite their various challenges, choropleth maps can be increidbly useful tools. We provide a more detailed introduction to how to create choropleth maps in the following lecture:</p>
+<div id="an-introduction-to-choropleth-maps" class="section level5 unnumbered">
+<h5>An Introduction to Choropleth Maps</h5>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/f965f1d2-a8a8-4126-bc75-172917d13a75?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EfhB37YEgAVNqTf5rdx66m8BEgJSZVGANNry4u3ZrhizPg?e=6ZA97u">Slides</a> | <a href="https://web.microsoftstream.com/video/f965f1d2-a8a8-4126-bc75-172917d13a75">Video on Stream</a>
+</center>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="the-modifiable-areal-unit-problem" class="section level3 unnumbered">
+<h3>The Modifiable Areal Unit Problem</h3>
+<p>The final aspect of good map-making we will cover actually focuses on how we process and resultantly analyse our data when we aggregate individual event or statistical data to areal units.</p>
+<p>When using choropleth maps to represent aggregated data, there are three <strong>key analytical challenges</strong> you need to be aware of, in order to not fall into the “trap” of the first two, whilst also thinking about ways to address the allter.</p>
+<p>The are three key challenges:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Ecological Fallacy (EF):</strong> EF occurs when you try to make inferences about the nature of individuals based on the group to which those individuals belong (e.g. administrative unit). This applies when looking at correlations between two variables when using administrative geographies or looking at averages within these units.
+<ul>
+<li>Whilst your areal unit may represent the aggregation of <strong>individual</strong> level data, you can not apply your findings from the analysis of this map to the individuals directly.</li>
+<li>You can <strong>only apply your conclusions to the area that you have aggregated by</strong>, e.g. at the Ward scale.</li>
+</ul></li>
+<li>The <strong>Modifiable Areal Unit Problem (MAUP):</strong> Spatial data is scale dependent - when data are tabulated according to different zonal systems at different scales and are then analyzed, it is unlikely that they will provide consistent results - even though the same variables are used and the same areas are ultimately analyzed. As a result, <strong>the results from your analysis are only relatable to those precise areal units used</strong>.
+<ul>
+<li>This variability or inconsistency of the analytical results is mainly due to the fact that we can modify areal unit boundaries and thus the problem is known as the MAUP.</li>
+<li>It is one of the most stubborn problems in spatial analysis when spatially aggregated data are used.</li>
+<li>Fundamentally, <strong>you cannot extrapolate your findings at one scale to another</strong>, i.e. any conclusions drawn at the Ward level in London cannot be applied to the Borough level, even though, for example, your wards may “fit” within the Borough scales.</li>
+</ul></li>
+<li><strong>Boundary Issues:</strong> Spatial data does not have “boundaries” - the use of artifical boundaries such as Administrative Geographies are indiscriminate to the spatial prcoesses that may actually underline the distribution of these phenomena at study. As a result, simply using these boundaries per se can bring about different spatial patterns in geographic phenomena - or simply disregard them in their entirety.
+<ul>
+<li>We have to use Administrative Boundaries with care <strong>and think about the underlying processes we are trying to measure to see if we can account for these discriminatory issues</strong>.</li>
+</ul></li>
+</ol>
+<p>In summary, whenever you conduct spatial analysis using areal units – you cannot infer about the individuals within those units nor can you assume your findings will apply at coarser scales. You also need to take into account the “decisive and divisive” nature the use of areal units can have on individual level data when aggregating.</p>
+<p>We will begin to look at MAUP in this week’s practical and Week 4’s seminar and continue accounting for and considering its impact over the next few weeks of our analysis.</p>
+<div class="note">
+<p><strong>A more detailed introduction to Administrative Geographies</strong><br></p>
+<p>As we read and saw last week, an administrative geography is a way of dividing the country into smaller sub-divisions or areas that correspond with the area of responsibility of local authorities and government bodies.</p>
+<p>These administrative sub-divisions and their associated geography have several important uses, including assigning electoral constituencies, defining jurisdiction of courts, planning public healthcare provision, as well as what we are concerned with: used as a mechanism for collecting census data and assigning the resulting datasets to a specific administrative unit.</p>
+<p>In the modern spatial analysis, we use administrative geographies to aggregate individual level data and individual event data. One of the motivations for this is the fact that census data (and many other sources of socio-economic and public health data) are provided at specific administrative levels, whilst other datasets can often be easily georeferenced or aggregated to these levels.</p>
+<p>Furthermore, administrative geographies are concerned with the hierarchy of areas – hence we are able to conduct analyses at a variety of scales to understand local and global trends.</p>
+<p>Generally, they contain 4-5 levels of administrative boundaries, starting at Level 0, with the outline of the country, Level 1, the next regional division, Level 2, the division below that etc.</p>
+<p>Each country will have a different way of determining their levels and their associated names – and when you start to add in differentiating between urban and rural areas, it becomes a whole new level of complexity.</p>
+<p>What is important to know is that <strong>these geographies are updated as populations evolve and as a result, the boundaries of the administrative geographies are subject to either periodic or occasional change</strong>. For any country in which you are using administrative geographies, it is good practice therefore to research into their history and how they have changed over the period of your dataset.</p>
+<p>For the U.K, we can access the spatial data of our Administrative Geographies from <a href="data.gov.uk">data.gov.uk</a> (and a few other sources). Any country with their own statistics or spatial office should have these datasets available. If not, you can find data (for pretty much all countries) at <a href="gadm.org">gadm.org</a>, which allows you to download and use the data for non-commercial purposes.</p>
+<p>As a note of interest at this point, in the U.K., it is generally understood that for publishable research, we do not analyse data at a smaller scale than something called the Lower Super Output Area (LSOA). There is another administrative unit below the LSOA, known as the Output Area, which (again due to ensure confidentiality of data) has a minimum size of 40 resident households and 100 resident people but for particular types of research, this level of detail can still lead to unintended consequences, such as households being identified within the data.</p>
+</div>
+<hr />
+</div>
+<div id="practical-2-mapping-crime-across-london-wards-and-boroughs" class="section level3 unnumbered">
+<h3>Practical 2: Mapping Crime Across London Wards and Boroughs</h3>
+<p>The first half of this workshop has given you an in-depth introduction into how we can create a successful map, including understanding map projections, cartographic conventions and issues faced with the analysis of aggregated data at areal units.</p>
+<p>The practical component of the week puts some of these learnings into practice as we analyse crime rates within London at two different scales.</p>
+<p>The datasets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your <code>working</code> anf <code>final</code> folders (respectively) at the end.</p>
+<p>The practical component introduces you to <strong>point-in-polygon counts</strong>. You’ll be using these counts throughout this module, so it’s incredibly important that you understand how they work – even as simple as they may be!</p>
+<div class="note">
+<p><strong>If you can’t access Q-GIS for this practical…</strong><br><br>
+For those of you who have been unable to access Q-GIS through your own computer or Desktop@UCL Anywhere, we have provided an alternative browser-based practical, which requires you to sign-up for a <strong>free</strong> but temporary account with ArcGIS Online. You will first need to complete this first half of the practical on this page - there is a link later on in our practical to the alternate tutorial at the point at which you’ll need to switch.</p>
+</div>
+<div id="setting-the-scene-why-investigate-crime-in-london" class="section level4 unnumbered">
+<h4>Setting the scene: why investigate crime in London?</h4>
+<p>Over the next few weeks, we will look to model driving factors behind crime across London from both a statistical and spatial perspective.</p>
+<p>As <a href="https://www.oxfordbibliographies.com/view/document/obo-9780195396607/obo-9780195396607-0123.xml">Reid et al (2018)</a> explain:</p>
+<blockquote>
+<p>Spatial analysis can be employed in both an exploratory and well as a more confirmatory manner with the primary purpose of identifying how certain community or ecological factors (such as population characteristics or the built environment) influence the spatial patterns of crime. Crime mapping allows researchers and practitioners to explore crime patterns, offender mobility, and serial offenses over time and space. Within the context of local policing, crime mapping provides the visualization of crime clusters by types of crimes, thereby validating the street knowledge of patrol officers. Crime mapping can be used for allocating resources (patrol, specialized enforcement) and also to inform how the concerns of local citizens are being addressed.</p>
+</blockquote>
+<p>Mapping crime and its spatial distribution is of significant interest to a variety of stakeholders - it also serves as a relatable and understandable geographical phenomena for learning different types of spatial analysis techniques as well as many of the ‘nuances’ analysts face when using this type of ‘event’ data.</p>
+<p>As a result, within this practical, we are actually going to answer a very simple question: <strong>Does our perception of crime (and its distribution) in London vary at different scales?</strong></p>
+<p>Here we are looking to test whether we would make the ‘ecological fallacy’ mistake of assuming patterns at the ward level are the same at the borough level by looking to directly account for the impact of the Modifiable Area Unit Problem within our results.</p>
+<p>To test this, we will use these two administrative geographies (<strong>borough and ward</strong>) to aggregate crime data for London in 2020.</p>
+<p>Here we will be looking specifically at a specific type of crime: <strong>the theft from a person</strong>.</p>
+</div>
+<div id="finding-our-datasets-1" class="section level4 unnumbered">
+<h4>Finding our datasets</h4>
+<p>As we saw last week, accessing data within the UK, and specifically for London, is relatively straight-forward - you simply need to know which data portal contains the dataset you want!</p>
+<p><strong>Crime Data</strong></p>
+<p>For our crime data, we will use data directly from the <strong>Police</strong> Data Portal, which you can find at <a href="https://data.police.uk/" class="uri">https://data.police.uk/</a>.</p>
+<p>This Data Portal allows you to access and generate tabular data for crime recorded in the U.K. across different the different Police Forces since 2017.</p>
+<p>In total, there are 45 territorial police forces (TPF) and 3 special police forces (SPF) of the United Kingdom.</p>
+<p>Each TPF covers a specific area in the UK (e.g. the "West Midlands Police Force), whilst the SPFs are cross-jurisdiction and cover specific types of crime, such as the British Transport Police.</p>
+<p>Therefore, when we want to download data for a speciic area, we need to know which Police Force covers the Area of Interest (AOI) for our investigation.</p>
+<p>When you look to download crime data for London, for example, there are <strong>two</strong> territorial police forces working within the city and its greater metropolitan area:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>The Metropolitan Police Force (The Met)</strong>, which covers nearly the entire London area, including Greater London</p></li>
+<li><p><strong>The City of London (COL) Police</strong>, which covers the City of London. The Met has no juridiction in the COL.</p></li>
+</ol>
+<p>You therefore need to decide <em>if</em> you want to include an analysis of crime in the City of London or not - we will in our current study.</p>
+<p>We’ll get to download this dataset in a second!</p>
+<p><strong>Population Data</strong></p>
+<p>After what we’ve learnt about above, we know that if we want to study a phenomena like crime (and aggregate it to an areal unit as we will do today!), we will need to normalise this by our population.</p>
+<p>Luckily, we already have our Ward Population sorted from last week, with our <code>ward_population_2019.shp</code> that should be currently sitting in your final data folder.</p>
+<p><em>If it is not, you can download our shapefile <a href="https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/EWlUv7LfP5NGjTuTVzOXhJ8BOiwIdu5sfo5K7YdG3_q-fw?e=Q91oeq">here</a>. Remember to unzip it and, for now, store it in your <code>final</code> data folder</em>.</p>
+<p>In addition to our <strong>ward</strong> level dataset, we also want to generate the <strong>same</strong> type of shapefile for our London <strong>boroughs</strong>, i.e. a <code>borough_ward_population_2019.shp</code>, utilising the <strong>same approach</strong> as last week, joining our population table data to our borough shape data.</p>
+<p>To do this, we need to know where to get both our required datasets from - luckily, you’ve already got borough shape data in your <code>raw/boundaires/2011</code> folder.</p>
+<p>Therefore, it is just a case of tracking down the same Mid-Year Estimates (MYE) for London Boroughs as we did for the wards, which with the ONS’s central MYE database, this also won’t be too difficult!</p>
+<p>So let’s get going!</p>
+</div>
+<div id="download-and-process-datasets-1" class="section level4 unnumbered">
+<h4>Download and process datasets</h4>
+<p>As outlined above, to get going with our analysis, we need to download both the <strong>population</strong> data for our boroughs and the 2020 <strong>crime</strong> data for our two police forces in London.</p>
+<p>Let’s tackle the population data first.</p>
+<p><strong>1) Borough Population</strong></p>
+<p>Through a quick search, we can find our Borough Population table data pretty much in the same place as our Ward data - however it is a separate spreadsheet to download.</p>
+<ol style="list-style-type: decimal">
+<li><p>Navigate to the data <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland">here</a>.</p></li>
+<li><p>Download the <strong>Mid-2019: April 2020 local authority district codes</strong> xls.</p></li>
+<li><p>Open the dataset in your spreadsheet editing software.</p></li>
+<li><p>Navigate to the <code>MYE2-Persons</code> tab.</p></li>
+<li>Utilising your preferred approach, extract: <code>Code</code>, <code>Name</code>, <code>Geography</code> and <code>All ages</code> data for all London boroughs.
+<ul>
+<li>For me, the simplest way is to add a <strong>filter</strong> to row 5, and from this filter, in the <code>Geography</code> column select only <strong>London Boroughs</strong>:<br><br></li>
+</ul>
+<div class="vembedr" align="center">
+    <div>
+    <iframe src="https://web.microsoftstream.com/embed/video/c90bf537-adef-458d-abac-bbc8d3dc2513?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+    </div>
+    </div>
+<br>
+<ul>
+<li>You should have a total of <strong>33 boroughs</strong>.
+<br></li>
+</ul></li>
+<li><p>Once you have your 33 boroughs separated from the rest of the data, copy the columns (<code>Code</code>, <code>Name</code>, <code>Geography</code> and <code>All ages</code>) and respective data for each borough into a new csv.</p></li>
+<li><p>Remember to format the <strong>field names</strong> as well as the <strong>number field</strong> for the population as we did last week.</p></li>
+<li><p>Save as a new csv in your <code>working</code> population folder: <code>borough_population_2019.csv</code>.</p></li>
+</ol>
+<p><strong>2) Ward Population</strong></p>
+<p>As mentioned above, you should have a <code>ward_population_2019.shp</code> file within your <code>final</code> data folder.</p>
+<p>As we’ll be using this dataset in our practical, we would like to make sure that we keep a version of this data in its current state, just in case we make a mistake whilst processing our dataset.</p>
+<p>As a result, we should create a copy of this dataset within our <code>working</code> folder, that we can use for this practical.</p>
+<ol style="list-style-type: decimal">
+<li>Copy and paste over the <strong>entire</strong> <code>ward_population_2019.shp</code> from your <code>final</code> data folder to your <code>working</code> data folder.
+<ul>
+<li>Don’t forget to copy over <strong>ALL</strong> the files.</li>
+</ul></li>
+</ol>
+<p><strong>3) Crime Data</strong></p>
+<p>We will now head to the Police Data Portal and download our crime data…</p>
+<p>…or maybe not!</p>
+<p>As I said at the start of last week’s practical:</p>
+<blockquote>
+<p>We’re going to start cleaning (the majority of) our data from the get-go.</p>
+</blockquote>
+<p>However, with our crime data, the processing that is required from you right now is exhasutive to do manually - and far (far!) easy to do using programming.</p>
+<p>Essentially, all of our data that we will download for crime in London will be provided in individual csvs, according first to month, and then to the police force as so:</p>
+<p><img src="images/w3/crime_data_files.png" width="550pt" style="display: block; margin: auto;" /></p>
+<p>For our data processing therefore, you would need to merge all of this crime into a single csv. Now you could do this manually by copying and pasting each csv into a new csv (24 times) - or you can do it through a few lines of code.</p>
+<p>However, you’ve already read through <strong>a lot</strong> today, so we’ll save learning Command Line tools for next week, where we’ll find out just how quick it can be to merge csvs!</p>
+<p>Instead, you can find the pre-merged <strong>and</strong> pre-filtered spreadsheet <a href="https://liveuclac-my.sharepoint.com/:x:/g/personal/ucfailk_ucl_ac_uk/EZznLYlPAnJBsX2oArkPZHIB5-l1mG4aARUxaEYspfBQgg?e=tsnmFA">here</a>.</p>
+<center>
+<em>Note, I filtered the data to only contain data on</em> <strong>theft</strong> <em>crime, rather than all types of crime in London.</em>
+</center>
+<p><br>
+There are however a few caveats in our crime data, that we’ll explain below - but these might not become clear until you start using the raw dataset yourself next week.</p>
+<ol style="list-style-type: decimal">
+<li><p>For now, make sure you have downloaded the <code>london_crime_theft_2020</code> csv linked <a href="https://liveuclac-my.sharepoint.com/:x:/g/personal/ucfailk_ucl_ac_uk/EZznLYlPAnJBsX2oArkPZHIB5-l1mG4aARUxaEYspfBQgg?e=tsnmFA">here</a>.</p></li>
+<li><p>Copy this csv into a <strong>new</strong> folder in your <code>raw</code> data folder called: <code>crime</code>.</p></li>
+</ol>
+<div class="note">
+<p><strong>Downloading and using crime data from data.police.uk</strong>
+<br>
+To download data for all of London for 2020, you follow these simple steps:</p>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/5143010c-bf7a-47b9-b7ec-a74ef1834615?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<p>As you can see, it is a simple process of selecting the Police Forces and months for which you want data for - and then a csv for each of these will be generated.</p>
+<p><em>1) Data Structure</em></p>
+<p>Once downloaded, you can open up the csv to see what the data contains.</p>
+<p>Each crime csv contains at least 9 fields:</p>
+<table>
+<colgroup>
+<col width="32%" />
+<col width="67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Field(s)</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Reported by</td>
+<td align="left">The force that provided the data about the crime.</td>
+</tr>
+<tr class="even">
+<td align="left">Falls within</td>
+<td align="left">At present, also the force that provided the data about the crime.</td>
+</tr>
+<tr class="odd">
+<td align="left">Longitude and Latitude</td>
+<td align="left">The anonymised coordinates of the crime.</td>
+</tr>
+<tr class="even">
+<td align="left">LSOA code and LSOA name</td>
+<td align="left">References to the Lower Layer Super Output Area that the anonymised point falls into, according to the LSOA boundaries provided by the Office for National Statistics.</td>
+</tr>
+<tr class="odd">
+<td align="left">Crime type</td>
+<td align="left">One of the crime types used to categorise the offence.</td>
+</tr>
+<tr class="even">
+<td align="left">Last outcome category</td>
+<td align="left">A reference to whichever of the outcomes associated with the crime occurred most recently.</td>
+</tr>
+<tr class="odd">
+<td align="left">Context</td>
+<td align="left">A field provided for forces to provide additional human-readable data about individual crimes.</td>
+</tr>
+</tbody>
+</table>
+<p>For us, the main fields we are interested include:</p>
+<ul>
+<li><code>Longitude</code> and <code>Latitude</code> (for plotting as points)</li>
+<li><code>LSOA code/name</code> (for aggregating to these units without plotting)</li>
+<li><code>Crime Type</code> (to filter crime based on our investigation)</li>
+</ul>
+<p><em>2) Location Anonymisation</em></p>
+<p>When mapping the data from the provided longitude and latitude coordinates, it is important to know that these locations represent the approximate location of a crime — not the exact place that it happened.</p>
+<p>This displacement occurs to preserve anonymity of the individuals involved.</p>
+<p>The process by how this displacement occurs is standardised. There is a list of anonymous map points to which the exact location of each crime is compared against this master list to find the nearest map point. The co-ordinates of the actual crime are then replaced with the co-ordinates of the map point. Each map point is specifically chosen to avoid associating that point with an exact household.</p>
+<p>Interestingly enough, the police also convert the data from their recorded BNG eastings and northings into WGS84 latitude and longitude ( hence why we’ll need to re-project our data in this practical).</p>
+<p><em>3) Coding of Crimes into 14 Categories</em></p>
+<p>Each crime is categorised into one of 14 types. These include:</p>
+<table>
+<colgroup>
+<col width="32%" />
+<col width="67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Crime Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">All crime</td>
+<td align="left">Total for all categories.</td>
+</tr>
+<tr class="even">
+<td align="left">Anti-social behaviour</td>
+<td align="left">Includes personal, environmental and nuisance anti-social behaviour.</td>
+</tr>
+<tr class="odd">
+<td align="left">Bicycle theft</td>
+<td align="left">Includes the taking without consent or theft of a pedal cycle.</td>
+</tr>
+<tr class="even">
+<td align="left">Burglary</td>
+<td align="left">Includes offences where a person enters a house or other building with the intention of stealing.</td>
+</tr>
+<tr class="odd">
+<td align="left">Criminal damage and arson</td>
+<td align="left">Includes damage to buildings and vehicles and deliberate damage by fire.</td>
+</tr>
+<tr class="even">
+<td align="left">Drugs</td>
+<td align="left">Includes offences related to possession, supply and production.</td>
+</tr>
+<tr class="odd">
+<td align="left">Other crime</td>
+<td align="left">Includes forgery, perjury and other miscellaneous crime.</td>
+</tr>
+<tr class="even">
+<td align="left">Other theft</td>
+<td align="left">Includes theft by an employee, blackmail and making off without payment.</td>
+</tr>
+<tr class="odd">
+<td align="left">Possession of weapons</td>
+<td align="left">Includes possession of a weapon, such as a firearm or knife.</td>
+</tr>
+<tr class="even">
+<td align="left">Public order</td>
+<td align="left">Includes offences which cause fear, alarm or distress.</td>
+</tr>
+<tr class="odd">
+<td align="left">Robbery</td>
+<td align="left">Includes offences where a person uses force or threat of force to steal.</td>
+</tr>
+<tr class="even">
+<td align="left">Shoplifting</td>
+<td align="left">Includes theft from shops or stalls.</td>
+</tr>
+<tr class="odd">
+<td align="left">Theft from the person</td>
+<td align="left">Includes crimes that involve theft directly from the victim (including handbag, wallet, cash, mobile phones) but without the use or threat of physical force.</td>
+</tr>
+<tr class="even">
+<td align="left">Vehicle crime</td>
+<td align="left">Includes theft from or of a vehicle or interference with a vehicle.</td>
+</tr>
+<tr class="odd">
+<td align="left">Violence and sexual offences</td>
+<td align="left">Includes offences against the person such as common assaults, Grievous Bodily Harm and sexual offences.</td>
+</tr>
+</tbody>
+</table>
+<p>We can use these crime types to filter our crime specific to our investigation - in our case theft.</p>
+</div>
+<center>
+<strong>Now we have all our data ready, let’s get mapping!</strong>
+</center>
+</div>
+<div id="using-q-gis-to-map-our-crime-data" class="section level4 unnumbered">
+<h4>Using Q-GIS to map our crime data</h4>
+<p><strong>If you do not have access to Q-GIS, please click here to go to the alternative option: <a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#week-3-practical-alternate-using-agol-for-crime-mapping">Week 3 Practical Alternate: Using AGOL for Crime Mapping</a></strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Start <strong>Q-GIS</strong></p></li>
+<li>Click on <strong>Project –&gt; New</strong>.
+<ul>
+<li>Save your project into your <code>qgis</code> folder as <code>w3-crime-analysis</code>.</li>
+<li>Remember to save your work throughout the practical.</li>
+</ul></li>
+<li>Before we get started with adding data, we will first set the Coordinate Reference System of our Project.
+<ul>
+<li>Click on Project –&gt; Properties – CRS.</li>
+<li>In the Filter box, type <strong>British National Grid</strong>.</li>
+<li>Select <strong>OSGB 1936 / British National Grid - EPSG:27700</strong> and click <strong>Apply</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+</ol>
+<center>
+<em>Compared to last week, you should now know what EPSG:27700 means!</em>
+</center>
+<p><br></p>
+<div class="note">
+<p><strong>Shortcut to CRS on Q-GIS</strong><br>
+To access and set the project CRS quickly in Q-GIS, you can click on the small CRS button in the bottom-right corner in Q-GIS:</p>
+<p><img src="images/w3/CRS_button.png" width="650pt" style="display: block; margin: auto;" /></p>
+</div>
+<p>Now we have our <strong>Project CRS</strong> set, we’re now ready to start loading and processing our data.</p>
+<p><strong>Load Ward Population data</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Click on <strong>Layer –&gt; Add Layer –&gt; Add Vector Layer</strong>.</p></li>
+<li>With <strong>File</strong> select as your source type, click on the small three dots button and navigate to your <code>ward_population_2019.shp</code> in your <code>working</code> folder.
+<ul>
+<li>Click on the <code>.shp</code> file of this dataset and click Open.</li>
+<li>Then click Add.</li>
+<li>You may need to close the box after adding the layer.</li>
+</ul></li>
+</ol>
+<p><strong>Load Borough shape and population data and join!</strong></p>
+<p>We now need to create our Borough population shapefile - and to do so, we need to repeat exactly the same process as last week in terms of joining our table data to our shapefile.</p>
+<p>We will let you complete this without full instructions as your first “GIS challenge”.</p>
+<p>Remember, you need to:</p>
+<ul>
+<li><p>Load the respective Borough dataset as a Vector Layer <em>(found in your</em> <code>raw</code> <em>data folder -&gt;</em> <code>boundaries</code> <em>-&gt;</em> <code>2011</code> <em>-&gt;</em> <code>London_Borough_Excluding_MHW.shp</code><em>)</em>.</p></li>
+<li><p>Load the respective Population dataset as a Delimited Text File Layer (Remember the settings, including no geometry! This one is found in your <code>working</code> folder)</p></li>
+<li><p>Join the two datasets together using the Join tool in the Borough dataset Properties box (remember which fields to use, which to add and to remove the prefix - look back at last week’s instructions if you need help).</p></li>
+<li><p>Export your joined dataset into a new dataset within your <code>working</code> folder: <code>borough_population_2019.shp</code>.</p></li>
+<li><p>Make sure this dataset is loaded into your <strong>Layers</strong> / Added to the map.</p></li>
+<li><p>Remove the original Borough and population data layers.</p></li>
+</ul>
+<p><strong>Load and project our crime data</strong></p>
+<p>We now are ready to load and map our crime data.</p>
+<p>We will load this data using the Delimited Text File Layer option you would have used just now to load the borough population - but this time, we’ll be adding point coordinates to map our crime data as points.</p>
+<ol style="list-style-type: decimal">
+<li><p>Click on <strong>Layer –&gt; Add Layer –&gt; Add Delimited Text File Layer</strong>.</p></li>
+<li>With <strong>File</strong> select as your source type, click on the small three dots button and navigate to your <code>all_theft_2019.shp</code> in your <code>raw</code> -&gt; <code>crime</code> folders.
+<ul>
+<li>Click on the <code>.csv</code> file of this dataset and click Open.</li>
+<li>In *Record and Fields Options**, ensure it is set to <code>CSV</code>, untick <code>Decimal separator is comma</code> and tick <code>First record has field names</code>, <code>Detect field types</code> and <code>Discard empty fields</code>.</li>
+<li>In <strong>Geometry Definition</strong>, select <code>Point coordinates</code> and set the <strong>X field</strong> to <code>Longitude</code> and the <strong>Y field</strong> to <code>Latitude</code>.</li>
+<li>The <strong>Geometry CRS</strong> should be: <code>EPSG:4326 - WGS84</code>, <em>a.k.a. the GCS of lat and lon!</em></li>
+<li>Click <strong>Add</strong>.</li>
+</ul></li>
+</ol>
+<br>
+<center>
+But <strong>WAIT!</strong> We are using the <strong>wrong</strong> CRS for our project?! Surely, we need everything to be in <strong>BNG</strong>?
+</center>
+<p>As you click <strong>Add</strong>, you should see that you get a pop-up from Q-GIS asking about transformations - we read about these earlier and they are the mathematical algorithms that convert data from one CRS to another. And this is exactly what Q-GIS is trying to do.</p>
+<p>Q-GIS knows that the <strong>Project CRS</strong> is <strong>BNG</strong> but the <strong>Layer</strong> you are trying to add has a <strong>WGS84</strong> CRS.</p>
+<p>Q-GIS is asking you what transformation it should use to project the Layer in the Project CRS!</p>
+<p>This is because one key strength (but also problem!) of Q-GIS is that it can <strong>project "on the fly</strong> - what this means is that Q-GIS will automatically convert all Layers to the Project CRS once it knows which transformation you would like to use.</p>
+<p>But you must note that this transformation is only <strong>temporary in nature</strong> and as a result, it is not a full <strong>reprojection</strong> of our data.</p>
+<div class="codetime">
+<p><strong>Map Projections in Q-GIS</strong><br>
+<em>The following is taken from the Q-GIS’s user manual section on <a href="https://docs.qgis.org/3.16/en/docs/user_manual/working_with_projections/working_with_projections.html">Working with projections</a></em>.</p>
+<p>Every <strong>project</strong> in QGIS also has an associated Coordinate Reference System.</p>
+<p>The project CRS determines how data is projected from its underlying raw coordinates to the flat map rendered within your QGIS map canvas.</p>
+<p>By default, QGIS starts each new project using a global default projection.</p>
+<p>This default CRS is EPSG:4326 (also known as “WGS 84”), and it is a global latitude/longitude based reference system.
+This default CRS can be changed both permanently, for example, to British National Grid for all future projects, or for that specific project, as we have done in our two practicals.</p>
+<p>QGIS supports <strong>“on the fly”</strong> CRS transformation for both raster and vector data.</p>
+<p>This means that <strong>regardless</strong> of the underlying CRS of particular <strong>map layers</strong> in your project, they will <strong>always be automatically transformed into the common CRS defined for your project</strong>.</p>
+<p><strong>Behind the scenes, QGIS transparently reprojects all layers contained within your project into the project’s CRS, so that they will all be rendered in the correct position with respect to each other!</strong></p>
+<p>These reprojections are only temporary and are not permanently assigned to the dataset it is reprojecting - only to the project.</p>
+<p>As a result, we should be aware of this when using data across different projects and/or GIS systems and always remember what the data’s original or “true” CRS is!</p>
+<p>This reprojection is also using <strong>computer memory</strong>, therefore, if you are to analyse large datasets (such as our crime dataset), it makes sense to reproject our data to have it permanently in the same CRS as our project.</p>
+</div>
+<p>For now, let’s use the <strong>on-the-fly</strong> projection for now and utilise Q-GIS’s recommendation of the <code>+towgs84=446.448....</code> transformation.</p>
+<p>This transformation should be built-in to your Q-GIS transformation library, whereas some of the more accurate options would need installation.</p>
+<p>For now, given the displacement of our data in the first place, this transformation is accurate enough for us!</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Click to use the <code>+towgs84=446.448....</code> transformation and click through the <strong>OKs</strong> to return to the main Q-GIS screen.</li>
+</ol>
+<p>You should now see your crime dataset displayed on the map:</p>
+<p><img src="images/w3/crime_unproj.png" width="650pt" style="display: block; margin: auto;" /></p>
+<p>We can test the ‘temporary’ nature of the projection by looking at the CRS of the <code>all_theft_2020</code> layer:</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Right-click on the <code>all_theft_2020</code> layer then select <strong>Properties -&gt; Information</strong> and then look at the associated CRS.
+<ul>
+<li>You should see that the CRS of the layer is still <code>WGS84</code>.</li>
+</ul></li>
+</ol>
+<p>Yup, Q-GIS is definitely projecting our data on-the-fly!</p>
+<p>We want to make sure our analysis is as accurate and efficient as possible, so it is best to reproject our data into the <strong>same CRS</strong> as our administrative datasets, i.e. British National Grid.</p>
+<p>This also means we’ll have the dataset to use in other projects, just in case.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Back in the main Q-GIS window, click on <strong>Vector -&gt; Data Management Tools -&gt; Reproject Layer</strong>. Fill in the parameters as follows:
+<ul>
+<li><strong>Input Layer:</strong> <code>all_theft_2020</code></li>
+<li><strong>Target CRS:</strong> <code>Project CRS: EPSG: 27700</code></li>
+<li><strong>Reprojected:</strong> Click on the three buttons and <strong>Save to File</strong> to create a new data file.</li>
+<li><strong>Save</strong> it in your <code>working</code> folder as <code>all_crime_2019_BNG.shp</code></li>
+<li>Click <strong>Run</strong> and then close the tool box.</li>
+</ul></li>
+</ol>
+<p>You should now see the new data layer added to your Layers.</p>
+<div class="fyi">
+<p>Q-GIS can be a little bit buggy so when it creates new data layers in your Layers box, it often automates the name, hence you might see your layer added as <code>Reprojected</code>. It does this with other management and analysis tools, so just something to be aware of!</p>
+</div>
+<p>For now, <strong>let’s tidy up our map a little.</strong></p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Remove the <code>all_theft_2020</code> original dataset.</p></li>
+<li><p>Rename the <code>Reprojected</code> dataset to <code>all_theft_2020</code>.</p></li>
+</ol>
+<p>Now we have an organised Layers and project, we’re ready to start our crime analysis!</p>
+</div>
+<div id="counting-points-in-polygons-with-q-gis" class="section level4 unnumbered">
+<h4>Counting Points-in-Polygons with Q-GIS</h4>
+<p>The next step of our analysis is incrediby simple - as Q-GIS has an in-built tool for us to use.</p>
+<p>We will use the <code>Count Points in Polygons</code> in the <code>Analysis</code> toolset for <code>Vector</code> data to count how many crimes have occured in both our <strong>Wards</strong> and our <strong>Boroughs</strong>.</p>
+<p>We will then have our count statistic which we will need to normalise by our population data to create our <strong>crime rate</strong> final statistic!</p>
+<p>Let’s get going and first start with calculating the crime rate for the borough scale:</p>
+<ol style="list-style-type: decimal">
+<li><p>Click on <strong>Vector -&gt; Analysis Tools -&gt; Count Points in Polygons.</strong></p></li>
+<li>Within the toolbox, select the parameters as follows:
+<ul>
+<li><strong>Polygons:</strong> <code>borough_population_2019</code></li>
+<li><strong>Points:</strong> <code>all_theft_2020</code> <em>(Note how both our data layers state the same CRS!)</em></li>
+<li>No weight field or class field</li>
+<li><strong>Count field names:</strong> <code>crimecount</code></li>
+<li>Click on the three dot button and <strong>Save to file:</strong> <code>working</code> -&gt; <code>borough_crime_2020.shp</code></li>
+</ul></li>
+<li><p>Click <strong>Run</strong> and <strong>Close</strong> the box.</p></li>
+</ol>
+<p>You should now see a <code>Count</code> layer added to your Layers box.</p>
+<p>Let’s go investigate.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Click the checkbox next to <code>all_theft_2020</code> to hide the crime points layer for now.</p></li>
+<li>Right-click on the <code>Count</code> layer and open the <strong>Attribute Table</strong>.
+<ul>
+<li>You should now see a <code>crimecount</code> column next to your <code>POP2019</code> column.</li>
+<li>You can look through the column to see the different levels of crime in the each borough.</li>
+<li>You can also sort the column, from small to big, big to small, like you would do in a spreadsheet software.</li>
+</ul></li>
+</ol>
+<p>Whilst it’s great that we’ve got our <code>crimecount</code>, as we know, what we actually need is a <strong>crime rate</strong> to account for the different sizes in population in the boroughs and to avoid a <strong>population heat map</strong>.</p>
+<p>To get our <strong>crime rate</strong> statistic, we’re going to do our first bit of table manipulation in Q-GIS, woohoo!</p>
+<ol start="6" style="list-style-type: decimal">
+<li>With the <strong>Attribute Table</strong> of your <code>Count</code> layer still open, click on the <strong>pencil</strong> icon at the start of the row.
+<ul>
+<li>This pencil actually turns on the Editing mode in Q-GIS.</li>
+<li>The editing mode allows you to edit both the <strong>Attribute Table</strong> values <strong>and</strong> the <strong>geometry</strong> of your data.</li>
+<li>E.g. you could actually move the various vertex of your boroughs whilst in this Editing mode if you like!</li>
+<li>When it comes to the <strong>Attribute Table</strong>, it means you can directly edit existing values in the table <strong>or</strong> create and add new fields to the table.</li>
+<li>Whilst you can actually do the latter outside of the Editing mode, this Editing mode means you can reverse any edits you make and they are not permanent just in case you make a mistake.</li>
+<li>Using the Editing mode is the <strong>correct</strong> approach to editing your table, however, it might not always be the approach you use when generating new fields and, as we all are sometimes, a little lazy. <em>(This may be a simple case of “Do what I say, not what I do!”)</em></li>
+</ul></li>
+</ol>
+<p>Let’s go ahead and add a new field to contain our <strong>Crime Rate</strong>.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Whilst in the Editing mode, click on <strong>New Field</strong> button (or Ctrl+W/CMD+W) and fill in the <strong>Field Parameters</strong> as follows:
+<ul>
+<li><strong>Name:</strong> <code>crime_rate</code></li>
+<li><strong>Comment:</strong> <em>leave blank</em></li>
+<li><strong>Type:</strong> Decimal number</li>
+<li><strong>Length:</strong> 10</li>
+<li><strong>Precision:</strong> 0</li>
+</ul></li>
+<li>Click <strong>OK.</strong></li>
+</ol>
+<p>You should now see a new field added to our <strong>Attribute Table</strong>.</p>
+<div class="fyi">
+<p><strong>What did all this mean?</strong><br>
+Understanding how to add new fields and their parameters rely on you understanding the different data types we covered last week - and thinking through what sort of data type your field needs to contain.</p>
+<p>In our case, we will store our data as a decimal to enable our final calculation to produce a decimal (an integer/integer is likely to produce a decimal) but we will set the precision to <strong>0</strong> to have zero places after our decimal place when the data is used. That’s because <strong>ultimately, we want our crime rate represented as an integer because, realistically, you can’t have half a crime!</strong> Calculating a decimal however will allow us to round-up within our calculations.</p>
+</div>
+<p>The empty field has <em>NULL</em> populated for each row - so we need to find a away to give our boroughs some crime rate data.</p>
+<p>To do this, we will calculate a simple <strong>Crime Rate</strong> using the <strong>Field Calculator</strong> tool provided by Q-GIS within the <strong>Attribute Table</strong>.</p>
+<p>We will create a crime rate that details the number of crimes per 10,000 people in the borough.</p>
+<p>In most cases, a crime rate per person will create a decimal result less than 1 which not only will not be stored correctly by our <code>crime_rate</code> field but, for many people, a <strong>decimal</strong> value is hard to interpret and understand (yes, I know, but we are aiming to make maps that are accessible to everyone…).</p>
+<p>Therefore going for a <strong>10,000 person</strong> approach allows us to calculate and represnt the crime rate using full integers for both our <strong>borough</strong> and <strong>ward</strong> scales as we’ll see later.</p>
+<center>
+<em>This calculation was determined by a bit of a trial and error by me within this practical, so it is something you’d need to consider and change for future research you might do!</em>
+</center>
+<p><br></p>
+<ol start="9" style="list-style-type: decimal">
+<li>Whilst still in the editing mode, click on the <strong>Abacus</strong> button (Ctrl + I / Cmd + I), which is actaully the <strong>Field Calculator</strong>.</li>
+</ol>
+<p>A new pop-up should load up.</p>
+<p>We can see there are various options we could click at the top - including <strong>Create a new field</strong>.</p>
+<p>Ah! So we could in fact create a new field directly from the field calculator which would help us combine these two steps in one and quicken our workflow!</p>
+<ol start="10" style="list-style-type: decimal">
+<li>For now, in the Field Calculator pop-up:
+<ul>
+<li>Check the <code>Update existing field</code> box.</li>
+<li>Use the drop-down to select the <code>crime_rate</code>field.</li>
+<li>In the Expression editor, add the following expression: <strong>( “crimecount” / “POP2019” ) * 10000</strong></li>
+<li>You can type this in manually or use the <code>Fields and Values</code> selector in the box in the middle to add the fields into the editor.</li>
+<li>Once done, click <strong>OK</strong>.</li>
+</ul></li>
+</ol>
+<p>You should then return to the <strong>Attribute Table</strong> and see our newly populated <code>crime_rate</code> field - at the moment, we can see the resulting calculations stored as decimals.</p>
+<ol start="11" style="list-style-type: decimal">
+<li><p>Click on the <strong>Save</strong> button to save these edits - you’ll see the numbers turn to integers.</p></li>
+<li><p>Click again on the <strong>Pencil</strong> button to exit Editing mode.</p></li>
+</ol>
+<p>We now have a <code>crime_rate</code> column to map!</p>
+<p>Before moving to the next step, if you would like, go ahead and symbolise your boroughs by this <code>crime_rate</code>.</p>
+<div class="note">
+<p><strong>Tips for Symbolisation</strong><br></p>
+<ul>
+<li>When in the <code>Symbology</code> tab and after selecting <strong>Graduated</strong> as your symbolisation option, click on the histogram tab and load the values to see the distribution of your data.</li>
+<li>You can also edit the lines of the borough to a colour of your choice.</li>
+</ul>
+</div>
+<p>You should also make sure your new borough crime rate layer has been renamed from the default <code>Count</code> layer name Q-GIS has given it.</p>
+<ol start="13" style="list-style-type: decimal">
+<li>Rename your borough crime rate layer has been renamed from the default <code>Count</code> layer name to <code>Borough Crime Rate</code>.</li>
+</ol>
+<p><strong>Great!</strong> We now have our Borough crime rate dataset ready for mapping and analysis - <strong>we just now need to repeat this process to have our Ward dataset.</strong></p>
+<ol start="14" style="list-style-type: decimal">
+<li><strong>Repeat the above processes to create a <code>crime_rate</code> column within our Ward dataset ready for mapping and analysis.</strong></li>
+</ol>
+<div class="note">
+<p><strong>Tips for Repetition in Q-GIS</strong><br></p>
+<ul>
+<li><p>Remember, you can use the field calculator straight away to shorten the field creation process by selecting to create a new field whilst completing the field calculation (still using the same parameters though!).</p></li>
+<li><p>One additional small tip is that in the middle box in the Field Calculator, you can load <strong>Recent field calculations</strong> and double-click on your prior calculation to automate the creation of the <code>crime_rate</code> calcuation!</p></li>
+</ul>
+</div>
+<br><strong>Now you have both datasets ready, it’s time to style the maps!</strong>
+</center>
+<p><br></p>
+<p>Remember to use the <strong>Properties</strong> box to symbolise your maps - perhaps have a look online for some examples, if you don’t want to use the default.</p>
+<p>Once you’re happy with their symbolisation, we’ll turn them into <strong>proper publishable maps</strong> using Q-GIS’s Map Composer.</p>
+</div>
+<div id="making-our-crime-rate-maps-for-analysis-in-q-gis-and-the-map-composer" class="section level4 unnumbered">
+<h4>Making our Crime Rate Maps for analysis in Q-GIS and the Map Composer</h4>
+<p><strong>Content coming Wednesday 27th January 2020</strong></p>
+<hr />
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Explain what a Geographic Reference System and a Projected Coordinate System is and their differences.</li>
+<li>Understand the limitations of different PCSs and recognise when to use each for specific anlaysis.</li>
+<li>Know what to include - and what not to include - on a map.</li>
+<li>Know how to represent different types of spatial data on a map.</li>
+<li>Explain what the Modifiable Areal Unit Problem is and why poses issues for spatial analysis.</li>
+<li>Reproject data in Q-GIS.</li>
+<li>Map event data using a ‘best-practice’ approach.</li>
+<li>Produce a map of publishable quality.</li>
+</ul>
+</div>
+</div>
+<div id="acknowledgements-6" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>Acknowledgements are made in appropriate sections.</p>
 
+</div>
+</div>
 </div>
             </section>
 
