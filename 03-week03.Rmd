@@ -14,7 +14,7 @@ As always, we have broken the content into smaller chunks to help you take break
 
 ### Week 3 in Geocomp {-}
 
-<center>**LECUTURE VIDEOS COMING WEDS, SLIDES ARE AVAILABLE NOW**</censter>
+<center>**LECUTURE VIDEOS COMING WEDS, SLIDES ARE AVAILABLE NOW**</center>
 ```{r 03-welcome, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
 embed_msstream('') %>% use_align('center')
@@ -135,7 +135,7 @@ This projection is actually just latitude and longitude represented as a simple 
 Either CS provides a framework for defining real-world locations - however, **when it comes to much of GIScience and spatial analysis work, we will use a PCS to help locate, project, analyse and visualise our data in 2D.**
 
 To locate, project, analyse and visualise our data in 2D, the PCS has, through mathematical transformations known as **map projections**, transformed the surface of our three-dimensional earth into a two-dimensional map canvas (whether paper or digital).
-
+<br>
 <center>**This ability to create a flat surface from a 3D sphere is however not so simple!**</center><br>
 
 From a classic geographical metaphor, the easiest way to think about this is to think about peeling an orange - how could you peel an orange to ultimately result in a flat (preferably square/rectangular - computers really like squares!) shape?
@@ -145,7 +145,7 @@ Well, luckily, you don't need to think too hard about it - as Esri's resident ca
 ```{r echo=FALSE, out.width = "750pt", fig.align='center', cache=TRUE}
 knitr::include_graphics('images/w3/orangepeels.png')
 ```
-<center>*Trying to flatten an orange - our earth - into a flat map. Image: John Nelson, Esri*</center><br>
+<center>*Trying to flatten an orange - our earth - into a flat map. Images: John Nelson, Esri*</center><br>
 
 As he shows, to create just a *flat* version of our earth from the spheriod itself, it takes some very interesting shapes and direction maniuplation - let alone achieving a rectangle! 
 <br>(You can see the original blog post these images are taken from [here](https://www.esri.com/arcgis-blog/products/arcgis-pro/education/earth-peel/).)
@@ -169,7 +169,7 @@ However when any of using these shapes to representing the earth's surface in tw
 
 This distortion is explained through Vox's excellent video:
 
-<center>**Why all world maps are wrong*</center>
+<center>**Why all world maps are wrong**</center>
 ```{r 03-vox-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
 embed_youtube('kIID5FDi2JQ') %>% use_align('center')
@@ -275,7 +275,6 @@ This method results in a square-shaped map but there is no way to programmatical
 This makes EPSG:3857 great for visualizing on computers but not reliable for data storage or analysis.
 :::
 <br>
-
 Luckily for us in Geocomputation, for the majority of our work, we will be using the **British National Grid** for our mapping and analysis as we are focusing on analysis on London.
 
 In this week's practical, we will look at how we can **reproject** our spatial data from one a GCS to a PRS (in this case WGS84 to OSGB1936). 
@@ -445,7 +444,7 @@ Without taking these normalisation approaches, we can create incredibly misleadi
 
 This was common amongst the US election maps, for example, where many of the Republican states have a large landmass - but ultimately a low population. Therefore, when representing the results of the election as a categorical choropleth, it presents an overwhelming Republican landslide. However, as we all know, whilst the Party won the Electoral College vote, the Democrats actually won the Popular Vote by 3 million votes.
 
-Hence, when mapping by number of votes rather than state outcome, a different message is conveyed, as we see below. Alas, despite this difference in total votes, the US runs an Electoral College System and in the end, the winner is the winner of the Electoral College vote and no map coud or can change that!<br>
+Hence, when mapping by number of votes rather than state outcome, a different message is conveyed, as we see below. Alas, despite this difference in total votes, the US runs an Electoral College System and in the end, the winner is the winner of the Electoral College vote and no map coud or can change that!<br><br>
 
 ```{r echo=FALSE, out.width = "750pt", fig.align='center', cache=TRUE}
 knitr::include_graphics('images/w3/election_map.png')
@@ -461,7 +460,6 @@ library(vembedr)
 embed_msstream('f965f1d2-a8a8-4126-bc75-172917d13a75') %>% use_align('center')
 ```
 <center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EfhB37YEgAVNqTf5rdx66m8BEgJSZVGANNry4u3ZrhizPg?e=6ZA97u) | [Video on Stream](https://web.microsoftstream.com/video/f965f1d2-a8a8-4126-bc75-172917d13a75)</center>
-<br>
 
 ### The Modifiable Areal Unit Problem {-}
 

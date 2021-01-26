@@ -191,7 +191,8 @@
 <div id="week-3-in-geocomp" class="section level3 unnumbered">
 <h3>Week 3 in Geocomp</h3>
 <center>
-<strong>LECUTURE VIDEOS COMING WEDS, SLIDES ARE AVAILABLE NOW</strong></censter>
+<strong>LECUTURE VIDEOS COMING WEDS, SLIDES ARE AVAILABLE NOW</strong>
+</center>
 <div class="vembedr" align="center">
 <div>
 <iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
@@ -291,7 +292,8 @@ This projection is actually just latitude and longitude represented as a simple 
 <div id="understanding-map-projections" class="section level4 unnumbered">
 <h4>Understanding Map Projections</h4>
 <p>Either CS provides a framework for defining real-world locations - however, <strong>when it comes to much of GIScience and spatial analysis work, we will use a PCS to help locate, project, analyse and visualise our data in 2D.</strong></p>
-<p>To locate, project, analyse and visualise our data in 2D, the PCS has, through mathematical transformations known as <strong>map projections</strong>, transformed the surface of our three-dimensional earth into a two-dimensional map canvas (whether paper or digital).</p>
+To locate, project, analyse and visualise our data in 2D, the PCS has, through mathematical transformations known as <strong>map projections</strong>, transformed the surface of our three-dimensional earth into a two-dimensional map canvas (whether paper or digital).
+<br>
 <center>
 <strong>This ability to create a flat surface from a 3D sphere is however not so simple!</strong>
 </center>
@@ -300,7 +302,7 @@ This projection is actually just latitude and longitude represented as a simple 
 <p>Well, luckily, you don’t need to think too hard about it - as Esri’s resident cartographer <strong>John Nelson</strong> (another <a href="https://twitter.com/John_M_Nelson?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Twitter</a> recommendation) has done it for us:<br><br></p>
 <img src="images/w3/orangepeels.png" width="750pt" style="display: block; margin: auto;" />
 <center>
-<em>Trying to flatten an orange - our earth - into a flat map. Image: John Nelson, Esri</em>
+<em>Trying to flatten an orange - our earth - into a flat map. Images: John Nelson, Esri</em>
 </center>
 <p><br></p>
 <p>As he shows, to create just a <em>flat</em> version of our earth from the spheriod itself, it takes some very interesting shapes and direction maniuplation - let alone achieving a rectangle!
@@ -322,7 +324,7 @@ This projection is actually just latitude and longitude represented as a simple 
 <p>However when any of using these shapes to representing the earth’s surface in two dimensions, there is always some sort of distortion in the shape, area, distance, or direction of the data.</p>
 <p>This distortion is explained through Vox’s excellent video:</p>
 <center>
-**Why all world maps are wrong*
+<strong>Why all world maps are wrong</strong>
 </center>
 <div class="vembedr" align="center">
 <div>
@@ -399,8 +401,8 @@ One thing to watch out for though is the general (over)reliance on what is known
 <p>This method results in a square-shaped map but there is no way to programmatically represent a coordinate system that relies on two different ellipsoids, which means software programs have to improvise. And when software programs improvise, there is no way to know if the coordinates are consistent across programs.</p>
 <p>This makes EPSG:3857 great for visualizing on computers but not reliable for data storage or analysis.</p>
 </div>
-<p><br></p>
-<p>Luckily for us in Geocomputation, for the majority of our work, we will be using the <strong>British National Grid</strong> for our mapping and analysis as we are focusing on analysis on London.</p>
+<p><br>
+Luckily for us in Geocomputation, for the majority of our work, we will be using the <strong>British National Grid</strong> for our mapping and analysis as we are focusing on analysis on London.</p>
 <p>In this week’s practical, we will look at how we can <strong>reproject</strong> our spatial data from one a GCS to a PRS (in this case WGS84 to OSGB1936).</p>
 <div class="reading">
 <p><strong>Key Reading(s)</strong><br><br>
@@ -568,7 +570,7 @@ Whilst we will come across a variety of these types of spatial data on this cour
 <p><br></p>
 <p>Without taking these normalisation approaches, we can create incredibly misleading maps. At the most basic, our brain sees the larger areal units within our map as having <strong>more</strong> of whatever quantity we are representing, irrespective of thinking through the underlying area (and/or population) it is actually representing.</p>
 <p>This was common amongst the US election maps, for example, where many of the Republican states have a large landmass - but ultimately a low population. Therefore, when representing the results of the election as a categorical choropleth, it presents an overwhelming Republican landslide. However, as we all know, whilst the Party won the Electoral College vote, the Democrats actually won the Popular Vote by 3 million votes.</p>
-<p>Hence, when mapping by number of votes rather than state outcome, a different message is conveyed, as we see below. Alas, despite this difference in total votes, the US runs an Electoral College System and in the end, the winner is the winner of the Electoral College vote and no map coud or can change that!<br></p>
+<p>Hence, when mapping by number of votes rather than state outcome, a different message is conveyed, as we see below. Alas, despite this difference in total votes, the US runs an Electoral College System and in the end, the winner is the winner of the Electoral College vote and no map coud or can change that!<br><br></p>
 <img src="images/w3/election_map.png" width="750pt" style="display: block; margin: auto;" />
 <center>
 <em>Different approaches to mapping the 2016 election result in different information communicated <br>(L-&gt;R: Business Insider, Time, xkcd)</em>
@@ -585,7 +587,6 @@ Whilst we will come across a variety of these types of spatial data on this cour
 <center>
 <a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EfhB37YEgAVNqTf5rdx66m8BEgJSZVGANNry4u3ZrhizPg?e=6ZA97u">Slides</a> | <a href="https://web.microsoftstream.com/video/f965f1d2-a8a8-4126-bc75-172917d13a75">Video on Stream</a>
 </center>
-<p><br></p>
 </div>
 </div>
 </div>
