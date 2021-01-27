@@ -4,199 +4,213 @@ For this week's alternate practical, we will continue to use AGOL as our main GI
 
 This week, compared to last, we will however be dealing with two main 'compromises' in our use of AGOL vs. Q-GIS that you will need to be aware of!
 
-**1. Projections**
+**This part of the practical is in progress and will be released ASAP (i.e. late Wednesday 27th). Please make sure to read through the Q-GIS practical prior to completing this one.**
 
-Within theQ-GIS, as you will see if you read through the main practical (which I highly advised doing), setting Project and Data CRSs are an essential step in successfully analysing and visualisng data correctly. In our case, our practical data uses two CRS - BNG for the administrative boundaries and WGS84 for the crime data. As a result, in the main practical, we use a tool within Q-GIS to reproject our crime data into **the same CRS** as the administrative boundaries, i.e. BNG.
+<!-- **1. Projections** -->
 
-AGOL, in comparision, uses WGS84/Mercator as default CRS for all its data mapping and visualisation - and can only be altered if you change the basemap to a dataset that is in your desired CRS/PS (although in their Beta version, it appears that there will be more user choice over choosing projections). AGOL will convert our data, such as our Administrative Boundaries (which are in British National Grid) "on the fly" to WGS84 - so we do not need to reproject it. However, this will mean we may forgot this step in the future - for example, when using R-Studio instead; therefore it is important to recognise that this aspect of our GIS workflow is missed in this tutorial
+<!-- Within theQ-GIS, as you will see if you read through the main practical (which I highly advised doing), setting Project and Data CRSs are an essential step in successfully analysing and visualisng data correctly. In our case, our practical data uses two CRS - BNG for the administrative boundaries and WGS84 for the crime data. As a result, in the main practical, we use a tool within Q-GIS to reproject our crime data into **the same CRS** as the administrative boundaries, i.e. BNG. -->
 
-**2. Map-making & Visualisation**
+<!-- AGOL, in comparision, uses WGS84/Mercator as default CRS for all its data mapping and visualisation - and can only be altered if you change the basemap to a dataset that is in your desired CRS/PS (although in their Beta version, it appears that there will be more user choice over choosing projections). AGOL will convert our data, such as our Administrative Boundaries (which are in British National Grid) "on the fly" to WGS84 - so we do not need to reproject it. However, this will mean we may forgot this step in the future - for example, when using R-Studio instead; therefore it is important to recognise that this aspect of our GIS workflow is missed in this tutorial -->
 
-AGOL also has relatively limited capacity for map-making. As a result, for this practical, I would recommend using a mixture of your output from AGOL alongside either a graphic software or even PowerPoint to make final additions that are needed to your map. You'll see these recommendations below as my proposed workaround.
+<!-- **2. Map-Making & Visualisation** -->
 
-Detailed cartography is one of the key advantages that Q-GIS and ArcGIS have over the use of programming tools, such as R-Studio. As you'll see in future practicals, we can still make excellent maps in R-Studio, it takes a little more time and experience than the "speed" of the traditional GIS software.
+<!-- AGOL also has relatively limited capacity for map-making. As a result, for this practical, I would recommend using a mixture of your output from AGOL alongside either a graphic software or even PowerPoint to make final additions that are needed to your map. You'll see these recommendations below as my proposed workaround. -->
 
-**With all that being said, we stil have plenty of data analysis to learn - so let's get started!**
+<!-- Detailed cartography is one of the key advantages that Q-GIS and ArcGIS have over the use of programming tools, such as R-Studio. As you'll see in future practicals, we can still make excellent maps in R-Studio, it takes a little more time and experience than the "speed" of the traditional GIS software. -->
 
-### Practical Instructions {-}
+<!-- **With all that being said, we still have plenty of data analysis to learn - so let's get started!** -->
 
-We now have our datasets download and ready to process - we simply need to get them loaded onto our AGO map.
+<!-- ### Practical Instructions {-} -->
 
-1. Open your ArcGIS Online (AGO) home webpage and click on the **Map** tab. 
-    + This is the main interface we will use to import and analyse our data and is a *light* version of a traditional Desktop GUI-GIS.
-    + Save your map as **Crime Analysis in London**. 
-    + You can add as many tags as you like – I used: crime | London | analysis.
+<!-- We now have our datasets downloaded and ready to process - we simply need to get them loaded onto our AGO map. -->
 
-Let's go ahead and start adding data to our map.
+<!-- 1. Open your ArcGIS Online (AGO) home webpage and click on the **Map** tab.  -->
+<!--     + Save your map as **Crime Analysis in London**.  -->
+<!--     + You can add as many tags as you like – I used: crime | London | analysis. -->
 
-2. Click on the **Add** button and select **Add Layer from File**:
+<!-- Let's go ahead and start adding data to our map. -->
 
-Add Ward Population zip
-Add Borough Shapefile
-Add Borough Population csv
+<!-- **Ward Population** -->
 
-1. In AGO, import the 2011 population `csv` from your `working` folder by using the **Add data** button as before. 
-    + Note for csvs, the population data can be imported as the original file and there is no need to zip it. 
-    + For the csvs, add the layer just **as a table**.
-    
-    3. To create an **Attribute Join** in AGO, you need to click on the **Perform Analysis** button when hovering over the `London_Ward` dataset and then open the **Summarise Data** drop-down to find the **Join Features** tool. 
+<!-- We already have our `ward_population_2019.shp` dataset complete from last week, so we can go ahead and add this directly to the map. -->
 
-5.	Click on the **Join Features** tool and add the appropriate inputs for each step (again make sure you get your target and join layer and their respective fields correct and also select to **keep all target features**):
+<!-- 2. Click on the **Add** button and select **Add Layer from File**: -->
+<!--   + Add your `ward_population_2019.shp' to the map using the **Add -> Add Layer From File** tool. -->
+<!--   + Remember, to add a **shapefile** to AGOL, you need to compress it first into a zip file. -->
 
-**Load Ward Population data**
+<!-- **Borough Population** -->
 
-1. Click on **Layer --> Add Layer --> Add Vector Layer**.
+<!-- We, as yet, do not have a `borough_population_2019.shp`. -->
 
-2. With **File** select as your source type, click on the small three dots button and navigate to your `ward_population_2019.shp` in your `working` folder.
-    + Click on the `.shp` file of this dataset and click Open. 
-    + Then click Add. 
-    + You may need to close the box after adding the layer.
+<!-- To create our Borough population shapefile, we need to repeat exactly the same process as last week in terms of joining our table data to our shapefile. -->
 
-**Load Borough shape and population data and join!**
+<!-- We will let you complete this without full instructions as your first "GIS challenge".  -->
 
-We now need to create our Borough population shapefile - and to do so, we need to repeat exactly the same process as last week in terms of joining our table data to our shapefile.
+<!-- Remember, you need to: -->
 
-We will let you complete this without full instructions as your first "GIS challenge". 
+<!-- * Add the `London_Borough_Excluding_MHW.shp` file from the `2011` boundary data (in your `raw` data folder) to your map. -->
+<!--     +  Remember, to add a **shapefile** to AGOL, you need to compress it first into a zip file. -->
 
-Remember, you need to:
+<!-- * Add the `borough_population_2019.csv` you have just created from your `working` folder to your map. -->
+<!--     + This can just be added as a csv, but remember to add **just as a table**. -->
 
-* Load the respective Borough dataset as a Vector Layer *(found in your* `raw` *data folder ->* `boundaries` *->* `2011` *->* `London_Borough_Excluding_MHW.shp`*)*.
+<!-- * Join the two datasets together using the **Join Features** tool within the **Summarise Data** option after clicking on the **Perform Analysis** button when hovering over the `London_Borough` dataset. -->
 
-* Load the respective Population dataset as a Delimited Text File Layer (Remember the settings, including no geometry! This one is found in your `working` folder)
+<!-- **Crime Data** -->
 
-* Join the two datasets together using the Join tool in the Borough dataset Properties box (remember which fields to use, which to add and to remove the prefix - look back at last week's instructions if you need help).
+<!-- We now are ready to load and map our crime data. -->
 
-* Export your joined dataset into a new dataset within your `working` folder: `borough_population_2019.shp`.
+<!-- We will now add our `all_theft_2020.csv` from our `raw` folder - we will load this exactly like our previous population csv **but** this time, when presented with the option, we need to add the point coordinates to map our crime data as points. -->
 
-* Make sure this dataset is loaded into your **Layers** / Added to the map.
+<!-- Before we can load our data, we actually need to do one final step of data cleaning (compared to the Q-GIS tutorial). Unfortunately AGOL cannot handle all of the data from 2020 - so we need to reduce the size of our dataset. -->
 
-* Remove the original Borough and population data layers.
+<!-- For now, we will analyse theft crime for March in 2020. -->
 
-We now are ready to load and map our crime data.
+<!-- 1. Open your `all_theft_2020.csv` from our `raw` folder in your number editing software, and extract all rows that the field `Month` is equal to `2020-03`. -->
+<!--      + I do not mind how you do this, but just make sure to save to a new CSV called: `march_theft_2020.csv` into your `working` folder. -->
 
-We will load this data using the Delimited Text File Layer option you would have used just now to load the borough population - but this time, we'll be adding point coordinates to map our crime data as points.
+<!-- Once you have extracted this smaller dataset: -->
 
-1. Click on **Layer --> Add Layer --> Add Delimited Text File Layer**.
+<!-- 1. Click on **Add -> Add Layer From File**. -->
+<!--     + AGOL should automatically detect the `Longitude` and `Latitude` columns and map your data. -->
+<!--     + You may have an error message, but you can ignore this for now. -->
 
-2. With **File** select as your source type, click on the small three dots button and navigate to your `all_theft_2019.shp` in your `raw` -> `crime` folders.
-    + Click on the `.csv` file of this dataset and click Open. 
-    + In *Record and Fields Options**, ensure it is set to `CSV`, untick `Decimal separator is comma` and tick `First record has field names`, `Detect field types` and `Discard empty fields`.
-    + In **Geometry Definition**, select `Point coordinates` and set the **X field** to `Longitude` and the **Y field** to `Latitude`.
-    + The **Geometry CRS** should be: `EPSG:4326 - WGS84`, *a.k.a. the GCS of lat and lon!*
-    + Click **Add**.
-    
-**No need to reproject**
+<!-- Unlike Q-GIS, we do not need to reproject our data when using AGOL as the software has done this for us - we can, as a result, move on to the next step - counting the number of crimes in each of our Wards and Boroughs respectively. -->
 
-#### Counting Points-in-Polygons with AGOL {-}
+<!-- #### Counting Points-in-Polygons with AGOL {-} -->
 
-The next step of our analysis is incrediby simple - as Q-GIS has an in-built tool for us to use.
+<!-- The next step of our analysis is incrediby simple - as AGOL has an in-built tool for us to use. -->
 
-We will use the `Count Points in Polygons` in the `Analysis` toolset for `Vector` data to count how many crimes have occured in both our **Wards** and our **Boroughs**. 
+<!-- We will use the **Aggregate Points** tool within the **Summarise Data** option after clicking on the **Perform Analysis** button when hovering over the `March_theft_2020` point dataset to count how many crimes have occured in both our **Wards** and our **Boroughs**.  -->
 
-We will then have our count statistic which we will need to normalise by our population data to create our **crime rate** final statistic!
+<!-- We will then have our count statistic which we will need to normalise by our population data to create our **crime rate** final statistic! -->
 
-Let's get going and first start with calculating the crime rate for the borough scale:
+<!-- Let's get going and first start with calculating the crime rate for the borough scale: -->
 
-1. Click on **Vector -> Analysis Tools -> Count Points in Polygons.**
+<!-- 1. Click on **Aggregate Points** within the **Summarise Data** option after clicking on the **Perform Analysis** button when hovering over the `March_theft_2020` point dataset. -->
 
-#### Making our Crime Rate Maps for analysis in AGOL {-}
+<!-- 2. Set up your query as follows: -->
+<!--     + -->
+<!--     + -->
+<!--     + -->
+<!--     + -->
+<!--     _ -->
 
-* Click on **Print --> Map with Legend** and either take a screenshot or use the **File** --> **Export as PDF** and then trim your PDF to the map. 
-    + Remember to save your final map outputs in your `maps` folder. 
-    + You may want to create a folder for these maps titled `w2`.
 
-Adding Map Comopnents
+<!-- 3. And run - note this processing for the borough level will take around 5 minutes to process. -->
 
+<!-- Once complete, re-run the same process for the **Ward** scale - note this will take even longer to process (approximately 10 minutes). -->
 
-Now we have our two maps ready, we can add our **main map elements**:
+<!-- #### Calculating Crime Rate in AGOL {-} -->
 
-* **Title**
-* **Orientation**
-* **Data Source**
+<!-- Whilst it's great that we've got our `crimecount`, as we know, what we actually need is a **crime rate** to account for the different sizes in population in the boroughs and to avoid a **population heat map**.  -->
 
-We won't at this time add anything else - an inset map could be nice, but this requires additional data that we do not have at the moment. 
+<!-- We therefore now want to add a Crime Rate statistic to our dataset - we want to normalise our crime count by our population data. -->
 
-Any other map elements would also probably make our design look too busy.
+<!-- *Note, if your processing did not work, you can find two pre-processed Ward and Borough shapefiles with population and crime count here.* -->
 
-9. Using the tools on the left-hand tool bar: 
-    + Add a **scale bar**: use the **Item Properties** to adjust the **Style**, **number of segments**, **font** etc.. 
-    + Add a **north arrow**: draw a box to generate the arrow and then use the **Item Properties** to adjust.
-       + I typically place the two side by side - and you can select both, right-click and **group** so you can then treat them as a single item when moving them around the page.
-    + Add a **title** at the top of the page, and subtitles above the individual maps.
-    + Finally add a box detailing Data Sources, you can copy and paste the text below:
-<br>
-    > Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence).
-  
-Once you have added these properties in, you should have something that looks a little like this:  
+<!-- Let's add our Crime Rate statistic: -->
 
-```{r echo=FALSE, fig.align='center', cache=TRUE}
-knitr::include_graphics('images/w3/london_crime_rate.png') 
-```
 
-**Export map**
 
-We are finally ready to export our map!
+<!-- #### Making our Crime Rate Maps for analysis in AGOL {-} -->
 
-10. To export your map to a file go: **Layout -> Export as Image** and then save in your `maps` folder as `London_2020_Crime_Rate.png`. 
-    + You can also export your map as a PDF.
+<!-- * Click on **Print -> Map with Legend** and either take a screenshot or use the **File** -> **Export as PDF** and then trim your PDF to the map. ->
+<!--     + Remember to save your final map outputs in your `maps` folder.  -->
+<!--     + You may want to create a folder for these maps titled `w2`. -->
 
-:::assignment
-**Assignment 1: Submit your final maps and a brief write-up**<br>
-Your one and only assignment for this week is to submit your maps your relevant seminar folder [here](https://liveuclac-my.sharepoint.com/:f:/g/personal/ucfailk_ucl_ac_uk/EqyMU5-efwVLoJFp3M2yUvcBhh3B69eIDLb-MgOl01FHZg?e=kqyGd0).
+<!-- Adding Map Components -->
 
-What I'd like you to do is, on your own computer, create a new Word document and set the orientation to **Landscape**. 
 
-Copy over your map into the first page and ensure it takes up the whole page.
+<!-- Now we have our two maps ready, we can add our **main map elements**: -->
 
-On a second page, write a short answer (less than 100 words) to our original question set at the start of our practical:
+<!-- * **Title** -->
+<!-- * **Orientation** -->
+<!-- * **Data Source** -->
 
-> *Does our perception of crime (and its distribution) in London vary at different scales?*
+<!-- We won't at this time add anything else - an inset map could be nice, but this requires additional data that we do not have at the moment.  -->
 
-Export this to a PDF and upload to your relevant seminar folder. 
-(Again, no need for names - but you might need to come up with a random code on your PDF name, just in case someone else has the same file name as you!)
-:::
-<br>
-And that's it for this week's practical!
+<!-- Any other map elements would also probably make our design look too busy. -->
 
-This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in Q-GIS,. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.
+<!-- 9. Using the tools on the left-hand tool bar:  -->
+<!--     + Add a **scale bar**: use the **Item Properties** to adjust the **Style**, **number of segments**, **font** etc..  -->
+<!--     + Add a **north arrow**: draw a box to generate the arrow and then use the **Item Properties** to adjust. -->
+<!--        + I typically place the two side by side - and you can select both, right-click and **group** so you can then treat them as a single item when moving them around the page. -->
+<!--     + Add a **title** at the top of the page, and subtitles above the individual maps. -->
+<!--     + Finally add a box detailing Data Sources, you can copy and paste the text below: -->
+<!-- <br> -->
+<!--     > Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence). -->
 
-If you feel you didn't quite understand everything this week, do not worry too much - Week 5 will serve as a good revision of everything we've covered here!
+<!-- Once you have added these properties in, you should have something that looks a little like this:   -->
 
-***
+<!-- ```{r echo=FALSE, fig.align='center', cache=TRUE} -->
+<!-- knitr::include_graphics('images/w3/london_crime_rate.png')  -->
+<!-- ``` -->
 
-#### Extension Activity: Mapping Crime Rates using Averages {-}
+<!-- **Export map** -->
 
-If you have managed to get through all of this in record time and are still looking for some more work to do - one question I would ask you is: **could we visualise our crime rate data in a better way?**
+<!-- We are finally ready to export our map! -->
 
-At the moment, we are looking at the crime rate as an amount, therefore we use a sequential colour scheme that shows, predominantly, where the crime rate is the highest.
+<!-- 10. To export your map to a file go: **Layout -> Export as Image** and then save in your `maps` folder as `London_2020_Crime_Rate.png`.  -->
+<!--     + You can also export your map as a PDF. -->
 
-Could we use a different approach - using a diverging colour scheme - that could show us where the crime rate is lower and/or higher than a critical mid-point, such as the average crime rate across the wards or borough?
+<!-- :::assignment -->
+<!-- **Assignment 1: Submit your final maps and a brief write-up**<br> -->
+<!-- Your one and only assignment for this week is to submit your maps your relevant seminar folder [here](https://liveuclac-my.sharepoint.com/:f:/g/personal/ucfailk_ucl_ac_uk/EqyMU5-efwVLoJFp3M2yUvcBhh3B69eIDLb-MgOl01FHZg?e=kqyGd0). -->
 
-I think so! But first, you'll need to calculate these averages and then our individual ward/boroughs (%?) difference from this mean. 
+<!-- What I'd like you to do is, on your own computer, create a new Word document and set the orientation to **Landscape**.  -->
 
-This is all possible using the field calculator in Q-GIS, but will require some thinking about the right expression.
+<!-- Copy over your map into the first page and ensure it takes up the whole page. -->
 
-See if you can think how to calculate this - and then create your diverging maps. 
+<!-- On a second page, write a short answer (less than 100 words) to our original question set at the start of our practical: -->
 
-You can either just export an image of your results (in the main Q-GIS window) or you are welcome to update your current maps to reflect this new approach.
+<!-- > *Does our perception of crime (and its distribution) in London vary at different scales?* -->
 
-*** 
+<!-- Export this to a PDF and upload to your relevant seminar folder.  -->
+<!-- (Again, no need for names - but you might need to come up with a random code on your PDF name, just in case someone else has the same file name as you!) -->
+<!-- ::: -->
+<!-- <br> -->
+<!-- And that's it for this week's practical! -->
 
-:::sds
-**Learning Objectives**<br><br>
-You should now hopefully be able to:
+<!-- This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in Q-GIS,. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical. -->
 
-* Explain what a Geographic Reference System and a Projected Coordinate System is and their differences.
-* Understand the limitations of different PCSs and recognise when to use each for specific anlaysis.
-* Know what to include - and what not to include - on a map.
-* Know how to represent different types of spatial data on a map.
-* Explain what the Modifiable Areal Unit Problem is and why poses issues for spatial analysis.
-* Reproject data in Q-GIS.
-* Map event data using a 'best-practice' approach.
-* Produce a map of publishable quality.
-:::
+<!-- If you feel you didn't quite understand everything this week, do not worry too much - Week 5 will serve as a good revision of everything we've covered here! -->
 
-#### Acknowledgements {-}
+<!-- *** -->
 
-Acknowledgements are made in appropriate sections, but overall this week, as evident, has utilised the Q-GIS documentation extensively.
+<!-- #### Extension Activity: Mapping Crime Rates using Averages {-} -->
+
+<!-- If you have managed to get through all of this in record time and are still looking for some more work to do - one question I would ask you is: **could we visualise our crime rate data in a better way?** -->
+
+<!-- At the moment, we are looking at the crime rate as an amount, therefore we use a sequential colour scheme that shows, predominantly, where the crime rate is the highest. -->
+
+<!-- Could we use a different approach - using a diverging colour scheme - that could show us where the crime rate is lower and/or higher than a critical mid-point, such as the average crime rate across the wards or borough? -->
+
+<!-- I think so! But first, you'll need to calculate these averages and then our individual ward/boroughs (%?) difference from this mean.  -->
+
+<!-- This is all possible using the field calculator in AGOL, but will require some thinking about the right expression. -->
+
+<!-- See if you can think how to calculate this - and then create your diverging maps.  -->
+
+<!-- You can either just export an image of your results (in the main Q-GIS window) or you are welcome to update your current maps to reflect this new approach. -->
+
+<!-- ***  -->
+
+<!-- :::sds -->
+<!-- **Learning Objectives**<br><br> -->
+<!-- You should now hopefully be able to: -->
+
+<!-- * Explain what a Geographic Reference System and a Projected Coordinate System is and their differences. -->
+<!-- * Understand the limitations of different PCSs and recognise when to use each for specific anlaysis. -->
+<!-- * Know what to include - and what not to include - on a map. -->
+<!-- * Know how to represent different types of spatial data on a map. -->
+<!-- * Explain what the Modifiable Areal Unit Problem is and why poses issues for spatial analysis. -->
+<!-- * Reproject data in Q-GIS. -->
+<!-- * Map event data using a 'best-practice' approach. -->
+<!-- * Produce a map of publishable quality. -->
+<!-- ::: -->
+
+<!-- #### Acknowledgements {-} -->
+
+<!-- Acknowledgements are made in appropriate sections, but overall this week, as evident, has utilised the Q-GIS documentation extensively. -->
 
