@@ -14,12 +14,11 @@ As always, we have broken the content into smaller chunks to help you take break
 
 ### Week 3 in Geocomp {-}
 
-<center>**LECUTURE VIDEOS COMING WEDS, SLIDES ARE AVAILABLE NOW**</center>
 ```{r 03-welcome, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('') %>% use_align('center')
+embed_msstream('3f3eb33f-b756-40af-82e3-4bff21f998e8') %>% use_align('center')
 ```
-<center>[Video on Stream]()</center><br>
+<center>[Video on Stream](https://web.microsoftstream.com/video/3f3eb33f-b756-40af-82e3-4bff21f998e8)</center><br>
 
 This week's content introduces you to foundational concepts associated with **Cartography and Visualisation**, where we have three areas of work to focus on:
 
@@ -93,9 +92,9 @@ As a result, there are **two common types** of coordinate systems that you will 
 ##### Understanding Coordinate Systems {-}
 ```{r 03-coordinate-systems, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('') %>% use_align('center')
+embed_msstream('697ca275-784a-4df1-9051-bcd11c7fad7b') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EcNliVzRaY5FuQLLpNO61QsBbJxVjrLvGUNjOQko8XulJQ?e=oKhasm) | [Video on Stream]()</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EcNliVzRaY5FuQLLpNO61QsBbJxVjrLvGUNjOQko8XulJQ?e=oKhasm) | [Video on Stream](https://web.microsoftstream.com/video/697ca275-784a-4df1-9051-bcd11c7fad7b)</center>
 <br>
 
 In summary, a GCS defines where the data is located on the earth’s surface, whereas a a PCS tells the data how to draw on a flat surface, like on a paper map or a computer screen.
@@ -192,9 +191,9 @@ Our second short lecture explains how to think through choosing a map projection
 #### Choosing a Map Projection {-}
 ```{r 03-map-projections, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('') %>% use_align('center')
+embed_msstream('8f611285-6a6c-4ca5-8c24-ae2c28184174') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EYzaTaOU43JBvoFQoYvDot4BSRcMbODbFluD7EeVY8RT9w?e=tUK5d3) | [Video on Stream]()</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EYzaTaOU43JBvoFQoYvDot4BSRcMbODbFluD7EeVY8RT9w?e=tUK5d3) | [Video on Stream](https://web.microsoftstream.com/video/8f611285-6a6c-4ca5-8c24-ae2c28184174)</center>
 <br>
 
 As explained in our lecture, each map projection therefore has advantages and disadvantages. 
@@ -390,9 +389,9 @@ The following short lecture explains in more detail how to make a good map:
 
 ```{r 03-cartography-conventions, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('') %>% use_align('center')
+embed_msstream('bb7f860d-75fa-45cb-a648-f13cf31fcc08') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EdooT1odYgdMheJBfM8ETNoBiMLl503AklIny3mJgPwq_Q?e=Zk5KAg) | [Video on Stream]()</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EdooT1odYgdMheJBfM8ETNoBiMLl503AklIny3mJgPwq_Q?e=Zk5KAg) | [Video on Stream](https://web.microsoftstream.com/video/bb7f860d-75fa-45cb-a648-f13cf31fcc08)</center>
 <br>
 
 #### Representing Spatial Data {-}
@@ -457,9 +456,9 @@ Despite their various challenges, choropleth maps can be increidbly useful tools
 
 ```{r 03-choropleth-maps, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('f965f1d2-a8a8-4126-bc75-172917d13a75') %>% use_align('center')
+embed_msstream('4a60a286-a8cc-466a-a2c3-3d947df2429a') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EfhB37YEgAVNqTf5rdx66m8BEgJSZVGANNry4u3ZrhizPg?e=6ZA97u) | [Video on Stream](https://web.microsoftstream.com/video/f965f1d2-a8a8-4126-bc75-172917d13a75)</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EfhB37YEgAVNqTf5rdx66m8BEgJSZVGANNry4u3ZrhizPg?e=6ZA97u) | [Video on Stream](https://web.microsoftstream.com/video/4a60a286-a8cc-466a-a2c3-3d947df2429a)</center>
 
 ### The Modifiable Areal Unit Problem {-}
 
@@ -1016,15 +1015,195 @@ You should also make sure your new borough crime rate layer has been renamed fro
 
 :::
 
-<br>**Now you have both datasets ready, it's time to style the maps!**</center><br>
+<br><center>**Now you have both datasets ready, it's time to style the maps!**</center><br>
 
-Remember to use the **Properties** box to symbolise your maps - perhaps have a look online for some examples, if you don't want to use the default.
+Remember to use the **Properties** box to first symbolise your maps. Think through using the appropriate colour scheme - and perhaps have a look online for some examples, if you don't want to use the defaults!
 
-Once you're happy with their symbolisation, we'll turn them into **proper publishable maps** using Q-GIS's Map Composer.
+Once you're happy with their symbolisation, we'll turn them into **proper publishable maps** using Q-GIS's Print Layout.
 
-#### Making our Crime Rate Maps for analysis in Q-GIS and the Map Composer {-}
+#### Making our Crime Rate Maps for analysis in Q-GIS and the Print Layout {-}
 
-**Content coming Wednesday 27th January 2020**
+To create **proper publishable maps** in Q-GIS, we use what Q-GIS calls its **Print Layout** window *(formely Map Composer)*.
+
+If you've ever used ArcMap, this is similar to switch the view of your map canvas to a print layout within the main window - but in Q-GIS's case, it loads up a new window.
+
+1. From the main Q-GIS window, click on **Project -> New Print Layout**.
+    + In the small box that first appears, call your new print layout: `crime_map_borough_ward`
+
+A new window should appear.
+
+Oh great, another tool I need to learn how to use... well yes, but learning how to use the Print Layout window will help you make **great maps**.
+
+**A short introduction to the Print Layout**
+
+As the Q-GIS [documentation](https://docs.qgis.org/3.16/en/docs/user_manual/print_composer/overview_composer.html#the-layout-manager) on Print Layout explains:
+
+> The print layout provides growing layout and printing capabilities. It allows you to add elements such as the QGIS map canvas, text labels, images, legends, scale bars, basic shapes, arrows, attribute tables and HTML frames. You can size, group, align, position and rotate each element and adjust their properties to create your layout. The layout can be printed or exported to image formats, PostScript, PDF or to SVG. 
+
+Initially, when opening the print layout provides you with a blank canvas that represents the paper surface when using the print option.
+
+```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE}
+knitr::include_graphics('images/w3/print_composer_blank.png')
+```
+
+On the **left-hand** side of the window, you will find buttons beside the canvas to add print layout items: the current QGIS map canvas, text labels, images, legends, scale bars, basic shapes, arrows, attribute tables and HTML frames. In this toolbar you also find buttons to navigate, zoom in on an area and pan the view on the layout a well as buttons to select any layout item and to move the contents of the map item.
+
+On the **right-hand** side of the window, you will find two set of panels. The upper one holds the panels Items and Undo History and the lower holds the panels Layout, Item properties and Atlas generation. For our practical today, we're most interested in the bottom panel as **Layout** will control the overall look of our map, whilst **Item properties** will allow us to customise the elements, such as Title or Legend, that we may add to our map.
+
+In the **bottom part** of the window, you can find a status bar with mouse position, current page number, a combo box to set the zoom level, the number of selected items if applicable and, in the case of atlas generation, the number of features.
+
+In the **upper part** of the  window, you can find menus and other toolbars. All print layout tools are available in menus and as icons in a toolbar.
+
+**Getting started with creating our map**
+
+Working with maps in the Print Layout is simple but it can be a little fiddly and, to make more complicated maps, requires you to understand how to use certain aspects of Print Layout, such as locking items.
+
+To start with creating a map, you use the **Add Map** tool to draw a box in which a snapshot of the **current active** map you have displayed in your Q-GIS main window will be loaded.
+
+Let's try this now:
+
+1. Click on the **Add Map** tool and draw a box in the first half of our map to load our current map, in my case, Ward Crime Rate:
+    + Note, you can move your map around and resize the box simply by clicking on it as you would in Word etc.
+
+```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE}
+knitr::include_graphics('images/w3/map_layout.png')
+```
+    
+As you can see, the map currently does not look that great - we could really do with zooming in, as we do not need all of the white space. 
+
+2. With your map selected, head to the **Items Properties** panel and look for the **Scale** parameter. 
+    + Here we can manually edit the **scale** of our map to find the right zoom level.
+    + Have a go at entering different values and see what level you think suits the size of your map.
+    + Keep a note of the scale, as we'll need this for the second map we'll add to our map layout - our borough map.
+    + Next, in the same panel, if you would like, you can add a frame to your map - this will draw a box (of your selected formatting) around the current map.
+    + In the same panel, note down the size of your map - we want to make sure the next map we add is of the same size.
+    + *Note, if you need to move the position of the map within the box, look for the* **Move Item Content** *tool on the left-hand side toolbar.*
+    + Once you are done, finally click on the **Lock Layers** and **Lock Style for layers.**
+    
+By locking the Layers (and their symbology) in our map, it means we can change our data/map in our main Q-GIS window without changing the map in the Print Layout - as we'll see in a minute when adding our Borough Crime Rate map. If we do not lock our layers, our map would automatically update to whatever is next displayed in the main Q-GIS window.
+
+Now we've added our first map to our Map Layout, we want to add a **Legend** for this specific map.
+
+3. Click on the **Add Legend** tool and again, draw a box on your map in which your legend will appear.
+    + As you'll see, your Legend auto-generates an entry for every layer in our Layers box in the main Q-GIS application:
+    ```{r echo=FALSE, out.width = "350pt", fig.align='center', cache=TRUE}
+knitr::include_graphics('images/w3/autolegend.png')
+```
+    + In **Item Properties**, uncheck **auto-update** - this stops Q-GIS automatically populating your legend as it has done current, and enables you to customise your legend.
+    + First, let's rename our Layer in the legend to: **Ward Crime Rate (per 10,000 people)**.
+    + Next, we want to remove all othe Layers, using the **-** button
+    + We can also customise the Legend further, including type, size and alignment of font - go ahead and style your legend as you would prefer.
+    + Move the Legend to an appropriate part of the layout near your Ward Crime Rate map - resize if necessary.
+
+Now we are finished with the Ward map, we want to make sure we don't change any aspect of its layout. 
+
+To do so, we need to lock both the Map and Legend in the **Items** panel - this prevents us accidently moving items in our layout. *Note, this is different to locking your layers in the* **Items Properties** *as we did earlier.*
+
+4. In the **Items** panel, click the **Lock** checkbox for both our map and legend.
+
+Once locked, we can now start to add our Borough map.
+
+5. In the main Q-GIS window, uncheck your `Ward_crime_rate` layer and make sure your `Borough_crime_rate` layer is now visble.
+
+Return to the Print Layout window.
+
+6. Repeat the process above of adding a map to the window - this time, you should now see your Borough map loaded in the box (and you should see **no** changes to your Ward map).
+    + Place your Borough map next to your Ward map - use the snap grids to help.
+    + Set your **Borough** map to the **same zoom level** as your **Ward** map.
+    + Make sure your **Borough map** is the **same size** as your **Ward** map.
+    + Set your Borough to the **same extent** as  your **Ward** map (extra neatness!).
+    + Add a frame if you want.
+    + Lock your layer and its symbology in the **Items Properties** once ready and the lock your layer in the **Items** panel.
+    
+We now just need to add a second legend for our Borough map. If we had standardised our values across our two maps, then we would only need to use one legend. However, in this case, as there is a difference in the values, we need to have two legends. 
+
+*The Extension Activity to this practical, on the other hand, may result in a single legend - as a clue to help complete the activity!*
+
+7. Repeat the process as above to add a Legend for our Borough map.
+    + Remember to re-title the Legend to make it more legible/informative.
+    + Match the same formatting for a clean look.
+
+8. Once complete, **lock these two items** in the **Items** panel as well.
+
+:::note
+**Locking/Unlocking and Visibility**<br><br>
+If you hadn't noticed in the **Items** panel, you have the ability not only to lock/unlock different items (unlock to edit any items again), but also turn on/off the visibility of your layers:
+```{r echo=FALSE, out.width = "350pt", fig.align='center', cache=TRUE}
+knitr::include_graphics('images/w3/items_panel.png')
+```
+:::
+
+Now we have our two maps ready, we can add our **main map elements**:
+
+* **Title**
+* **Orientation**
+* **Data Source**
+
+We won't at this time add anything else - an inset map could be nice, but this requires additional data that we do not have at the moment. 
+
+Any other map elements would also probably make our design look too busy.
+
+9. Using the tools on the left-hand tool bar: 
+    + Add a **scale bar**: use the **Item Properties** to adjust the **Style**, **number of segments**, **font** etc.. 
+    + Add a **north arrow**: draw a box to generate the arrow and then use the **Item Properties** to adjust.
+       + I typically place the two side by side - and you can select both, right-click and **group** so you can then treat them as a single item when moving them around the page.
+    + Add a **title** at the top of the page, and subtitles above the individual maps.
+    + Finally add a box detailing Data Sources, you can copy and paste the text below:
+<br>
+    > Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence).
+  
+Once you have added these properties in, you should have something that looks a little like this:  
+
+```{r echo=FALSE, fig.align='center', cache=TRUE}
+knitr::include_graphics('images/w3/london_crime_rate.png') 
+```
+
+**Export map**
+
+We are finally ready to export our map!
+
+10. To export your map to a file go: **Layout -> Export as Image** and then save in your `maps` folder as `London_2020_Crime_Rate.png`. 
+    + You can also export your map as a PDF.
+
+:::assignment
+**Assignment 1: Submit your final maps and a brief write-up**<br>
+Your one and only assignment for this week is to submit your maps your relevant seminar folder [here](https://liveuclac-my.sharepoint.com/:f:/g/personal/ucfailk_ucl_ac_uk/EqyMU5-efwVLoJFp3M2yUvcBhh3B69eIDLb-MgOl01FHZg?e=kqyGd0).
+
+What I'd like you to do is, on your own computer, create a new Word document and set the orientation to **Landscape**. 
+
+Copy over your map into the first page and ensure it takes up the whole page.
+
+On a second page, write a short answer (less than 100 words) to our original question set at the start of our practical:
+
+> *Does our perception of crime (and its distribution) in London vary at different scales?*
+
+Export this to a PDF and upload to your relevant seminar folder. 
+(Again, no need for names - but you might need to come up with a random code on your PDF name, just in case someone else has the same file name as you!)
+:::
+<br>
+And that's it for this week's practical!
+
+This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in Q-GIS,. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.
+
+If you feel you didn't quite understand everything this week, do not worry too much - Week 5 will serve as a good revision of everything we've covered here!
+
+***
+
+#### Extension Activity: Mapping Crime Rates using Averages {-}
+
+If you have managed to get through all of this in record time and are still looking for some more work to do - one question I would ask you is: **could we visualise our crime rate data in a better way?**
+
+At the moment, we are looking at the crime rate as an amount, therefore we use a sequential colour scheme that shows, predominantly, where the crime rate is the highest.
+
+Could we use a different approach - using a diverging colour scheme - that could show us where the crime rate is lower and/or higher than a critical mid-point, such as the average crime rate across the wards or borough?
+
+I think so! But first, you'll need to calculate these averages and then our individual ward/boroughs (%?) difference from this mean. 
+
+This is all possible using the field calculator in Q-GIS, but will require some thinking about the right expression.
+
+See if you can think how to calculate this - and then create your diverging maps. 
+
+You can either just export an image of your results (in the main Q-GIS window) or you are welcome to update your current maps to reflect this new approach.
 
 *** 
 
@@ -1044,4 +1223,4 @@ You should now hopefully be able to:
 
 #### Acknowledgements {-}
 
-Acknowledgements are made in appropriate sections.
+Acknowledgements are made in appropriate sections, but overall this week, as evident, has utilised the Q-GIS documentation extensively.
