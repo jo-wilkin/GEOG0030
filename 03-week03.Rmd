@@ -134,7 +134,7 @@ This projection is actually just latitude and longitude represented as a simple 
 Either CS provides a framework for defining real-world locations - however, **when it comes to much of GIScience and spatial analysis work, we will use a PCS to help locate, project, analyse and visualise our data in 2D.**
 
 To locate, project, analyse and visualise our data in 2D, the PCS has, through mathematical transformations known as **map projections**, transformed the surface of our three-dimensional earth into a two-dimensional map canvas (whether paper or digital).
-<br>
+<br><br>
 <center>**This ability to create a flat surface from a 3D sphere is however not so simple!**</center><br>
 
 From a classic geographical metaphor, the easiest way to think about this is to think about peeling an orange - how could you peel an orange to ultimately result in a flat (preferably square/rectangular - computers really like squares!) shape?
@@ -144,7 +144,7 @@ Well, luckily, you don't need to think too hard about it - as Esri's resident ca
 ```{r echo=FALSE, out.width = "750pt", fig.align='center', cache=TRUE}
 knitr::include_graphics('images/w3/orangepeels.png')
 ```
-<center>*Trying to flatten an orange - our earth - into a flat map. Images: John Nelson, Esri*</center><br>
+<br><center>*Trying to flatten an orange - our earth - into a flat map. Images: John Nelson, Esri*</center><br>
 
 As he shows, to create just a *flat* version of our earth from the spheriod itself, it takes some very interesting shapes and direction maniuplation - let alone achieving a rectangle! 
 <br>(You can see the original blog post these images are taken from [here](https://www.esri.com/arcgis-blog/products/arcgis-pro/education/earth-peel/).)
@@ -280,7 +280,7 @@ In this week's practical, we will look at how we can **reproject** our spatial d
 
 :::reading
 **Key Reading(s)**<br><br>
-**Book (30 mins):** Longley et al, 2015, Geographic Information Science & Systems, *Chapter 2: Geo-referencing.*
+**Book (30 mins):** Longley et al, 2015, Geographic Information Science & Systems, *Chapter 4: Geo-referencing.*
 :::
 
 ***
@@ -314,7 +314,6 @@ library(vembedr)
 embed_youtube('vVX-PrBRtTY') %>% use_align('center')
 ```
 :::
-<br>
 
 ***
 
@@ -322,9 +321,9 @@ embed_youtube('vVX-PrBRtTY') %>% use_align('center')
 
 In addition to choosing the correct map projection for your spatial data and map, to visualise your data correctly as a map - for visual analysis and publishing - you need to consider:
 
-* How you represent your spatial data effectively. 
+* **How you represent your spatial data effectively.**
 
-* How you present this data on a map that communicates your data and analysis accurately.
+* **How you present this data on a map that communicates your data and analysis accurately.**
 
 We will first focus on the latter aspect and look at how you can achieve **effective** data visualisation, including how to make a good map as well as detailing the common **cartographic conventions** we'd expect you to include in your map.
 
@@ -392,7 +391,7 @@ library(vembedr)
 embed_msstream('bb7f860d-75fa-45cb-a648-f13cf31fcc08') %>% use_align('center')
 ```
 <center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EdooT1odYgdMheJBfM8ETNoBiMLl503AklIny3mJgPwq_Q?e=Zk5KAg) | [Video on Stream](https://web.microsoftstream.com/video/bb7f860d-75fa-45cb-a648-f13cf31fcc08)</center>
-<br>
+
 
 #### Representing Spatial Data {-}
 
@@ -434,7 +433,7 @@ Furthermore, a key challenge to using choropleth maps is that often the **areal 
 
 Showing population as a 'raw' geographic fact across London Wards as we did last week, for example, would actually be a big no-no in terms of mapping population. Instead, we would want to show the population density - by normalising our population by the area of each ward.
 
-```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE}
+```{r echo=FALSE, out.width = "750pt", fig.align='center', cache=TRUE}
 knitr::include_graphics('images/w3/ward_pop_density.png')
 ```
 <center>*What's still missing from this map? London Ward Population Density 2019. Data: ONS*</center><br>
@@ -515,7 +514,7 @@ The first half of this workshop has given you an in-depth introduction into how 
 
 The practical component of the week puts some of these learnings into practice as we analyse crime rates within London at two different scales. 
 
-The datasets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your `working` anf `final` folders (respectively) at the end.
+The datasets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your `working` and `final` folders (respectively) at the end.
 
 The practical component introduces you to **point-in-polygon counts**. You’ll be using these counts throughout this module, so it’s incredibly important that you understand how they work – even as simple as they may be!
 
@@ -1149,8 +1148,7 @@ Any other map elements would also probably make our design look too busy.
        + I typically place the two side by side - and you can select both, right-click and **group** so you can then treat them as a single item when moving them around the page.
     + Add a **title** at the top of the page, and subtitles above the individual maps.
     + Finally add a box detailing Data Sources, you can copy and paste the text below:
-<br>
-    > Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence).
+<br> Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence).
   
 Once you have added these properties in, you should have something that looks a little like this:  
 
@@ -1183,7 +1181,7 @@ Export this to a PDF and upload to your relevant seminar folder.
 <br>
 And that's it for this week's practical!
 
-This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in Q-GIS,. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.
+This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in Q-GIS. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.
 
 If you feel you didn't quite understand everything this week, do not worry too much - Week 5 will serve as a good revision of everything we've covered here!
 

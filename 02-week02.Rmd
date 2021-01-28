@@ -1107,11 +1107,7 @@ We can now check to see if our join has worked by opening up our `London_Ward` *
 
 As long as it has joined, you can move forward with the next steps. If your join has not worked, try the steps again - and if you're still struggling, do let us know.
 
-<center>**Now, the join that you have created between your ward and population datasets in only held in Q-GIS's memory.** 
-
-**If you were to close the program now, you would lose this join and have to repeat it the next time you opened Q-GIS.** 
-
-**To prevent this from happening, we need to export our dataset to a new shapefile - and then re-add this to the map.**</center>
+<center>**Now, the join that you have created between your ward and population datasets in only held in Q-GIS's memory. If you were to close the program now, you would lose this join and have to repeat it the next time you opened Q-GIS. To prevent this from happening, we need to export our dataset to a new shapefile - and then re-add this to the map.**</center>
     
 Let's do this now:
 

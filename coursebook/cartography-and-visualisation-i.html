@@ -157,7 +157,9 @@
 <li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#sign-up-to-arcgis-online"><i class="fa fa-check"></i>Sign Up to ArcGIS Online</a></li>
 <li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i>Practical Instructions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a></li>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#practical-instructions-1"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -290,7 +292,7 @@ This projection is actually just latitude and longitude represented as a simple 
 <h4>Understanding Map Projections</h4>
 <p>Either CS provides a framework for defining real-world locations - however, <strong>when it comes to much of GIScience and spatial analysis work, we will use a PCS to help locate, project, analyse and visualise our data in 2D.</strong></p>
 To locate, project, analyse and visualise our data in 2D, the PCS has, through mathematical transformations known as <strong>map projections</strong>, transformed the surface of our three-dimensional earth into a two-dimensional map canvas (whether paper or digital).
-<br>
+<br><br>
 <center>
 <strong>This ability to create a flat surface from a 3D sphere is however not so simple!</strong>
 </center>
@@ -298,6 +300,7 @@ To locate, project, analyse and visualise our data in 2D, the PCS has, through m
 <p>From a classic geographical metaphor, the easiest way to think about this is to think about peeling an orange - how could you peel an orange to ultimately result in a flat (preferably square/rectangular - computers really like squares!) shape?</p>
 <p>Well, luckily, you don’t need to think too hard about it - as Esri’s resident cartographer <strong>John Nelson</strong> (another <a href="https://twitter.com/John_M_Nelson?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Twitter</a> recommendation) has done it for us:<br><br></p>
 <img src="images/w3/orangepeels.png" width="750pt" style="display: block; margin: auto;" />
+<br>
 <center>
 <em>Trying to flatten an orange - our earth - into a flat map. Images: John Nelson, Esri</em>
 </center>
@@ -403,7 +406,7 @@ Luckily for us in Geocomputation, for the majority of our work, we will be using
 <p>In this week’s practical, we will look at how we can <strong>reproject</strong> our spatial data from one a GCS to a PRS (in this case WGS84 to OSGB1936).</p>
 <div class="reading">
 <p><strong>Key Reading(s)</strong><br><br>
-<strong>Book (30 mins):</strong> Longley et al, 2015, Geographic Information Science &amp; Systems, <em>Chapter 2: Geo-referencing.</em></p>
+<strong>Book (30 mins):</strong> Longley et al, 2015, Geographic Information Science &amp; Systems, <em>Chapter 4: Geo-referencing.</em></p>
 </div>
 <hr />
 <div class="sugreading">
@@ -427,7 +430,6 @@ Luckily for us in Geocomputation, for the majority of our work, we will be using
 </div>
 </div>
 </div>
-<p><br></p>
 <hr />
 </div>
 </div>
@@ -435,8 +437,8 @@ Luckily for us in Geocomputation, for the majority of our work, we will be using
 <h3>Effective Data Visualisation</h3>
 <p>In addition to choosing the correct map projection for your spatial data and map, to visualise your data correctly as a map - for visual analysis and publishing - you need to consider:</p>
 <ul>
-<li><p>How you represent your spatial data effectively.</p></li>
-<li><p>How you present this data on a map that communicates your data and analysis accurately.</p></li>
+<li><p><strong>How you represent your spatial data effectively.</strong></p></li>
+<li><p><strong>How you present this data on a map that communicates your data and analysis accurately.</strong></p></li>
 </ul>
 <p>We will first focus on the latter aspect and look at how you can achieve <strong>effective</strong> data visualisation, including how to make a good map as well as detailing the common <strong>cartographic conventions</strong> we’d expect you to include in your map.</p>
 <p>Then we look at common types of spatial data and focus on how we can accurately represent <strong>event</strong> and <strong>survey</strong> data that are commonly aggregated to areal units (such as the Administrative Geographies we came across last week) for use within <strong>choropleth</strong> maps.</p>
@@ -498,7 +500,6 @@ Luckily for us in Geocomputation, for the majority of our work, we will be using
 <center>
 <a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EdooT1odYgdMheJBfM8ETNoBiMLl503AklIny3mJgPwq_Q?e=Zk5KAg">Slides</a> | <a href="https://web.microsoftstream.com/video/bb7f860d-75fa-45cb-a648-f13cf31fcc08">Video on Stream</a>
 </center>
-<p><br></p>
 </div>
 </div>
 <div id="representing-spatial-data" class="section level4 unnumbered">
@@ -560,7 +561,7 @@ Whilst we will come across a variety of these types of spatial data on this cour
 <p>…However, within a choropleth map, many decisions need to be made in terms of thinking through their classification (categorical or continuous/graduated), the ‘class breaks’ used, as well as the type of colour schemes used.</p>
 <p>Furthermore, a key challenge to using choropleth maps is that often the <strong>areal units</strong> we use are not of <strong>equal area</strong> - as a result, we have to be careful in how we represent our chosen dataset.</p>
 <p>Showing population as a ‘raw’ geographic fact across London Wards as we did last week, for example, would actually be a big no-no in terms of mapping population. Instead, we would want to show the population density - by normalising our population by the area of each ward.</p>
-<img src="images/w3/ward_pop_density.png" width="650pt" style="display: block; margin: auto;" />
+<img src="images/w3/ward_pop_density.png" width="750pt" style="display: block; margin: auto;" />
 <center>
 <em>What’s still missing from this map? London Ward Population Density 2019. Data: ONS</em>
 </center>
@@ -629,7 +630,7 @@ Whilst we will come across a variety of these types of spatial data on this cour
 <h3>Practical 2: Mapping Crime Across London Wards and Boroughs</h3>
 <p>The first half of this workshop has given you an in-depth introduction into how we can create a successful map, including understanding map projections, cartographic conventions and issues faced with the analysis of aggregated data at areal units.</p>
 <p>The practical component of the week puts some of these learnings into practice as we analyse crime rates within London at two different scales.</p>
-<p>The datasets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your <code>working</code> anf <code>final</code> folders (respectively) at the end.</p>
+<p>The datasets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your <code>working</code> and <code>final</code> folders (respectively) at the end.</p>
 <p>The practical component introduces you to <strong>point-in-polygon counts</strong>. You’ll be using these counts throughout this module, so it’s incredibly important that you understand how they work – even as simple as they may be!</p>
 <div class="note">
 <p><strong>If you can’t access Q-GIS for this practical…</strong><br><br>
@@ -1246,8 +1247,7 @@ If you hadn’t noticed in the <strong>Items</strong> panel, you have the abilit
 </ul></li>
 <li>Add a <strong>title</strong> at the top of the page, and subtitles above the individual maps.</li>
 <li>Finally add a box detailing Data Sources, you can copy and paste the text below:
-<br>
-&gt; Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence).</li>
+<br> Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) <br> Contains Ordnance Survey data © Crown copyright and database right [2015] <br> Crime data obtained from data.police.uk (Open Government Licence).</li>
 </ul></li>
 </ol>
 <p>Once you have added these properties in, you should have something that looks a little like this:</p>
@@ -1274,7 +1274,7 @@ Your one and only assignment for this week is to submit your maps your relevant 
 </div>
 <p><br>
 And that’s it for this week’s practical!</p>
-<p>This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in Q-GIS,. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.</p>
+<p>This has been a long but (hopefully!) informative practical to introduce you to cartography and visualisation in Q-GIS. It is really important for you to reflect on the many practical, technical and conceptual ideas you’ve come across in this practical and from the lecture material earlier. We’ll delve into some of these in more detail in our discussion on Monday, but it would also be great for you to come to the seminar equipped with questions that might have arisen during this practical.</p>
 <p>If you feel you didn’t quite understand everything this week, do not worry too much - Week 5 will serve as a good revision of everything we’ve covered here!</p>
 <hr />
 </div>
