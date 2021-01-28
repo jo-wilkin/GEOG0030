@@ -217,9 +217,7 @@ Could we use a different approach - using a diverging colour scheme - that could
 
 I think so! But first, you'll need to calculate these averages and then our individual ward/boroughs (%?) difference from this mean. 
 
-*In AGOL, you may find an option that does this for us. If not, you can use the New Expression builder to 
-
-This is all possible using the field calculator in AGOL, but will require some thinking about the right expression.
+*In AGOL, you may find an option that does this for us. If not, you can use the New Expression builder to calculate these values.*
 
 See if you can think how to calculate this - and then create your diverging maps.
 
