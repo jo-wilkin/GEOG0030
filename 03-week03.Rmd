@@ -92,9 +92,9 @@ As a result, there are **two common types** of coordinate systems that you will 
 ##### Understanding Coordinate Systems {-}
 ```{r 03-coordinate-systems, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('697ca275-784a-4df1-9051-bcd11c7fad7b') %>% use_align('center')
+embed_msstream('2635dc14-5c0f-4ea4-b3ff-527c6e4ae5d3') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EcNliVzRaY5FuQLLpNO61QsBbJxVjrLvGUNjOQko8XulJQ?e=oKhasm) | [Video on Stream](https://web.microsoftstream.com/video/697ca275-784a-4df1-9051-bcd11c7fad7b)</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EcNliVzRaY5FuQLLpNO61QsBbJxVjrLvGUNjOQko8XulJQ?e=gAB6GP) | [Video on Stream](https://web.microsoftstream.com/video/2635dc14-5c0f-4ea4-b3ff-527c6e4ae5d3)</center>
 <br>
 
 In summary, a GCS defines where the data is located on the earth’s surface, whereas a a PCS tells the data how to draw on a flat surface, like on a paper map or a computer screen.
@@ -193,7 +193,7 @@ Our second short lecture explains how to think through choosing a map projection
 library(vembedr)
 embed_msstream('8f611285-6a6c-4ca5-8c24-ae2c28184174') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EYzaTaOU43JBvoFQoYvDot4BSRcMbODbFluD7EeVY8RT9w?e=tUK5d3) | [Video on Stream](https://web.microsoftstream.com/video/8f611285-6a6c-4ca5-8c24-ae2c28184174)</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EYzaTaOU43JBvoFQoYvDot4BSRcMbODbFluD7EeVY8RT9w?e=j61kI7) | [Video on Stream](https://web.microsoftstream.com/video/8f611285-6a6c-4ca5-8c24-ae2c28184174)</center>
 <br>
 
 As explained in our lecture, each map projection therefore has advantages and disadvantages. 
@@ -388,9 +388,9 @@ The following short lecture explains in more detail how to make a good map:
 
 ```{r 03-cartography-conventions, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 library(vembedr)
-embed_msstream('bb7f860d-75fa-45cb-a648-f13cf31fcc08') %>% use_align('center')
+embed_msstream('697ca275-784a-4df1-9051-bcd11c7fad7b') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EdooT1odYgdMheJBfM8ETNoBiMLl503AklIny3mJgPwq_Q?e=Zk5KAg) | [Video on Stream](https://web.microsoftstream.com/video/bb7f860d-75fa-45cb-a648-f13cf31fcc08)</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EdooT1odYgdMheJBfM8ETNoBiMLl503AklIny3mJgPwq_Q?e=48KirC) | [Video on Stream](https://web.microsoftstream.com/video/697ca275-784a-4df1-9051-bcd11c7fad7b)</center>
 
 
 #### Representing Spatial Data {-}
@@ -457,7 +457,7 @@ Despite their various challenges, choropleth maps can be increidbly useful tools
 library(vembedr)
 embed_msstream('4a60a286-a8cc-466a-a2c3-3d947df2429a') %>% use_align('center')
 ```
-<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EfhB37YEgAVNqTf5rdx66m8BEgJSZVGANNry4u3ZrhizPg?e=6ZA97u) | [Video on Stream](https://web.microsoftstream.com/video/4a60a286-a8cc-466a-a2c3-3d947df2429a)</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EfhB37YEgAVNqTf5rdx66m8BEgJSZVGANNry4u3ZrhizPg?e=e1prxB) | [Video on Stream](https://web.microsoftstream.com/video/4a60a286-a8cc-466a-a2c3-3d947df2429a)</center>
 
 ### The Modifiable Areal Unit Problem {-}
 
