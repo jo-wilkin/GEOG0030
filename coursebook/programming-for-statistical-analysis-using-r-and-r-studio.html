@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Programming (for Statistical Analysis) using R and R-Studio | Geocomputation 2020-2021 Work Book</title>
+  <meta name="description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Programming (for Statistical Analysis) using R and R-Studio | Geocomputation 2020-2021 Work Book" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jo-wilkin.github.io/GEOG0030/" />
+  
+  <meta property="og:description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="github-repo" content="jo-wilkin/GEOG0030" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Programming (for Statistical Analysis) using R and R-Studio | Geocomputation 2020-2021 Work Book" />
+  
+  <meta name="twitter:description" content="GEOG0030: Geocomputation Work Book" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cartography-and-visualisation-i.html"/>
+<link rel="next" href="programming-for-giscience-and-spatial-analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+<a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl-logo.jpg">
+</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>Module Overview</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#geocomputation-introductory-video"><i class="fa fa-check"></i>Geocomputation Introductory Video</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-in-touch-during-the-module"><i class="fa fa-check"></i>Getting in touch during the module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#noticed-a-mistake-in-this-resource"><i class="fa fa-check"></i>Noticed a mistake in this resource?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module Information</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning-for-geocomputation"><i class="fa fa-check"></i>Self-guided learning for Geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#geocomputation-timetable"><i class="fa fa-check"></i>Geocomputation Timetable</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#what-will-i-be-learning-each-week"><i class="fa fa-check"></i>What will I be learning each week?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading List</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#troubleshooting-module-content"><i class="fa fa-check"></i>Troubleshooting Module Content</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#additional-online-help-resources"><i class="fa fa-check"></i>Additional Online Help &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#feedback-weekly-and-end-of-module"><i class="fa fa-check"></i>Feedback: Weekly and End of Module</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Started</b></span></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html"><i class="fa fa-check"></i>What is this Workbook?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#using-this-workbook"><i class="fa fa-check"></i>Using this Workbook</a></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#workbook-functionality"><i class="fa fa-check"></i>Workbook Functionality</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html"><i class="fa fa-check"></i>Software Installation</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#qgis"><i class="fa fa-check"></i>QGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-and-r-studio"><i class="fa fa-check"></i>R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-1"><i class="fa fa-check"></i>R-Studio Setup 1</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-2"><i class="fa fa-check"></i>R-Studio Setup 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#arcgis"><i class="fa fa-check"></i>ArcGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#installation-issues"><i class="fa fa-check"></i>Installation Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html"><i class="fa fa-check"></i>External Usage</a><ul>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / Contributions</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#version"><i class="fa fa-check"></i>Version</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundational Concepts</b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#week-1-in-geocomp"><i class="fa fa-check"></i>Week 1 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#what-is-geocomputation"><i class="fa fa-check"></i>What is Geocomputation?</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#giscience-a-short-history"><i class="fa fa-check"></i>GIScience: A Short History</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#spatial-analysis-an-overview"><i class="fa fa-check"></i>Spatial Analysis: An Overview</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#programming-for-data-analysis"><i class="fa fa-check"></i>Programming for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#whats-next-for-us-in-geocomputation"><i class="fa fa-check"></i>What’s next for us in Geocomputation</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-ready-for-our-practicals"><i class="fa fa-check"></i>Getting Ready for our Practicals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a><ul>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#week-2-in-geocomp"><i class="fa fa-check"></i>Week 2 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#what-is-representation"><i class="fa fa-check"></i>What is Representation?</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#geographic-representation"><i class="fa fa-check"></i>Geographic Representation</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-structure-sampling-and-scale"><i class="fa fa-check"></i>Spatial Structure, Sampling and Scale</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-models"><i class="fa fa-check"></i>Spatial Data Models</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-file-formats"><i class="fa fa-check"></i>Spatial Data File Formats</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#gis-software---a-more-thorough-introduction-moved-to-week-5"><i class="fa fa-check"></i>GIS Software - a more thorough introduction (moved to Week 5)</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#practical-1-exploring-population-changes-across-london"><i class="fa fa-check"></i>Practical 1: Exploring Population Changes Across London</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a><ul>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#week-3-in-geocomp"><i class="fa fa-check"></i>Week 3 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#coordinate-systems-and-map-projections"><i class="fa fa-check"></i>Coordinate Systems and Map Projections</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#effective-data-visualisation"><i class="fa fa-check"></i>Effective Data Visualisation</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#the-modifiable-areal-unit-problem"><i class="fa fa-check"></i>The Modifiable Areal Unit Problem</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#practical-2-mapping-crime-across-london-wards-and-boroughs"><i class="fa fa-check"></i>Practical 2: Mapping Crime Across London Wards and Boroughs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programming-for-statistical-analysis-using-r-and-r-studio.html"><a href="programming-for-statistical-analysis-using-r-and-r-studio.html"><i class="fa fa-check"></i><b>4</b> Programming (for Statistical Analysis) using R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-statistical-analysis-using-r-and-r-studio.html"><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#week-4-in-geocomp"><i class="fa fa-check"></i>Week 4 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-statistical-analysis-using-r-and-r-studio.html"><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#an-introduction-to-programming"><i class="fa fa-check"></i>An Introduction to Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-statistical-analysis-using-r-and-r-studio.html"><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#using-r-and-r-studio-for-data-analysis"><i class="fa fa-check"></i>Using R and R-Studio for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="programming-for-statistical-analysis-using-r-and-r-studio.html"><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#the-tidyverse-philosophy-and-principles"><i class="fa fa-check"></i>The TidyVerse Philosophy and Principles</a></li>
+<li class="chapter" data-level="" data-path="programming-for-statistical-analysis-using-r-and-r-studio.html"><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#practical-3-analysing-crime-in-2020---a-statistical-approach"><i class="fa fa-check"></i>Practical 3: Analysing Crime in 2020 - A Statistical Approach</a></li>
+<li class="chapter" data-level="4.0.1" data-path="programming-for-statistical-analysis-using-r-and-r-studio.html"><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#section"><i class="fa fa-check"></i><b>4.0.1</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a></li>
+<li class="part"><span><b>II Core Spatial Analysis</b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-clusters.html"><a href="analysing-spatial-patterns-ii-clusters.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Clusters</a></li>
+<li class="chapter" data-level="8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>8</b> Rasters, Zonal Statistics and Interpolation</a></li>
+<li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
+<li class="chapter" data-level="9" data-path="geodemographics.html"><a href="geodemographics.html"><i class="fa fa-check"></i><b>9</b> Geodemographics</a></li>
+<li class="chapter" data-level="" data-path="optional-road-network-analysis.html"><a href="optional-road-network-analysis.html"><i class="fa fa-check"></i>OPTIONAL: Road Network Analysis</a></li>
+<li class="part"><span><b>IV Cartography &amp; Visualisation</b></span></li>
+<li class="chapter" data-level="10" data-path="cartography-and-visualisation-ii.html"><a href="cartography-and-visualisation-ii.html"><i class="fa fa-check"></i><b>10</b> Cartography and Visualisation II</a></li>
+<li class="part"><span><b>Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
+</ul></li>
+<li class="part"><span><b>Alternate Tutorials</b></span></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i>A short introduction to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#sign-up-to-arcgis-online"><i class="fa fa-check"></i>Sign Up to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#practical-instructions-1"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation 2020-2021 Work Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<link href="style.css" rel="stylesheet">
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="../images/general/overview.png">
+</div>
+<div id="programming-for-statistical-analysis-using-r-and-r-studio" class="section level1">
+<h1><span class="header-section-number">4</span> Programming (for Statistical Analysis) using R and R-Studio</h1>
+<p>Welcome to Week 4 in Geocomputation!</p>
+<p>Well done on making it through Week 3 - and welcome to our first use and thus introduction to using programming, in the form of R and R-Studio, for data analysis.</p>
+<p>This week is heavily practical oriented - with <strong>many aspects of your practical integrated at various points in the workshop</strong>, as well as of course, a data analysis section towards the end.</p>
+<p>As always, we have broken the content into smaller chunks to help you take breaks and come back to it as and when you can over the next week.</p>
+<div id="week-4-in-geocomp" class="section level3 unnumbered">
+<h3>Week 4 in Geocomp</h3>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="">Video on Stream</a>
+</center>
+<p><br></p>
+<p>This week’s content introduces you to foundational concepts associated with <strong>Programming for Statistical Analysis</strong>, where we have three areas of work to focus on:</p>
+<ol style="list-style-type: decimal">
+<li>General Principles of Programming</li>
+<li>How to use R and R-Studio effectively for programmatical statistical analysis</li>
+<li>The ’TidyVerse’Philosophy</li>
+</ol>
+<p>This week’s content is split into <strong>4</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#an-introduction-to-programming">An Introduction to Programming</a> (40 minutes)</li>
+<li><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#using-r-and-r-studio-for-data-analysis">Using R and R-Studio for Data Analysis</a> (40 minutes)</li>
+<li><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#the-tidyverse-philosophy-and-principles">The TidyVerse Philosophy and Principles</a> (20 minutes)</li>
+<li><a href="programming-for-statistical-analysis-using-r-and-r-studio.html#practical-3-analysing-crime-in-2020---a-statistical-approach">Practical 3: Analysing Crime in 2020 - A Statistical Approach</a> (1 hour)</li>
+</ol>
+<p>This week, we have a slightly different approach to our workflow structure, with a mixture of <strong>short lectures</strong>, <strong>instructional videos</strong> and <strong>activities</strong> to complete through each part, alongside some <strong>Key</strong> and <strong>Suggested Reading</strong>.</p>
+<p>This week, you have <strong>2 assignments</strong>, which will be highlighted in the workbook.</p>
+<p><strong>Part 4</strong> is the main part of analysis for our Practical for this week, but you will find aspects of programming in <strong>Parts 1-3</strong> that you will need to do in order <strong>to prepare our data for the final part</strong>.</p>
+<p>If you have been unable to download R-Studio Desktop or cannot access it via Desktop@UCL Anywhere, you will have access to our R-Studio Server website instead. Instructions on how to access this are provided below.</p>
+<div class="puzzle">
+<p><strong>Learning Objectives</strong><br><br>
+By the end of this week, you should be able to:</p>
+<ul>
+<li>Understand the basics of programming and why it is useful for data analysis</li>
+<li>Recognise the differences and purpose of a console command versus the creation of a script</li>
+<li>Explain what a library/package is and how to use them in R/R-Studio</li>
+<li>Explain the TidyVerse philosophy and why it is useful for us as data analysts</li>
+<li>Wrangle and mangle tabular data to prepare it for analysis</li>
+<li>Conduct basic descriptive statistics and simple linear regression using R-Studio and R</li>
+</ul>
+</div>
+<p>We will build on the data analysis we completed last week and look to further understand crime in London by comparing our crime rate statistics to potenital socio-economic variables that might play a factor in crime prevalance.</p>
+<hr />
+</div>
+<div id="an-introduction-to-programming" class="section level3 unnumbered">
+<h3>An Introduction to Programming</h3>
+<p>Programming is our most fundamental way of interacting with a computer - it was how computers were built and for a <strong>long</strong> time, the Command Line Interface (CLI) was our primary way of using computers before our Graphical User Interface (GUI) Operating Systems (OS) and software became mainstream.</p>
+<p>Nowadays, the majority of us use our computers through clicking - and not typing. However, programming and computer code underpin every single application that we use on our computers… or really any technological device.</p>
+<p>After all, programming is used for so many purposes and applications, that, we as users take for granted - from software engineering and application development, to creating websites and managing databases at significant scales.</p>
+<p>To help with this diversity of applications, multiple types of programming languages (and ways of using programming languages!) have developed - Wikipedia, for example, has a list of <strong>50 different types</strong> of languages, although there is some overlap between many of these and some are used for incredibly niche activties.</p>
+<p>In general, the main programming languages that people focus on learning at the moment include:</p>
+<div class="figure" style="text-align: center"><span id="fig:04-programming-languages"></span>
+<img src="images/w4/04_programming_languages.png" alt="The RStudio interface with a new script." width="555" />
+<p class="caption">
+Figure 4.1: The RStudio interface with a new script.
+</p>
+</div>
+<p>Some can be used for a range of purposes – others are more specific, e.g. HTML for website building. There are also different ways in which programming languages work, which give some advantages over others.</p>
+<p>This is to do with how the code is written and ‘talks to the computer’ - behind our main programming languages there is something called a compiler that takes the code we write in our various programming languages and translates it into machine code, a.k.a. the code our computers know how to understand.</p>
+<p>This code is written purely in binary and, as a result, looks <strong>a lot</strong> different to the code we’ll be writing in our practicals.</p>
+<p>For some languages, this translation is completed when your code is compiled before it is run, i.e. the ‘compiler’ will look through all your code, translate and then execute the machine code according.</p>
+<p>These languages are known as <strong>compiled</strong>, or <strong>low-level</strong> languages and can, at first, be slow to write but are incredibly efficient when executing huge amounts of code (e.g. when creating software). They however require an understanding of things called registers, memory addresses, and call stacks and are as a resut, a lot more complicated (and no, I personally do not know how to code in any low-level languages…nor do I particularly want to!).</p>
+<p>For other languages, such as R and Python, these fall into the <strong>interpreted</strong> language category. Here, each line of code is executed without a pre-runtime translation. In this case, a program called an interpreter reads each program statement and, following the program flow, then decides what to do, and does it.</p>
+<p>The issue with these <strong>high-level</strong> programming languages is that this approach can be costly in computational resources (i.e. processing time and memory space). As there is no pre-run time compilation, bugs are not found before the code is run but instead as the code is run - as a result (and what you might see happen in your own code), your computer can get stuck trying to execute code which is either completely unfeasible for your computer to execute (e.g. your computer cannot handle the size of data you are feeding it) or it ends up in a loop with no way out - except for you stopping the code.</p>
+<p>However, the advantage of using these langauges is that their main focus is on things like variables, arrays, objects, complex arithmetic or boolean expressions, subroutines and functions, loops, threads, locks, and other abstract computer science concepts - all of which we’ll use within our module, believe it or not! These languages therefere have a focus on usability over optimal program efficiency, which, when we’re just learning to code, are ideal for us in Geocomputation!</p>
+<center>
+<em>Don’t worry if you don’t understand what any of this means, you will do by the end of this module!</em>
+</center>
+<p>As we’re not taking a CompSci degree here, we won’t go into any more detail about this, but suffice to say, there is more to programming then what we’ll cover in Geocomputation.</p>
+<p>But what is important to recognise is that <strong>a lot</strong> of work went into creating the programming environments that we get to use today - and I, for one, am extremely glad I never had to learn how to write a compiler!</p>
+<p>If understanding a little more about compilers and machine code is of interest to you, the below video provides an accessible explanation - although you might want to come back to it at the end of the pratical:</p>
+<div id="how-do-computers-read-code" class="section level5 unnumbered">
+<h5>How do computers read code?</h5>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://www.youtube.com/embed/QXjU9qTsYCc" width="533" height="300" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+</div>
+<div id="the-command-line-interface" class="section level4 unnumbered">
+<h4>The Command Line Interface</h4>
+<p>The most basic of programming we can use without installing anything on our computers is using the <strong>Command Line Interface</strong>(CLI) already built in, known as the <strong>shell</strong>.</p>
+<p>The <strong>shell</strong> is a simple program that lets you interact with your computer using text commands (Command Line Interface) instead of point &amp; click (Graphical User Interface).</p>
+<p>The shell simply takes your commands and provides them to the operating system of your computer.</p>
+<p>Each operating system has its own shell program: <strong>Mac / Linux</strong> = <strong>zsh</strong> (new) / <strong>bash</strong> (Bourne-again Shell) (previous); <strong>Microsoft</strong> = <strong>PowerShell</strong> (and a few others).</p>
+<p>For most operating systems, you can access the shell using a simple program, known as a <strong>terminal emulator (TE)</strong>.
+The default <strong>TE</strong> for <strong>Mac &amp; Linux</strong> users is: <strong>Terminal</strong>.</p>
+<p>The default <strong>TE</strong> for <strong>Windows</strong> users use <strong>Command Prompt</strong> (old) or <strong>Terminal</strong> (new).</p>
+<p>(If you remember my introduction lecture, this is how I used to have to interact with my first computer at a very young age of probably 5 when attempting to load a computer game!)</p>
+<p>The <strong>shell</strong> is an incredibly useful program - and if you take programming further in the future (e.g. analysis of big datsets through servers, running multiple scripts, dealing with version control, software engineering), it will become a tool that you’ll become incredibly familiar with.</p>
+<p>But for now, we just want to illustrate how cool it can be for us to be able to tell our computer to do things in a few lines of code - rather than having to click and point - particularly once you know how to use and can remember specific commands.</p>
+<p>Let’s take a look by completing a simple task with our shells to tell our computer to do something - let’s do some <strong>file management</strong> for our practical today.</p>
+<div id="using-the-command-line-interface-on-your-computer" class="section level5 unnumbered">
+<h5>Using the Command Line Interface On Your Computer</h5>
+<p>As you may remember from last week’s practical, I provided you with our crime data in a single processed csv file. However, when you download the data from <strong>data.police.uk</strong>, the data is not so nicely formatted!</p>
+<p>Essentially, all of our data that we download for crime in London will be provided in individual csvs, according first to month, and then to the police force as so:</p>
+<p><img src="images/w3/crime_data_files.png" width="550pt" style="display: block; margin: auto;" /></p>
+<p>To be able process this data easily in R, we want to move all of our files into a single folder. And believe it or not, it only takes a couple of lines of code to do so.</p>
+<p>Let’s take a look:</p>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<p>As we’ve seen in the video above, it can really useful - and quick! - to use our Shell to organise our data files prior to loading them in R-Studio.</p>
+<p>Just to proove this, the first piece of programming we will do today is use your built-in shell on your computer to repeat the same process and copy our crime data into a single folder.</p>
+<div class="codetime">
+<p><strong>File Management using the Command Line</strong></p>
+<p>Now you’ve watched how I copy the files over, let’s go ahead and do this ourselves.</p>
+<ol style="list-style-type: decimal">
+<li>Head to <strong>data.police.uk</strong> and download all available crime data for London in 2020 (this may only include up until November) and for both Police Forces.</li>
+</ol>
+<center>
+<em>The below video shows you how to do this.</em>
+</center>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/5143010c-bf7a-47b9-b7ec-a74ef1834615?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<p>You should now have you data downloaded in a single main folder in your downloads.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Copy this folder into your <strong>GEOG0030 -&gt; data -&gt; raw -&gt; crime</strong> folder.</p></li>
+<li>Next, open up your shell on your computer.
+<ul>
+<li>On <strong>mac</strong>, hold <strong>CMD</strong> and hit <strong>space</strong> to open up your search bar and type <strong>terminal</strong>, and a terminal window should appear.</li>
+<li>On <strong>windows</strong>, press the windows button and do the same. Alternatively search for <strong>shell</strong> or <strong>command prompt</strong>.</li>
+</ul></li>
+</ol>
+<p>With your shell open, we will navigate to your raw data folder and copy over the crime data into a single folder.</p>
+<p>To do so, we’ll use six main terminal commands:</p>
+<ul>
+<li><strong>pwd</strong> (both Mac and Windows): <strong>Print Working Directory</strong> - this will show us where we are in our computer’s file system. By default, you should be located at the “base” of your user file.</li>
+<li><strong>dir</strong> (Windows) or <strong>ls</strong> (Mac): <strong>Lists</strong> all files in the directory you are currently located.</li>
+<li><strong>cd</strong> (both Mac and Windows): <strong>Change</strong> into a new <strong>directory</strong> (i.e. folder) - this can be a single path ‘step’ or several steps to get to the directory you want.</li>
+<li><strong>md</strong> (Windows) or <strong>mkdir</strong> (both Mac and Windows): <strong>Make</strong> a new <strong>directory</strong> (i.e. folder) where you are currently located.</li>
+<li><strong>cp</strong> (both Mac and Windows): <strong>Copy</strong> content of a directory or specific file to a new location. This command can take <strong>wildcards</strong> to help search multiple folders at once, as we’ll see in our query.</li>
+<li><strong>move</strong> (Windows) or <strong>mv</strong> (Mac): <strong>Move</strong> directory to a new destination.</li>
+</ul>
+<p>Let’s get going.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>In your shell, type the command <code>pwd</code> and press return. You should now see a file path appear under your command - the computer is telling you where you are currently located in your computer system.</p></li>
+<li><p>Next, type <code>dir</code> OR <code>ls</code> (OS-dependent) and press return. The computer now lists all of the folders in your directory that you can move into as a next step from your current folder. **Identify what folder your GEOG0030 work is contained in*.</p></li>
+<li><p>Next, type <code>cd</code> followed by the folder you next need to change into and then press return. <em>In my case, the command is:</em> <code>cd Code</code>. This will change you into a different folder - and you should this now added into your <strong>Prompt</strong>.</p></li>
+</ol>
+<p>Keep going changing folders until you are in the folder that contains your downloaded crime data.</p>
+<p><strong>A tip is that your terminal can auto-populate your folder names for you when there is enough information for them to determine the unique folder. To do this, press <code>tab</code> on your keyboard.</strong></p>
+<p>E.g. your crime folder is likely to be a long list of numbers and letters if you haven’t renamed it whilst copying it over to your raw folder. Therefore using this approach will save you time entering all these numbers.</p>
+<ol start="7" style="list-style-type: decimal">
+<li><p>You can change into this folder in one command, simply keep adding to your folder path as so: <code>cd GEOG0030/data/raw/crime/52c6b758bceaf2244fc1b6f93e85d7f00f234ccf/</code> and then press return. <em>Note, you do not need a slash at the start of your file paths.</em></p></li>
+<li><p>Now you are in the correct folder, we first want to make a <strong>new folder</strong> to contain <strong>all</strong> the crime csvs (without their current subfolder system): <code>mkdir all_theft</code> and press return.</p></li>
+</ol>
+<p>If you now type <code>dir</code> or <code>ls</code>, you should now see the new folder listed within your current folder.</p>
+<p>Let’s go ahead and copy all of our csvs into this single folder.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Type <code>cp **/*.csv all_theft</code> and press return.
+<ul>
+<li>This command uses the <strong>wildcard * </strong> to search for any file in any folder, as long as it has a <code>.csv</code> file type.</li>
+<li>Using <strong>wildcards</strong> is a very common programming tool and we are likely to use them in our practicals moving forward. You can also use them in searches on search engines such as Google!</li>
+</ul></li>
+</ol>
+<p>We can now change into our new folder and then list its contents to check that our files have moved across.</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Type <code>cd all_theft</code> and press return. Then type <code>dir</code> or <code>ls</code>. Check that you have all your files (either 22 or 24, depending on when you are completing this practical!).</li>
+</ol>
+<p>Great, we have our files all in a single folder which will make using them in R much easier. We’ll do one final thing - and that is move this folder out of this origina and into the main <code>crime</code> folder.</p>
+<ol start="11" style="list-style-type: decimal">
+<li><p>Still in the terminal, type: (WINDOWS) <code>move all_theft ..</code> or (MAC): <code>mv all_theft ..</code></p></li>
+<li><p>Next, type <code>cd ..</code> and press return.</p></li>
+</ol>
+<p>You should now find yourself <strong>one step</strong> back in your file system in the main crime folder. We can check that our move worked by again listing the contents of the folder.</p>
+<ol start="13" style="list-style-type: decimal">
+<li>Type <code>dir</code> or <code>ls</code> and press return. Check that your <code>all_theft</code> folder is now listed.</li>
+</ol>
+</div>
+<p>Great! You’ve just done your first bit of command line programming!</p>
+<p>Think about how quick was it to type those commands and get the files moved - rather than have to do all of that my hand.</p>
+<p>Of course it helped that I told you what commands to write - but the more time you spend with programming, the quicker (and more familiar) you get at (with) coding.</p>
+<div class="note">
+<p><strong>Command Line Paths</strong><br><br></p>
+<p>Note, the use of <code>..</code> in our two commands above means to take a step back in your file system path, as we did in both of these cases here (i.e. the ‘parent’ folder.</p>
+<p>In addition, two further commands to be aware of include:</p>
+<ul>
+<li><p><code>~</code> (Mac) to denote the <strong>root</strong> or <strong>home</strong> directory, e.g. <code>cd ~</code>. In Windows, there is not really a shortcut for this.</p></li>
+<li><code>.</code>: a single full-stop means “this folder”.</li>
+</ul>
+</div>
+<p>The command line is just one aspect of programming - but we also want to have the ability to create and run scripts.</p>
+<p>Scripts are incredibily important for us when completing data anlaysis and, as such, we’ll look at the differences between the two as we start to use R/R-Studio for our data analysis today.</p>
+<p>One cool thing about the terminal is that we actually have the ability to create and run scripts just within the terminal itself.</p>
+<p>We can do this by opening up a <strong>text editor</strong> in our terminal to write a script in any programming language and then execute our script within the terminal. We execute our script by actually setting the terminal to that programming language and then calling the script. This all sounds extremely complicated - but it really is not.</p>
+<p>We can have a quick look here:</p>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/5143010c-bf7a-47b9-b7ec-a74ef1834615?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<p>Whilst we could…we won’t be using this approach within our work in Geocomptuation - because, quite frankly, the terminal is pretty limited in its display of maps and charts, a key output of our work here in Geocomputation (in fact, we’d need to save our outputs to a file each time to go view them…. anyway less about that).</p>
+<p>Instead, what’s great is that we have several different types of software and Integrated Developement Environments that bring the functionality of running scripts together with the visualisation capacity we like in our GIS software.</p>
+<p>For us in Geocomputation, our tool of choice for this is <strong>R-Studio</strong>.</p>
+</div>
+</div>
+</div>
+<div id="using-r-and-r-studio-for-data-analysis" class="section level3 unnumbered">
+<h3>Using R and R-Studio for Data Analysis</h3>
+<p>Before we go any further, what I want to make clear from the outset of this workshop - and the remainder of the module - is that programming using R and R-Studio is ultimately a <strong>tool</strong> we will use to complete specific tasks we need to do for our data analysis.</p>
+<p>There are <strong>a lot</strong> of different tools out there that you can use to achieve the same outcomes (as you’ve seen with Q-GIS, and no doubt had experience of using some statistics/spreadsheet software) but we choose to use this tool because it provides us with many advantages over these other tools - more on this next week.</p>
+<p>With this <strong>tool</strong> though, there is a lot to learn about the <strong>principles and the theory behind programming languages</strong> - but, as evident above, whilst we could look at this in a lot of detail (there is <em>a lot</em> of theory behind programming which we just won’t cover - that’s for computer scientists), we will instead focus on the <strong>aspects</strong> most important to our use. (We’ll look at this in our main lecture video: <a href="programming-for-statistical-analysis-using-r-and-r-studio.html#principles-of-programming-for-data-analysis">Principles of Programming for Data Analysis</a>).</p>
+<p>The second thing to make clear is that <strong>R</strong> and <strong>R-Studio</strong> are two different things:</p>
+<ul>
+<li><p><strong>R</strong> is our programming language, which we need to understand in terms of <strong>general principles</strong>, <strong>syntax</strong> and <strong>structure</strong>.</p></li>
+<li><p><strong>R-Studio</strong> is our Integrated Development Environment, which we need to understand in terms of <strong>functionality</strong> and <strong>workflow</strong>.</p></li>
+</ul>
+<div class="fyi">
+<p><strong>Integrated Development Environment</strong><br>
+An Integrated Development Environment (IDE) is simply a complicated way of saying “a place where I write and build scripts and execute my code. Nowadays, we have some really fancy IDEs that, when they know what language you are coding in, will highlight different types of code accord as well as try to proof-read/be-dubg your code”on-the-fly" before you’ve even run it.</p>
+<p>R-Studio is definitely a <strong>very</strong> fancy IDE - as it offers <strong>a lot</strong> of functionality beyond just writing scripts and execute code.</p>
+</div>
+<p>As you may know already, <a href="https://www.r-project.org/">R</a> is a free and open-source programming language, that originally was created to focus on statistical analysis.</p>
+<p>In conjunction with the development of <strong>R</strong> as a language, the same community created the <strong>R-Studio</strong> <strong>IDE</strong> (or really software now!) to execute this statisitcal programming.</p>
+<p>Together, <strong>R</strong> and <strong>R-Studio</strong> has grown into an incredibly success partnership of analytical programming language and analysis software - and is widely used for academic research as well as in the commercial sector.</p>
+<p>One of R’s great strength is that it is open-source, can be used on all major computer operating systems and is free for anyone to use. It, as a result, has a huge and acitve contributor community which constantly adds functionality to the language and software, making it an incredibly tool for many purposes and applications beyond simply statistical analysis.</p>
+<p><strong>Believe it or not, the entire workbook you are reading right now has been created in R-Studio</strong>, utilising a mixture of programming languages, including R, HTML, CSS and Markdown.</p>
+<p>R-Studio has the <strong>flexibility</strong> to understand programming languages other than <strong>R</strong> (including Python!), whilst <strong>R</strong> can be deployed outside of the <strong>R-Studio</strong> environment.</p>
+<p>However, for us, the partnership works pretty well for what we want to achieve.</p>
+<p><strong>How do I use R-Studio?</strong></p>
+<p>Unlike traditional statistical analysis programmes you may have used such as ****Microsoft Excel** or even <strong>SPSS</strong>, within the R-Studio IDE, the user has to type commands to get it to execute tasks such as loading in a data set or performing a calculation.</p>
+<p>We primarily do this by building up a script (or similar document, more on this in Week 10), that provides a record of what you have done, whilst also enabling the straightforward repetition of tasks.</p>
+<p>We also can use the <strong>R Console</strong> to execute simple instructions that do not need repeating - such as installing librairies or quickly viewing data (we’ll get to this in a second).</p>
+<p>In addition, R, its various graphic-oriented “packages” and R-Studio are capable of making graphs, charts and maps through just a few lines of code (you might notice a <strong>Plots</strong> window to your right) - which can then be easily modified and tweaked by making slight changes to the script if mistakes are spotted.</p>
+<p>Unfortunately, command-line computing can also be off-putting at first. It is easy to make mistakes that are not always obvious to detect and thus debug.</p>
+<p>Nevertheless, there are good reasons to stick with R and R-Studio. These include:</p>
+<ul>
+<li><p>It’s broadly intuitive with a strong focus on publishable-quality graphics.</p></li>
+<li><p>It’s ‘intelligent’ and offers in-built good practice – it tends to stick to statistical conventions and present data in sensible ways.</p></li>
+<li><p>It’s <strong>free</strong>, cross-platform, customisable and extendable with a whole swathe of packages/libraries (‘add ons’) including those for discrete choice, multilevel and longitudinal regression, and mapping, spatial statistics, spatial regression, and geostatistics.</p></li>
+<li><p>It is well respected and used at the world’s largest technology companies (including Google, Microsoft and Facebook, and at hundreds of other companies).</p></li>
+<li><p>It offers a <strong>transferable skill</strong> that shows to potential employers experience both of statistics and of computing.</p></li>
+</ul>
+<p>The intention of the practical elements of this week is to provide a thorough introduction to R-Studio to get you started:</p>
+<ol style="list-style-type: decimal">
+<li>The basic programming principles behind R.</li>
+<li>Loading in data from <code>csv</code> files, filtering and subsetting it into smaller chunks and joining them together.</li>
+<li>Calculating a number of statistics for data exploration and checking.</li>
+<li>Creating basic and more complex plots in order to visualise the distributions values within a data set.</li>
+</ol>
+<p>What you should remember is that R/R-Studio has a steep learning curve, but the benefits of using it are well worth the effort.</p>
+<p>I highly recommend you take your time and think through every piece of code you type in - and also remember to comment your code (we’ll get to this in a bit!) .</p>
+<p>The best way to learn R is to take the basic code provided in tutorials and experiment with changing parameters - such as the colour of points in a graph - to really get ‘under the hood’ of the software. Take lots of notes as you go along and if you are getting really frustrated take a break!</p>
+<p>This week, we focus solely on using R and R-Studio (from now on, simply denoted as R) for <strong>statistical analysis</strong>. Next week, we will introduce using R for <strong>spatial analysis</strong> - but there’s lots to get on with today to understand the fundamental principles of using R (and programming in general).</p>
+<p><strong>Accessing R-Studio for Geocomputation</strong></p>
+<p>You have two options for using R-Studio in this module.</p>
+<ol style="list-style-type: decimal">
+<li><p>Using R-Studio Desktop: You should have installed this in Week 1 as per the software installation instructions.</p></li>
+<li>Using R-Studio Server: To use R-Studio Server, open a web browser and navigate to: <a href="https://rstudio.data-science.rc.ucl.ac.uk/" class="uri">https://rstudio.data-science.rc.ucl.ac.uk/</a>
+<ul>
+<li>Log in with your <strong>usual UCL username and password</strong>.</li>
+<li>You should see the RStudio interface appear.</li>
+<li>If it is the first time you log on to RStudio server you may only see the RStudio interface appear once you have clicked on the <strong>start a new session</strong> button.</li>
+</ul></li>
+</ol>
+<div class="note">
+<p><strong>Note</strong><br>
+RStudio server will only work with an <a href="https://www.ucl.ac.uk/isd/it-essentials-for-new-students/video-guides/getting-started-ucls-vpn">active VPN connection</a> that links your personal computer into UCL’s network. Students in mainland China may want to use <a href="https://www.ucl.ac.uk/isd/services/get-connected/china-connect">UCL China Connect</a>. Students that use a Mac computer that is running on the latest version of MacOS (<a href="https://www.apple.com/uk/macos/big-sur/">MacOS Big Sur</a>), are advised to use <a href="https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere">Desktop@UCL</a> as the Cisco AnyConnect VPN application may not work. If you are completely unable to access the server (e.g. your browser displays a <em>This site can’t be reached</em> message), it means that your VPN connection is not working correctly. Please ensure that your VPN is working correctly or use <a href="https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere">Desktop@UCL Anywhere</a> instead.</p>
+</div>
+<p><strong>Go ahead and open R-Studio (Desktop or Server) and we’ll first take a quick tour of the various components of the R-Studio environment interface and how and when to use them</strong>:</p>
+<div id="an-introduction-to-r-studio-and-its-interface" class="section level5 unnumbered">
+<h5>An Introduction to R-Studio and its interface</h5>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/2635dc14-5c0f-4ea4-b3ff-527c6e4ae5d3?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<p>As you’ve heard, R-Studio has various windows that you use for different purposes - and you can customise its layout dependent on your preference:</p>
+<div class="figure" style="text-align: center"><span id="fig:01-rstudio-interface-script"></span>
+<img src="images/w4/04_rstudio_interface_script.png" alt="Opening a new script in RStudio." width="1090" />
+<p class="caption">
+Figure 4.2: Opening a new script in RStudio.
+</p>
+</div>
+<p>The main windows (panel/pane) to keep focused on for now:</p>
+<ul>
+<li><p><strong>Script window</strong>: where we build up and write code, to a) keep a record of our work, b) enable us to repeat and re-run code again, often with different paratmeters.</p></li>
+<li><p><strong>Console</strong>: where we write “one-off” code, such as installing libraries/packages, as well as running quick views or plots of our data.</p></li>
+<li><p><strong>Files</strong>: where our files are stored on our computer system - can help with checking file paths as well as file names, and general file management.</p></li>
+<li><p><strong>Environment</strong>: where our variables are recorded - we can find out <strong>a lot</strong> about our variables by looking at the Environment window, including data structure, data type(s) and the fields and ‘attributes’ of our variables.</p></li>
+<li><p><strong>Plots</strong>: the outputs of our graphs, charts and maps are shown here.</p></li>
+<li><p><strong>Help</strong>: where you an search for help, e.g. by typing in a function to find out its parameters.</p></li>
+</ul>
+<p>We’ll see how we use these windows as we progress through this tutorial and understand in more detail what we mean by words such as ‘attributes’ (do not get confused here with the <strong>Attribute Table</strong> for Q-GIS) and data structures.</p>
+</div>
+<div id="programming-for-data-analysis-1" class="section level4 unnumbered">
+<h4>Programming for Data Analysis</h4>
+<p>Before we get started with using R-Studio, we first need to take a few steps back and address the bigger learning curve in the room, that is: <strong>How do I program?</strong>.</p>
+<p>As stated earlier, R/R-Studio is just a tool - but to use it, you need to understand how to write code in R effectively and, of course, accurately to get your analysis to work.</p>
+<p>This means we need to learn about and understand:</p>
+<ul>
+<li>Syntax</li>
+<li>Structure</li>
+<li>Functions and Libraries/Packages</li>
+<li>Object-Oriented Programming</li>
+</ul>
+<p>Here, we provide a short introduction to the basic principles of programming, with a focus on Object Oriented Programming - this is a video you might want to re-watch after completing today’s practical.</p>
+<div id="principles-of-programming-for-data-analysis" class="section level5 unnumbered">
+<h5>Principles of Programming for Data Analysis</h5>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/2635dc14-5c0f-4ea4-b3ff-527c6e4ae5d3?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<p>In the above lecture, you heard about the different including:</p>
+<ul>
+<li><p>General structure using <strong>variables</strong> and <strong>functions</strong></p></li>
+<li><p>Importance of <strong>data types</strong> and <strong>data structures</strong></p></li>
+<li><p>The role of <strong>packages</strong> in expanding R’s functionality</p></li>
+<li><p>And a brief introduction to Object-Oriented Programin (OOP) and what <strong>classes</strong> are</p></li>
+</ul>
+<p>We can put some of these principles into action by testing some of R-Studio’s capability with some quick coding now.</p>
+<p>We’ll first start off with using <strong>R-Studio’s console</strong> to test out some of R’s inbuilt functionality by creating a dummy dataset that we’ll be able to analyse.</p>
+<p>The video below provides an overview of the short tutorial with additional explanations, so please watch this either prior to or whilst you complete the following instructions</p>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/2635dc14-5c0f-4ea4-b3ff-527c6e4ae5d3?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<div class="codetime">
+<p><strong>Analysing a vector, a matrix and a dataframe in R-Studio</strong></p>
+<p>In your R-Studio console, you should see a prompt sign - <strong>&gt;</strong> to the left - this means we’re ready to start writing code (a bit like earlier in the shell).</p>
+<p><strong>Note</strong><br>
+Anything that appears as red in the command line means it is an error (or a warning) so you will likely need to correct your code. If you see a <code>&gt;</code> on the left it means you can type in your next line, a <code>+</code> means that you haven’t finished the previous line of code. As will become clear, <code>+</code> signs often appear if you don’t close brackets or you did not properly finish your command in a way that R expected.</p>
+<p>In your console, go ahead and conduct some quick maths:</p>
+<ol style="list-style-type: decimal">
+<li>Type in <code>1234 * 56789</code> into the console.</li>
+</ol>
+<p>Once you press return, you should see the answer of 70077626 returned below.</p>
+<p>Great.</p>
+<p>Rather than using numbers and values, it is often easier to assign numbers (or groups of them) a memorable name for easy reference later. In R terminology this is called <strong>creating an object</strong> and this object becomes stored as a <strong>variable</strong>. Let’s try this:</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Type in <code>our_variable &lt;- "This is our first variable"</code> into the console and execute.</li>
+</ol>
+<p>You will see nothing is returned in the console - but if you now check your Environment window, it has now appeared as a new value.</p>
+<p>We have just stored our sentence, which is a <strong>string</strong> object (denoted by a) the use of <strong>" "</strong> and b) the fact it uses characters), into our computer’s memory, as our first variable.</p>
+<p>We do this by using the <code>&lt;-</code> symbol is used to assign the value to the variable name you have given.</p>
+<p>R stores these objects as variables in your computer’s RAM so they can be processed quickly. Without saving (we will come onto this below) these variables will be lost if you close R (or it crashes).</p>
+<p>Now we have a variable, we can do a few things with it.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Type in <code>our_variable</code> into the console and execute.</li>
+</ol>
+<p>You should see our entire sentence returned - and enclosed in <strong>""</strong>. By entering our variable into the console, we have simply asked R to return our variable to us.</p>
+<p>We can also ask R to <strong>print</strong> our variable to get the same output:</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Type in <code>print(our_variable)</code> into the console and execute.</li>
+</ol>
+<p>We have just used our first function: <code>print</code>.</p>
+<p>Using functions, we can also ask R questions about our variable - for example, checking what data type it is (yes, we know it’s a string, but no harm in asking!).</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Type in <code>typeof(our_variable)</code> into the console and execute.</li>
+</ol>
+<p>You should see the answer: <strong>“character”</strong>. For high-level objects that involve (more complicated) data structures, such as when we load a csv into R as a <strong>data frame</strong>, we are also able to check what <strong>class</strong> our object is, as follows:</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Type in <code>class(our_variable)</code> into the console and execute.</li>
+</ol>
+<p>You’ll get the same answer - <strong>“character”</strong> - because both its class and type are the same (our variable is not exactly complicated).</p>
+<p>We can also ask how long our variable is - in this case, as a character, we’ll find out how many different <strong>sets</strong> of characters (strings) are stored in our variable.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Type in <code>length(our_variable)</code> into the console and execute.</li>
+</ol>
+<p>You should get the answer <strong>1</strong> - as we only have one set of characters.</p>
+<p>We can also ask how long this set of characters is, i.e. ask how long the string contained by our variable is.</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Type in <code>nchar(our_variable)</code> into the console and execute.</li>
+</ol>
+<p>You should get an answer of <strong>26</strong>.</p>
+<p>Let’s go ahead and test these two functions a little further by creating a new variable:</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Type in <code>our_second_variable &lt;- c("This is our second variable", "It has two parts to it")</code> into the console and execute.</li>
+</ol>
+<p>In this piece of code, we’ve created a new variable using the <strong>c</strong> function in R, that stands for <strong>"combine values into a vector or list</strong>.</p>
+<p>We’ve provided that function with two sets of strings, using a <strong>comma</strong> to separate our two strings - all contained within the function’s <strong>()</strong>.</p>
+<p>You should now see a new variable in your Environment window which tells us it’s a) chr: characters, b) contains 2 items, and c) lists those items.</p>
+<p>Let’s now try both our <strong>length()</strong> and <strong>nchar()</strong> on our new variable and see what the results are.</p>
+<p>Did you find a difference?</p>
+<p>You should have seen that the length function now returned a <strong>2</strong> and the nchar returned two values of <strong>27 and 22</strong>.</p>
+<p>There is one final function that we often want to use with our variables when we are first exploring them, which is <code>attributes()</code> - as our variables are very simple, they currently do not have any attributes (you are welcome to type in the code and try) but it is a really useful function, which we’ll come across later on.</p>
+<p>For, we’ll now just go for one more set of experimenting with using the console.</p>
+<p>First, let’s remove our current variables:</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Type <code>rm(our_variable, our_second_variable)</code> into the console and execute.</li>
+</ol>
+<p>You should now see we no longer have any variables in our window - we just used the <code>rm()</code> function to <strong>remove</strong> these variables from our environment.</p>
+<p>Let’s create two more variables for experimenting with:</p>
+<ol start="11" style="list-style-type: decimal">
+<li><p>Type in <code>ten &lt;- 10</code> into the console and execute.</p></li>
+<li><p>Type in <code>twelve &lt;- 12</code> into the console and execute.</p></li>
+</ol>
+<p>We’ve now stored two <strong>numbers</strong> into our environment. Go ahead and check what <strong>class</strong> and <strong>type</strong> these two variables have been stored as: you should see we get slightly different answers to these, with a <strong>numeric</strong> for class and <strong>double</strong> for type.</p>
+<p>Let’s do some maths with our variables:</p>
+<ol start="13" style="list-style-type: decimal">
+<li>Type in <code>ten * twelve</code> into the console and execute.</li>
+</ol>
+<p>You should see the output in the console of <strong>120</strong>.</p>
+<p>Whilst this maths may look trivial, it is, in fact, extremely powerful as it shows how <strong>objects</strong> can be treated in the same way as the numbers they contain.</p>
+<ol start="14" style="list-style-type: decimal">
+<li>Next, type in <code>ten * twelve * 8</code> into the console and execute.</li>
+</ol>
+<p>You should get an answer of 960. As you can see, we can mix variables with raw values without any problems.</p>
+<p>We can also store the output of variable calculations as a new variable and thus create a new object:</p>
+<ol start="15" style="list-style-type: decimal">
+<li><p>Type in <code>output &lt;- ten * twelve * 8</code> into the console and execute.</p></li>
+<li><p>Ask the computer to return the variable <code>output</code>. You should see we get the same value as the earlier equation.</p></li>
+</ol>
+<p>Go ahead and remove our current variables. You can check to see if there are any active variables by using the <code>ls()</code> command.</p>
+<ol start="17" style="list-style-type: decimal">
+<li>Type in <code>ls</code> into the console and execute.</li>
+</ol>
+<p>You should now see we have no active variables.</p>
+<p>The objects we created and played with above are very simple: we have stored either simple strings or integers - but the real power of R comes when we can begin to execute functions on objects.</p>
+<p>As we heard in our lecture, R accepts <strong>four</strong> main types of data structures: <strong>vectors</strong>, <strong>matrices</strong>, <strong>data frames</strong>, and <strong>lists</strong>.</p>
+<p>So far, we have dabbled with a single item or a dual item <strong>vector</strong> - for the latter, we used the <code>c()</code> function to allow us to combine our values into a set or list.</p>
+<p>We can use this same function to create and build more complex objects - which we can then use with some specific data manipulation techniques (<strong>selection and slicing</strong>) as well as common <strong>statistical functions</strong>.</p>
+<p>Let’s try this out using a simple example - the total number of pages and publication dates of the various editions of Geographic Information Systems and Science (GISS):</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Book Edition</th>
+<th align="left">Year</th>
+<th align="left">Total Number of Pages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">2001</td>
+<td align="left">454</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">2005</td>
+<td align="left">517</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">2011</td>
+<td align="left">560</td>
+</tr>
+<tr class="even">
+<td align="left">4th</td>
+<td align="left">2015</td>
+<td align="left">477</td>
+</tr>
+</tbody>
+</table>
+<p>We will store the above table as data - but let’s see</p>
+<p><strong>Vector</strong></p>
+<p>A vector is the most common and basic data structure in R and is pretty much the workhorse of R. Technically, vectors can be one of two types:</p>
+<ul>
+<li>Atomic vectors</li>
+<li>Lists</li>
+</ul>
+<p>Although the term “vector” most commonly refers to the atomic types and not to lists. Vectors are a collection of elements that are mostly of either character, logical integer or numeric data types.</p>
+<p>Let’s create our first official vector, detailing the different total page numbers for GISS:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">giss_page_no &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">454</span>, <span class="dv">517</span>, <span class="dv">560</span>, <span class="dv">477</span>)</a></code></pre></div>
+<p>Let’s check the results.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">print</span>(giss_page_no)</a></code></pre></div>
+<pre><code>## [1] 454 517 560 477</code></pre>
+<p>We can see we have our total number of pages collected together in a single vector. We could if we want, execute some statistical functions on our vector object:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">mean</span>(giss_page_no)</a></code></pre></div>
+<pre><code>## [1] 502</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">median</span>(giss_page_no)</a></code></pre></div>
+<pre><code>## [1] 497</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">range</span>(giss_page_no)</a></code></pre></div>
+<pre><code>## [1] 454 560</code></pre>
+<p>We now now the average number of pages the GISS book has contain is 497 pages - truly thrilling stuff, but hopefully an easy example to get onboard with.</p>
+<p>But let’s seee how we can build on our vector object by adding in a second vector object that details the relevant years of our book - note, I entered the total number of pages in a specific order to correspond to the dates, as outlined by the table above.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">giss_year &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2001</span>, <span class="dv">2005</span>, <span class="dv">2011</span>, <span class="dv">2015</span>)</a></code></pre></div>
+<p>Again, let’s check the results.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">print</span>(giss_year)</a></code></pre></div>
+<pre><code>## [1] 2001 2005 2011 2015</code></pre>
+<p>On their own, the two vectors do not mean much - but we can use the same <code>c()</code> function to combine the two together to create a matrix.</p>
+<p><strong>Matrix</strong></p>
+<p>In R, matrices are simply an extension of the numeric or character vectors. They are not a separate type of object per se but simply a vector that has two dimensions. That is they contain both <strong>rows</strong> and <strong>columns</strong>. As with atomic vectors, the elements of a matrix must be of the same data type.</p>
+<p>As both our page numbers and our years are integers, we can add them together to create a matrix using the <code>matrix()</code> function:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">giss_year_nos &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(giss_year, giss_page_no), <span class="dt">ncol=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co"># note the inclusion of a new argument to our matrix: ncol=2</span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co">#this stands for &quot;number of columns&quot; and we want two.</span></a></code></pre></div>
+<p>Again, let’s check the results.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">print</span>(giss_year_nos)</a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,] 2001  454
+## [2,] 2005  517
+## [3,] 2011  560
+## [4,] 2015  477</code></pre>
+<p>The thing about matrices - as you might see above - is that, for us, they don’t have a huge amount of use. We do not have - as a result, we tend to primarily use <strong>Data Frames</strong> in R</p>
+<p><strong>Data Frame</strong></p>
+<p>A data frame is a very important data type in R. It’s pretty much the de facto data structure for most tabular data and what we use for statistics.</p>
+<p>A data frame is a special type of list where every element of the list has same length (i.e. data frame is a “rectangular” list).</p>
+<p>Data frames can have additional attributes such as rownames(), which can be useful for annotating data, like subject_id or sample_id. But most of the time they are not used.</p>
+<p>Some additional information on data frames:</p>
+<p>Usually created by read.csv() and read.table(), i.e. when importing the data into R.
+Assuming all columns in a data frame are of same type, data frame can be converted to a matrix with data.matrix() (preferred) or as.matrix(). Otherwise type coercion will be enforced and the results may not always be what you expect.
+Can also create a new data frame with data.frame() function.
+Find the number of rows and columns with nrow(dat) and ncol(dat), respectively.
+Rownames are often automatically generated and look like 1, 2, …, n. Consistency in numbering of rownames may not be honored when rows are reshuffled or subset.</p>
+<p>Let’s go ahead and create a new data frame to store our matrix</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">giss_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(giss_year_nos)</a></code></pre></div>
+<p>We now have a data frame that we can actually finally view</p>
+<p>In your <strong>console</strong>, type: <code>View(giss_df)</code></p>
+<p>You should now see a table pop-up as a new tab on your script window.</p>
+<p>Rename. Mix data frame with vectors</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Create a vector with our new column names</span></a>
+<a class="sourceLine" id="cb17-2" title="2">new_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;page_nos&quot;</span>)</a>
+<a class="sourceLine" id="cb17-3" title="3"></a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="co">#Rename</span></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="kw">names</span>(giss_df) &lt;-<span class="st"> </span>new_names</a></code></pre></div>
+<p>You can go and check your data frame again and see the new names.</p>
+<p>Can take different data types - we can go ahead and add the edition</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Create a vector with our new column names</span></a>
+<a class="sourceLine" id="cb18-2" title="2">edition &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1st&quot;</span>, <span class="st">&quot;2nd&quot;</span>, <span class="st">&quot;3rd&quot;</span>, <span class="st">&quot;4th&quot;</span>)</a>
+<a class="sourceLine" id="cb18-3" title="3"></a>
+<a class="sourceLine" id="cb18-4" title="4"><span class="co">#Rename</span></a>
+<a class="sourceLine" id="cb18-5" title="5">giss_df<span class="op">$</span>edition &lt;-<span class="st"> </span>edition</a></code></pre></div>
+<p>View</p>
+</div>
+<p>We’ve just had a bit of fun playing with the R console and seeing how we can store variables and access information about them. Furthermore, we’ve had a look at the different types of But this really doesn’t offer the functionality that we want for our work - what we really want to start to do is build <strong>scripts</strong> and add start analysing some data!</p>
+<p>Before we leave the console (and to be honest, we won’t exactly leave it behind), we’ll enter one last line of code for now:</p>
+<p>. Type in <code>install.packages("tidyverse")</code> into the console and execute.</p>
+<p>Now we’re ready to move onto our next section.</p>
+</div>
+</div>
+<div id="tips" class="section level4 unnumbered">
+<h4>Tips</h4>
+<ol style="list-style-type: decimal">
+<li>R is case sensitive so you need to make sure that you capitalise everything correctly if required.</li>
+<li>The spaces between the words don’t matter but the positions of the commas and brackets do. Remember, if you find the prompt, <code>&gt;</code>, is replaced with a <code>+</code> it is because the command is incomplete. If necessary, hit the escape (esc) key and try again.</li>
+<li>It is important to come up with good names for your objects. In the case of the <code>friends_dob</code> object we used a underscore <code>_</code> to separate the words. It is good practice to keep the object names as short as posssible so we could have gone for <code>FriendsDob</code> or <code>f_dob</code>. Be aware: you cannot start an object name with a number!</li>
+<li>If you press the up arrow in the command line you will be able to edit the previous lines of code you inputted.</li>
+</ol>
+</div>
+<div id="recap" class="section level4 unnumbered">
+<h4>Recap</h4>
+<p>In this section you have:</p>
+<ol style="list-style-type: decimal">
+<li>Entered your first commands into the R command line interface.</li>
+<li>Created objects in R.</li>
+<li>Created a vector of values (the <code>friends_dob</code> object).</li>
+<li>Executed some simple R functions.</li>
+<li>Created a data frame (called <code>friends</code>).</li>
+</ol>
+<p>TAKE A BREAK
+.</p>
+</div>
+<div id="installing-and-using-librariespackages-for-data-analysis" class="section level4 unnumbered">
+<h4>Installing and Using Libraries/Packages for Data Analysis</h4>
+<p>As you will have heard in our lecture, our common Data Analysis languages, including Python and R, have developed large community bases and as a result there are significant amount of help and support resources for those working in data science.</p>
+<p><em>Ultimately for (spatial) data science, it really does not matter which one you learn – but both is even better! To do so, understanding the basic principles of programming, as explained above, really helps.</em></p>
+<p>Beyond help and support, these large community bases havev been essential for expanding the utility of a programming language for specific types of data analysis.</p>
+<p>This is because of how programming languages work – they have a core library of commands (also known as functions) to do certain things, e.g. calculate the mean of a dataset.</p>
+<p>But to do more specific or specialized analysis, such as create a buffer around a point, a function needs to be written to enable this.</p>
+<p>You either need to write the function yourself – or hope that someone else has written it – plus you need to know that there is the supporting functions around it. E.g. your code can “read” your spatial data and know a) its spatial and b) the projection system its in to calculate a distance.</p>
+<p>Without this, you won’t be able to run your function or do your analysis.</p>
+<p>These community bases have identified these gaps, such as for spatial data reading and analysis, and spent considerable amount of time writing these functions and supporting functions to add to the core library.</p>
+<p>These functions often get packaged into an additional library (or can be called a package) that you add to your own core library by installing this library to your computer AND then importing it to your work through your script.</p>
+<p>One of the main ‘libraries’ or collection of ‘libraries’ for R-Studio and data analysis is called the TidyVerse. The code you just ran asked <strong>R-Studio</strong> to fetch and install the <code>tidyverse</code> into your R-Stuiio</p>
+<p>One thing to be aware of overwrting - but we’ll come to this a bit later and show you how to avoid this.</p>
+</div>
+</div>
+<div id="the-tidyverse-philosophy-and-principles" class="section level3 unnumbered">
+<h3>The TidyVerse Philosophy and Principles</h3>
+<p>Over the past weeks a lot of information has come your way, diving deep into the world of Spatial Data Science. However, whilst you are slowly becoming proficient in using spatial data, there in terms of how they are <strong>structured</strong> and <strong>organised</strong>.</p>
+<p>This is crucial for when you are moving on to working on your own projects where you have to source data yourselves: the vast majority of the data you will find in the public domain (or private domain for that matter) will be what’s becoming colluqially called: dirty data.</p>
+<p>With dirty data we mean data that needs some form of pre-processing, cleaning, and linkage before you can use it for your analysis. Think back to the Ward and Borough Population data</p>
+<p>In the following, you will learn a consistent way to structure your data in R: tidy data. Tidy data, as formalised by R Wizard Hadley Wickham in his contribution to the Journal of Statistical Software is not only very much at the core of the tidyverse R package, but also of general importance when organising your data. In the words, of the Wizard:</p>
+<p>Once you have tidy data and the tidy tools provided by packages in the tidyverse, you will spend much less time munging data from one representation to another, allowing you to spend more time on the analytic questions at hand.</p>
+<p>What do tidy data look like?</p>
+<p>You can represent the same underlying data in multiple ways. The example below, taken from the the tidyverse package and described in the R for Data Science book, shows that the same data can organised in four different ways.</p>
+<p>None of these representations are wrong per se, however, not are equally easy to use. Only Table <strong>1</strong> can be considered as tidy data because it is the only table that adheres to the three rules that make a dataset tidy:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column.</li>
+<li>Each observation must have its own row.</li>
+<li>Each value must have its own cell.</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:05-figure-hadley-wickham"></span>
+<img src="images/w4/04_a_tidy_data.png" alt="A visual representation of tidy data by [Hadley Wickham](https://r4ds.had.co.nz/tidy-data.html)." width="960" />
+<p class="caption">
+Figure 4.3: A visual representation of tidy data by <a href="https://r4ds.had.co.nz/tidy-data.html">Hadley Wickham</a>.
+</p>
+</div>
+<p>Fortunately, there are some functions in the <code>tidyr</code> and <code>dplyr</code> packages, both part of the <code>tidyverse</code> that will help us cleaning and preparing our datasets to create a <strong>tidy dataset</strong>. The most important and useful functions are:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Package</th>
+<th align="left">Function</th>
+<th align="left">Use to</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">dplyr</td>
+<td align="left">select</td>
+<td align="left">select columns</td>
+</tr>
+<tr class="even">
+<td align="left">dplyr</td>
+<td align="left">filter</td>
+<td align="left">select rows</td>
+</tr>
+<tr class="odd">
+<td align="left">dplyr</td>
+<td align="left">mutate</td>
+<td align="left">transform or recode variables</td>
+</tr>
+<tr class="even">
+<td align="left">dplyr</td>
+<td align="left">summarise</td>
+<td align="left">summarise data</td>
+</tr>
+<tr class="odd">
+<td align="left">dplyr</td>
+<td align="left">group by</td>
+<td align="left">group data into subgropus for further processing</td>
+</tr>
+<tr class="even">
+<td align="left">tidyr</td>
+<td align="left">pivot_longer</td>
+<td align="left">convert data from wide format to long format</td>
+</tr>
+<tr class="odd">
+<td align="left">tidyr</td>
+<td align="left">pivot_wider</td>
+<td align="left">convert long format dataset to wide format</td>
+</tr>
+</tbody>
+</table>
+<p>The tidyverse package is in fact a collection of packages that are specifically designed for data science tasks. Where in many cases different packages work all slightly differently, all packages of the tidyverse share the underlying design philosophy, grammar, and data structures. The ggplot2 package that you worked with last week is actually one of the core package of the tidyverse. This also means that if you load the tidyverse package through library(tidyverse) you directly have access to all the functions that are part of the ggplot2 package and you do not have to load the ggplot2 package seperately. Because the tidyverse consists of multiple packages, it may take a little while before everything is installed so be patient! For more information on tidyverse, have a look at <a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a>.</p>
+<p>Whilst we’ve used the above code to install , each time we start a new script , we’ll need to load the tidyverse . We are going to show all of this in our next Prcatical, which gets you to analyse crime whilst putting into place everything we’ve been dicussing today.</p>
+<p>Once we have tidy data, we can begin <strong>Exploratory Data Analysis</strong> - which we’ll see in our pratical below.</p>
+</div>
+<div id="practical-3-analysing-crime-in-2020---a-statistical-approach" class="section level3 unnumbered">
+<h3>Practical 3: Analysing Crime in 2020 - A Statistical Approach</h3>
+<p>Wow, we’ve got through a lot - and barely even started our practical! But We now have our files ready for analysis using R-Studio.</p>
+</div>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">4.0.1</span> </h3>
+<div id="exploratory-data-analysis-and-basic-statistics" class="section level4 unnumbered">
+<h4>Exploratory Data Analysis and Basic Statistics</h4>
+</div>
+<div id="setting-up-r-studio-for-geog0030" class="section level4 unnumbered">
+<h4>Setting Up R-Studio for GEOG0030</h4>
+<p>In the previous section, R may have seemed fairly labour-intensive. We had to enter all our data manually and each line of code had to be written into the command line. Fortunately this isn’t routinely the case. In RStudio look to the top left corner and you will see a plus symbol, click on it and select <strong>R Script</strong>.</p>
+<p>This should give you a blank document that looks a bit like the command line. The difference is that anything you type here can be saved as a script and re-run at a later date.</p>
+<div class="figure" style="text-align: center"><span id="fig:01-rstudio-interface-script-open"></span>
+<img src="images/w4/04_rstudio_interface_script.png" alt="The RStudio interface with a new script." width="1090" />
+<p class="caption">
+Figure 4.4: The RStudio interface with a new script.
+</p>
+</div>
+<p>When writing a script it is important to keep notes about what each step is doing. To do this the hash (<code>#</code>) symbol is put before any code. This comments out that particular line so that R ignores it when the script is run. Type the following into the scripting window:</p>
+<p><strong>Creating a new project</strong></p>
+<p><strong>Setting up our script</strong></p>
+<p><strong>Setting Up Our Directory</strong></p>
+<p>Since we are now reading and writing files it is good practice to tell R what your working directory is. Your working directory is the folder on the computer where you wish to store the data files you are working with. You can create a folder called <code>POLS0008</code>, for example. If you are using RStudio, on the lower right of the screen is a window with a <strong>Files</strong> tab. If you click on this tab you can then navigate to the folder you wish to use. You can then click on the <strong>More</strong> button and then <strong>Set as Working Directory</strong>. You should then see some code similar to the below appear in the command line. It is also possible to type the code in manually.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># set the working directory path to the folder you wish to use</span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="co"># you may need to create the folder first if it doesn&#39;t exist</span></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw">setwd</span>(<span class="st">&#39;~/POLS0008&#39;</span>) </a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="co"># note the single / (\\ will also work)</span></a></code></pre></div>
+<div class="note">
+<p><strong>Note</strong><br/>
+Please ensure that <strong>folder names</strong> and <strong>file names</strong> do not contain spaces or special characters such as <code>*</code> <code>.</code> <code>"</code> <code>/</code> <code>\</code> <code>[</code> <code>]</code> <code>:</code> <code>;</code> <code>|</code> <code>=</code> <code>,</code> <code>&lt;</code> <code>?</code> <code>&gt;</code> <code>&amp;</code> <code>$</code> <code>#</code> <code>!</code> <code>'</code> <code>{</code> <code>}</code> <code>(</code> <code>)</code>. Different operating systems and programming languages deal differently with spaces and special characters and as such including these in your folder names and file names can cause many problems and unexpected errors. As an alternative to using white space you can use an underscore <code>_</code> if you like.</p>
+</div>
+<p><strong>Loading Data</strong></p>
+<p>Until now we have generated the data used in the examples above. One of R’s great strengths is its ability to load in data from almost any file format. Comma Separated Value (<code>csv</code>) files are our preferred choice. These ca</p>
+<p>print()
+head()
+tail()</p>
+<p>ncol()
+nrow()
+names()</p>
+<p>subset $</p>
+<p>slice</p>
+</div>
+<div id="recap-1" class="section level4 unnumbered">
+<h4>Recap</h4>
+<p>In this section you have learnt how to:</p>
+<ol style="list-style-type: decimal">
+<li>Create an R script.</li>
+<li>Load a <code>csv</code> into R, perform some analysis, and write out a new <code>csv</code> file to your
+working directory.</li>
+<li>Subset R data frames by name and also column and/or row number.</li>
+</ol>
+<hr />
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Understand the basics of programming and why it is useful for data analysis</li>
+<li>Recognise the differences and purpose of a console command versus the creation of a script</li>
+<li>Explain what a library/package is and how to use them in R/R-Studio</li>
+<li>Explain the TidyVerse philosophy and why it is useful for us as data analysts</li>
+<li>Wrangle and mangle tabular data to prepare it for analysis</li>
+<li>Conduct basic descriptive statistics and simple linear regression using R-Studio and R</li>
+</ul>
+</div>
+</div>
+<div id="acknowledgements-7" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>Acknowledgements are made in appropriate sections, but overall this week, as evident, has utilised the Q-GIS documentation extensively.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cartography-and-visualisation-i.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programming-for-giscience-and-spatial-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jo-wilkin/GEOG0030/edit/master/04-week04.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/jo-wilkin/GEOG0030/raw/master/04-week04.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

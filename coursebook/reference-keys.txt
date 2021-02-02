@@ -1,7 +1,8 @@
+fig:04-figure-hadley-wickham
 geocomputation-an-introduction
 giscience-and-gis-software
 cartography-and-visualisation-i
-programming-for-statistical-analysis
+programming-for-data-analysis-using-r-and-r-studio
 programming-for-giscience-and-spatial-analysis
 analysing-spatial-patterns-i-spatial-auto-correlation-regression
 analysing-spatial-patterns-ii-clusters

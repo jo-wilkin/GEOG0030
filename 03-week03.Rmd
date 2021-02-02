@@ -2,7 +2,7 @@
 
 Welcome to Week 3 in Geocomputation! 
 
-Well done on making it through Week 2 - and welcome to wht is a more practical introduction to GIScience where we will be focusing on: **how to make a good map**.
+Well done on making it through Week 2 - and welcome to what is a more practical introduction to GIScience where we will be focusing on: **how to make a good map**.
 
 It's not quite as "light" as promised, but this and the previous week will hold you in good stead as you come to learn about more technical analytical techniques after Reading Week.
 
@@ -639,7 +639,7 @@ As I said at the start of last week's practical:
 
 > We're going to start cleaning (the majority of) our data from the get-go. 
 
-However, with our crime data, the processing that is required from you right now is exhasutive to do manually - and far (far!) easy to do using programming. 
+However, with our crime data, the processing that is required from you right now is exhaustive to do manually - and far (far!) easy to do using programming. 
 
 Essentially, all of our data that we will download for crime in London will be provided in individual csvs, according first to month, and then to the police force as so:
 
