@@ -1785,11 +1785,15 @@ Beyond the assignment, just take a look at your bar chart and how the distributi
 
 Well that's pretty cool, huh?! I wonder what happened in March to make theft from a person decrease so substantially?
 
-Next week, we'll be doing **a lot** more with our dataset - including **a lot more** data wrangling and of course spatial anlaysis, but hopefully this week has shown you want you can achieve with just a few lines of code.
-
 We've managed to take a dataset of over 1 million records and clean and filter it to provide a chart that actually shows the potential impact of the COVID-19 lockdown on theft crime in London.
 
 Of course, there is a lot more research and  exploratory data analysis we'd need to complete before we could really substantiate our findings, but this first chart is certainly a step in the right direction!
+
+Next week, we'll be doing **a lot** more with our dataset - including **a lot more** data wrangling and of course spatial anlaysis, but hopefully this week has shown you want you can achieve with just a few lines of code.
+
+**Now, make sure to save your script, so we can return to it next week.**
+
+You do not need to save your workspace - but can do so if you'd like. Saving the workspace will keep any variables generated during your current session saved and available in a future session.
 
 ***
 #### Extension Activity: Mapping Other Crime Type Distributions Across London {-}
