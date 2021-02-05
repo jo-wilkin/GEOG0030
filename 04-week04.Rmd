@@ -1832,7 +1832,7 @@ As highlighted earlier, your only key reading for this week is to read through t
 
 For this week, I'd highly recommend reading more about why we use [Projects](https://r4ds.had.co.nz/workflow-projects.html), whilst this section tells us more about [Scripts](https://r4ds.had.co.nz/workflow-scripts.html). 
 
-In addition, you can look at Sections: 1, 2, 4, 11 and 12. I'd stick with these sections for now, but have a quick glance at what else is available in the book. We'll be looking at Data Transformation (5) and Visualisation (3) next week, plus more on Exploratory Data Analysis (7). 
+In addition, you can look at Sections: 1, 2, 4, 11 and 12. I'd stick with these sections for now, but have a quick glance at what else is available in the book. We'll be looking at Data Transformation (5) and Visualisation (3) next week, plus more on Exploratory Data Analysis (7) in Week 6. 
 
 Don't worry about completing the exercises - unless you would like to!
 :::

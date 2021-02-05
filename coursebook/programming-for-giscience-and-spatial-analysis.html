@@ -220,6 +220,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
 </ul></li>
 <li class="part"><span><b>Dissertation Help</b></span></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html"><i class="fa fa-check"></i>Extra resources for help with Quantitative Dissertations</a><ul>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#video-guidance-on-quantitative-dissertations"><i class="fa fa-check"></i>Video Guidance on Quantitative Dissertations</a></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#dataset-guidance"><i class="fa fa-check"></i>Dataset Guidance</a></li>
+</ul></li>
 <li class="part"><span><b>Alternate Tutorials</b></span></li>
 <li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
 <li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i>A short introduction to ArcGIS Online</a></li>
@@ -252,11 +256,160 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="programming-for-giscience-and-spatial-analysis" class="section level1">
 <h1><span class="header-section-number">5</span> Programming for GIScience and Spatial Analysis</h1>
-<p><strong>Content for this week will be released at 10am on the 9th February 2021.</strong></p>
-<!-- ## Exploratory Spatial Data Analysis -->
-<!-- [GIS Software - a more thorough introduction]~~ (Postponed until Week 5) -->
-<!-- :::note -->
-<!-- **Spatial Analysis, Statistics, Spatial Statistics and Geostatistics**<br> -->
+<p>Welcome to Week 5 in Geocomputation!</p>
+<p>This week, we will put everything we’ve learnt into practice over this first half of term and being that I would like you to complete alongside your seminar group over Reading Week.</p>
+<p>This week is, again, heavily practical oriented - with our practical taking up the majority of our time this week. You’ll find in this practical, many additional explanations of key programming concepts - such as <strong>selection, slicing and pipes</strong> - integrated within it.</p>
+<p>As always, we have broken the content into smaller chunks to help you take breaks and come back to it as and when you can over the next week.</p>
+<!-- ### Week 5 in Geocomp {-} -->
+<!-- ```{r 05-welcome, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE} -->
+<!-- library(vembedr) -->
+<!-- embed_msstream('') %>% use_align('center') -->
+<!-- ``` -->
+<!-- <center>[Video on Stream]()</center><br> -->
+<!-- This week's content introduces you to the foundational concepts associated with **Programming for Spatial Data Analysis**, where we have three new areas of work to focus on: -->
+<!-- 1. Data wrangling in programming (using indexing, selection and slicing) -->
+<!-- 2. Using spatial libraries in R to **store and manage** spatial data -->
+<!-- 3. Using visualisation libraries in R to **map** spatial data -->
+<!-- This week's content is split into **4** parts: -->
+<!-- 1. [Spatial Analysis for Data Science] (20 minutes) -->
+<!-- 2. [Spatial Analysis Software and Programming] (20 minutes) -->
+<!-- 3. [Spatial Analysis in R-Studio] (40 minutes) -->
+<!-- 4. [Practical 4: Analysing Crime in 2020 in London] (30 minutes) -->
+<!-- This week, we have **3 short lectures**, and then several **instructional videos** to help you with the completion of this week's practical.  -->
+<!-- A single **Key Reading** is found towards the end of the workshop.  -->
+<!-- This week, instead of **assingments**, you have a **mini-project** to complete over Reading Week, which will be introduced at the end of the practical. -->
+<!-- **Part 4** is, as usual, the main part of analysis for our Practical for this week - all programming this week is within Part 4, which is a little longer than usual to account for this. -->
+<!-- If you have been unable to download R-Studio Desktop or cannot access it via Desktop\@UCL Anywhere, you will have access to our R-Studio Server website instead. Instructions on how to access this are provided in the previous week's workshop. -->
+<!-- :::puzzle -->
+<!-- **Learning Objectives**<br><br> -->
+<!-- By the end of this week, you should be able to: -->
+<!-- * Understand how spatial analysis is being used within data science applications -->
+<!-- * Recognise the differences and uses of GUI GIS software versus CLI GIS software -->
+<!-- * Understand which libraries are required for spatial analysis in R/R-Studio -->
+<!-- * Conduct basic data wrangling in the form of selection and slicing -->
+<!-- * Create a map using the `tmap` and `ggplot` visualisation libraries -->
+<!-- ::: -->
+<!-- We will continue to build on the data analysis we completed last week and look to further understand crime in London by looking at its prevalence on a month-by-month basis **but this time, from a spatial perspective**. -->
+<!-- *** -->
+<!-- ### Spatial Analysis for Data Science -->
+<!-- This and last week is your first introduction in our module to using R-Studio for the management and and analysis of spatial data. -->
+<!-- As you'll find out below, R-Studio - however we are now seeing the use of programming - hence our module on Geocomputation. -->
+<!-- The increasing popularity of data science is having a signficant impact on how we "do" spatial anaysis as more and more data scientists become involved with spatial analysis as, for many of these datasets, location is a key component for its management, processing and analysis - after all, **everything happens somewhere**.  -->
+<!-- But whilst we know that we , what are the applications of spatial analysis for data science? -->
+<!-- not too different from spatial analysis using GIS software - however the scale at which , is opening up our analysis to many different applications -and of course novel datasets. -->
+<!-- Using spatial analysis for data science: -->
+<!-- **1. Analysis of distributions, patterns, trends and relationships** -->
+<!-- see Carto's introduction video to their Spatial Data Science  -->
+<!-- Network analysis is one underpins - osmething you'll come across in but there is a short optional tutorial on network analysis in R -->
+<!-- **Carto and COVID** -->
+<!-- *They seem to have a bit of cash make great videos.* -->
+<!-- ```{r 05-carto-covid-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE} -->
+<!-- library(vembedr) -->
+<!-- embed_youtube('FomlfXwdwLc') %>% use_align('center') -->
+<!-- ``` -->
+<!-- **2. Supplementing the analysis of traditional datasets for augmented information**  -->
+<!-- An example combining geodemographic classification (Week 9) with big data information on mobility (e.g. Mobile Phone Data, Travel Card data) to understand different types of commuter flow. -->
+<!-- The abstract -->
+<!-- >Plentiful studies have discussed the potential applications of contactless smart card from understanding interchange patterns to transit network analysis and user classifications. However, the incomplete and anonymous nature of the smart card data inherently limit the interpretations and understanding of the findings, which further limit planning implementations. Geodemographics, as ‘an analysis of people by where they live’, can be utilised as a promising supplement to provide contextual information to transport planning. This paper develops a methodological framework that conjointly integrates personalised smart card data with open geodemographics so as to pursue a better understanding of the traveller’s behaviours. It adopts a text mining technology, latent Dirichlet allocation modelling, to extract the transit patterns from the personalised smart card data and then use the open geodemographics derived from census data to enhance the interpretation of the patterns. Moreover, it presents night tube as an example to illustrate its potential usefulness in public transport planning. -->
+<!-- Yunzhe Liu & Tao Cheng (2020) Understanding public transit patterns with open geodemographics to facilitate public transport planning, Transportmetrica A: Transport Science, 16:1, 76-103, DOI: 10.1080/23249935.2018.1493549 -->
+<!-- **3. Creation of new datasets** -->
+<!-- utlising big data and traditional spatial analytics to .An example is from my old Worldp - a cheesey but great video made by Microsoft about the group is available below. -->
+<!-- **Worldpop** -->
+<!-- ```{r 05-worldpop-video, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE} -->
+<!-- library(vembedr) -->
+<!-- embed_youtube('Zta7FwUo5GA') %>% use_align('center') -->
+<!-- ``` -->
+<!-- **4. Creation of new methods and datasets** -->
+<!-- Recently, adaptation of the DB-Scan algorithm (Week 7) to delieante outlines of urban strucutres (my own research, a prototype methodology is available in the Optional Tutorials at the end of this moduel). -->
+<!-- At the heart of these  -->
+<!-- What distinguishes data science from traditional data analysis is that data scientists are able extract knowledge from these substantial datasets by using an intersection of three skills: hacking skills (or computational skills), statistical analysis and domain expertise. -->
+<!-- In our module, we are acquriing all three of these at the same time -->
+<!-- These computational skills - in the form of 1) programming, 2) distributed computing and 3) large-scale (complex) analysis - often set these data analysts apart from their traditional counterparts. -->
+<!-- ### Spatial Analysis Software and Programming -->
+<!-- As we've learnt, the increasing popularity of data science is having a signficant impact on how we “do” spatial anaysis, with a focus on using programming as our primary tool rather than traditional GIS-GUI software. -->
+<!-- GUI-GIS software still has its place and purpose, particularly in the wider GIScience and GIS industry - but when we come to think of data science, the **command line** has become the default. -->
+<!-- Beyond, one of the core **openness and reproducibility** -->
+<!-- We can focus on the **core principles of data science** to explain why programming has become this primary tool for spatial analysis within *data science** and **research** and how it differentiates rogramming from traditional GUI-GIS. -->
+<!-- Brunsdon, C., Comber, A. Opening practice: supporting reproducibility and critical spatial data science. J Geogr Syst (2020). https://doi.org/10.1007/s10109-020-00334-2 -->
+<!-- > Notions of scientific openness (open data, open code and open disclosure of methodology), collective working (sharing, collaboration, peer review) and reproducibility (methodological and inferential transparency) have been identified as important considerations for critical data science and for critical spatial data science within the GIScience domai -->
+<!-- From this, we can The key principles of data science for spatial analysis research are: -->
+<!-- **1. Repeatability**: the idea that a given process will produce the same (or nearly the same) output given similar inputs. Instruments and procedures need to be consistent. -->
+<!-- **2. Reproducibility**: statistical reproducibility, empirical reproducibility, and computational reproducibility. An analysis is statistically reproducible when detailed information is provided about the choice of statistical tests, model parameters, threshold values, etc. An analysis is empirically reproducible when detailed information is provided about non-computational empirical scientific experiments and observations. In practice, this is enabled by making data freely available, as well as details of how the data was collected.An analysis is computationally reproducible if there is a specific set of computational functions/analyses (in data science, almost always specified in terms of source code) that exactly reproduce all of the results in an analysis. -->
+<!-- **3. Collaboration** -->
+<!-- **4. Scalability** -->
+<!-- We use these principles to review the different software avaialble  -->
+<!-- <center>**A Review of Spatial Analysis Software**</center> -->
+<!-- ```{r 05-gis-software, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE} -->
+<!-- library(vembedr) -->
+<!-- embed_msstream('3286b44f-1bd7-488a-baed-d1376e69c9f5') %>% use_align('center') -->
+<!-- ``` -->
+<!-- <center>[Slides]() | [Video on Stream]()</center> -->
+<!-- <br> -->
+<!-- We've spent two weeks using Q-GIS and now one week so far using R-Studio -->
+<!-- ### Spatial Analysis in R-Studio -->
+<!-- Two things -->
+<!-- store manage -->
+<!-- visualisae -->
+<!-- latter more dificult - layered approach plus actually have to ask to see the results of your processing that is more automatic when usig GUI Gis sofwae -->
+<!-- <center>**Using spatial data in R/R-Studio**</center> -->
+<!-- ```{r 05-r-spatial-libraries, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE} -->
+<!-- library(vembedr) -->
+<!-- embed_msstream('3286b44f-1bd7-488a-baed-d1376e69c9f5') %>% use_align('center') -->
+<!-- ``` -->
+<!-- <center>[Slides]() | [Video on Stream]()</center> -->
+<!-- <br> -->
+<!-- ### Practical 4: Analysing Crime in 2020 in London from a spatial perspective {-} -->
+<!-- #### Data Wrangling: Introducing Indexing, Slicing and Selection -->
+<!-- filter() -->
+<!-- count() -->
+<!-- group_by() != aggregate() -->
+<!-- summarize() -->
+<!-- pivot_longer() -->
+<!-- pivot_wider() -->
+<!-- Concerned that need to know and understand every function – no, you don’t. It takes time to learn R.  -->
+<!-- For example, last week clean names manually - I found out this week -->
+<!-- janitor - clean_names() -->
+<!-- <center>**Selection and slicing in R**</center> -->
+<!-- ```{r 05-selection-slicing-tutorial, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE} -->
+<!-- library(vembedr) -->
+<!-- embed_msstream('79bb3915-0085-4f6d-9829-5d97ff44d85a') %>% use_align('center') -->
+<!-- ``` -->
+<!-- <center>[Video on Stream]()</center> -->
+<!-- <br> -->
+<!-- extract only relevant columns -->
+<!-- extract only relevant rows -->
+<!-- dplyr library -->
+<!-- #### Aggregate by LSOA -->
+<!-- #### Load our LSOA population dataset -->
+<!-- #### Join to our LSOA dataset -->
+<!-- :::codetime -->
+<!-- **Joining data by attributes in programming**<br><br> -->
+<!-- **Base** -->
+<!-- merge() -->
+<!-- s a generic function whose principal method is for data frames: the default method coerces its arguments to data frames and calls the "data.frame" method. -->
+<!-- By default the data frames are merged on the columns with names they both have, but separate specifications of the columns can be given by by.x and by.y. The rows in the two data frames that match on the specified columns are extracted, and joined together. If there is more than one match, all possible matches contribute one row each. For the precise meaning of ‘match’, see match. -->
+<!-- The mydf delay data frame only has airline information by code. I’d like to add a column with the airline names from mylookup. One base R way to do this is with the merge() function, using the basic syntax merge(df1, df2). It doesn’t matter the order of data frame 1 and data frame 2, but whichever one is first is considered x and the second one is y.  -->
+<!-- If the columns you want to join by don’t have the same name, you need to tell merge which columns you want to join by: by.x for the x data frame column name, and by.y for the y one, such as merge(df1, df2, by.x = "df1ColName", by.y = "df2ColName"). -->
+<!-- You can also tell merge whether you want all rows, including ones without a match, or just rows that match, with the arguments all.x and all. -->
+<!-- **Dplyr** -->
+<!-- dplyr uses SQL database syntax for its join functions. A left join means: Include everything on the left (what was the x data frame in merge()) and all rows that match from the right (y) data frame. If the join columns have the same name, all you need is left_join(x, y). If they don’t have the same name, you need a by argument, such as left_join(x, y, by = c("df1ColName" = "df2ColName")) . -->
+<!-- Note the syntax for by: It’s a named vector, with both the left and right column names in quotation marks. -->
+<!-- The mutating joins add columns from y to x, matching rows based on the keys: -->
+<!-- inner_join(): includes all rows in x and y. -->
+<!-- left_join(): includes all rows in x. -->
+<!-- right_join(): includes all rows in y. -->
+<!-- full_join(): includes all rows in x or y. -->
+<!-- left_join(data, data, by=c(x=y)) -->
+<!-- left/right join -->
+<!-- dplyr was way faster than base R. -->
+<!-- The tidyverse functions uses the NA as a part of data, because it should explain some aspects of information that can't be explained by "identified" data. In other words you must use a especific function to drop NA values. e na.omit() fu -->
+<!-- How did I find this out? https://stackoverflow.com/questions/48991097/is-dplyrleft-join-equivalent-to-basemerge-all-x-true -->
+<!-- **New package entering the game: `data.table` but we Since a data.table is a data.frame, it is compatible with R functions and packages that accept only data.frames.  -->
+<!-- The data.table package is best known for its speed, so it can be a good choice for dealing with large data sets. -->
+<!-- ::: -->
+<!-- ####  -->
+<!-- Relative vs absolute paths -->
+<!--   Magrittr -->
 <!-- ::: -->
 
 </div>

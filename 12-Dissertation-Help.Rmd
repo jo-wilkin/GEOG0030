@@ -1,3 +1,110 @@
 # (PART\*) Dissertation Help {-}
 
-**To be updated Weds 3rd Feb**
+# Extra resources for help with Quantitative Dissertations {-}
+
+This page is provided for those on the Geography UG degree programme, who are looking to follow a quantitative approach to their dissertation. 
+The page provides general guidance on how to think through preparing your Dissertation outline as well as a list of links to either data portals or potential datasets that are openly available and therefore may be of interest for your dissertations.
+
+The list is not exhaustive nor do you need to use data from this list - it is simply provided as a resource. This is applicable to the below videos - these are not part of your Practice Of Geography module, but simply additional content produced to help you get into the right mindset when it comes to developing your dissertation outline and proposal.
+
+### Video Guidance on Quantitative Dissertations {-}
+
+The following videos are provided simply as general guidance to help with completing your Dissertation Outline / Proposal. They are not mandatory for you to watch, nor are they exhaustive of everything you should be considering in your outline/proposal write-up.
+
+#### Thinking Through Your Dissertation Outline {-}
+
+This video provides general guidance to help think through your dissertation outline. I also recommend watching it prior to scheduling a meeting with a member of staff as these are the questions they are likely to ask you, so please come prepared.
+
+```{r 0D-dissertation-outline, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_msstream('07771c46-10bc-45b9-a1d2-49f79b442b17') %>% use_align('center')
+```
+
+#### Common Quantitative Approaches in Geographical Research {-} 
+
+This video outlines the three approaches you can take in quantitative research currently. However for an Undergraduate Dissertation I only recommend two out of the three approaches:
+
+```{r 0D-quant-approaches, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(vembedr)
+embed_msstream('2314d940-a349-4901-85e9-5edc5f3a56d8') %>% use_align('center')
+```
+
+#### Common Mistakes in Quantitative Dissertations {-}
+
+This video lists common mistakes made when you start working on your dissertation.
+
+*To be updated Fri 5th Feb*
+
+### Dataset Guidance {-}
+
+#### Openly Available Datasets {-}
+
+*From the [CASA0005 repository](https://andrewmaclachlan.github.io/CASA0005repo/assignment-resources-1.html#data-3).*
+
+This is by no means an extensive data list, but summarises data used within some of the practicals alongside a few additions that you might want to explore when sourcing data for your dissertation. 
+
+You are **not limited** to these datasets for your dissertation.
+
+* [Google dataset search](https://datasetsearch.research.google.com/)
+* [Tesco store data (London)](https://www.nature.com/articles/s41597-020-0397-7)
+* [NHS data (ready for R)](https://nhs-r-community.github.io/NHSRdatasets/)
+* [US City Open Data Census](http://us-cities.survey.okfn.org/)
+* [nomis](https://www.nomisweb.co.uk/)
+* [ONS geoportal](https://geoportal.statistics.gov.uk/)
+* [UK data service](https://census.edina.ac.uk/)
+* [ONS](https://www.ons.gov.uk/)
+* [Edina (e.g. OS mastermap)](https://digimap.edina.ac.uk/)
+* [Open Topography](https://opentopography.org/)
+* [USGS Earth Explorer](https://earthexplorer.usgs.gov/)
+* [Geofabrik (OSM data)](https://www.geofabrik.de/)
+* [Global weather data (points)](https://rp5.ru/Weather_in_the_world)
+* [London data store](https://data.london.gov.uk/)
+* [Air b n b data](http://insideairbnb.com/get-the-data.html)
+* [NASA SocioEconomic Data and Applications Center (SEDAC)](https://sedac.ciesin.columbia.edu/)
+* [UN environmental data explorer](http://geodata.grid.unep.ch/)
+* [World pop](https://www.worldpop.org/)
+* [World pop github](https://github.com/wpgp)
+* [DIVA-GIS](https://www.diva-gis.org/)
+* [DEFRA](https://environment.data.gov.uk/)
+* [US Cesus data](https://www.census.gov/data.html)
+* [TFL open data](https://tfl.gov.uk/info-for/open-data-users/our-open-data?intcmp=3671#on-this-page-2)
+* [TFL cycling data](https://cycling.data.tfl.gov.uk/)
+* [EU tourism data](https://ec.europa.eu/eurostat/statistics-explained/index.php/Tourism_statistics)
+* [NASA EARTHDATA](https://earthdata.nasa.gov/)
+* [Camden air action](https://camdenairaction.wordpress.com/2017/02/20/schools-monitoring-project-spring-2017/)
+* [Kings data on air pollution](https://www.londonair.org.uk/LondonAir/Default.aspx)
+* [Uber travel time data](https://movement.uber.com/?lang=en-GB)
+* [Eurostat](https://ec.europa.eu/eurostat)
+* [London Tube PM2.5 levels](https://www.ft.com/content/6f381ad4-fef7-11e9-be59-e49b2a136b8d)
+* [Bike docking data in an R package](https://docs.ropensci.org/bikedata/)
+* [UK COVID data](https://coronavirus.data.gov.uk/)
+* [R package for COVID data](https://github.com/RamiKrispin/coronavirus)
+* [Tidy Tuesday data (although look for spatial data)](https://github.com/rfordatascience/tidytuesday)
+* [Correct statistical tests](https://stats.idre.ucla.edu/other/mult-pkg/whatstat/)
+
+#### Data from the CDRC {-}
+
+UG students can apply to CDRC for some of their Safeguarded data. 
+
+There is a process to access these datasets, detailed on CDRC website [here](https://data.cdrc.ac.uk/using-our-data-services). 
+
+To access any CDRC safeguarded data, you will need to follow this process. It normally takes 4-5 weeks for your application to be granted.
+
+As part of the process, you will need to say in your application why you want that specific dataset and what you are going to do with it. You will also need to have at least thought about the ethical implications of using that data and provide this with your data application (alongside your standard ethics application).
+ 
+In terms of specific datasets avaiable, you can apply for:
+
+* [Bicycle Sharing System Docking Station Observations](https://data.cdrc.ac.uk/dataset/bicycle-sharing-system-docking-station-observations)
+* [CDRC Modelled Ethnicity Proportions - LSOA Geography]( https://data.cdrc.ac.uk/dataset/cdrc-modelled-ethnicity-proportions-lsoa-geography)
+* [NHS Hospital Admission Rates by Ethnic Group and other Characteristics]( https://data.cdrc.ac.uk/dataset/nhs-hospital-admission-rates-ethnic-group-and-other-characteristics)
+* [Local Data Company - SmartStreetSensor Footfall Data – Research Aggregated data](https://data.cdrc.ac.uk/dataset/local-data-company-smartstreetsensor-footfall-data-%E2%80%93-research-aggregated-data)
+* [Speedchecker Broadband Internet Speed Tests](https://data.cdrc.ac.uk/dataset/speedchecker-broadband-internet-speed-tests)
+* [FCA Financial Lives Survey](https://data.cdrc.ac.uk/dataset/fca-financial-lives-survey) - currently the 2017 survey, the 2020 survey may be available around May.
+ 
+There is also a substantial amount of open data available via the CDRC. In this case, you can just register on the site and download. This includes the [CDRC Residential Mobility Index](https://data.cdrc.ac.uk/dataset/cdrc-residential-mobility-index), a population ‘churn’ dataset, which has recently been reclassified from Safeguarded to Open. 
+
+#### Other Data Lists {-}
+
+[Awesome public datasets](https://github.com/awesomedata/awesome-public-datasets) have a wide range all data (some geographic, some not): 
+
+[Robin Wilson](https://twitter.com/sciremotesense) has authored one of [the most extensive data lists that I've come across](https://freegisdata.rtwilson.com/)
