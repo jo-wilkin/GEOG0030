@@ -105,6 +105,6 @@ There is also a substantial amount of open data available via the CDRC. In this 
 
 #### Other Data Lists {-}
 
-[Awesome public datasets](https://github.com/awesomedata/awesome-public-datasets) have a wide range all data (some geographic, some not): 
+[Awesome public datasets](https://github.com/awesomedata/awesome-public-datasets) have a wide range all data (some geographic, some not). 
 
-[Robin Wilson](https://twitter.com/sciremotesense) has authored one of [the most extensive data lists that I've come across](https://freegisdata.rtwilson.com/)
+[Robin Wilson](https://twitter.com/sciremotesense) has authored one of [the most extensive data lists that I've come across](https://freegisdata.rtwilson.com/).

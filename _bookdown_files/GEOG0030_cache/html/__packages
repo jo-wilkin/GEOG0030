@@ -11,3 +11,5 @@ stringr
 forcats
 here
 magrittr
+sf
+tmap
