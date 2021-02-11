@@ -1601,5 +1601,3 @@ The datasets used in this workshop (and resulting maps):
 * Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) 
 * Contains Ordnance Survey data © Crown copyright and database right [2015] 
 * Crime data obtained from data.police.uk (Open Government Licence).
-
-
