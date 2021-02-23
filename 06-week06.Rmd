@@ -52,9 +52,11 @@ By the end of this week, you should be able to:
 * Understand the basics of incorporating the issue of spatial autocorrelation into regression
 :::
 
-This week, we are using a completely new dataset and investigating a different phenomena: **childhood obesity**. 
+This week, we are using a completely new dataset and investigating a different phenomena: **childhood obesity**.
 
-We'll be using a **single data download from the London Datastore**, which we'll need to clean, and then investigate different factors that might contribute to obesity in children.
+We'll be investigating its **distribution** across London at the **ward scale** and then start to look into the different factors that might contribute to obesity in children, which will be resumed in one of the optional practicals in Week 10.
+
+To complete this analysis, we'll be using a **single data download from the London Datastore**, which we'll need to clean, wrangle and then join to one of our Ward shapefiles in order to spatially investigate the distribution of childhood obesity - and then analyse factors that might contribute toward it.
 
 ***
 ### Workshop Housekeeping {-}
@@ -210,7 +212,7 @@ In our case, I've conducted a *brief* review of the literature ( ;) ) and identi
 
 You can read a little more into these factors in [this review](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC557218/) by Mayor in 2005 of the "Health Survey for England: Obesity Among Children Under 11" report that was published by the Department of Health, based on their surveys. 
 
-This report is pretty old - but this gives us opportunity to investigate into the current(-ish) situation of childhood obesity and see if these findings still were similar 10 years later.
+This report is pretty old - but this gives us opportunity to investigate into the current(-ish) situation of childhood obesity and see if these findings still are similar 10 years later.
 
 Within our Ward Atlas dataset, however, we will not be able to capture the **individual** level factors due to the nature of the data - we would need those individual level datasets that the Department of Health have access to! 
 
@@ -1232,6 +1234,7 @@ Beneath your maps, please please provide a 100 word write-up about the general d
 
 * Do both variables have clusters?
 * Do we see similar clusters in similar locations? 
+* What might this tell us about the relationship between deprivation and obesity in children in London?
 
 Once complete, upload this into the newly created `obesity_maps` folder in your relevant seminar folder.
 :::
