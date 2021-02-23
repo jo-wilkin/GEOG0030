@@ -13,3 +13,8 @@ here
 magrittr
 sf
 tmap
+janitor
+sp
+spData
+spdep
+RColorBrewer

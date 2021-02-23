@@ -74,7 +74,7 @@ Hence why, a decade later, an Undergraduate module on GIScience now focues on "G
 * Transportation
 * Logistics
 * Supply Chain Management
-* Generalised Urban Plannign
+* Generalised Urban Planning
 * Insurance
 * Environmental modelling
 

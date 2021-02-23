@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>creates a local moran output | Geocomputation 2020-2021 Work Book</title>
+  <meta name="description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="creates a local moran output | Geocomputation 2020-2021 Work Book" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jo-wilkin.github.io/GEOG0030/" />
+  
+  <meta property="og:description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="github-repo" content="jo-wilkin/GEOG0030" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="creates a local moran output | Geocomputation 2020-2021 Work Book" />
+  
+  <meta name="twitter:description" content="GEOG0030: Geocomputation Work Book" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="creates-a-moran-plot.html"/>
+<link rel="next" href="analysing-spatial-patterns-ii-clusters.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+<a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl-logo.jpg">
+</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>Module Overview</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#geocomputation-introductory-video"><i class="fa fa-check"></i>Geocomputation Introductory Video</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-in-touch-during-the-module"><i class="fa fa-check"></i>Getting in touch during the module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#noticed-a-mistake-in-this-resource"><i class="fa fa-check"></i>Noticed a mistake in this resource?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module Information</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning-for-geocomputation"><i class="fa fa-check"></i>Self-guided learning for Geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#geocomputation-timetable"><i class="fa fa-check"></i>Geocomputation Timetable</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#what-will-i-be-learning-each-week"><i class="fa fa-check"></i>What will I be learning each week?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading List</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#troubleshooting-module-content"><i class="fa fa-check"></i>Troubleshooting Module Content</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#additional-online-help-resources"><i class="fa fa-check"></i>Additional Online Help &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#feedback-weekly-and-end-of-module"><i class="fa fa-check"></i>Feedback: Weekly and End of Module</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Started</b></span></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html"><i class="fa fa-check"></i>What is this Workbook?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#using-this-workbook"><i class="fa fa-check"></i>Using this Workbook</a></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#workbook-functionality"><i class="fa fa-check"></i>Workbook Functionality</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html"><i class="fa fa-check"></i>Software Installation</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#qgis"><i class="fa fa-check"></i>QGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-and-r-studio"><i class="fa fa-check"></i>R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-1"><i class="fa fa-check"></i>R-Studio Setup 1</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-2"><i class="fa fa-check"></i>R-Studio Setup 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#arcgis"><i class="fa fa-check"></i>ArcGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#installation-issues"><i class="fa fa-check"></i>Installation Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html"><i class="fa fa-check"></i>External Usage</a><ul>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / Contributions</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#version"><i class="fa fa-check"></i>Version</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundational Concepts</b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#week-1-in-geocomp"><i class="fa fa-check"></i>Week 1 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#what-is-geocomputation"><i class="fa fa-check"></i>What is Geocomputation?</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#giscience-a-short-history"><i class="fa fa-check"></i>GIScience: A Short History</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#spatial-analysis-an-overview"><i class="fa fa-check"></i>Spatial Analysis: An Overview</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#programming-for-data-analysis"><i class="fa fa-check"></i>Programming for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#whats-next-for-us-in-geocomputation"><i class="fa fa-check"></i>What’s next for us in Geocomputation</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-ready-for-our-practicals"><i class="fa fa-check"></i>Getting Ready for our Practicals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a><ul>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#week-2-in-geocomp"><i class="fa fa-check"></i>Week 2 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#what-is-representation"><i class="fa fa-check"></i>What is Representation?</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#geographic-representation"><i class="fa fa-check"></i>Geographic Representation</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-structure-sampling-and-scale"><i class="fa fa-check"></i>Spatial Structure, Sampling and Scale</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-models"><i class="fa fa-check"></i>Spatial Data Models</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-file-formats"><i class="fa fa-check"></i>Spatial Data File Formats</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#gis-software---a-more-thorough-introduction-moved-to-week-5"><i class="fa fa-check"></i>GIS Software - a more thorough introduction (moved to Week 5)</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#practical-1-exploring-population-changes-across-london"><i class="fa fa-check"></i>Practical 1: Exploring Population Changes Across London</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a><ul>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#week-3-in-geocomp"><i class="fa fa-check"></i>Week 3 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#coordinate-systems-and-map-projections"><i class="fa fa-check"></i>Coordinate Systems and Map Projections</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#effective-data-visualisation"><i class="fa fa-check"></i>Effective Data Visualisation</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#the-modifiable-areal-unit-problem"><i class="fa fa-check"></i>The Modifiable Areal Unit Problem</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#practical-2-mapping-crime-across-london-wards-and-boroughs"><i class="fa fa-check"></i>Practical 2: Mapping Crime Across London Wards and Boroughs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html"><i class="fa fa-check"></i><b>4</b> Programming (for Data Analysis) using R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#week-4-in-geocomp"><i class="fa fa-check"></i>Week 4 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#an-introduction-to-programming"><i class="fa fa-check"></i>An Introduction to Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#using-r-and-r-studio-for-data-analysis"><i class="fa fa-check"></i>Using R and R-Studio for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#the-tidyverse-philosophy-and-principles"><i class="fa fa-check"></i>The Tidyverse Philosophy and Principles</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#practical-3-analysing-crime-in-2020-in-london"><i class="fa fa-check"></i>Practical 3: Analysing Crime in 2020 in London</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#week-5-in-geocomp"><i class="fa fa-check"></i>Week 5 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-for-data-science-research"><i class="fa fa-check"></i>Spatial Analysis for Data Science Research</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-software-and-programming"><i class="fa fa-check"></i>Spatial Analysis Software and Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-in-r-studio"><i class="fa fa-check"></i>Spatial Analysis in R-Studio</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#practical-4-analysing-crime-in-2020-in-london-from-a-spatial-perspective"><i class="fa fa-check"></i>Practical 4: Analysing Crime in 2020 in London from a spatial perspective</a></li>
+</ul></li>
+<li class="part"><span><b>II Core Spatial Analysis</b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#week-6-in-geocomp"><i class="fa fa-check"></i>Week 6 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#workshop-housekeeping"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-patterns"><i class="fa fa-check"></i>Analysing Spatial Patterns</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-distributions"><i class="fa fa-check"></i>Analysing Distributions</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#spatial-autocorrelation-and-clustering-analysis"><i class="fa fa-check"></i>Spatial Autocorrelation and Clustering Analysis</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-autocorrelation-in-childhood-obesity-and-deprivation-in-london-wards"><i class="fa fa-check"></i>Analysing spatial autocorrelation in childhood obesity and deprivation in London wards</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="creates-a-moran-plot.html"><a href="creates-a-moran-plot.html"><i class="fa fa-check"></i>creates a moran plot</a></li>
+<li class="chapter" data-level="" data-path="creates-a-local-moran-output.html"><a href="creates-a-local-moran-output.html"><i class="fa fa-check"></i>creates a local moran output</a><ul>
+<li class="chapter" data-level="" data-path="creates-a-local-moran-output.html"><a href="creates-a-local-moran-output.html#analysing-relationships"><i class="fa fa-check"></i>Analysing Relationships</a></li>
+<li class="chapter" data-level="6.0.1" data-path="creates-a-local-moran-output.html"><a href="creates-a-local-moran-output.html#section"><i class="fa fa-check"></i><b>6.0.1</b> </a></li>
+<li class="chapter" data-level="" data-path="creates-a-local-moran-output.html"><a href="creates-a-local-moran-output.html#integrating-spatial-variation-into-regression-models"><i class="fa fa-check"></i>Integrating spatial variation into regression models</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-clusters.html"><a href="analysing-spatial-patterns-ii-clusters.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Clusters</a></li>
+<li class="chapter" data-level="8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>8</b> Rasters, Zonal Statistics and Interpolation</a></li>
+<li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
+<li class="chapter" data-level="9" data-path="geodemographics.html"><a href="geodemographics.html"><i class="fa fa-check"></i><b>9</b> Geodemographics</a></li>
+<li class="chapter" data-level="" data-path="optional-road-network-analysis.html"><a href="optional-road-network-analysis.html"><i class="fa fa-check"></i>OPTIONAL: Road Network Analysis</a></li>
+<li class="part"><span><b>IV Cartography &amp; Visualisation</b></span></li>
+<li class="chapter" data-level="10" data-path="cartography-and-visualisation-ii.html"><a href="cartography-and-visualisation-ii.html"><i class="fa fa-check"></i><b>10</b> Cartography and Visualisation II</a></li>
+<li class="part"><span><b>Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
+</ul></li>
+<li class="part"><span><b>Dissertation Help</b></span></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html"><i class="fa fa-check"></i>Extra resources for help with Quantitative Dissertations</a><ul>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#video-guidance-on-quantitative-dissertations"><i class="fa fa-check"></i>Video Guidance on Quantitative Dissertations</a></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#dataset-guidance"><i class="fa fa-check"></i>Dataset Guidance</a></li>
+</ul></li>
+<li class="part"><span><b>Alternate Tutorials</b></span></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i>A short introduction to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#sign-up-to-arcgis-online"><i class="fa fa-check"></i>Sign Up to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#practical-instructions-1"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation 2020-2021 Work Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<link href="style.css" rel="stylesheet">
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="../images/general/overview.png">
+</div>
+<div id="creates-a-local-moran-output" class="section level1 unnumbered">
+<h1>creates a local moran output</h1>
+<p>local &lt;- localmoran(x = OA.Census$Qualification, listw = nb2listw(neighbours2, style = “W”))
+By considering the help page for the localmoran function (run ?localmoran in R) we can observe the arguments and outputs. We get a number of useful statistics from the model which are as defined:</p>
+<p>Name Description
+Ii local moran statistic
+E.Ii expectation of local moran statistic
+Var.Ii variance of local moran statistic
+Z.Ii standard deviate of local moran statistic
+Pr() p-value of local moran statistic</p>
+<p>Run Local Moran’s I and produce LISA maps</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1">obesity_LMI &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">localmoran</span>(., ward_spatial_weights) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb200-2" title="2"></a>
+<a class="sourceLine" id="cb200-3" title="3"><span class="co">#what does the output (the localMoran object) look like?</span></a>
+<a class="sourceLine" id="cb200-4" title="4"><span class="kw">slice_head</span>(obesity_LMI, <span class="dt">n=</span><span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 5
+##   Ii         E.Ii          Var.Ii     Z.Ii       `Pr(z &gt; 0)` 
+##   &lt;localmrn&gt; &lt;localmrn&gt;    &lt;localmrn&gt; &lt;localmrn&gt; &lt;localmrn&gt;  
+## 1 0.03833697 -0.0002813579 0.02955797 0.2246240  4.111359e-01
+## 2 0.47282190 -0.0008440736 0.08838455 1.5932503  5.555202e-02
+## 3 3.82565784 -0.0016881472 0.17590102 9.1256444  3.565538e-20
+## 4 0.40863261 -0.0016881472 0.17590102 0.9783389  1.639534e-01
+## 5 2.79741620 -0.0025322208 0.26254943 5.4644253  2.322044e-08</code></pre>
+<p>Run Local Moran’s I and produce LISA maps</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obesity_LMI_Ii =</span> <span class="kw">as.numeric</span>(obesity_LMI<span class="op">$</span>Ii)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obesity_LMI_Iz=</span> <span class="kw">as.numeric</span>(obesity_LMI<span class="op">$</span>Z.Ii))</a></code></pre></div>
+<p>No we can plot a map of the local Moran’s I outputs…</p>
+<p>We’ll set the breaks manually based on the rule that data points &gt;2.58 or &lt;-2.58 standard deviations away from the mean are significant at the 99% level (&lt;1% chance that autocorrelation not present); &gt;1.96 - &lt;2.58 or &lt;-1.96 to &gt;-2.58 standard deviations are significant at the 95% level (&lt;5% change that autocorrelation not present). &gt;1.65 = 90% etc.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1">LMI_breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1000</span>, <span class="fl">-2.58</span>, <span class="fl">-1.96</span>, <span class="fl">-1.65</span>, <span class="fl">1.65</span>, <span class="fl">1.96</span>, <span class="fl">2.58</span>, <span class="dv">1000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">MoranColours &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;RdGy&quot;</span>))</a></code></pre></div>
+<p>First, we will map the local moran statistic (Ii). A positive value for Ii indicates that the unit is surrounded by units with similar values.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span></a>
+<a class="sourceLine" id="cb205-2" title="2"><span class="st">    </span><span class="kw">tm_polygons</span>(<span class="st">&quot;obesity_LMI_Ii&quot;</span>,</a>
+<a class="sourceLine" id="cb205-3" title="3">        <span class="dt">style=</span><span class="st">&quot;fixed&quot;</span>,</a>
+<a class="sourceLine" id="cb205-4" title="4">        <span class="dt">breaks=</span>LMI_breaks,</a>
+<a class="sourceLine" id="cb205-5" title="5">        <span class="dt">palette=</span>MoranColours,</a>
+<a class="sourceLine" id="cb205-6" title="6">        <span class="dt">midpoint=</span><span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb205-7" title="7">        <span class="dt">title=</span><span class="st">&quot;Local Moran&#39;s I, Yr 6 Obesity in London in 2014&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-plot-LMI-1.png" width="672" /></p>
+<p>This map shows some areas in the centre of London that have relatively high scores, indicating areas with lots of blue plaques neighbouring other areas with lots of blue plaques.</p>
+<p>From the map, it is possible to observe the variations in autocorrelation across space. We can interpret that there seems to be a geographic pattern to the autocorrelation. However, it is not possible to understand if these are clusters of high or low values.</p>
+<p>Why not try to make a map of the P-value to observe variances in significance across Camden? Use names(<a href="mailto:moran.map@data" class="email">moran.map@data</a>) to find the column headers.</p>
+<p>One thing we could try to do is to create a map which labels the features based on the types of relationships they share with their neighbours (i.e. high and high, low and low, insignificant, etc…). The following code will run this for you. Source: <a href="https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031">Brunsdon and Comber (2015)</a>.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="co">### to create LISA cluster map </span><span class="al">###</span><span class="co"> </span></a>
+<a class="sourceLine" id="cb206-2" title="2">quadrant &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode=</span><span class="st">&quot;numeric&quot;</span>,<span class="dt">length=</span><span class="kw">nrow</span>(obesity_LMI))</a>
+<a class="sourceLine" id="cb206-3" title="3"></a>
+<a class="sourceLine" id="cb206-4" title="4"><span class="co"># centers the variable of interest around its mean</span></a>
+<a class="sourceLine" id="cb206-5" title="5">mean_obesity &lt;-<span class="st"> </span>obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span> <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)     </a>
+<a class="sourceLine" id="cb206-6" title="6"></a>
+<a class="sourceLine" id="cb206-7" title="7"><span class="co"># centers the local Moran&#39;s around the mean</span></a>
+<a class="sourceLine" id="cb206-8" title="8">mean_obesity_LMI &lt;-<span class="st"> </span>obesity_LMI<span class="op">$</span>Ii <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_LMI<span class="op">$</span>Ii)    </a>
+<a class="sourceLine" id="cb206-9" title="9"></a>
+<a class="sourceLine" id="cb206-10" title="10"><span class="co"># significance threshold</span></a>
+<a class="sourceLine" id="cb206-11" title="11">signif &lt;-<span class="st"> </span><span class="fl">0.1</span> </a>
+<a class="sourceLine" id="cb206-12" title="12"></a>
+<a class="sourceLine" id="cb206-13" title="13"><span class="co"># builds a data quadrant</span></a>
+<a class="sourceLine" id="cb206-14" title="14">quadrant[mean_obesity <span class="op">&gt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>mean_obesity_LMI<span class="op">&gt;</span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">4</span>  </a>
+<a class="sourceLine" id="cb206-15" title="15">quadrant[mean_obesity <span class="op">&lt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>mean_obesity_LMI<span class="op">&lt;</span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">1</span>      </a>
+<a class="sourceLine" id="cb206-16" title="16">quadrant[mean_obesity <span class="op">&lt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>mean_obesity_LMI<span class="op">&gt;</span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb206-17" title="17">quadrant[mean_obesity <span class="op">&gt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>mean_obesity_LMI<span class="op">&lt;</span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb206-18" title="18">quadrant[obesity_LMI[,<span class="dv">5</span>]<span class="op">&gt;</span>signif] &lt;-<span class="st"> </span><span class="dv">0</span>   </a>
+<a class="sourceLine" id="cb206-19" title="19"></a>
+<a class="sourceLine" id="cb206-20" title="20"><span class="co"># plot in r</span></a>
+<a class="sourceLine" id="cb206-21" title="21">brks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb206-22" title="22">colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dt">alpha=</span><span class="fl">0.4</span>),<span class="kw">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dt">alpha=</span><span class="fl">0.4</span>),<span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb206-23" title="23"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>geometry,<span class="dt">border=</span><span class="st">&quot;lightgray&quot;</span>,<span class="dt">col=</span>colors[<span class="kw">findInterval</span>(quadrant,brks,<span class="dt">all.inside=</span><span class="ot">FALSE</span>)])</a>
+<a class="sourceLine" id="cb206-24" title="24"><span class="kw">box</span>()</a>
+<a class="sourceLine" id="cb206-25" title="25"><span class="kw">legend</span>(<span class="st">&quot;bottomleft&quot;</span>,<span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;insignificant&quot;</span>,<span class="st">&quot;low-low&quot;</span>,<span class="st">&quot;low-high&quot;</span>,<span class="st">&quot;high-low&quot;</span>,<span class="st">&quot;high-high&quot;</span>),</a>
+<a class="sourceLine" id="cb206-26" title="26">       <span class="dt">fill=</span>colors,<span class="dt">bty=</span><span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-plot-LMI-hscs-1.png" width="672" /></p>
+<p>As similar effect can be achieved What about the Getis OrdG∗i statisic for hot and cold spots?</p>
+<p>Another approach we can take is hot-spot analysis. The Getis-Ord Gi Statistic looks at neighbours within a defined proximity to identify where either high or low values cluster spatially. Here statistically significant hot-spots are recognised as areas of high values where other areas within a neighbourhood range also share high values too.</p>
+<p>From our analysis</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obesity_LGO_G =</span> <span class="kw">as.numeric</span>(obesity_LGO))</a></code></pre></div>
+<p>Check the help file (?localG) to see what a localG object looks like - it is a bit different from a localMoran object as it only contains just a single value - the z-score (standardised value relating to whether high values or low values are clustering together) And map the outputs…</p>
+<p><img src="GEOG0030_files/figure-html/06-plot-GO-1.png" width="672" /></p>
+<p>The Gi Statistic is represented as a Z-score. Greater values represent a greater intensity of clustering and the direction (positive or negative) indicates high or low clusters. The final map should indicate the location of hot-spots a</p>
+<p>We can also visually confirm</p>
+<div class="assignment">
+<p><strong>Assignment 2: Spatial autocorrelation of the IDACI variable</strong><br></p>
+<p>You may conduct additional tests on our remaining variables if you wish.</p>
+</div>
+<div id="analysing-relationships" class="section level3 unnumbered">
+<h3>Analysing Relationships</h3>
+<p>Once you have mapped distributions</p>
+<p>simple scatter plot</p>
+<p>The linearity assumption can best be tested using a scatter plot</p>
+<p>plot(x,y)</p>
+<p>plot(x, y, xlab="“, ylab=”", pch =16)</p>
+<p>smybols(x,y, circles=obesity)</p>
+<div id="using-linear-regression-to-test-relationships-between-variables" class="section level4 unnumbered">
+<h4>Using Linear Regression to test relationships between variables</h4>
+</div>
+</div>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">6.0.1</span> </h3>
+<p>Linear regression is an analysis that assesses whether one or more predictor variables explain the dependent (criterion) variable. The regression has five key assumptions:
+Linear relationship - scatter plot
+Multivariate normality - When the data is not normally distributed a non-linear transformation (e.g., log-transformation) might fix this issue.
+No or little multicollinearity - assumes that there is little or no multicollinearity in the data. Multicollinearity occurs when the independent variables are too highly correlated with each other.Multicollinearity may be tested with three central criteria:
+1) Correlation matrix – when computing the matrix of Pearson’s Bivariate Correlation among all independent variables the correlation coefficients need to be smaller than 1.
+2) Tolerance – the tolerance measures the influence of one independent variable on all other independent variables; the tolerance is calculated with an initial linear regression analysis. Tolerance is defined as T = 1 – R² for these first step regression analysis. With T &lt; 0.1 there might be multicollinearity in the data and with T &lt; 0.01 there certainly is.
+3) Variance Inflation Factor (VIF) – the variance inflation factor of the linear regression is defined as VIF = 1/T. With VIF &gt; 5 there is an indication that multicollinearity may be present; with VIF &gt; 10 there is certainly multicollinearity among the variables.
+If multicollinearity is found in the data, centering the data (that is deducting the mean of the variable from each score) might help to solve the problem. However, the simplest way to address the problem is to remove independent variables with high VIF values.
+No auto-correlation - requires that there is little or no autocorrelation in the data. Autocorrelation occurs when the residuals are not independent from each other. In other words when the value of y(x+1) is not independent from the value of y(x).
+Homoscedasticity - The last assumption of the linear regression analysis is homoscedasticity. The scatter plot is good way to check whether the data are homoscedastic (meaning the residuals are equal across the regression line). The following scatter plots show examples of data that are not homoscedastic (i.e., heteroscedastic):</p>
+<p>A note about sample size. In Linear regression the sample size rule of thumb is that the regression analysis requires at least 20 cases per independent variable in the analysis.</p>
+<p>Normally, you would also check the underlying assumptions of the linear model (linearity, homoscedasticity, independence, and normality)</p>
+<p>So if we want to develop a regression model for bike theft in London we may have to recognise this spatial component.</p>
+<p>The second of two key properties of spatial data: spatial heterogeneity. With the underlying process (or processes) that govern a spatial variable likely to vary across space, a single global relationship for an entire region of study may not adequately model the process that governs outcomes in any given location of the study region.</p>
+<p>As a result, multiple methods have been developed to incorporate ‘space’ into traditional regression models, including spatial lag models, spatial error models, and Geographical Weighted Regression.</p>
+<p>Assumption 2 - The residuals in your model should be normally distributed</p>
+<p>This assumption is easy to check. When we ran our Model1 earlier, one of the outputs stored in our Model 1 object is the residual value for each case (Ward) in your dataset. We can access these values using augment() from broom which will add model output to the original GCSE data…</p>
+<p>We can plot these as a histogram and see if there is a normal distribution:</p>
+<p>Assumption 3 - No Multicolinearity in the independent variables</p>
+<p>Now, the regression model we have be experimenting with so far is a simple bivariate (two variable) model. One of the nice things about regression modelling is while we can only easily visualise linear relationships in a two (or maximum 3) dimension scatter plot, mathematically, we can have as many dimensions / variables as we like.</p>
+<p>However, our data are very spatial and we did not incorporate this spatial distribution into our model. So if we want to develop a regression model for bike theft in London we may have to recognise this spatial component. On top of this, a regression model assumes independence of observations: what happens in LSOA001 is not related to what happens in LSOA002 or any other LSOA. However, we know from last weeks content that this is not always the case because of spatial autocorrelation.</p>
+</div>
+<div id="integrating-spatial-variation-into-regression-models" class="section level3 unnumbered">
+<h3>Integrating spatial variation into regression models</h3>
+<p>We - well believe it or not there is a whole area of research into how we can imcoporate spat</p>
+<p>The most simplest (and I say “simplest”) is the use of a <strong>Spatial Error</strong> or <strong>Spatial Lag</strong> model</p>
+<p>The extension for this week
+More advanced approach is known as Geographically Weighted Regression - an excellent tutorial on this within a recently published online book. part of week 10 which will primarily be guided by your own interests.</p>
+<!-- ## Exploratory Spatial Data Analysis -->
+<!-- :::note -->
+<!-- **Spatial Analysis, Statistics, Spatial Statistics and Geostatistics**<br> -->
+<hr />
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Understand how to analyse distributions of (areal) spatial data through visual and statistical analysis</li>
+<li>Explain the different approaches to defining neighbours within spatial autocorrelation</li>
+<li>Run different types of spatial autocorrelation techniques and understand their differences</li>
+<li>Understand the basics of incorporating the issue of spatial autocorrelation into regression</li>
+</ul>
+</div>
+<hr />
+<div id="acknowledgements-9" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>Part of this page is adapted from <a href="https://jtvandijk.github.io/GEOG0114/index.html">GEOG0114: Principles of Spatial Analysis</a> by Dr Joanna Wilkin (this Workbook’s author), Dr Justin Van Dijk and Alfie Long at UCL, <a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html">Spatial Autocorrelation</a> by Dr Manuel Gimond at Colby College (thank you for the images!) and <a href="https://andrewmaclachlan.github.io/CASA0005repo/gwr-and-spatially-lagged-regression.html">CASA005: GWR and Spatially Lagged Regression</a> by Dr Andrew MacLachlan at CASA, UCL.</p>
+<p>The datasets used in this workshop (and resulting maps):</p>
+<ul>
+<li>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence)</li>
+<li>Contains Ordnance Survey data © Crown copyright and database right [2015]</li>
+<li>Public Health England © Crown copyright 2021</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="creates-a-moran-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysing-spatial-patterns-ii-clusters.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jo-wilkin/GEOG0030/edit/master/06-week06.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/jo-wilkin/GEOG0030/raw/master/06-week06.Rmd"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

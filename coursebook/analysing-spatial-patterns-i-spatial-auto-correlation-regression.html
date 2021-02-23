@@ -213,7 +213,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#practical-4-analysing-crime-in-2020-in-london-from-a-spatial-perspective"><i class="fa fa-check"></i>Practical 4: Analysing Crime in 2020 in London from a spatial perspective</a></li>
 </ul></li>
 <li class="part"><span><b>II Core Spatial Analysis</b></span></li>
-<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#week-6-in-geocomp"><i class="fa fa-check"></i>Week 6 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#workshop-housekeeping"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-patterns"><i class="fa fa-check"></i>Analysing Spatial Patterns</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-distributions"><i class="fa fa-check"></i>Analysing Distributions</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#spatial-autocorrelation-and-clustering-analysis"><i class="fa fa-check"></i>Spatial Autocorrelation and Clustering Analysis</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-autocorrelation-in-childhood-obesity-and-deprivation-in-london-wards"><i class="fa fa-check"></i>Analysing Spatial Autocorrelation in Childhood Obesity and Deprivation in London Wards</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-relationships"><i class="fa fa-check"></i>Analysing Relationships</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#recap---analysing-spatial-patterns-i-spatial-auto-correlation-regression"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-clusters.html"><a href="analysing-spatial-patterns-ii-clusters.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Clusters</a></li>
 <li class="chapter" data-level="8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>8</b> Rasters, Zonal Statistics and Interpolation</a></li>
 <li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
@@ -262,12 +271,1212 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="analysing-spatial-patterns-i-spatial-auto-correlation-regression" class="section level1">
 <h1><span class="header-section-number">6</span> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</h1>
-<p><strong>Content for this week will be released at 10am on the 23rd February 2021.</strong></p>
-<!-- ## Exploratory Spatial Data Analysis -->
-<!-- [GIS Software - a more thorough introduction]~~ (Postponed until Week 5) -->
-<!-- :::note -->
-<!-- **Spatial Analysis, Statistics, Spatial Statistics and Geostatistics**<br> -->
+<p>Welcome to Week 6 in Geocomputation!</p>
+<p>This week marks a big change in our Geocomputation adventure as we begin to fully focus on <strong>spatial analysis</strong> using R-Studio and R programming simply as a <strong>tool</strong> to conduct this analysis.</p>
+<p>Everything we do over the coming weeks <em>could</em> be completed in Q-GIS (or many other GIS software), but to adhere to our data science principles - and to ultimately make our lives easier - we focus on learning how to excecute spatial analysis in R.</p>
+<p>We will now slightly <strong>change the structure</strong> of our workshops to reflect this new focus. As you’ll find, the content of the workshops will be more practical-led, with short lectures provided where necessary.</p>
+<p>We will continue to on one variable (and thus dataset) throughout and build our script to reflect our investigation - whilst also still using the terminal, when applicable.</p>
+<p>As a result, all workshops will begin from now on with a bit of “script housekeeping” - we will always start our content by first creating a new script, adding the <strong>dependencies</strong> (i.e. libraries) you’ll need for this week’s content and then download, clean and load the <strong>data</strong> ready to begin the main workshop content.</p>
+<p>We will <strong>not</strong> cover the programming principles used in our code <em>if</em> we have covered it in previous practicals <strong>but</strong> if we come across something new, we will of course provide an explanation.</p>
+<p>We have a small bit of data cleaning to do this week, so we best get started!</p>
+<div id="week-6-in-geocomp" class="section level3 unnumbered">
+<h3>Week 6 in Geocomp</h3>
+<center>
+<em>Available Wednesday morning</em>
+</center>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="">Video on Stream</a>
+</center>
+<p><br></p>
+<p>This week’s content introduces you to two spatial analysis techniques: spatial autocorrelation and regression with spatial data. We have three areas of work to focus on:</p>
+<ol style="list-style-type: decimal">
+<li>What is spatial autocorrelation</li>
+<li>How to define neighbours both theoretically and programmatically for use in spatial autocorrelation and regression</li>
+<li>How to factor spatial autocorrelation into regression models</li>
+</ol>
+<p>This week’s content is split into <strong>4</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#workshop-housekeeping">Workshop Housekeeping</a> (30 minutes)</li>
+<li><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-patterns">Analysing Spatial Patterns</a> (10 minutes)</li>
+<li><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-distributions">Analysing Distributions</a> (90 minutes)</li>
+<li><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-relationships">Analysing Relationships</a> (25 minutes)</li>
+</ol>
+<p>This week, we have <strong>1 lecture</strong> and <strong>2 assignments</strong> within this week’s workshop.</p>
+<div class="puzzle">
+<p><strong>Learning Objectives</strong><br><br>
+By the end of this week, you should be able to:</p>
+<ul>
+<li>Understand how to analyse distributions of (areal) spatial data through visual and statistical analysis</li>
+<li>Explain the different approaches to defining neighbours within spatial autocorrelation</li>
+<li>Run different types of spatial autocorrelation techniques and understand their differences</li>
+<li>Understand the basics of incorporating the issue of spatial autocorrelation into regression</li>
+</ul>
+</div>
+<p>This week, we are using a completely new dataset and investigating a different phenomena: <strong>childhood obesity</strong>.</p>
+<p>We’ll be using a <strong>single data download from the London Datastore</strong>, which we’ll need to clean, and then investigate different factors that might contribute to obesity in children.</p>
+<hr />
+</div>
+<div id="workshop-housekeeping" class="section level3 unnumbered">
+<h3>Workshop Housekeeping</h3>
+<p>As stated above, we’ll start each week with a workshop housekeeping section where we’ll outline the datasets (and cleaning) and libraries you’ll need for your analysis.</p>
+<p>It’s up to you if you want to do this before listening to the lectures in the relevant sections - but don’t forget to do this, or you won’t have any data to analyse.</p>
+<p>We provide instructions on how to clean your data and then the reminder to load it within your R script.</p>
+<div id="setting-up-your-script-1" class="section level4 unnumbered">
+<h4>Setting up your script</h4>
+<ol style="list-style-type: decimal">
+<li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>wk6-obesity-spatial-analysis.r</code>.</p></li>
+<li><p>At the top of your script, add the following metdata (substitute accordingly):</p></li>
+</ol>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="co"># Analysing childhood obesity and its factors</span></a>
+<a class="sourceLine" id="cb162-2" title="2"><span class="co"># Script started February 2021</span></a>
+<a class="sourceLine" id="cb162-3" title="3"><span class="co"># NAME</span></a></code></pre></div>
+</div>
+<div id="dependencies-aka-libraries" class="section level4 unnumbered">
+<h4>Dependencies (aka libraries)</h4>
+<p>Now we’ll install the libraries we need for this week.</p>
+<p><code>spdep</code> contains the relevent functions to run our various spatial autocorrelation tests, whilst <code>RColorBrewer</code> enables us to use colour palettes from ColorBrewer family within our maps - more on this later.</p>
+<p>You’ll need to install these two libraries, plus <code>janitor</code> that will be used to clean our file names, using the <code>install.packages(c("janitor", "spdep", "RColorBrewer"))</code> command <strong>in your console</strong>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Within your script</strong>, add the following libraries for loading:</li>
+</ol>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb163-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb163-3" title="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb163-4" title="4"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb163-5" title="5"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb163-6" title="6"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb163-7" title="7"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb163-8" title="8"><span class="kw">library</span>(spdep)</a>
+<a class="sourceLine" id="cb163-9" title="9"><span class="kw">library</span>(RColorBrewer)</a></code></pre></div>
+<p>Remember to select the lines of code you want to run and press <strong>CMD (Mac)/CTRL(Windows) + Enter/Return</strong> - we won’t remind you to run each line of code in the remainder of the practical sessions.</p>
+</div>
+<div id="datasets-for-this-week" class="section level4 unnumbered">
+<h4>Datasets for this week</h4>
+<p>We are going to only need <strong>two</strong> datasets for this week - our <strong>London Ward boundaries</strong> from <strong>2011</strong> and the <strong>Greater London Authority (GLA) Ward Atlas and Profiles</strong>.</p>
+<p>The GLA Ward Atlas and Profiles provide a range of demographic and related data for each ward in Greater London and were specifically designed to provide an overview of the ward’s population by collating and presenting a range of data on the population, diversity, households, life expectancy, housing, crime, benefits, land use, deprivation, and employment (GLA, 2014).</p>
+<p>Indicators in the Atlas/Profile include:</p>
+<ul>
+<li>Age and sex</li>
+<li>Land area, projections and population density</li>
+<li>Household composition, religion, ethnicity</li>
+<li>Birth rates (general fertility rate), death rates (standardised mortality ratio), life expectancy</li>
+<li>Average house prices, properties sold, housing by council tax band, tenure, property size (bedrooms), dwelling build period and type, mortgage and landlord home repossession</li>
+<li>Employment and economic activity, Incapacity Benefit, Housing Benefit, Household income, Income Support and JobSeekers Allowance claimant rates, dependent children receiving child-tax credits by lone parents and out-of-work families, child poverty</li>
+<li>GCSE results, A-level / Level 3 results (average point scores), pupil absence,</li>
+<li>Child obesity</li>
+<li>Crime rates (by type of crime), fires, ambulance call outs, road casualties</li>
+<li>Happiness and well-being, land use, public transport accessibility (PTALs), access to public greenspace, access to nature, air emissions / quality, car use, bicycle travel</li>
+<li>Indices of Deprivation</li>
+<li>Election turnout</li>
+</ul>
+<p>i.e. a lot of data!</p>
+<p>The main dataset utilises the <strong>2011 Ward Boundaries as its spatial representation</strong>, therefore <strong>we need to use the 2011 boundaries</strong>.</p>
+<p>The data is collected from a range of data sources, which you can read about on the website prior to downloading. The Atlas dataset combines data from 2011 - approximately 2015.
+<em>There is an additional excel workbook that contains the data referenced to the 2014 boundaries, but this requires some manual cleaning to use that we don’t want to do this week!</em></p>
+<div class="note">
+<p><strong>Data Currency and Spatial/Temporal Compatibility</strong><br></p>
+<p>2015 certainly feels like a long time ago - and 2011 is even longer! Currency of data is a big issue when we are looking to compare data - for example, as many of you are finding with your own dissertation research, the UK’s last census was in 2011. This means our main source of detailed small area data is quite outdated and we’re a year or two away from this year’s census (data to be collected soon!) being available for academic research.</p>
+<p>But, what you might have seen via the London Data Store and some of the Data Portals I’ve mentioned, is that there are many more recent datasets out there to analyse - from Mean Income estimations readily available for 2019, to our Population Estimates, as well as other data such as the <strong>2019</strong> Index of Multiple Deprivation.</p>
+<p>However, when you do find more recent datasets like these, you can often run into <strong>spatial incompability</strong> issues - particuarly in our situation when using the <strong>Ward</strong> spatial unit, which has changed <strong>THREE</strong> times since the last census.</p>
+<p>What you might find is that the data you download can only be used with boundaries from specific years - so if you want to analyse data across different iterations of the Ward boundaries, you’ll need to find a way of “translating” the data into one version of the boundaries.</p>
+<p>Now this in itself comes with many complications - particularly when it comes to thinking through the implications this may have due to the statistical collection and representation of the sampled population within the dataset!</p>
+<p>There is no easy way to solve this but follow the best practice advice that comes with the datasets. In our case, we have been able to find this Ward Atlas that provides the data we need for our analysis - but you might not always be so lucky.</p>
+<p>One more thing in terms of <strong>temporal compatibility</strong> - it is <em>ok</em> to mix data from different years (within reason!), as long as you show consideration to the different currency of your datasets. A good rule of thumb is with 3-5 years.</p>
+</div>
+<p><strong>Downloading our data</strong></p>
+<p>We already have our 2011 London Ward boundaries within our <strong>raw</strong> data folder, so we only need to download our Ward Atlas.</p>
+<ol style="list-style-type: decimal">
+<li><p>Navigate to the Ward Atlas dataset in the London Data Store <a href="https://data.london.gov.uk/dataset/ward-profiles-and-atlas">here</a>.</p></li>
+<li>Download the <code>ward-atlas-data.csv</code>.
+<ul>
+<li>You might find that instead of downloading the file, your browser will open up a new window. You have two options:
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Copy and paste all contents of the page into a text editor such as Notepad and save your pasted contents as <code>ward-atlas-data.csv</code> in your <strong>raw</strong> data folder - make sure to add the <code>.csv</code> to the end of your file name to save your text file as a `csv.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Click back to the dataset page, right-click on the <code>ward-atlas-data.csv</code> name and select <strong>Download Linked File</strong> from your computer’s options. Move this into your <strong>raw</strong> data folder. <em>This is the easier approach of the two</em>.</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ol>
+<p><img src="images/w6/download_shot.gif" width="450pt" style="display: block; margin: auto;" /></p>
+<p>Make sure you store this in your raw folder.</p>
+<p><strong>Loading our data</strong></p>
+<p>Let’s first load our London Ward shapefile from our <strong>raw -&gt; boundaries -&gt; 2011</strong> folder.</p>
+<ol style="list-style-type: decimal">
+<li>Load the 2011 London Ward boundaries.</li>
+</ol>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="co"># Read in our London Ward boundaries</span></a>
+<a class="sourceLine" id="cb164-2" title="2">london_ward_shp &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2011/London_Ward_CityMerged.shp&quot;</span>)</a></code></pre></div>
+<p>We can both <code>View()</code> and <code>plot()</code> the data in our <strong>console</strong> to check what our data looks like.</p>
+<p>We’re happy with the dataframe (its field names) and what’s its looking like as a shapefile, so we do not need to do any cleaning on this dataset.</p>
+<p>We can now turn to our <strong>London Ward Atlas</strong> dataset and load the dataset into R.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Load the Ward Atlas Data csv.</li>
+</ol>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="co"># Read in our ward atlas data csv from our raw data folder</span></a>
+<a class="sourceLine" id="cb165-2" title="2">all_ward_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/ward-atlas-data.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1], &#39;X2&#39; [2], &#39;X3&#39; [3], &#39;X4&#39; [4]</code></pre>
+<p><em>Don’t worry if you get a few parsing errors, the dataset is not structured in a “tidy” way yet!</em></p>
+<p>If you go ahead and view the data, you’ll see we have <strong>a lot</strong> of information about our Wards in the dataset - we have a total of <strong>946 variables</strong> four our 629 wards.</p>
+<p>We can’t exactly analyse all of these variables, so we’ll need to extract only the variables we need.</p>
+<p><strong>Selecting our variables for analysis</strong></p>
+<p>To clean our data and extract the variables for our analysis, we need to identify those most useful to our research.</p>
+<p>Of course, we need to find a variable that matches our phenomena of investigation: child obesity.</p>
+<p>We then need to identify the variables that most match the “explanatory factors” we think might contribute to childhood obesity.</p>
+<p>In conventional research, aka what you’ll do for your dissertation, the selection of these factors would always be <strong>informed by research</strong>. We would conduct an <strong>extensive Literature Review</strong> to identify the common factors associated with childhood obesity and then look to find data and the right variables to reflect these factors.</p>
+<p>In our case, I’ve conducted a <em>brief</em> review of the literature ( ;) ) and identifed that generally there are two sets of factors that may contribute to childhood obesity:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Individual level factors</strong>: diet and exercise, parents’ weights, mode of travel to school / time taken to walk to school.</li>
+<li><strong>Household/societal level factors</strong>: area deprivation, household income, household employment</li>
+</ol>
+<p>You can read a little more into these factors in <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC557218/">this review</a> by Mayor in 2005 of the “Health Survey for England: Obesity Among Children Under 11” report that was published by the Department of Health, based on their surveys.</p>
+<p>This report is pretty old - but this gives us opportunity to investigate into the current(-ish) situation of childhood obesity and see if these findings still were similar 10 years later.</p>
+<p>Within our Ward Atlas dataset, however, we will not be able to capture the <strong>individual</strong> level factors due to the nature of the data - we would need those individual level datasets that the Department of Health have access to!</p>
+<p>The next best thing we can do is an investigation into the more household/societal level factors that might impact childhood obesity.</p>
+<p>With the above study in mind, the variables we’ll look to include are:</p>
+<ul>
+<li>Obesity of children <em>(Dependent)</em></li>
+<li>Deprivation <em>(Explanatory / Independent)</em></li>
+<li>Household Income <em>(Explanatory / Independent)</em></li>
+<li>Household Employment <em>(Explanatory / Independent)</em></li>
+</ul>
+<p>Plus a few others that have featured in more recent literature:</p>
+<ul>
+<li>House Price <em>(Explanatory / Independent)</em></li>
+<li>Access to Greenspace <em>(Explanatory / Independent)</em></li>
+</ul>
+<p>These are all available within our dataset - we just need to extract them from our currently very large dataframe!</p>
+<div class="fyi">
+<p>If you wanted to find more recent versions of these datasets for an even more updated analysis, you can find them as follows:</p>
+<ul>
+<li><strong>Deprivation data</strong>: The latest Index of Multiple Deprivation is 2019. You can find all three versions, 2011, 2015, and 2019, <a href="https://data.london.gov.uk/dataset/indices-of-deprivation">here</a>. The 2019 dataset works with the 2018 Ward boundaries.</li>
+<li><strong>Obesity data</strong>: The obesity data is extracted from the National Child Measurement Programme (NCMP). This program measures the height and weight of children in Reception class (aged 4 to 5) and year 6 (aged 10 to 11), to assess overweight and obesity levels in children within primary schools. The latest dataset is available from 2017/2018 - 2019/2020 directly from the NHS <a href="https://digital.nhs.uk/services/national-child-measurement-programme/">website</a>. The newer datasets can work with 2018 boundaries but there are a few errors.</li>
+<li><strong>Greenspace access</strong>: Access to greenspace in London is produced by GIGL. The most recent dataset (used in this analysis) is found <a href="https://data.london.gov.uk/dataset/access-public-open-space-and-nature-ward">here</a>. This dataset works with 2011 boundaries.</li>
+<li><strong>House prices</strong>: Yearly house price datasets (up to 2017, instead of 2014) <a href="https://data.london.gov.uk/dataset/average-house-prices">here</a>. These datasets work with the 2014 ward boundaries.</li>
+<li><strong>Household income</strong>: Yearly income datasets (up to 2018, instead of 2014) <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/incomeandwealth/bulletins/householddisposableincomeandinequality/financialyearending2020provisional">here</a>. These datasets work with MSOA boundaries.</li>
+</ul>
+<p>Again, you’ll run into issues of incompatability if you try to analyse across these datasets and their variables without additional processing.</p>
+</div>
+<p>Let’s go ahead and get the data extracted and cleaned.</p>
+<p><strong>Extracting and cleaning (wrangling) our dataset</strong></p>
+<p>This week, our data wrangling is quite minimal - but it is important you follow all the steps to ensure you have the correct final dataframe for our analysis.</p>
+<p>Overall, you will:</p>
+<ul>
+<li>Select the required columns for our dataframe and analysis</li>
+<li>Remove the first row, which contains data for the whole of England, not a Ward</li>
+<li>Clean and rename our field columns</li>
+<li>Coerce our variables into the correct data type for our analysis</li>
+<li>Join our ‘atlas data’ dataframe to our ward spatial dataframe</li>
+</ul>
+<p>Now for this week, I’ve done the hardest bit for you - I’ve scrolled through <strong>ALL</strong> 946 variables to identify the fields that we need to extract for our analysis.</p>
+<p>The fields that we need to extract from our dataset include:</p>
+<ul>
+<li><strong>838</strong>: Childhood Obesity Prevalence; Year 6 (School children aged 10-11); 2011/12 to 2013/14: % obese</li>
+<li><strong>900</strong>: Indices of Deprivation; IDACI; 2010</li>
+<li><strong>248</strong>: House Prices; Median House Price; 2014</li>
+<li><strong>353</strong>: Household Income; Mean Modelled Household income (3); 2012/13</li>
+<li><strong>373</strong>: Employment; Adults not in Employment - 2011 Census; % of households with no adults in employment with dependent children</li>
+<li><strong>377</strong>: Qualifications; Qualifications and Students - 2011 Census; % No qualifications</li>
+<li><strong>859</strong>: Access to green space and nature; % homes with deficiency in access to nature; 2012</li>
+<li><strong>865</strong>: Public Transport Accessibility; Average PTAL score; 2014</li>
+</ul>
+<p>and of course:</p>
+<ul>
+<li><strong>2</strong>: X2 - which contains our ward codes.</li>
+<li><strong>4</strong>: X4 - which contains our ward names.</li>
+</ul>
+<p>(The Xs were part of the bad formatting R interpreted as it parsed the csv).</p>
+<p>Now I’ve included the index number of each field as we’re going to use these within our selection.</p>
+<p>Currently our variable names are a) very long and b) contain spaces and special characters in them, which make them pretty useless for selection.</p>
+<p>Using the index approach will make this much easier (<em>refer back to last week’s practical if you’ve forgotten what indexing is!</em>).</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Select our 10 fields from our <code>all_ward_data</code> dataframe for use in analysis.</li>
+</ol>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1"><span class="co"># Select our 10 fields for analysis using their index number</span></a>
+<a class="sourceLine" id="cb167-2" title="2">obesity_ward_data &lt;-<span class="st"> </span><span class="kw">select</span>(all_ward_data, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">838</span>, <span class="dv">900</span>, <span class="dv">248</span>, <span class="dv">353</span>, <span class="dv">373</span>, <span class="dv">377</span>, <span class="dv">859</span>, <span class="dv">865</span>)</a></code></pre></div>
+<p>You should now have a new dataframe with our 10 variables. We’ve still got a bit of cleaning to do, before we’re happy.</p>
+<p>One issue with our original csv is that is contained two rows worth of field names - hence if you look at the first row of our dataframe, it doesn’t make sense. We therefore want to remove this row.</p>
+<p>In addition, it would be good to clean up our names for use - here we’re going to use the <code>janitor</code> library that I mentionned last week, which cleans our names by removing white space, special characters, capitals etc.</p>
+<p>Let’s use a pipe to do this all at once. We’ll overwrite our current variable.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Remove the first line of our dataframe and clean our field names.</li>
+</ol>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="co"># Remove our first row, clean the names of our fields</span></a>
+<a class="sourceLine" id="cb168-2" title="2">obesity_ward_data &lt;-<span class="st"> </span>obesity_ward_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">clean_names</span>()</a></code></pre></div>
+<p>This dataframe is already looking much better! We can now see our dataframe as the “tidy data” format.</p>
+<p>The final thing we can do with this dataset before we need to join it to our London Wards spatial dataframe is just tidy up our column names - X2 and X4 does not exactly mean much to us and it gives us a chance to shorten the names of the other variables (we could leave them as is now they’ve been cleaned, but it’ll be easier for reference later if they’re shorter!).</p>
+<p><em>Note, I decided to keep the information on the year of the dataset to help with our analysis later.</em></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Rename our columns to shorter field names.</li>
+</ol>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" title="1"><span class="co"># Rename field names of ward data to something more useful</span></a>
+<a class="sourceLine" id="cb169-2" title="2"><span class="kw">names</span>(obesity_ward_data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ward_code&quot;</span>, <span class="st">&quot;ward_name&quot;</span>, <span class="st">&quot;y6_obesity_2014&quot;</span>, <span class="st">&quot;IDACI_2010&quot;</span>, <span class="st">&quot;med_house_price_2014&quot;</span>, <span class="st">&quot;mean_hh_income_2013&quot;</span>, <span class="st">&quot;per_no_adult_employ_2011&quot;</span>, <span class="st">&quot;per_no_qual_2011&quot;</span>, <span class="st">&quot;per_deficiency_greenspace_2012&quot;</span>, <span class="st">&quot;PTAL_2014&quot;</span>)</a></code></pre></div>
+<p>Now we have the data we want to map, we need to do a final spot of checking - one of the main issues faced with loading data directly from a csv in R without cleaning it first in a spreadsheet program as we’ve done before, is that we can’t guarantee that the data will be loaded correctly.</p>
+<p>Unfortunately with our current dataframe we can see that this is the case - if you look at your global environment and find our <code>obesity_ward_data</code> variable and click on the arrow button to display its variables, you’ll see that several of our variables are of the type <code>char</code>.</p>
+<p>This means that these variables have been interpreted by R to be characters rather than numerics. This might be because there is some missing data or in some cases, the decimal point can interfere with the data being read as a numeric.</p>
+<p>Luckily it’s quite easy to change our data type - a bit like right-clicking on our columns in Excel and setting the format of the column to <code>number</code>, we’ll do this using code.</p>
+<p>If we wanted to apply this to a single column than we would use the code:</p>
+<p><code>as.numeric(dataframe$column)</code></p>
+<p>but as we want to apply this across a few columns, we’ll be using the <code>mutate_at()</code> function from the <code>dplyr</code> library.</p>
+<p>If you look at the documentation for <code>mutate_at()</code>, it states that it can apply the same transformation to a selection of variables, in our case, our columns.</p>
+<p>We’ll need to use a litte more complicated code that we came across last week that states that for each of our ‘variables’ (i.e. our columns), we want to run a function on it where the varialbe is defined as <code>x</code>. We then state our function which is to first coerce our column into the <code>as.character()</code> data type (to double check it is!) and then coerce is into the numeric data type through using <code>as.numeric()</code>.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Change the data type of our variable columns to numeric.</li>
+</ol>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="co"># Rename field names of ward data to something more useful</span></a>
+<a class="sourceLine" id="cb170-2" title="2">obesity_ward_data &lt;-<span class="st"> </span><span class="kw">mutate_at</span>(obesity_ward_data, <span class="kw">vars</span>(y6_obesity_<span class="dv">2014</span>, mean_hh_income_<span class="dv">2013</span>, per_no_adult_employ_<span class="dv">2011</span>, per_no_qual_<span class="dv">2011</span>, per_deficiency_greenspace_<span class="dv">2012</span>, PTAL_<span class="dv">2014</span>), <span class="cf">function</span>(x) <span class="kw">as.numeric</span>(<span class="kw">as.character</span>(x)))</a></code></pre></div>
+<pre><code>## Warning: Problem with `mutate()` input `y6_obesity_2014`.
+## ℹ NAs introduced by coercion
+## ℹ Input `y6_obesity_2014` is `(function (x) ...`.</code></pre>
+<pre><code>## Warning in (function (x) : NAs introduced by coercion</code></pre>
+<pre><code>## Warning: Problem with `mutate()` input `per_deficiency_greenspace_2012`.
+## ℹ NAs introduced by coercion
+## ℹ Input `per_deficiency_greenspace_2012` is `(function (x) ...`.</code></pre>
+<pre><code>## Warning in (function (x) : NAs introduced by coercion</code></pre>
+<pre><code>## Warning: Problem with `mutate()` input `PTAL_2014`.
+## ℹ NAs introduced by coercion
+## ℹ Input `PTAL_2014` is `(function (x) ...`.</code></pre>
+<pre><code>## Warning in (function (x) : NAs introduced by coercion</code></pre>
+<p>You will see warnings that NAs have been introduced by this coercion in three of our variables: <code>y6_obesity_2014</code>, <code>per_deficiency_greenspace_2012</code> and <code>PTAL_2014</code> - this is something we’ll need to be aware of later in our analysis, but will not look at right now.</p>
+<p>Now our final step is to join our final <code>obesity_ward_data</code> dataframe to our <code>london_wards_shp</code> spatial dataframe so we can complete both statistical and spatial analysis.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Join our <code>obesity_ward_data</code> dataframe to our <code>london_wards_shp</code> spatial dataframe - store as a new variable.</li>
+</ol>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="co"># Join obesity df to ward sdf for analysis</span></a>
+<a class="sourceLine" id="cb177-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span><span class="kw">left_join</span>(london_ward_shp, obesity_ward_data,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;GSS_CODE&quot;</span> =<span class="st"> &quot;ward_code&quot;</span>))</a></code></pre></div>
+<p><em>I told you we’d be doing a lot of these attribute joins!</em></p>
+<p>Have a look at your newly created spatial dataframe - for a quick look at the data, you can run the <code>plot()</code> command in <strong>your console</strong>. We’ll explain more about the different measures we’ve extracted during the rest of the workshop.</p>
+<p>If you’d like, you can also write out the final csv using the <code>write.csv</code> function to save a raw copy in your data folder.</p>
+<p>Other than that, we’re now ready to start the main content of our workshop today: analysis of spatial patterns through spatial autocorrelation and regression.</p>
+</div>
+</div>
+<div id="analysing-spatial-patterns" class="section level3 unnumbered">
+<h3>Analysing Spatial Patterns</h3>
+<p>If you remember from our introductory content - or have listened to my videos on your dissertations - you should know by now that when it comes to spatial analysis in research, we’re looking to achieve one (or more) of three things:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Analyse the distribution of a phenomena</strong></li>
+<li><strong>Analyse the relationship between phenomena, to identify factors/predictors</strong></li>
+<li><strong>Create new spatial data that can then be used in the above</strong></li>
+</ol>
+<p>In today’s practical, we’ll be looking at how we can conduct the first two, whereas in future practicals, we’ll also be looking at ways we can use spatial analysis to create new data that can then be used in applications of (1) and (2).</p>
+<p>An example of this is looking at the use of <strong>network analysis</strong> to calculate the distances for use within different types of <strong>accessibility measures</strong>.</p>
+<p>For example, in addition to the variables we are using today, we could look to create a further variable that measures the average distance each school in our wards is to their nearest fast food outlet. <em>We’ll actually see this in action in one of our optional practicals in Week 10.</em></p>
+<p>A further approach is using these measures to <strong>create indices</strong>.</p>
+<p>An example of this involving network analysis, that we’ll use today, are <strong>Transport for London’s (TFL) Public Transport Accessibility Levels (PTALs)</strong>. The PTALs are a detailed and accurate measure of the accessibility of a point to the public transport network.</p>
+<p>They take into account walk access time and service availability. The method is essentially a way of measuring the density of the public transport network at any location within Greater London. You can read more about the methodology behind the PTALs <a href="https://data.london.gov.uk/dataset/public-transport-accessibility-levels">here</a> and see them in action in TFL’s short video:</p>
+<center>
+<strong>TFL’s PTALs and WebCat </strong>
+</center>
+<p><div class="vembedr" align="center">
+<div>
+<iframe src="https://www.youtube.com/embed/FPIIPWW5V3c" width="533" height="300" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+<br></p>
+<p>As you can see from the examples, the network analysis is used to provide information on the <strong>distribution</strong> of London’s transport network to better allocate services and identify areas of improvement.</p>
+<p><strong>Spatial analysis is our way - as geographers and spatially-fascinated thinkers - therefore to discover spatial patterns, processes and relationships (including taking into account the ‘special’ properties of spatial phenomena) within specific pheonomea or entities, using using their topological, geometric or geographic properties, and validate them with statistical and spatial quantification.</strong></p>
+<p>This quantification is made possible by a variety of techniques that are all underpinned by key laws of geography and spatial principles and properties.</p>
+<p>For us, today, we are interested in looking at two different types of analysis techniques that address two key properties of spatial data:</p>
+<ul>
+<li><strong>Spatial Autocorrelation</strong>: the effect of spatial processes on distributions.</li>
+<li><strong>Spatial Heterogeneity</strong>: the covariances of processes over space.</li>
+</ul>
+<p>We’ll be using our newly created <code>obesity_ward_sdf</code> to investigate these two properties in action, whilst also answering questions on the overall distribution and factors of childhood obesity.</p>
+</div>
+<div id="analysing-distributions" class="section level3 unnumbered">
+<h3>Analysing Distributions</h3>
+<p>Whenever dealing with data, our first question as analysts is to understand its distribution.</p>
+<p>As geographers and spatially-fascinated thinkers, analysing a data’s distribution will mean two things to us:</p>
+<ul>
+<li><strong>A statistical analysis of distribution</strong></li>
+<li><strong>A spatial analysis of distribution</strong></li>
+</ul>
+<p>We’re pretty lucky that we get to think about data in a slightly different way to those thinking about pure statistics.</p>
+<p>After all, adding a spatial component to distribution is pretty darn important when we’re looking at spatial phenomena and processes, even when looking just at statistical distribution, as we’ll see in the rest of the workshop.</p>
+<div id="statistical-analysis-of-distributions" class="section level4 unnumbered">
+<h4>Statistical Analysis of Distributions</h4>
+<p>Within general data analysis, when it comes to analysing the distribution of your data, you are looking to conduct what is known as <strong>Exploratory Data Analysis</strong> (EDA) which is where we look to summarise the main characteristics of our data.</p>
+<p>EDA was promoted by prominent statistician John Tukey to encourage data anlaysts to explore their data outside of traditional formal modelling - and come up with new areas of investigation and hypotheses.</p>
+<p>According to Wikipedia (that well-known academic resource!), Tukey promoted the use of five summary statistics: <strong>the max-min, the median, and the quartiles</strong>, which, in comparison to the mean and standard deviation, provide a more robust understanding of a data’s distribution, particularly if the data is skewed.</p>
+<p>We looked at how we can use R to extract some of these summary statistics briefly in Week 4, but let’s have a look at how we can add further to this EDA, including creating some statistical charts of our data’s distribution.</p>
+<div id="understanding-the-statistical-distribution-of-childhood-obesity" class="section level5 unnumbered">
+<h5>Understanding the statistical distribution of childhood obesity</h5>
+<p>In Week 4, we looked at how we can display individual descriptive statistics about our dataset.</p>
+<p>To make things even easier for us, we can instead, we can use a single function to find out about the distribution of our data: <code>summary()</code>.</p>
+<ol style="list-style-type: decimal">
+<li>In your script, below your joining of our dataframes, summarise our <code>y6_obesity_2014</code> distribution.</li>
+</ol>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="co"># Summarise our obesity_ward_sdf data column. Remember we use the $ to access the specific column we want to assess</span></a>
+<a class="sourceLine" id="cb178-2" title="2"><span class="kw">summary</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   5.929  18.569  22.670  21.752  25.325  35.000      12</code></pre>
+<p><em>You can save the output of your function to a variable if you’d like - or else, just take a look at the numbers printed in the console.</em></p>
+<p>This ‘summary()’ function can also be called on the dataset as a whole and will generate summary statistics for each individual numeric variable. You can execute this in your console if you’d like to get an understanding of all of variables - although we’ll focus on obesity for much of this practical.</p>
+<p>We can see that our <strong>Median</strong> and <strong>Mean</strong> are quite close to one another - and the quartiles are nearly the same amount apart from the mean, so we can start to think that our data is normally distribution.</p>
+<p>To confirm this, we can do the next best thing, which is plot our distribution using a <strong>histogram</strong>, using the base R <code>hist()</code> command.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Plot the histogram of our <code>y6_obesity_2014</code> distribution.</li>
+</ol>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="co"># Plot the histogram of our y6_obesity_2014 data. Remember we use the $ to access the specific column we want to assess</span></a>
+<a class="sourceLine" id="cb180-2" title="2"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-hist-1.png" width="672" /></p>
+<p>We can actually see our data has a slight negative skew - which would make sense given that our median is higher than our mean.</p>
+<img src="images/w6/distributions.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<em>Cheatsheet on data distributions: negative skew, normal, positive skew. Source: Wikipedia</em>
+</center>
+<p><br></p>
+<p>Just like our maps from last week, we can further customise our histograms if we want to make them more aesthetically pleasing and upate the title and axis labelling.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Change the colour of our hisogram and change the labelling of our histogram.</li>
+</ol>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="co"># Plot a fancy histogram of our y6_obesity_2014 data. Remember we use the $ to access the specific column we want to assess</span></a>
+<a class="sourceLine" id="cb181-2" title="2"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Obesity in Year 6 children within London Wards in 2014&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-hist-2-1.png" width="672" /></p>
+<p>We can also, as per our maps last week, export this histogram and save it as a PNG by a) storing the histogram code to a variable and b) saving this variable to a file.</p>
+<p>The code to do so is a little different - we essentially “open up” a file, called what we want to name our plot. We then run the code to plot our data, which will place the output “within” the file and then "close’ the file down.</p>
+<p><em>Note, I’ve also created a new folder called <code>graphs</code> within my project.</em></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Export our plot to an image in our graphs folder.</li>
+</ol>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="co"># Open a PNG, give it the filename we want</span></a>
+<a class="sourceLine" id="cb182-2" title="2"><span class="kw">png</span>(<span class="st">&quot;graphs/Y6_obesity_distribution.png&quot;</span>)</a>
+<a class="sourceLine" id="cb182-3" title="3"></a>
+<a class="sourceLine" id="cb182-4" title="4"><span class="co"># Run the same plot code to save our output into this opened png</span></a>
+<a class="sourceLine" id="cb182-5" title="5"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">breaks=</span><span class="dv">10</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Obesity in Year 6 children within London Wards in 2014&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</a>
+<a class="sourceLine" id="cb182-6" title="6"></a>
+<a class="sourceLine" id="cb182-7" title="7"><span class="co"># Close the PNG</span></a>
+<a class="sourceLine" id="cb182-8" title="8"><span class="kw">dev.off</span>()</a></code></pre></div>
+<p>You should now see the image appear in your graphs folder.</p>
+<p>Another type of chart we can create just using the base R library is a <strong>boxplot</strong>.</p>
+<p><img src="images/w6/boxplot.png" width="650pt" style="display: block; margin: auto;" />
+<br></p>
+<p>A boxplot shows the core characteristics of the distributions within a dataset, including the interquartile range.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Plot the boxplot of our <code>y6_obesity_2014</code> variable.</li>
+</ol>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="co"># Plot the boxplot of our y6_obesity_2014 data. Remember we use the $ to access the specific column we want to assess</span></a>
+<a class="sourceLine" id="cb183-2" title="2"><span class="kw">boxplot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-boxplot-1.png" width="672" /></p>
+<p>It’s not exactly the most exciting graph now is it!</p>
+<p>There is actually a lot more we can do in terms of visualising our data’s distribution - and the best way forward would be to become more familiar with the <code>ggplot2</code> library, which is the main visualisation for both statistical and, increasingly, spatial graphs, charts and maps.</p>
+<p>The library is quite complex - and learning how to use it isn’t the aim of this week’s practical so we won’t cover this in any more detail now.</p>
+</div>
+<div id="why-do-i-need-to-care-about-my-datas-distribution" class="section level5 unnumbered">
+<h5>Why do I need to care about my data’s distribution?</h5>
+<p>We’ve now managed to investigate the statistical distribution of our data - but what does that mean for us as data analysts?</p>
+<p>Well put simply, we need to understand our data’s distribution if we want to test relationships between different variables, for example using linear regression.</p>
+<p>If we see that there is a gaussian (normal) distribution across two of our variables, it is likely that there will be a (linear) relationship between our dependent and independent variables.</p>
+<p>Ensuring our variables are <strong>normally distributed</strong> is a key assumption of being able to run a linear regression - as we’ll read about later below.</p>
+<div class="assignment">
+<p><strong>Assignment 1: Distribution of our explanatory variables</strong><br></p>
+<p>Your first assignment this week is to go ahead and test each of our variables to determine their distribution.</p>
+<p>Make a note of which ones are normally distributed and which aren’t (and their skew) - we’ll need to address this later in the workshop.</p>
+</div>
+<p>From conducting your assignment above, you should see that not all of our variable have a normal distribution (in fact, there is only one that really looks somewhat normal!).</p>
+<p>As a result, when it comes to our relationships, we’re going to need to transform our values to see if we can achieve a linear relationship - but more on that later.</p>
+<p>There is some debate as to whether this is a wise thing to do as, amongst other things, the coefficients for transformed variables are much harder to interpret.</p>
+</div>
+</div>
+<div id="spatial-analysis-of-distributions" class="section level4 unnumbered">
+<h4>Spatial Analysis of Distributions</h4>
+<p>Whilst statistical analysis of distributions focus on tests and charts, when we want to understand the spatial distribution of our phenomena, we have a very simple solution: <strong>we make a map!</strong></p>
+<p>In our case, we’re looking at areal unit data and therefore we can use a choropleth map to study our data across the wards:</p>
+<img src="GEOG0030_files/figure-html/06-facet-map-1.png" width="672" />
+<br>
+<center>
+<em>Our variables (l-r, t-d): Yr 6 Obesity, IDACI, Median House Price, Mean Household Income, Percent No Adult Employment, Percent No Qualifications, Percent Deficient in Greenspace, PTAL </em>
+</center>
+<p><br></p>
+<p>And specifically, we can create a single output choropleth map for each of our variables to visually understand their distribution.</p>
+<p>In this case, I’ve copied the code from Week 5’s map-making, changed the colour scheme and titles, but quite quickly managed to make a map of our obesity variable to further understand it’s distribution.</p>
+<center>
+<em>Note, you do not need to copy this code over into your script - but provided as a reference to see how this map was made.</em>
+</center>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="co"># Creating a map template for us to use, legend outside</span></a>
+<a class="sourceLine" id="cb184-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>, <span class="dt">border.col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;y6_obesity_2014&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>, <span class="dt">title=</span><span class="st">&quot;Percentage of children &quot;</span>, <span class="dt">palette=</span><span class="st">&quot;Purples&quot;</span>, <span class="dt">border.col=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span><span class="st">&#39;Obesity of Year 6 children in London Wards in 2014&#39;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-obesity-map-1.png" width="672" /></p>
+<p>The thing with spatial distributions is that we can quickly pick up on spatial patterns present within our data (although also miss others!) -but considering we’re just presenting our data on a map, how can we account and even quantify these clusters?</p>
+<p>For example, in our obesity example, we can see there are clusters of high levels of obesity in East London, whilst there are clusters of low levels of obesity in the south east and south west areas of London.</p>
+<p>If we want to come up with quantifiable descriptions of a variable’s distribution and how they vary over space, then we need to find ways of quantifying these clusters.</p>
+<div class="note">
+<p><strong>Dealing with NAs in our dataset</strong><br>
+Every time I write a tutorial for the class, a little pesky data issue always has to come up and surpise me - and this is no difference with this workshop.</p>
+<p>If you remember earlier, when we coerced our variables into numeric values, we also introduced NAs into several variables. The issue is, the analyses we will conduct below will <strong>not</strong> work with NAs.</p>
+<p>I’ve checked the <code>obesity_ward_sdf</code> and it appears (and validated by our earlier facet choropleth map) that only our <code>yr6_obesity_2014</code> variable contains NAs. <em>Do double-check your own dataframe to make sure this is the case.</em></p>
+<p>To move forward with our analysis, we need to remove those wards that do not contain any obesity information from our spatial dataframe - this will have some issues in terms of how we think about our “neighbours”, explained further below, but will allow us to run the code required.</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Remove the wards in our <code>obesity_ward_sdf</code> that do not contain any obesity information.</li>
+</ol>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="co"># Remove NAs using the filter function from dplyr and the ! (not) NA function</span></a>
+<a class="sourceLine" id="cb185-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(y6_obesity_<span class="dv">2014</span>))</a></code></pre></div>
+</div>
+</div>
+<div id="spatial-autocorrelation-and-clustering-analysis" class="section level3 unnumbered">
+<h3>Spatial Autocorrelation and Clustering Analysis</h3>
+<blockquote>
+<p>“The first law of geography: Everything is related to everything else, but near things are more related than distant things.” <em>Waldo R. Tobler (1970)</em></p>
+</blockquote>
+<p>When you attach values to the polygons of wards in London, and visualise them, different patterns appear, and the different shapes and sizes of the polygons effect what these patterns look like and how prominent they are to the human eye.</p>
+<p>There can appear to be clusters, or the distribution can be random.</p>
+<p>If you want to explain and discuss variables, the underlying causes, and the possible solutions to issues, it becomes useful to quantify how clustered, how random, or how dispersed, these distributions are.</p>
+<p>When values are clustered, this issue is known as spatial autocorrelation and results from what is known as spatial dependence.</p>
+<img src="images/w6/Random_maps.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<br><em>Understanding spatial dependence on variables. Source: Manuel Gimond.</em>
+</center>
+<p><br></p>
+<p>Spatial dependence is the idea, as introduced in the second week via Tobler’s Law (1970) that <strong>“everything is related to everything else, but near things are more related than distant things”</strong>.</p>
+<p>In Week 2, we used Tobler’s Law to determine how we can create sample schemes for collecting spatial data. When it comes to spatial analysis, we can use the law to help identify clusters.</p>
+<p>Within spatial analysis, this dependence can be assessed and measured statistically by considering the level of spatial autocorrelation between values of a specific variable, observed in either different locations or between pairs of variables observed at the same location.</p>
+<p>Here we assume that the observed value of a variable in one location is often dependent (to some degree) on the observed value of the same value in a nearby location. As a result, spatial autocorrelation occurs when these values are not independent of one another and instead cluster together across geographic space.</p>
+<p>On the opposite end of the spectrum, when our values our not clustered, then they will be spatially dispersed.</p>
+<p>Finally, in the middle we have <strong>complete spatial randomness</strong> (CSR) - where our data’s distribution shows no identifiable pattern whatsoever - it is useful to flag that this seldomly occurs.</p>
+<img src="images/w6/csr.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<br><em>Dispersion, Complete Spatial Randomness and Clustering. Source: Esri.</em>
+</center>
+<p><br></p>
+<p>We can assess the distribution of our data using spatial autocorrelation tests, which can be conducted on both a <strong>global</strong> (identify if the data is clustered) and <strong>local</strong> (identify the precise clusters) scales.</p>
+<p>There are also various spatial autocorrelation tecnhiques that can be used - however they all require one piece of information: <strong>how we define ‘neighbours’ in our dataset to enable the value comparison.</strong></p>
+<div id="lecture-what-is-spatial-autocorrelation-and-how-to-define-neighbours" class="section level4 unnumbered">
+<h4>Lecture: What is spatial autocorrelation and how to define neighbours?</h4>
+<p>Spatial autocorrelation, its different techniques and neighbour definitions are introduced in the main lecture for this week:</p>
+<em>Available Wednesday morning</em>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/0?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="">Slides</a> | <a href="">Video on Stream</a>
+</center>
+<p><br></p>
+<p>Aspects of the above short lecture are summarised below before we go ahead and conduct spatial autocorrelation tests on our <code>y6_obesity_2014</code> variable.</p>
+</div>
+<div id="defining-neighbours" class="section level4 unnumbered">
+<h4>Defining neighbours</h4>
+<p>If you want to calculate the relative spatial relation of distributions, knowledge of what counts as a “neighbour” becomes useful.</p>
+<p>Every observation in a dataset will have a set of neighbours - these are the observations that surround our initial observation within a specific <strong>proximity</strong>.</p>
+<p>This proximity or closeness can be defined in a multitude of ways, including:</p>
+<ul>
+<li><strong>Contiguity</strong>: Queen / Rook (<em>plus order</em>)</li>
+<li><strong>Fixed Distance</strong>: Euclidean Distance (e.g. within 2km)</li>
+<li><strong>(K) Nearest Neighbours</strong>: Certain <em>n</em> number of closest neighbours</li>
+</ul>
+<img src="images/w6/iffn.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<br><em>Different approaches of conceptualising neighbours for spatial autocorrelation measurement: contiguity, fixed distance and nearest neighbours. Source: Manuel Gimond.</em>
+</center>
+<p><br></p>
+<p>Depending on the variable you are measuring, the appropriateness of these different types of neighbourhood calculation techniques can change.</p>
+<p>As a result, how you define neighbours within your dataset will have an impact on the validity and accuracy of spatial analysis.</p>
+<p>Whatever approach you choose therefore needs to be grounded in particular theory that aims to represent the process and variable investigated.</p>
+<p>Whilst we will not provide a range of examples here, I can highly recommend looking at Esri’s Help Documentation on <a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/modeling-spatial-relationships.htm#GUID-729B3B01-6911-41E9-AA99-8A4CF74EEE27">Selecting a conceptualization of spatial relationships: Best practices</a> when you come to need to define neighbours yourself for your own analysis.</p>
+<p>For our analysis into childhood obesity, we will primarly use the <strong>Queen contiguity</strong> approach outlined in the lecture.</p>
+<p>This approach is <em>“effective when polygons are similar in size and distribution, and when spatial relationships are a function of polygon proximity (the idea that if two polygons share a boundary, spatial interaction between them increases)”</em> (Esri, 2021).</p>
+<p>In our case, we are using Ward boundaries which are administrative boundaries and not necessarily reflective of the neighbourhoods and local processes at play in London that might contribute to childhood obesity.</p>
+<p>By selecting the contiguity approach, we can account for spatial interaction between our Ward communities and hopefully reduce issues caused by boundary effects.</p>
+</div>
+<div id="different-spatial-autocorrelation-techniques" class="section level4 unnumbered">
+<h4>Different spatial autocorrelation techniques</h4>
+<p>As shown in the lecture, we have several types of tests that look to quantify spatial autocorrelation. Of these tests, there are two categories:</p>
+<ul>
+<li><strong>Global statistical</strong> tests (i.e. those that provide us with a statistic to tell us about autocorrelation in our datset)</li>
+<li><strong>Local spatial</strong> tests (i.e. those that provide us with the cluster maps).</li>
+</ul>
+<p>These are outlined in the below table for easy reference:</p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="9%" />
+<col width="34%" />
+<col width="34%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Test</th>
+<th align="left">Scale</th>
+<th align="left">Test</th>
+<th align="left">Output</th>
+<th align="left">Significance Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Global Moran’s I</td>
+<td align="left">Global</td>
+<td align="left">Tests how “random” the spatial distribution of values are, producing a correlation coefficient for the relationship between a variable (like income) and its surrounding values.</td>
+<td align="left"><strong>Moran’s I statistic:</strong> <br> Metric between -1 and 1. <br> -1 = dispersed <br> 0 = CSR <br> 1 = clustered</td>
+<td align="left">Yes - <span class="math inline">\(p\)</span>-value</td>
+</tr>
+<tr class="even">
+<td align="left">Getis-Ord</td>
+<td align="left">Global</td>
+<td align="left">Tests for clusters of <strong>high</strong> and <strong>low</strong> values. <br> Works best with use of <strong>distance/proximity weights</strong>.</td>
+<td align="left"><strong>Getis-Ord <span class="math inline">\(G_{i}^{*}\)</span> statistic:</strong> <br> gG &gt; Expected = High values clustering <br> gG &lt; Expected = Low values clustering</td>
+<td align="left">Yes - <span class="math inline">\(p\)</span>-value</td>
+</tr>
+<tr class="odd">
+<td align="left">Geary’s C</td>
+<td align="left">Global</td>
+<td align="left">Tests whether <strong>similar</strong> or <strong>disimilar</strong> values are clustering.</td>
+<td align="left"><strong>Geary C statistic:</strong> <br> 1 = No spatial autocorrelation <br> GC &lt; 1 = Similar values clustering (positive spatial autocorrelation) <br> GC &gt; 1 = Disimilar values clustering (negative spatial autocorrelation)</td>
+<td align="left">Yes - <span class="math inline">\(p\)</span>-value</td>
+</tr>
+<tr class="even">
+<td align="left">Local Moran’s I</td>
+<td align="left">Local</td>
+<td align="left">Tests the difference between a unit of analysis and its neighbour(s).</td>
+<td align="left"><strong>Local Moran’s I statistic:</strong> <br> 1. Can be used alongside the mean of values to generate cluster type generations. <br>i.e. High-High, High-Low, Low-High, Low-Low, Insignificant. <br> 2. Can also use standard deviation of main local statistic to show just high and low clusters</td>
+<td align="left">Yes - <span class="math inline">\(p\)</span>-value</td>
+</tr>
+<tr class="odd">
+<td align="left">Local Getis-Ord</td>
+<td align="left">Local</td>
+<td align="left">Identifies statistically significant hot spots and cold spots using the local Getis-Ord Gi* statistic.</td>
+<td align="left">Can use the standard deviation of statistic to identify hot and cold spots</td>
+<td align="left">Yes - <span class="math inline">\(p\)</span>-value</td>
+</tr>
+</tbody>
+</table>
+<p>In each of these cases, our <span class="math inline">\(p\)</span>-values are psuedo <span class="math inline">\(p\)</span>-values, generated through simulations such as that outlined in the lecture.</p>
+<p>Our pseudo p-values allow us to interpret our relationships with a level of confidence (but not surety as they are only pseudo values!).</p>
+<p>If we find that our relationships do not have any significance, then we cannot be confident in presenting them as true results.</p>
+<p>We’ll look to deploy each of these techniques on our dataset today - but in the future, you do not need to use <strong>all</strong> of the techniques, but instead choose one (or two, e.g. global and local) that best help you explain the distribution in your data.</p>
+</div>
+<div id="understanding-the-spatial-lag-approach-for-morans-i-calculation" class="section level4 unnumbered">
+<h4>Understanding the spatial lag approach for Moran’s I calculation</h4>
+<p>Underlying our global Moran’s I test is the concept of a <strong>spatial lag model</strong>.</p>
+<p>A <strong>spatial lag</strong> model plots each value against the mean of its neighbours’ values, defined by our selected approach. This creates a scatter plot, from which our Moran’s I statistic can be derived.</p>
+<p>An Ordinary Least Squares (OLS) regression is used to fit the data and produce a slope, which determines the Moran’s I statistic:</p>
+<img src="images/w6/MoranI_scatter_plot.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<br><em>A spatial lag model - plotting value against the mean of its neighbours. Source: Manuel Gimond.</em>
+</center>
+<p><br></p>
+<p>To determine a <span class="math inline">\(p\)</span>-value from our model for global Moran’s I, this spatial lag model is computed multiple times (think hundreds, thousands) but uses a random distribution of neighbouring values to determine different slopes for multiple ways our data <em>could</em> be distributed, if our data was distributed by random.</p>
+<p>The output of this test is a sampling distribution of Moran’s I values that would confirm a null hypothesis that our values are randomly distributed.</p>
+<p>These slopes are then compared to compare our <em>observed</em> slope versus our <em>random</em> slopes and identify whether the slope is within the main distribution of these values or an outlier:</p>
+<img src="images/w6/MC_sim_1.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<br><em>A spatial lag model - plotting value against the mean of its neighbours. Source: Manuel Gimond.</em>
+</center>
+<p><br></p>
+<p>If our slope is an outlier, i.e. not a value we would expect to compute if the data were randomly distributed, we are more confidently able to confirm our slope is reflective of our data’s clustering and is significant.</p>
+<p>Our <em>pseudo-</em><span class="math inline">\(p\)</span>-values are then computed from our simulation results:</p>
+<center>
+<span class="math inline">\(\frac{N_{extreme} + 1}{N + 1}\)</span>
+</center>
+<p><br></p>
+<p>Where <span class="math inline">\({N_{extreme}}\)</span> is the number of simulated Moran’s I values that were more extreme that our observed statistic and <span class="math inline">\({N}\)</span> is the total number of simulations (Gimond, 2021).</p>
+<p>In the example above, from Manuel Gimond (see acknowledgements), only 1 out the 199 simulations was more extreme than the observed local Moran’s I statistic.</p>
+<p>Therefore <span class="math inline">\({N_{extreme}}\)</span> = 1 , so <span class="math inline">\(p\)</span> is equal to (1+1) / (199 + 1) = 0.01.</p>
+<p>This means that <em>“there is a 1% probability that we would be wrong in rejecting the null hypothesis Ho.”</em></p>
+<p>This approach is known as a <strong>Monte Carlo simulation</strong> (or permutation bootstrap test).</p>
+<p>This spatial lag model is not just used in Moran’s I, but as you’ll read about in our extension material below, is also needed for spatial regression. In this case, the model is used to introducing a “lag” or “lagged” variable.</p>
+</div>
+</div>
+<div id="analysing-spatial-autocorrelation-in-childhood-obesity-and-deprivation-in-london-wards" class="section level3 unnumbered">
+<h3>Analysing Spatial Autocorrelation in Childhood Obesity and Deprivation in London Wards</h3>
+<p>Now we know a little more about spatial autocorrelation and how we can test for clusters in our datasets, let’s go ahead and see if we can quantify the patterns evident in our <code>y6_obesity_2014</code> data’s distribution.</p>
+<p>This is where things start to get a little trickier and more technical - so if you’ve got to this point without a break, please take one now!</p>
+<div id="defining-neighbours-for-spatial-weights" class="section level4 unnumbered">
+<h4>Defining neighbours for spatial weights</h4>
+<p>Before we can calculate Moran’s I and any similar statistics, we need to first define our <strong>spatial weights matrix</strong>.</p>
+<p>This is known mathematically as <span class="math inline">\(W_{ij}\)</span> and this will tell our code (when we get there) which unit neighbours which, according to our neighbour definition.</p>
+<p>For each neighbour definition, there is a different approach to implementing code to calculate the <span class="math inline">\(W_{ij}\)</span> spatial weights matrix.</p>
+<p>Here, we will look at three approaches:</p>
+<ol style="list-style-type: decimal">
+<li>Creating a Queen <span class="math inline">\(W_{ij}\)</span> spatial weights matrix</li>
+<li>Creating a Rook <span class="math inline">\(W_{ij}\)</span> spatial weights matrix</li>
+<li>Creating a Fixed Distance <span class="math inline">\(W_{ij}\)</span> spatial weights matrix</li>
+</ol>
+<p>For either approach, we use a single line of code to create the relevant <span class="math inline">\(W_{ij}\)</span> spatial weights matrix:</p>
+<ol style="list-style-type: decimal">
+<li>Create our three spatial weights matrices:
+<ul>
+<li>Queen</li>
+<li>Rook</li>
+<li>Fixed Distance (at 3000m / 3km</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="co"># Create a neighbours list based on the Queen neighbour definition</span></a>
+<a class="sourceLine" id="cb186-2" title="2">ward_neighbours_queen &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">poly2nb</span>(., <span class="dt">queen=</span>T)</a>
+<a class="sourceLine" id="cb186-3" title="3"></a>
+<a class="sourceLine" id="cb186-4" title="4"><span class="co"># Create a neighbours list based on the Rook neighbour definition</span></a>
+<a class="sourceLine" id="cb186-5" title="5"><span class="co"># Note, we just need to assign the queen parameter to FALSE</span></a>
+<a class="sourceLine" id="cb186-6" title="6">ward_neighbours_rook &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">poly2nb</span>(., <span class="dt">queen=</span>F)</a>
+<a class="sourceLine" id="cb186-7" title="7"></a>
+<a class="sourceLine" id="cb186-8" title="8"><span class="co"># Creates centroid and joins neighbours within 0 and 3000 &#39;units&#39; of the CRS, i.e. metres</span></a>
+<a class="sourceLine" id="cb186-9" title="9">ward_neighbours_fd &lt;-<span class="st"> </span><span class="kw">dnearneigh</span>(<span class="kw">st_geometry</span>(<span class="kw">st_centroid</span>(obesity_ward_sdf)),<span class="dv">0</span>, <span class="dv">3000</span>)</a></code></pre></div>
+<pre><code>## Warning in st_centroid.sf(obesity_ward_sdf): st_centroid assumes attributes are
+## constant over geometries of x</code></pre>
+<p><strong>Visualising the differences in neighbours</strong></p>
+<p>Creating our neighbours list through a single line of code, as above, doesn’t really tell us much about the differences between these conceptualisations.</p>
+<p>It would be useful to the links between neighbours for our three definitions and visualise their distribution across space.</p>
+<p>To be able to do this, we’ll use a few lines of code to generate a visualisation based on mapping the defined connections between the centroids of our wards.</p>
+<div class="note">
+<p><strong>What are centroids?</strong><br>
+We have not come across the concept of a centroid yet in our analysis but we can briefly explain them here today - although next week, we’ll talk about them in a little more detail.</p>
+<p>A centroid, in it’s most simplest is the central point of an areal unit. How this central point is defined can be weighted by different approaches to understanding geometries or by using an additional variable. Again, we’ll discuss this in a little more detail next week.</p>
+<p>In our case, our centroids will reflect in the “central” point of our wards, determined by its geometric boundaries.</p>
+</div>
+<p>We can calculate the centroids of our wards using one of the <strong>geometric</strong> tools from the <code>sf</code> library (more on these tools next week): <code>sf_centroid</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Calculate the centroid of our Wards:</li>
+</ol>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="co"># Calculate the centroids of all of the Wards in London, extract only the geometry (we do not need the other data/variables in our dataframe)</span></a>
+<a class="sourceLine" id="cb188-2" title="2">ward_centroid &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_centroid</span>()</a></code></pre></div>
+<pre><code>## Warning in st_centroid.sf(.): st_centroid assumes attributes are constant over
+## geometries of x</code></pre>
+<p>You can <code>plot()</code> the <code>ward_centroid</code> using the console if you’d like to see what they look like as spatial data.</p>
+<p>Now we have our ward centroids, we can go ahead and plot the centroids and the defined neighbour connections between them from each of our neighbour definitions.</p>
+<p>To do so, we’ll use the <code>plot()</code> function, provide the relationships via our <code>ward_neighbours_X</code> list and then the geometry associated with these lists from our <code>ward_centroid()</code></p>
+<p>We use the <code>st_geometry</code> command to extract the geometry column of our centroids to create a “list” of our centroid’s coordinates.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Plot our different neighbour definitions and their connections between centroids for visualisation:</li>
+</ol>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="co"># We can plot these neighbours alongisde our centroids and polygon </span></a>
+<a class="sourceLine" id="cb190-2" title="2"><span class="kw">plot</span>(ward_neighbours_queen, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb190-3" title="3"><span class="kw">plot</span>(ward_neighbours_rook, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">add=</span>T)</a>
+<a class="sourceLine" id="cb190-4" title="4"><span class="kw">plot</span>(ward_neighbours_fd, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">add=</span>T)</a>
+<a class="sourceLine" id="cb190-5" title="5"><span class="kw">plot</span> (obesity_ward_sdf<span class="op">$</span>geometry, <span class="dt">add=</span>T)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-plotting-neighbours-1.png" width="672" /></p>
+<p>Ahah! We can see that there is definitely a difference in the number of neighbours when we use our different approaches.</p>
+<p>It seems our fixed distance neighbour conceptualisation has much connections in the center of London versus areas on the outskirts.</p>
+<p>We can see that our contiguity approaches provide a more equally distributed connection map - with our Queen conceptualisation having a few more links that our Rook.</p>
+<p>To explore further, you can either place a <code>#</code> comment signal in front of each line of code to “turn” it off as a layer in your map or rearrange the layering to see the different distributions of neighbours.</p>
+<p>We can also type the different neighbours objects into the console to find out the total number of “non-zero links” (i.e. total number of connections) present within the conceptualisation.</p>
+<p>You should see that Queen has 3560 non-zero links, Rook has 3474 and Fixed Difference has 8238.</p>
+<p>Whilst this code simply explores these conceptualisations - and theorectically is not needed for your analysis - it helps us understand further how our different neighbourhood conceptualisations can ultimately impact our overall analysis.</p>
+</div>
+<div id="creating-our-spatial-weights-matrix" class="section level4 unnumbered">
+<h4>Creating our spatial weights matrix</h4>
+<p>With our neighbours now defined, we will go ahead and create our final (two) spatial weights objects that will be needed for our spatial autocorrelation code.</p>
+<p>At the moment, we currently have our neighbours defined as a “list” - but we need to convert it to a “neighbours” object.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Convert our lists of neighbours for our two definitions (Queen and Fixed Distance) into neighbour objects using the <code>nb2listw()</code> function:</li>
+</ol>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="co"># Create a neighbours list</span></a>
+<a class="sourceLine" id="cb191-2" title="2">ward_spatial_weights_queen &lt;-<span class="st"> </span>ward_neighbours_queen <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nb2listw</span>(., <span class="dt">style=</span><span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb191-3" title="3"><span class="co"># Creates a neighbours list based on the Fixed Distance neighbour definition</span></a>
+<a class="sourceLine" id="cb191-4" title="4">ward_spatial_weights_fd &lt;-<span class="st"> </span>ward_neighbours_fd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nb2listw</span>(., <span class="dt">style =</span> <span class="st">&#39;B&#39;</span>)</a></code></pre></div>
+<p>We’ll be using the Queen definition for the majority of our tests, but use the Fixed Distance for Getis-Ord.</p>
+<p>You can have a look at the differences between our neighbours lists and the neighbours objects by looking at the variables in your Environment - you should see that for our <code>ward_spatial_weights_X</code> object, we now have a column that defines the respective weights for each of our neighbour lists.</p>
+<p>We’re now ready to run our spatial autocorrelation tests!</p>
+</div>
+<div id="running-our-spatial-autocorrelation-tests" class="section level4 unnumbered">
+<h4>Running our Spatial Autocorrelation Tests</h4>
+<p>We’re going to run all <strong>five</strong> autocorrelation tests in relatively quick succession:</p>
+<ul>
+<li>Global Moran’s I</li>
+<li>General Geary’s C</li>
+<li>Global Getis-Ord</li>
+<li>Local Moran’s I</li>
+<li>Local Getis-Ord</li>
+</ul>
+<p>However, we will spend the most amount of time focusing on our global and local Moran’s I. These two tests, overall, are becoming increasingly the main tests you’d expect to see in spatial autocorrelation quantification - so we’ll take some time in refining our maps for these measures.</p>
+<p>Running the code for each test is relatively similar - we pass our <code>obesity_ward_sdf</code> dataframe into a <code>pull()</code> function which extracts the variable we want to run our spatial autocorrelation test on (in our case <code>y6_obesity_2014</code>). The output of this is then <strong>coerced</strong> into a vector through the <code>as.vector()</code> which is the piped into our spatial autocorrelation test of choice (this is the <strong>only piece of code that changes</strong> - expect for Getis-Ord), which is also provided with our <code>ward_spatial_weights_X</code> object as a parameter.</p>
+<p>Let’s get going.</p>
+<center>
+<strong>Note, if you did not remove the NAs in our obesity column than the following code will not run. Make sure to find the relevant note box - just after our choropleth map - and use the code to remove the NAs from your obesity column. You will need to re-run your matrix generating code again.</strong>
+</center>
+<p><br></p>
+</div>
+<div id="running-the-global-morans-i" class="section level4 unnumbered">
+<h4>Running the global Moran’s I</h4>
+<p>With a global Moran’s I we test how “random” the spatial distribution of these values is, producing a global Moran’s statistic from the lag approach explained earlier.</p>
+<p>The global Moran’s I statis a metric between -1 and 1:
+* -1 is a completely even spatial distribution of values
+* 0 is a “random” distribution
+* 1 is a “non-random” distribution of clearly defined clusters</p>
+<p>Before we run our global Moran’s I test, we will first create a Spatial Lag model plot which looks at each of the values plotted against their spatially lagged values. The graph will show quickly whether we are likely to expect our test to return a positive, zero or negative statistic.</p>
+<ol style="list-style-type: decimal">
+<li>Create a Moran’s I scatterplot of our <code>y6_obesity_2014</code> variable and the lagged <code>y6_obesity_2014</code> variable:</li>
+</ol>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1">obesity_MI_sp &lt;-<span class="st"> </span><span class="kw">moran.plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">listw =</span> ward_spatial_weights_queen)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-scatter-plot-MI-1.png" width="672" /></p>
+<p>We can see that there is a positive relationship between our <code>y6_obesity_2014</code> variable and the lagged <code>y6_obesity_2014</code> variable, therefore we are expecting our global Moran’s I test to produce a statistic reflective of the slope visible in our scatter plot.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Run the global Moran’s I spatial autocorrelation test and print the result:</li>
+</ol>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="co"># Run the global Moran&#39;s I test on our y6_obesity_2014 data</span></a>
+<a class="sourceLine" id="cb193-2" title="2">obesity_GMI &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">moran.test</span>(., ward_spatial_weights_queen)</a>
+<a class="sourceLine" id="cb193-3" title="3"></a>
+<a class="sourceLine" id="cb193-4" title="4"><span class="co"># Print global Moran&#39;s I result</span></a>
+<a class="sourceLine" id="cb193-5" title="5">obesity_GMI</a></code></pre></div>
+<pre><code>## 
+##  Moran I test under randomisation
+## 
+## data:  .  
+## weights: ward_spatial_weights_queen    
+## 
+## Moran I statistic standard deviate = 22.69, p-value &lt; 2.2e-16
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##      0.5333351039     -0.0016339869      0.0005558933</code></pre>
+<p>The Moran’s I statistic calculated should be 0.53.</p>
+<p>With 1 = clustered, 0 = no pattern, -1 = dispersed, this means we can confirm that childhood obesity in London is positively autocorrelated. In other words, childhood obesity does spatially cluster.</p>
+<p>We can also consider the <em>pseudo</em> <span class="math inline">\(p\)</span>-value as a measure of the statistical significance of the model - at &lt; 2.2e-16, which is R’s way of telling us its “very small/smaller than we can print”, we can confirm our result is (psuedo) significant.</p>
+</div>
+<div id="running-the-geary-cs-test" class="section level4 unnumbered">
+<h4>Running the Geary C’s test</h4>
+<p>The Gearcy C test will tell us whether similar values or dissimilar values are clustering.</p>
+<p>We can run the Geary C test using the exact same notation - we just change the test we’d like to run.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the Geary C’s spatial autocorrelation test and print the result:</li>
+</ol>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="co"># Run the Geary C&#39;s I test on our y6_obesity_2014 data</span></a>
+<a class="sourceLine" id="cb195-2" title="2">obesity_GC &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">geary.test</span>(., ward_spatial_weights_queen)</a>
+<a class="sourceLine" id="cb195-3" title="3"></a>
+<a class="sourceLine" id="cb195-4" title="4"><span class="co"># Print Geary C&#39;s statistic</span></a>
+<a class="sourceLine" id="cb195-5" title="5">obesity_GC</a></code></pre></div>
+<pre><code>## 
+##  Geary C test under randomisation
+## 
+## data:  . 
+## weights: ward_spatial_weights_queen 
+## 
+## Geary C statistic standard deviate = 19.668, p-value &lt; 2.2e-16
+## alternative hypothesis: Expectation greater than statistic
+## sample estimates:
+## Geary C statistic       Expectation          Variance 
+##      0.4622507740      1.0000000000      0.0007475703</code></pre>
+<p>The Geary’s C statistic calculated should be 0.46.</p>
+<p>With Geary’s C falling between 0 and 2 and 1 means no spatial autocorrelation, &lt;1 = positive spatial autocorrelation or similar values clustering and &gt;1 = negative spatial autocorreation or dissimilar values clustering, we can confirm that our data shows that similar values are clustering.</p>
+<p>We can also consider the <em>pseudo</em> <span class="math inline">\(p\)</span>-value as a measure of the statistical significance of the model - at &lt; 2.2e-16, which is R’s way of telling us its “very small/smaller than we can print”, we can confirm our result is (psuedo) significant.</p>
+</div>
+<div id="running-the-getis-ord-general-g-test" class="section level4 unnumbered">
+<h4>Running the Getis-Ord General G test</h4>
+<p>The Getis-Ord General G test tells us whether high or low values are clustering.</p>
+<p>For Getis-Ord, as it is <strong>recommended</strong> to use a proximity-based neighbour matrix, we’ll use our Fixed Distance definiton.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Run the Getis-Ord’s spatial autocorrelation test and print the result:</li>
+</ol>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="co"># Run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial weights to fd</span></a>
+<a class="sourceLine" id="cb197-2" title="2">obesity_GO &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">globalG.test</span>(., ward_spatial_weights_fd)</a>
+<a class="sourceLine" id="cb197-3" title="3"></a>
+<a class="sourceLine" id="cb197-4" title="4"><span class="co"># Print global G statistic</span></a>
+<a class="sourceLine" id="cb197-5" title="5">obesity_GO</a></code></pre></div>
+<pre><code>## 
+##  Getis-Ord global G statistic
+## 
+## data:  . 
+## weights: ward_spatial_weights_fd 
+## 
+## standard deviate = 10.329, p-value &lt; 2.2e-16
+## alternative hypothesis: greater
+## sample estimates:
+## Global G statistic        Expectation           Variance 
+##       2.415636e-02       2.195887e-02       4.526244e-08</code></pre>
+<p>The Getis-Ord General G statistic calculated should be 0.024 (2.415636e-02). The expectation is 0.021 ( 2.195887e-02).</p>
+<p>With G &gt; expected = high values clustering and G &lt; expected = low values clustering, we can confirm that high values within our variable are tending to cluster.</p>
+<p>We can also consider the <em>pseudo</em> <span class="math inline">\(p\)</span>-value as a measure of the statistical significance of the model - at &lt; 2.2e-16, which is R’s way of telling us its “very small/smaller than we can print”, we can confirm our result is (psuedo) significant.</p>
+<div class="note">
+<p><strong>Thinking through our findings</strong><br>
+Before we run our local spatial autocorrelation tests, let’s just take a second to think through what our results have shown.</p>
+<p>From our three statistical tests, we can confirm that:</p>
+<ul>
+<li>There is clustering in our dataset.</li>
+<li>Similar values are clustering.</li>
+<li>High values are clustering.</li>
+</ul>
+<p>Each of these tests <strong>do</strong> tell us something different about how our data is clustered and can refine our conclusions about our data without the need for our local tests - we can conclude already that areas of high levels of childhood obesity tend to cluster in the same area.</p>
+<p>We could move forward now with our investigation into why - but we wouldn’t get a sense of <strong>where</strong> these clusters are occuring. To help with this, we need to run our <strong>local</strong> models to identify <strong>where</strong> these clusters are.</p>
+<p>Understanding this <strong>where</strong> could also help us direct our investigation into understanding why.</p>
+</div>
+</div>
+<div id="running-the-local-morans-i-test" class="section level4 unnumbered">
+<h4>Running the local Moran’s I test</h4>
+<p>We’ll first run the local Moran’s I test, which deconstructs the global Moran’s I down to its components and then constructs a localized measure of autocorrelation, which can show different cluster types - depending on our mapping approach.</p>
+<p>To run a local Moran’s I test, the code again is similar to above - however, our output is different.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Run the local Moran’s I spatial autocorrelation test and print the result:</li>
+</ol>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="co"># Run the local Moran&#39;s I test on our y6_obesity_2014 data</span></a>
+<a class="sourceLine" id="cb199-2" title="2">obesity_LMI &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">localmoran</span>(., ward_spatial_weights_queen)</a>
+<a class="sourceLine" id="cb199-3" title="3"></a>
+<a class="sourceLine" id="cb199-4" title="4"><span class="co"># Print local Moran&#39;s I statistic output</span></a>
+<a class="sourceLine" id="cb199-5" title="5"><span class="co"># Here, we will only print the first 5 lines...</span></a>
+<a class="sourceLine" id="cb199-6" title="6"><span class="kw">head</span>(obesity_LMI)</a></code></pre></div>
+<pre><code>##           Ii          E.Ii     Var.Ii      Z.Ii    Pr(z &gt; 0)
+## 1 0.03833697 -0.0002813579 0.02955797 0.2246240 4.111359e-01
+## 2 0.47282190 -0.0008440736 0.08838455 1.5932503 5.555202e-02
+## 3 3.82565784 -0.0016881472 0.17590102 9.1256444 3.565538e-20
+## 4 0.40863261 -0.0016881472 0.17590102 0.9783389 1.639534e-01
+## 5 2.79741620 -0.0025322208 0.26254943 5.4644253 2.322044e-08
+## 6 0.16952553 -0.0025322208 0.26254943 0.3357907 3.685143e-01</code></pre>
+<p>As you should see, we do not get given a single statistic as per with our global tests, but rather a table of five different statistics - that are all related back to each of the wards in our dataset.</p>
+<p>If we look at the help page for the <code>localmoran</code> function (run <code>?localmoran</code> in your console) we can find out what each of these statistics mean:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ii</td>
+<td align="left">Local Moran’s I statistic</td>
+</tr>
+<tr class="even">
+<td align="left">E.Ii</td>
+<td align="left">Expectation of local Moran’s I statistic</td>
+</tr>
+<tr class="odd">
+<td align="left">Var.Ii</td>
+<td align="left">Variance of local Moran’s I statistic</td>
+</tr>
+<tr class="even">
+<td align="left">Z.Ii</td>
+<td align="left">Standard deviation of local Moran’s I statistic</td>
+</tr>
+<tr class="odd">
+<td align="left">Pr()</td>
+<td align="left"><span class="math inline">\(p\)</span>-value of local Moran’s I statistic</td>
+</tr>
+</tbody>
+</table>
+<p>We therefore have a local Moran’s I statistic for each of our ward, as well as a significance value plus a few other pieces of information that can help us create some maps showing our clusters.</p>
+<p>To be able to do this, we need to join our local Moran’s I output back into our <code>obesity_ward_sdf</code> spatial dataframe, which will then allow us to map these results.</p>
+<p>To create this join, we first <strong>coerce</strong> our local Moran’s I output into a dataframe that we then join to our <code>obesity_ward_sdf</code> spatial dataframe using the <code>mutate()</code> function from the <code>dplyr</code> library.</p>
+<p>In our case, we do not need to provide an <strong>attribute</strong> to join these two dataframes together as we use the computer’s logic to join the data in the order in which it was created…from the already in the original order of thr <code>obesity_ward_sdf</code> spatial dataframe.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Coerce local Moran’s output into a dataframe, then join to our <code>obesity_ward_sdf</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="co"># Coerce obesity_LMI into dataframe</span></a>
+<a class="sourceLine" id="cb201-2" title="2">obesity_LMI &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(obesity_LMI)</a>
+<a class="sourceLine" id="cb201-3" title="3"></a>
+<a class="sourceLine" id="cb201-4" title="4"><span class="co"># Update the names for bette reference</span></a>
+<a class="sourceLine" id="cb201-5" title="5"><span class="kw">names</span>(obesity_LMI) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="st">&quot;LMI_eIi&quot;</span>, <span class="st">&quot;LMI_varIi&quot;</span>, <span class="st">&quot;LMI_zIi&quot;</span>, <span class="st">&quot;LMI_sigP&quot;</span>)</a>
+<a class="sourceLine" id="cb201-6" title="6"></a>
+<a class="sourceLine" id="cb201-7" title="7"><span class="co"># Join to obesity_ward_sdf</span></a>
+<a class="sourceLine" id="cb201-8" title="8">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(obesity_LMI)</a></code></pre></div>
+<p>We now have the data we need to plot our local spatial autocorrelation maps.</p>
+<p>We’ll first plot the most simplest maps to do with our local Moran’s I test: the local Moran’s I statistic and the <span class="math inline">\(p\)</span>-value of local Moran’s I statistic.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Map the local Moran’s I statistic:</li>
+</ol>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="co"># Map our local Moran&#39;s I statistic using tmap</span></a>
+<a class="sourceLine" id="cb202-2" title="2"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="dt">style=</span><span class="st">&quot;pretty&quot;</span>, <span class="dt">midpoint=</span><span class="dv">0</span>, <span class="dt">title=</span><span class="st">&quot;Local Moran&#39;s I statistic&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-map-LMI-1.png" width="672" /></p>
+<p>From the map, it is possible to observe the variations in autocorrelation across space.</p>
+<p>We can interpret that there seems to be a geographic pattern to the autocorrelation. However, it is not possible to understand if these are clusters of high or low values.</p>
+<p>To be able to intepret this confidently, we also need to know the significance of the patterns we see in our map - we therefore need to map the <span class="math inline">\(p\)</span>-value of local Moran’s I statistic.</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Map the <span class="math inline">\(p\)</span>-value of local Moran’s I statistic:</li>
+</ol>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="co"># Significance breaks</span></a>
+<a class="sourceLine" id="cb203-2" title="2">breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb203-3" title="3"></a>
+<a class="sourceLine" id="cb203-4" title="4"><span class="co"># colours for our local Moran&#39;s I statistic</span></a>
+<a class="sourceLine" id="cb203-5" title="5">colours &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;white&#39;</span>, <span class="st">&quot;#a6bddb&quot;</span>, <span class="st">&quot;#2b8cbe&quot;</span> )</a>
+<a class="sourceLine" id="cb203-6" title="6"></a>
+<a class="sourceLine" id="cb203-7" title="7"><span class="co"># Map our local Moran&#39;s I statistic using tmap</span></a>
+<a class="sourceLine" id="cb203-8" title="8"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;LMI_sigP&quot;</span>, <span class="dt">style=</span><span class="st">&quot;fixed&quot;</span>, <span class="dt">breaks =</span> breaks, <span class="dt">palette=</span> <span class="kw">rev</span>(colours), <span class="dt">title=</span><span class="st">&quot;p-value of Local Moran&#39;s I stat&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-map-LMI-p-1.png" width="672" /></p>
+<p>Using our significance map, we can interpret the above clusters present in our local Moran’s I statistic more confidently.</p>
+<p>As evident, we do have several clusters that are statistically significant to the <span class="math inline">\(p\)</span>-value &lt; 0.05.</p>
+<p><em>But what if there was a better way of mapping the local Moran’s I statistic?</em></p>
+<p>Well, I’m here to tell you there is - we can make a cluster map! (This is actually one of the default outputs from running a local Moran’s I test in ArcMap, for example!).</p>
+<p><strong>Mapping the local Moran’s I statistic as cluster type</strong></p>
+<p>We’re going to create what is known as a <strong>cluster map</strong> of our <strong>local Moran’s I statistic (Ii)</strong> (LMI) which will show areas of different types of clusters, including:</p>
+<ul>
+<li><strong>HIGH-HIGH</strong>: A ward of high obesity that is also surrounded by other wards of high obesity</li>
+<li><strong>HIGH-LOW</strong>: A ward of high obesity that issurrounded by wards of low obesity</li>
+<li><strong>LOW-HIGH</strong>: A ward of low obesity that is surrounded by wards of high obesity</li>
+<li><strong>LOW-LOW</strong>: A ward of low obesity that is also surrounded by other wards of low obesity</li>
+</ul>
+<p>And those areas that have no signficant cluster or relationship to the wards around them.</p>
+<p>Our HIGH-HIGH and LOW-LOW will show our clusters, whereas the other two cluster types reveal anomalies in our variable.</p>
+<p>To create a map that shows this, we need to quantify the relationship each of our wards have with the wards around them to determine their cluster type.</p>
+<p>We do this using their observed value and their local Moran’s I statistic and their deviation around their respective means:</p>
+<ul>
+<li><em>If a ward’s observed value is higher than the observed mean and it’s local Moran’s I statistic is higher than the LMI mean</em>, it is designated as <strong>HIGH-HIGH</strong>.</li>
+<li><em>If a ward’s observed value is lower than the observed mean and it’s local Moran’s I statistic is lower than the LMI mean</em>, it is designated as <strong>LOW-LOW</strong>.</li>
+<li><em>If a ward’s observed value is lower than the observed mean but it’s local Moran’s I statistic is higher than the LMI mean</em>, it is designated as <strong>LOW-HIGH</strong>.</li>
+<li><em>If a ward’s observed value is higher than the observed mean but it’s local Moran’s I statistic is lower than the LMI mean</em>, it is designated as <strong>HIGH-LOW</strong>.</li>
+<li><em>If a ward’s LMI was found not to be significant</em>, the ward will be mapped as <strong>not significant</strong>.</li>
+</ul>
+<p>It might take a few minutes to understand takes a little while to get your head around - but essentially we’re trying to observe the differences between each Ward as those around it.</p>
+<blockquote>
+<p>For example:<br> If we know our Ward’s observed value is less than the mean value of our overall <code>y6_obesity_2014</code> variable, then it means it is of course a <strong>low</strong> value for obesity in comparison to the entirety of London. <br><br> If it’s local Moran’s I statistic is also lower than the mean value of the rest of the <code>LMI_Ii</code> statistics, it also means it is located in a neighbourhood of low values. <br><br> As a result, if this relationship is significant (determined by the <span class="math inline">\(p\)</span>-value from our local Moran’s I calculation), we can call this a “low-low” cluster.</p>
+</blockquote>
+<p>To achieve this cluster map, we’ll do one additional step of data wrangling and create three new columns.</p>
+<ul>
+<li>The first will tell us, for each Ward, whether its observed value is higher or lower than the mean observed.</li>
+<li>The second will tell us, for each Ward, whether its LMI value is higher or lower than the mean LMI.</li>
+<li>The third will use the values of these two columns - against thes expressions outlined above - to assign each Ward with a cluster type.</li>
+</ul>
+<ol start="9" style="list-style-type: decimal">
+<li>Determine the cluster type of each ward by comparing observed and LMI values against their respective means - and the significance value:</li>
+</ol>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="co"># Calculate the means of our two columns, observed and LMI_Ii, and store as new columns within our obesity_ward_sdf</span></a>
+<a class="sourceLine" id="cb204-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obs_diff =</span> (obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span> <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>))) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">LMI_diff =</span> (obesity_LMI<span class="op">$</span>LMI_Ii <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_LMI<span class="op">$</span>LMI_Ii))) </a>
+<a class="sourceLine" id="cb204-3" title="3"></a>
+<a class="sourceLine" id="cb204-4" title="4"><span class="co"># Set a significance threshold - note, you can alter this according to the signficance value you want to account for</span></a>
+<a class="sourceLine" id="cb204-5" title="5">signif &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
+<a class="sourceLine" id="cb204-6" title="6"></a>
+<a class="sourceLine" id="cb204-7" title="7"><span class="co"># Generate column with cluster type, using values above</span></a>
+<a class="sourceLine" id="cb204-8" title="8"><span class="co"># Note our first the use of the case_when function &amp; more boolean logic statements</span></a>
+<a class="sourceLine" id="cb204-9" title="9"><span class="co"># See the case_when documentation for furher info on it!</span></a>
+<a class="sourceLine" id="cb204-10" title="10">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">cluster_type =</span> <span class="kw">case_when</span>(obs_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;High-High&quot;</span>, obs_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>  <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;Low-Low&quot;</span>, obs_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;Low-High&quot;</span>, obs_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;High-Low&quot;</span>, LMI_sigP <span class="op">&gt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;No Significance&quot;</span>))</a></code></pre></div>
+<p>Now we have a column detailing our cluster types, we can create a cluster map that details our four cluster types as well as those that are not significant.</p>
+<p>Creating a cateogrical map in R and using <code>tmap</code> is a little tricky - and we’ll need to do some preparing of our colour palettes to ensure our data is mapped correctly.</p>
+<p>Essentially, we’ll need to map the number and type of colours to the variables present in our dataset manually (yes, manually, in code!) in order to create a good visualisation. Unfortunately, this is where <code>tmap</code> and mapping by code does let us down a little.</p>
+<p>To do this, we first need to figure out how many cluster types we have in our <code>cluster_type</code> field.</p>
+<p>You can check this by simply looking at the column within the <code>obesity_ward_sdf</code> spatial dataframe or we can use a function from the <code>dplyr</code> library to count the different values within our <code>cluster_type</code> variable.</p>
+<ol start="11" style="list-style-type: decimal">
+<li>In your console, check the values in our <code>cluster_type</code> field:</li>
+</ol>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="co"># Count the different values within our `cluster_type` variable </span></a>
+<a class="sourceLine" id="cb205-2" title="2"><span class="kw">count</span>(obesity_ward_sdf, cluster_type)</a></code></pre></div>
+<pre><code>## Simple feature collection with 3 features and 2 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
+## CRS:            27700
+## # A tibble: 3 x 3
+##   cluster_type       n                                                  geometry
+## * &lt;chr&gt;          &lt;int&gt;                                        &lt;MULTIPOLYGON [m]&gt;
+## 1 High-High         69 (((510346.6 178212.3, 510365.3 178209.8, 510372.8 178208…
+## 2 Low-High          85 (((539498.2 190420, 539501.7 190482.2, 539499.2 190536.1…
+## 3 No Significan…   459 (((530488.7 160167.3, 530498.7 160159.8, 530501.1 160150…</code></pre>
+<p>We can see we actually on have two cluster types present within our dataset - alongside the No Significance value.</p>
+<p>We’ll need to ensure our palette therefore only includes two colours for these two cluster types, plus a white colour for No Significance.</p>
+<p>Let’s go ahead and create our palette and map our cluster types.</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Create our cluster map using the tmap library and our pre-designated colours:</li>
+</ol>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1"><span class="co"># Set colours to be used: White (No Significance), Light Blue (Low-High) and Dark Red (High-High)</span></a>
+<a class="sourceLine" id="cb207-2" title="2"><span class="co"># Set this to pal</span></a>
+<a class="sourceLine" id="cb207-3" title="3">pal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#F5F5F5&quot;</span>, <span class="st">&#39;#91bfdb&#39;</span>, <span class="st">&#39;#67001f&#39;</span>)</a>
+<a class="sourceLine" id="cb207-4" title="4"></a>
+<a class="sourceLine" id="cb207-5" title="5"><span class="co"># In the future, if you have more clusters, you would add in additional colours accordingly</span></a>
+<a class="sourceLine" id="cb207-6" title="6"></a>
+<a class="sourceLine" id="cb207-7" title="7"><span class="co"># Plot the cluster type of our obesity LMI Ii statistic</span></a>
+<a class="sourceLine" id="cb207-8" title="8"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;cluster_type&quot;</span>, <span class="dt">palette =</span> <span class="kw">rev</span>(pal), <span class="dt">title=</span><span class="st">&quot;Cluster Type&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span><span class="st">&#39;Cluster Map of Childhood Obesity in London in 2014&#39;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-plot-LMI-hscs-1.png" width="672" /></p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="co"># Note, we &quot;reversed&quot; our colour palette as when the map was drawn we saw that our colours were assigned to the wrong values and this was the quickest solution!</span></a></code></pre></div>
+<p>And there we have it - within one map, we can visualise both the relationship of our Wards to their respective neighbourhoods and the significance of this relationship from our local Moran’s I test.</p>
+<p>This type of map is called a LISA map - and is a great way of showing how a variable is actually clustering.</p>
+<p>It took us a little bit of effort, but now we have the code written, we’ll able to add to and re-use both our clustering code and our colour palette in future tests.</p>
+</div>
+<div id="running-the-local-getis-ord-test" class="section level4">
+<h4><span class="header-section-number">6.0.0.1</span> Running the local Getis-Ord test</h4>
+<p>The final test we’ll run today is looking at the local Getis-Ord model, which will produce the Gi* (pronounched G-i-star) statistic.</p>
+<p>This statistic will identify hot and cold spots by looking at the neighbours within a defined proximity to identify where either high or low values cluster spatially and recognising statistically significant hot-spots as those areas of high values where other areas within a neighbourhood range also share high values too (and vice versa for cold spots).</p>
+<p>Don’t worry - making maps from this statistic is much simpler than the local Moran’s I.</p>
+<p>Let’s go ahead and calculate our local Gi* statistic.</p>
+<ol start="11" style="list-style-type: decimal">
+<li>Run the local Gi* statistic spatial autocorrelation test and print the result:</li>
+</ol>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="co"># Run the local Gi* test on our y6_obesity_2014 data, note we again use the fd weights</span></a>
+<a class="sourceLine" id="cb209-2" title="2">obesity_LGO &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">localG</span>(., ward_spatial_weights_fd)</a>
+<a class="sourceLine" id="cb209-3" title="3"></a>
+<a class="sourceLine" id="cb209-4" title="4"><span class="co"># Print the local Gi* statistic</span></a>
+<a class="sourceLine" id="cb209-5" title="5"><span class="kw">head</span>(obesity_LGO)</a></code></pre></div>
+<pre><code>## [1]  0.4009978 -3.4036923 -4.3086510 -4.5931460 -3.8301451 -4.3015237</code></pre>
+<p>By printing the results of our test, we can see that the local Getis-Ord test is a bit different from a local Moran’s I test as it only contains just a single value - the z-score.</p>
+<p>The z-score is a standardised value relating to whether high values or low values are clustering together, which we call the Gi* statistic.</p>
+<p>We can join this output, a list of our Gi* values, to our <code>obesity_ward_sdf</code> spatial dataframe and map the result.</p>
+<ol start="12" style="list-style-type: decimal">
+<li>Map the the local Gi* statistic:</li>
+</ol>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="co"># Join the local Gi* statistic to `obesity_ward_sdf` spatial dataframe</span></a>
+<a class="sourceLine" id="cb211-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obesity_LGO_G =</span> <span class="kw">as.numeric</span>(obesity_LGO))</a>
+<a class="sourceLine" id="cb211-3" title="3"></a>
+<a class="sourceLine" id="cb211-4" title="4"><span class="co"># Map our results using tmap</span></a>
+<a class="sourceLine" id="cb211-5" title="5"></a>
+<a class="sourceLine" id="cb211-6" title="6"><span class="co"># Again, well use a customised colour scheme - this time from the colorbrewer pacakge</span></a>
+<a class="sourceLine" id="cb211-7" title="7">GIColours&lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;RdBu&quot;</span>))</a>
+<a class="sourceLine" id="cb211-8" title="8"></a>
+<a class="sourceLine" id="cb211-9" title="9"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;obesity_LGO_G&quot;</span>, <span class="dt">style=</span><span class="st">&quot;pretty&quot;</span>, <span class="dt">palette=</span>GIColours, <span class="dt">midpoint=</span><span class="dv">0</span>, <span class="dt">title=</span><span class="st">&quot;Local Gi* statistic&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span><span class="st">&#39;Hot/Cold Spot Map of Childhood Obesity in London in 2014&#39;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-join-local-GO-1.png" width="672" /></p>
+<p>Our map shows quite clearly hot and cold spots of obesity across London - how does this compare with our local Moran’s I? Do we see the same clusters?</p>
+<div id="using-cluster-analysis-for-distribution-analysis" class="section level5 unnumbered">
+<h5>Using Cluster Analysis for Distribution Analysis</h5>
+<p>Through conducting our spatial autocorrelation tests, we can visually confirm the presence of clusters in our <code>y6_obesity_2014</code> variable - and provide a significance value associated with these tests.</p>
+<p>This provides us with a way to explain our distributions <strong>quantitatively</strong> during the analysis of our results - it also creates some pretty cool looking maps.</p>
+<p>Now you have the code, you’ll be able to repeat this analysis on any variable in the future - just be aware of substituting your spatial dataframes and respective variables correctly.</p>
+<p>To get you into practice, I’d like you to complete the following assignment.</p>
+<div class="assignment">
+<p><strong>Assignment 2: Spatial autocorrelation of the IDACI 2010 variable</strong><br>
+For this week’s assignment, I’d like you to find out whether our <code>IDACI_2010</code> variable contains spatial clustering.</p>
+<p>I’d like you to produce:</p>
+<ol style="list-style-type: decimal">
+<li>A choropleth map showing the distribution of the variable values</li>
+<li>All three global spatial autocorrelation statistics and explain what they show</li>
+<li>A local Moran’s I map showing our four cluster types.</li>
+<li>A local Getis-Ord hotspot map</li>
+</ol>
+<p>I’d like you to then compare your results to the output of our <code>y6_obesity_2014</code> values.</p>
+<p>Export your maps for both variables and values into a word document. I’d recommend setting your page to Landscape, and placing your different variables and the respective maps side by side to enable comparisons.</p>
+<p>Beneath your maps, please please provide a 100 word write-up about the general distribution and clusters in both the <code>y6_obesity_2014</code> and <code>IDACI_2010</code> variables For example:</p>
+<ul>
+<li>Do both variables have clusters?</li>
+<li>Do we see similar clusters in similar locations?</li>
+</ul>
+<p>Once complete, upload this into the newly created <code>obesity_maps</code> folder in your relevant seminar folder.</p>
+</div>
+<p>We’ve just learnt all about spatial autocorrelation and how to run the five different spatial autocorrelation tests - and map the output of the <strong>local</strong> tests in R.</p>
+<p>Wow - we’ve got through a lot today and haven’t tackled the last bit of work that we’d planned to do at the outset - that is looking at analysing relationships between variables.</p>
+<p>We’re actually going to save most of this for the optional practical in Week 10, but the following provides a short introduction that <strong>you’re welcome to ignore and head straight to the <a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#recap---analysing-spatial-patterns-i-spatial-auto-correlation-regression">Recap - Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a> section</strong>.</p>
+</div>
+</div>
+</div>
+<div id="analysing-relationships" class="section level3 unnumbered">
+<h3>Analysing Relationships</h3>
+<p>Identifying clusters and their distributions in our datasets is one way in identifying relationships between variables - but this still relies on our <strong>visual interpretation</strong>.</p>
+<p>As you’re likely to be aware, we can look at the relationship between variables <strong>quantitatively</strong> through both graphs and stastistics - the latter, through creating (with continuous data) linear bivariate and multivariate models that aim to calculate co-efficients of these relationships.</p>
+<p>For example, we could look to map the relationship between our obesity and deprivation variables. by using a simple scatter plot and through a simple linear regression model.</p>
+<p>Let’s see if we can test the relationship between our obesity and deprivation variables.</p>
+<p><em>Note, I will not explain the code in this section as I have done previously. I will provide an explanation of the code in the Week 10 optional practical.</em></p>
+<ol style="list-style-type: decimal">
+<li>Create a simple scatter plot to look at the relationship between our two variables, <code>y6_obesity_2014</code> and <code>IDACI_2010</code>:</li>
+</ol>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
+<a class="sourceLine" id="cb212-2" title="2"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, obesity_ward_sdf<span class="op">$</span>IDACI_<span class="dv">2010</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-scatter-plot-1.png" width="672" /></p>
+<p>As you can see, it looks like there is a relationship between the two - but instead of a linear relationship, we’re almost looking at something logarithmic.</p>
+<p>This is because, if you have completed <strong>Assignment 1</strong>, you would know that the distribution of <code>IDACI_2010</code> is positively skewed - as a result, we need to transform the values into something more normally distributed.</p>
+<p>For now, we will use the <code>sqrt()</code> (square root) transformation, which is one of the main transformations John Tukey recommended on his “Ladder of Powers” to adjust for skewed data (more on this in Week 10).</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a simple scatter plot to look at the relationship between our two variables, <code>y6_obesity_2014</code> and the square root of <code>IDACI_2010</code>:</li>
+</ol>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
+<a class="sourceLine" id="cb213-2" title="2"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="kw">sqrt</span>(obesity_ward_sdf<span class="op">$</span>IDACI_<span class="dv">2010</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-scatter-plot-2-1.png" width="672" /></p>
+<p>Woohoo! That’s better - now it looks like we’ve got a linear relationship between our two variables.</p>
+<p>For this relationship, we could now model the linear relationship between the two using a linear regression model.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Run a linear regression across our two variables, using the <code>lm()</code> function:</li>
+</ol>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
+<a class="sourceLine" id="cb214-2" title="2">lm_model &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> y6_obesity_<span class="dv">2014</span> <span class="op">~</span><span class="st"> </span><span class="kw">sqrt</span>(IDACI_<span class="dv">2010</span>))</a>
+<a class="sourceLine" id="cb214-3" title="3"></a>
+<a class="sourceLine" id="cb214-4" title="4"><span class="co"># Print summary of model</span></a>
+<a class="sourceLine" id="cb214-5" title="5"><span class="kw">summary</span>(lm_model)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y6_obesity_2014 ~ sqrt(IDACI_2010), data = .)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.9484 -2.3052  0.0062  1.9810 17.2709 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)        7.5569     0.5342   14.15   &lt;2e-16 ***
+## sqrt(IDACI_2010)  26.3623     0.9579   27.52   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.44 on 611 degrees of freedom
+## Multiple R-squared:  0.5535, Adjusted R-squared:  0.5528 
+## F-statistic: 757.4 on 1 and 611 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>We can see that we have a significant positive relationship between our two variables - therefore its likely that to some extent, the level of childhood obesity of a Ward is correlated with its level of deprivation - as suggested by our literature.</p>
+<p>Now the regression model we have be experimenting with so far is a simple bivariate (two variable) model.</p>
+<p>One of the nice things about regression modelling is while we can only easily visualise linear relationships in a two (or maximum 3) dimension scatter plot, mathematically, we can have as many dimensions / variables as we like.</p>
+<p>We’re going to go ahead and run a multivariate model on <strong>ALL</strong> of our variables we’ve added to today as explantory variables of the childhood obesity of a ward.</p>
+<p>We are, for now, going to <strong>IGNORE</strong> all of the assumption tests that we should run for this, e.g. collinearity, Pearson’s test etc. - we’ll go into this in more detail in Week 10 so your time has not been wasted creating our current final dataset.</p>
+<p>We will also apply the square root transformation to all our variables except the percentage of no qualifications variable - if you’ve completed <strong>Assignment 1</strong>, you would know that all of our variables are positively skewed, bar this variable which shows a normal distribution.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Run a multivariate linear regression model across ALL of our variables, using the <code>lm()</code> function:</li>
+</ol>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="co"># Plot our obesity variable v. our explanatory variables</span></a>
+<a class="sourceLine" id="cb216-2" title="2">lm_Mmodel &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> y6_obesity_<span class="dv">2014</span> <span class="op">~</span><span class="st"> </span><span class="kw">sqrt</span>(IDACI_<span class="dv">2010</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(med_house_price_<span class="dv">2014</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(mean_hh_income_<span class="dv">2013</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(per_no_adult_employ_<span class="dv">2011</span>) <span class="op">+</span><span class="st"> </span>per_no_qual_<span class="dv">2011</span> <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(per_deficiency_greenspace_<span class="dv">2012</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(PTAL_<span class="dv">2014</span>))</a>
+<a class="sourceLine" id="cb216-3" title="3"></a>
+<a class="sourceLine" id="cb216-4" title="4"><span class="co"># Print summary of model</span></a>
+<a class="sourceLine" id="cb216-5" title="5"><span class="kw">summary</span>(lm_Mmodel)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y6_obesity_2014 ~ sqrt(IDACI_2010) + sqrt(med_house_price_2014) + 
+##     sqrt(mean_hh_income_2013) + sqrt(per_no_adult_employ_2011) + 
+##     per_no_qual_2011 + sqrt(per_deficiency_greenspace_2012) + 
+##     sqrt(PTAL_2014), data = .)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.2151 -2.0383 -0.1569  2.0714 15.8856 
+## 
+## Coefficients:
+##                                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           1.4935665  2.9363681   0.509  0.61119    
+## sqrt(IDACI_2010)                     12.2333226  2.4799333   4.933 1.05e-06 ***
+## sqrt(med_house_price_2014)            0.0003341  0.0024408   0.137  0.89117    
+## sqrt(mean_hh_income_2013)            -0.0053226  0.0146778  -0.363  0.71701    
+## sqrt(per_no_adult_employ_2011)        1.7102246  0.5545708   3.084  0.00214 ** 
+## per_no_qual_2011                      0.2093637  0.0395679   5.291 1.70e-07 ***
+## sqrt(per_deficiency_greenspace_2012)  0.1136173  0.0420109   2.704  0.00703 ** 
+## sqrt(PTAL_2014)                       3.4436098  0.6170026   5.581 3.61e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.243 on 605 degrees of freedom
+## Multiple R-squared:  0.6071, Adjusted R-squared:  0.6026 
+## F-statistic: 133.6 on 7 and 605 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Overall, from our quick multivariate model we can see we do have several signficant relationships between our explanatory variables and our obesity variable.</p>
+<p>Our deprivation variable is still the strongest predictor, but the qualifications and access to public transport both appear to also influence childhood obesity.</p>
+<p>This would make an extremely interesting analysis to write-up (ignoring our assumptions ;) ) and given the literature mentioned at the start of the practical.</p>
+<p>However, as we have seen from our spatial autocorrelation analysis, our obesity variable (and likely our other variables) <strong>are very spatial</strong> in their distribution - and currently, we do not incorporate this spatial distribution into our model.</p>
+<p>So if we want to develop a regression model for childhood obesity in London, we may have to recognise this spatial component.</p>
+<p>Furthermore, these types of global regression models also assumes independence of observations: what happens in one ward is not related to what happens in another. However, we know from our analysis today, that this is not always the case because of spatial autocorrelation.</p>
+<p>This brings us to the second of two key properties of spatial data: <strong>spatial heterogeneity</strong>.</p>
+<p>With the underlying process (or processes) that govern a spatial variable likely to vary across space, a single global relationship for an entire region of study may not adequately model the process that governs outcomes in any given location of the study region.</p>
+<p>As a result, multiple methods have been developed to incorporate ‘space’ into traditional regression models, including <strong>spatial lag models</strong>, <strong>spatial error models</strong>, and <strong>Geographically Weighted Regression</strong>.</p>
+<p>These models primarily look to include the <strong>spatial lag variable</strong> that we created earlier using our <strong>spatial weights matrix</strong> into their prediction modelling and calculations.</p>
+<p>Each of these three approaches, <strong>spatial lag models</strong>, <strong>spatial error models</strong>, and <strong>Geographically Weighted Regression</strong>, utilise the variable in different ways - this will be further explainedi nthe Week 10 practical. Overall, it is important to recognise that this <strong>spatial lag variable</strong> not only underpins our spatial autocorrelation analysis but also our analysis of relationships over space.</p>
+<p>We will look into how we can use these models to analyse the above relationships in our dataset as one of our optional practicals in Week 10 - but for now, I would like you to be aware that when it comes to spatial data such as what we’re dealing with here - <strong>general regression models are not nearly sufficient enough</strong> to estimate the relationships between spatial variables accurately.</p>
+<hr />
+<p><strong>Extension: Geographically Weighted Regression in R</strong></p>
+<p>If you’re keen to get ahead of the curve and are still not exhausted from all this coding, Prof James Cheshire in his previous years as convenor of Gecomputation, alongiside Guy Lansley, put together a very short practical on how to implement Geographically Weighted Regression in R.</p>
+<p>This practical is now available on the CDRC website <a href="https://data.cdrc.ac.uk/dataset/introduction-spatial-data-analysis-and-visualisation-r/resource/practical-10-geographically">here</a> and is the last in the series. The code is slightly outdated - and will use <code>sp</code> for its loading of spatial data.</p>
+<p>You are welcome to look through this tutorial if you’d like to see what GWR looks like - for example, if you’ve deployed our multivariate model above, you might want to map the residuals as per their code to see if we need to take into account spatial dependence in our model.</p>
+<p>Note, I’ll be re-writing this tutorial for our current dataset for Week 10 - but you are of course welcome to utilise their code to go ahead and apply this to their or our dataset. ALternatively, you can wait until Week 10 for this!</p>
+<hr />
+</div>
+<div id="recap---analysing-spatial-patterns-i-spatial-auto-correlation-regression" class="section level3 unnumbered">
+<h3>Recap - Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</h3>
+<p>Congratulations on finishing our first workshop on analysing spatial patterns in R. You’ve learnt about our main topic of interest today - spatial autocorrelation - and how to deploy various spatial autocorrelation methods on a variable, and then map these results.</p>
+<p>You’ve also learnt about the different types of neighbour definitions we can use to ultimately create our spatial lag models - and use within our spatial autocorrelation tests.</p>
+<p>It might not sound like much when summarised into sentence or two - this learning is critical to your future analysis of both the <strong>distribution of</strong> and <strong>relationships between</strong> variables in your work.</p>
+<p>As highlighted in our small section on <a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-relationships">Analysing Relationships</a>, understanding that variables can be spatially dependent will determine how you are able to analyse the relationships between them. And if you do need to take into account this spatial dependence, as you’ll see in action in Week 10’s practical, understanding how a spatial lag model is computed will help you substantially with moving forward with spatial regression.</p>
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Understand how to analyse distributions of (areal) spatial data through visual and statistical analysis</li>
+<li>Explain the different approaches to defining neighbours within spatial autocorrelation</li>
+<li>Run different types of spatial autocorrelation techniques and understand their differences</li>
+<li>Understand the basics of incorporating the issue of spatial autocorrelation into regression</li>
+</ul>
+</div>
+<hr />
+<div id="acknowledgements-9" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>Part of this page is adapted from <a href="https://jtvandijk.github.io/GEOG0114/index.html">GEOG0114: Principles of Spatial Analysis</a> by Dr Joanna Wilkin (this Workbook’s author), Dr Justin Van Dijk and Alfie Long at UCL, <a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html">Spatial Autocorrelation</a> by Dr Manuel Gimond at Colby College (thank you for the images!) and <a href="https://andrewmaclachlan.github.io/CASA0005repo/gwr-and-spatially-lagged-regression.html">CASA005: GWR and Spatially Lagged Regression</a> by Dr Andrew MacLachlan at CASA, UCL.</p>
+<p>The datasets used in this workshop (and resulting maps):</p>
+<ul>
+<li>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence)</li>
+<li>Contains Ordnance Survey data © Crown copyright and database right [2015]</li>
+<li>Public Health England © Crown copyright 2021</li>
+</ul>
 
+</div>
+</div>
 </div>
             </section>
 
@@ -325,6 +1534,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

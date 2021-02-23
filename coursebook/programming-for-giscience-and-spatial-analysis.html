@@ -213,7 +213,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#practical-4-analysing-crime-in-2020-in-london-from-a-spatial-perspective"><i class="fa fa-check"></i>Practical 4: Analysing Crime in 2020 in London from a spatial perspective</a></li>
 </ul></li>
 <li class="part"><span><b>II Core Spatial Analysis</b></span></li>
-<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#week-6-in-geocomp"><i class="fa fa-check"></i>Week 6 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#workshop-housekeeping"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-patterns"><i class="fa fa-check"></i>Analysing Spatial Patterns</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-distributions"><i class="fa fa-check"></i>Analysing Distributions</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#spatial-autocorrelation-and-clustering-analysis"><i class="fa fa-check"></i>Spatial Autocorrelation and Clustering Analysis</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-autocorrelation-in-childhood-obesity-and-deprivation-in-london-wards"><i class="fa fa-check"></i>Analysing Spatial Autocorrelation in Childhood Obesity and Deprivation in London Wards</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-relationships"><i class="fa fa-check"></i>Analysing Relationships</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#recap---analysing-spatial-patterns-i-spatial-auto-correlation-regression"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-clusters.html"><a href="analysing-spatial-patterns-ii-clusters.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Clusters</a></li>
 <li class="chapter" data-level="8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>8</b> Rasters, Zonal Statistics and Interpolation</a></li>
 <li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
@@ -324,7 +333,7 @@ By the end of this week, you should be able to:</p>
 <li>Transportation</li>
 <li>Logistics</li>
 <li>Supply Chain Management</li>
-<li>Generalised Urban Plannign</li>
+<li>Generalised Urban Planning</li>
 <li>Insurance</li>
 <li>Environmental modelling</li>
 </ul>
@@ -1370,7 +1379,7 @@ However, on it’s own, if you try, you’ll see that we have “no layer elemen
 <p><img src="GEOG0030_files/figure-html/05-map-template-2-1.png" width="672" /></p>
 <p>Well I’m pretty happy with that!</p>
 <p>There’s only a few more things I’d want to do - and that would be to add an additional legend property to state why the City of London wards are grey as well as our data source information.</p>
-<p><em>Remember - all our maps contain data from the Ordnance Survey and Office for National Statistics and this needs to be credited as such (I’ve put this for now in our <a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#acknowledgements-9">Acknowledgements</a> section of the workshop).</em></p>
+<p><em>Remember - all our maps contain data from the Ordnance Survey and Office for National Statistics and this needs to be credited as such (I’ve put this for now in our <a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#acknowledgements-10">Acknowledgements</a> section of the workshop).</em></p>
 <p>This could all be added in an additional text box within our map using the <code>tm_credits()</code> function - but I’m not happy with the display that R creates (feel free to experiment with this if you’d like!). I haven’t quite figured out how to get the <code>tm_credits()</code> box to appear outside the main plotting area!</p>
 <p>For now, I would add this in post-production or take the my next step in my <strong>own</strong> R map-making learning curve is to figure out how to make an additional box <strong>outside</strong> the map area. Let’s see what we get up to in the second half of term!</p>
 <p><strong>Exporting our final map to a PNG</strong></p>
@@ -1548,6 +1557,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
