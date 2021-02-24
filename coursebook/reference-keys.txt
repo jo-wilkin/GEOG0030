@@ -5,7 +5,6 @@ cartography-and-visualisation-i
 programming-for-data-analysis-using-r-and-r-studio
 programming-for-giscience-and-spatial-analysis
 analysing-spatial-patterns-i-spatial-auto-correlation-regression
-running-the-local-getis-ord-test
 analysing-spatial-patterns-ii-clusters
 rasters-zonal-statistics-and-interpolation
 geodemographics

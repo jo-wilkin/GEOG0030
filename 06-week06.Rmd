@@ -20,12 +20,11 @@ We have a small bit of data cleaning to do this week, so we best get started!
 
 ### Week 6 in Geocomp {-}
 
-<center>*Available Wednesday morning*</center>
 ```{r 06-welcome, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE, tidy=TRUE}
 library(vembedr)
-embed_msstream('') %>% use_align('center')
+embed_msstream('4854f460-3223-4555-a50b-07ed43afa051') %>% use_align('center')
 ```
-<center>[Video on Stream]()</center><br>
+<center>[Video on Stream](https://web.microsoftstream.com/video/4854f460-3223-4555-a50b-07ed43afa051)</center><br>
 
 This week's content introduces you to two spatial analysis techniques: spatial autocorrelation and regression with spatial data. We have three areas of work to focus on:
 
@@ -530,7 +529,7 @@ Your first assignment this week is to go ahead and test each of our variables to
 Make a note of which ones are normally distributed and which aren't (and their skew) - we'll need to address this later in the workshop.
 :::
 
-From conducting your assignment above, you should see that not all of our variable have a normal distribution (in fact, there is only one that really looks somewhat normal!). 
+From conducting your assignment above, you should see that not all of our variable have a normal distribution (in fact, there is only one that really looks somewhat "normal"!). 
 
 As a result, when it comes to our relationships, we're going to need to transform our values to see if we can achieve a linear relationship - but more on that later.
 
@@ -563,12 +562,13 @@ In this case, I've copied the code from Week 5's map-making, changed the colour 
 tm_shape(london_ward_shp) + tm_polygons("gray", border.col = "gray") + tm_shape(obesity_ward_sdf) + tm_polygons(col = "y6_obesity_2014", n = 5, style = "jenks", title="Percentage of children ", palette="Purples", border.col="white") + tm_layout(main.title='Obesity of Year 6 children in London Wards in 2014', main.title.fontface = 2, fontfamily = "Helvetica", legend.outside = TRUE, legend.outside.position = "right", legend.title.size = 1, legend.title.fontface = 2) + tm_compass(type="arrow", position = c("right", "bottom")) + tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
 ``` 
 
-The thing with spatial distributions is that we can quickly pick up on spatial patterns present within our data (although also miss others!) -but considering we're just presenting our data on a map, how can we account and even quantify these clusters?
+The thing with spatial distributions is that we can quickly pick up on spatial patterns present within our data just by looking at the data (although we will also miss some others!) - and we can even provide a description of the patterns we see.
 
 For example, in our obesity example, we can see there are clusters of high levels of obesity in East London, whilst there are clusters of low levels of obesity in the south east and south west areas of London.
 
-If we want to come up with quantifiable descriptions of a variable's distribution and how they vary over space, then we need to find ways of quantifying these clusters. 
+However, reflecting on our statistical analysis above, wouldn't it be great if there were "metrics" out there that could actually account for and quantify these visible clusters?
 
+Well, luckily for us, several geographers and spatially-enabled thinkers thought the same way - and came up with an approach to quantify these clusters.
 
 :::note
 **Dealing with NAs in our dataset**<br>
@@ -587,7 +587,6 @@ To move forward with our analysis, we need to remove those wards that do not con
 ```{r 06-removeNAs, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # Remove NAs using the filter function from dplyr and the ! (not) NA function
 obesity_ward_sdf <- obesity_ward_sdf %>% filter(!is.na(y6_obesity_2014))
-
 ``` 
 
 ### Spatial Autocorrelation and Clustering Analysis {-}
@@ -596,11 +595,9 @@ obesity_ward_sdf <- obesity_ward_sdf %>% filter(!is.na(y6_obesity_2014))
 
 When you attach values to the polygons of wards in London, and visualise them, different patterns appear, and the different shapes and sizes of the polygons effect what these patterns look like and how prominent they are to the human eye. 
 
-There can appear to be clusters, or the distribution can be random. 
+There can appear to be clusters, or, in some cases, the distribution can be random. 
 
-If you want to explain and discuss variables, the underlying causes, and the possible solutions to issues, it becomes useful to quantify how clustered, how random, or how dispersed, these distributions are. 
-
-When values are clustered, this issue is known as spatial autocorrelation and results from what is known as spatial dependence.
+When values are clustered, this issue is known as spatial autocorrelation and results from what is known as **spatial dependence**.
 
 ```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, tidy=TRUE}
 knitr::include_graphics('images/w6/Random_maps.png')
@@ -624,60 +621,32 @@ knitr::include_graphics('images/w6/csr.png')
 ```
 <center><br>*Dispersion, Complete Spatial Randomness and Clustering. Source: Esri.*</center><br>
 
-We can assess the distribution of our data using spatial autocorrelation tests, which can be conducted on both a **global** (identify if the data is clustered) and **local** (identify the precise clusters) scales. 
+We can assess the distribution of our data using what is known as spatial autocorrelation tests, which can be conducted on both a **global** (identify if the data is clustered) and **local** (identify the precise clusters) scales. 
 
-There are also various spatial autocorrelation tecnhiques that can be used - however they all require one piece of information: **how we define 'neighbours' in our dataset to enable the value comparison.**
+Whilst these different tests quantify how clustered, how random, or how dispersed, these distributions are through various approaches, ultimately they provide us with statistical and spatial information that can be used to create quantifiable descriptions of a variable's distribution and how it vary over space. 
+
+This can be incredibly useful when looking to explain and discuss a variable, particularly as the clustering present in one variable can be compared to another, which might be useful to make connections between underlying causes or possible solutions to the issues the original variable poses.
+
+In our current focus, on childhood obesity, we can look to understand its distribution via these tests and then compare this distribution to that of the explanatory variables we've chosen above to see if we can identify similar patterns and determine whether we should look towards quantifying their relationship through regression techniques.
 
 #### Lecture: What is spatial autocorrelation and how to define neighbours? {-}
 
 Spatial autocorrelation, its different techniques and neighbour definitions are introduced in the main lecture for this week:
 
-*Available Wednesday morning*
 ```{r 06-spatial-autocorrelation, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE, tidy=TRUE}
 library(vembedr)
-embed_msstream('0') %>% use_align('center')
+embed_msstream('68ef203f-dc80-406c-939b-105f65a0b87c') %>% use_align('center')
 ```
-<center>[Slides]() | [Video on Stream]()</center>
+<center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/Ebdjr7Gx9zJFoYQNuh0uPkQBNH_WWxkX3_siAVEa7Z6YAQ?e=pgLdj5) | [Video on Stream](https://web.microsoftstream.com/video/68ef203f-dc80-406c-939b-105f65a0b87c)</center>
 <br>
 
 Aspects of the above short lecture are summarised below before we go ahead and conduct spatial autocorrelation tests on our `y6_obesity_2014` variable.
 
-#### Defining neighbours {-}
-
-If you want to calculate the relative spatial relation of distributions, knowledge of what counts as a “neighbour” becomes useful. 
-
-Every observation in a dataset will have a set of neighbours - these are the observations that surround our initial observation within a specific **proximity**.
-
-This proximity or closeness can be defined in a multitude of ways, including:
-
-* **Contiguity**: Queen / Rook (*plus order*)
-* **Fixed Distance**: Euclidean Distance (e.g. within 2km)
-* **(K) Nearest Neighbours**: Certain *n* number of closest neighbours
-
-```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, tidy=TRUE}
-knitr::include_graphics('images/w6/iffn.png')
-```
-<center><br>*Different approaches of conceptualising neighbours for spatial autocorrelation measurement: contiguity, fixed distance and nearest neighbours. Source: Manuel Gimond.*</center><br>
-
-Depending on the variable you are measuring, the appropriateness of these different types of neighbourhood calculation techniques can change.
-
-As a result, how you define neighbours within your dataset will have an impact on the validity and accuracy of spatial analysis. 
-
-Whatever approach you choose therefore needs to be grounded in particular theory that aims to represent the process and variable investigated. 
-
-Whilst we will not provide a range of examples here, I can highly recommend looking at Esri's Help Documentation on [Selecting a conceptualization of spatial relationships: Best practices](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/modeling-spatial-relationships.htm#GUID-729B3B01-6911-41E9-AA99-8A4CF74EEE27) when you come to need to define neighbours yourself for your own analysis.
-
-For our analysis into childhood obesity, we will primarly use the **Queen contiguity** approach outlined in the lecture. 
-
-This approach is *"effective when polygons are similar in size and distribution, and when spatial relationships are a function of polygon proximity (the idea that if two polygons share a boundary, spatial interaction between them increases)"* (Esri, 2021).
-
-In our case, we are using Ward boundaries which are administrative boundaries and not necessarily reflective of the neighbourhoods and local processes at play in London that might contribute to childhood obesity. 
-
-By selecting the contiguity approach, we can account for spatial interaction between our Ward communities and hopefully reduce issues caused by boundary effects.
-
 #### Different spatial autocorrelation techniques {-}
 
-As shown in the lecture, we have several types of tests that look to quantify spatial autocorrelation. Of these tests, there are two categories:
+As shown in the lecture, we have several types of tests that look to quantify spatial autocorrelation. 
+
+Of these tests, there are two categories:
 
 * **Global statistical** tests (i.e. those that provide us with a statistic to tell us about autocorrelation in our datset) 
 * **Local spatial** tests (i.e. those that provide us with the cluster maps).
@@ -745,6 +714,41 @@ This means that *"there is a 1% probability that we would be wrong in rejecting 
 This approach is known as a **Monte Carlo simulation** (or permutation bootstrap test).
 
 This spatial lag model is not just used in Moran's I, but as you'll read about in our extension material below, is also needed for spatial regression. In this case, the model is used to introducing a "lag" or "lagged" variable.
+
+#### Defining neighbours {-}
+
+For any spatial autocorrelation test that you want to conduct, you will always need one critical piece of information: **how do we define 'neighbours' in our dataset to enable the value comparison.**
+
+Every observation in a dataset will need to have a set of neighbours to which its value is compared.
+
+To enable this, we need to determine how many or what type of neighbours should be taken into account for each observation when conducting a spatial autocorrelation test.
+
+These 'neighbouring' observations can be defined in a multitude of ways, based either on geometry or proximity, and include:
+
+* **Contiguity** neighbours: Queen / Rook (*plus order*)
+* **Fixed Distance** neighbours: Euclidean Distance (e.g. within 2km)
+* **(K) Nearest Neighbours**: Certain *n* number of closest neighbours
+
+```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, tidy=TRUE}
+knitr::include_graphics('images/w6/iffn.png')
+```
+<center><br>*Different approaches of conceptualising neighbours for spatial autocorrelation measurement: contiguity, fixed distance and nearest neighbours. Source: Manuel Gimond.*</center><br>
+
+Depending on the variable you are measuring, the appropriateness of these different types of neighbourhood calculation techniques can change.
+
+As a result, how you define neighbours within your dataset will have an impact on the validity and accuracy of spatial analysis. 
+
+Whatever approach you choose therefore needs to be grounded in particular theory that aims to represent the process and variable investigated. 
+
+Whilst we will not provide a range of examples here, I can highly recommend looking at Esri's Help Documentation on [Selecting a conceptualization of spatial relationships: Best practices](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/modeling-spatial-relationships.htm#GUID-729B3B01-6911-41E9-AA99-8A4CF74EEE27) when you come to need to define neighbours yourself for your own analysis.
+
+For our analysis into childhood obesity, we will primarly use the **Queen contiguity** approach outlined in the lecture. 
+
+This approach is *"effective when polygons are similar in size and distribution, and when spatial relationships are a function of polygon proximity (the idea that if two polygons share a boundary, spatial interaction between them increases)"* (Esri, 2021).
+
+In our case, we are using Ward boundaries which are administrative boundaries and not necessarily reflective of the neighbourhoods and local processes at play in London that might contribute to childhood obesity. 
+
+By selecting the contiguity approach, we can account for spatial interaction between our Ward communities and hopefully reduce issues caused by boundary effects.
 
 ### Analysing Spatial Autocorrelation in Childhood Obesity and Deprivation in London Wards {-}
 
@@ -1162,7 +1166,7 @@ This type of map is called a LISA map - and is a great way of showing how a vari
 
 It took us a little bit of effort, but now we have the code written, we'll able to add to and re-use both our clustering code and our colour palette in future tests.
 
-#### Running the local Getis-Ord test {}
+#### Running the local Getis-Ord test {-}
 
 The final test we'll run today is looking at the local Getis-Ord model, which will produce the Gi* (pronounched G-i-star) statistic. 
 

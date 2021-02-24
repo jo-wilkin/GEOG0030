@@ -1,3 +1,11 @@
 # Analysing Spatial Patterns II: Clusters
 
 **Content for this week will be released at 10am on the 2nd March 2021.**
+
+<!-- Understanding spatial properties, relationships and how they are used within spatial operations are the building blocks to spatial data processing and analysis. This week, we look to provide you with a thorough introduction into using spatial operations (and the properties and relationships associated with them) through an introductory lecture, a research-based analysis (with demo and practical) and then a research task which we will look at during this week’s seminar. -->
+
+<!-- Within the lecture, we will highlight the different ways of conceptualizing key spatial properties, such as distance, and the impact this may have on measurement. We then focus on their application within spatial operations, and how they can be used for the selection, subset and validation of data. We then look at the core terminology used to define spatial relationships and how they can be used to process datasets, using the operations previously mentioned. -->
+
+<!-- In our previous practicals, we have aggregated our point data into areal units, primarily using administrative geographies, to enable its easy comparison with other datasets provided at the same spatial scale, such as the census data used in the previous week, as well as to conduct spatial autocorrelation tests. However, when locations are precisely known, spatial point data can be used with a variety of spatial analytic techniques that go beyond the methods typically applied to areal data. The set of methods unique to point data are often referred to as point pattern analysis and geostatistics. -->
+
+<!-- This week, we focus on point pattern analysis, whilst next week we will look at geostatistics. Within point pattern analysis, we look to detect patterns across a set of locations, including measuring density, dispersion and homogeneity in our point structures. We will look at both distance-based methods, by employing Ripley’s K function, as well as density-based methods, particularly Kernel Density Estimation. -->

@@ -183,3 +183,7 @@ li.appendix span, li.part span { /* for TOC part names */
 .page-inner {
   padding-top: 400px !important;
 }
+
+pre code {
+  white-space: pre-wrap;
+}
