@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Analysing Spatial Patterns III: Point Pattern Analysis | Geocomputation 2020-2021 Work Book</title>
+  <meta name="description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Analysing Spatial Patterns III: Point Pattern Analysis | Geocomputation 2020-2021 Work Book" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jo-wilkin.github.io/GEOG0030/" />
+  
+  <meta property="og:description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="github-repo" content="jo-wilkin/GEOG0030" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Analysing Spatial Patterns III: Point Pattern Analysis | Geocomputation 2020-2021 Work Book" />
+  
+  <meta name="twitter:description" content="GEOG0030: Geocomputation Work Book" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"/>
+<link rel="next" href="rasters-zonal-statistics-and-interpolation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+<a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl-logo.jpg">
+</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>Module Overview</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#geocomputation-introductory-video"><i class="fa fa-check"></i>Geocomputation Introductory Video</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-in-touch-during-the-module"><i class="fa fa-check"></i>Getting in touch during the module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#noticed-a-mistake-in-this-resource"><i class="fa fa-check"></i>Noticed a mistake in this resource?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module Information</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning-for-geocomputation"><i class="fa fa-check"></i>Self-guided learning for Geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#geocomputation-timetable"><i class="fa fa-check"></i>Geocomputation Timetable</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#what-will-i-be-learning-each-week"><i class="fa fa-check"></i>What will I be learning each week?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading List</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#troubleshooting-module-content"><i class="fa fa-check"></i>Troubleshooting Module Content</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#additional-online-help-resources"><i class="fa fa-check"></i>Additional Online Help &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#feedback-weekly-and-end-of-module"><i class="fa fa-check"></i>Feedback: Weekly and End of Module</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Started</b></span></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html"><i class="fa fa-check"></i>What is this Workbook?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#using-this-workbook"><i class="fa fa-check"></i>Using this Workbook</a></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#workbook-functionality"><i class="fa fa-check"></i>Workbook Functionality</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html"><i class="fa fa-check"></i>Software Installation</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#qgis"><i class="fa fa-check"></i>QGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-and-r-studio"><i class="fa fa-check"></i>R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-1"><i class="fa fa-check"></i>R-Studio Setup 1</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-2"><i class="fa fa-check"></i>R-Studio Setup 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#arcgis"><i class="fa fa-check"></i>ArcGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#installation-issues"><i class="fa fa-check"></i>Installation Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html"><i class="fa fa-check"></i>External Usage</a><ul>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / Contributions</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#version"><i class="fa fa-check"></i>Version</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundational Concepts</b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#week-1-in-geocomp"><i class="fa fa-check"></i>Week 1 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#what-is-geocomputation"><i class="fa fa-check"></i>What is Geocomputation?</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#giscience-a-short-history"><i class="fa fa-check"></i>GIScience: A Short History</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#spatial-analysis-an-overview"><i class="fa fa-check"></i>Spatial Analysis: An Overview</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#programming-for-data-analysis"><i class="fa fa-check"></i>Programming for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#whats-next-for-us-in-geocomputation"><i class="fa fa-check"></i>What’s next for us in Geocomputation</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-ready-for-our-practicals"><i class="fa fa-check"></i>Getting Ready for our Practicals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a><ul>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#week-2-in-geocomp"><i class="fa fa-check"></i>Week 2 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#what-is-representation"><i class="fa fa-check"></i>What is Representation?</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#geographic-representation"><i class="fa fa-check"></i>Geographic Representation</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-structure-sampling-and-scale"><i class="fa fa-check"></i>Spatial Structure, Sampling and Scale</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-models"><i class="fa fa-check"></i>Spatial Data Models</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-file-formats"><i class="fa fa-check"></i>Spatial Data File Formats</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#gis-software---a-more-thorough-introduction-moved-to-week-5"><i class="fa fa-check"></i>GIS Software - a more thorough introduction (moved to Week 5)</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#practical-1-exploring-population-changes-across-london"><i class="fa fa-check"></i>Practical 1: Exploring Population Changes Across London</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a><ul>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#week-3-in-geocomp"><i class="fa fa-check"></i>Week 3 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#coordinate-systems-and-map-projections"><i class="fa fa-check"></i>Coordinate Systems and Map Projections</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#effective-data-visualisation"><i class="fa fa-check"></i>Effective Data Visualisation</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#the-modifiable-areal-unit-problem"><i class="fa fa-check"></i>The Modifiable Areal Unit Problem</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#practical-2-mapping-crime-across-london-wards-and-boroughs"><i class="fa fa-check"></i>Practical 2: Mapping Crime Across London Wards and Boroughs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html"><i class="fa fa-check"></i><b>4</b> Programming (for Data Analysis) using R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#week-4-in-geocomp"><i class="fa fa-check"></i>Week 4 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#an-introduction-to-programming"><i class="fa fa-check"></i>An Introduction to Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#using-r-and-r-studio-for-data-analysis"><i class="fa fa-check"></i>Using R and R-Studio for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#the-tidyverse-philosophy-and-principles"><i class="fa fa-check"></i>The Tidyverse Philosophy and Principles</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#practical-3-analysing-crime-in-2020-in-london"><i class="fa fa-check"></i>Practical 3: Analysing Crime in 2020 in London</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#week-5-in-geocomp"><i class="fa fa-check"></i>Week 5 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-for-data-science-research"><i class="fa fa-check"></i>Spatial Analysis for Data Science Research</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-software-and-programming"><i class="fa fa-check"></i>Spatial Analysis Software and Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-in-r-studio"><i class="fa fa-check"></i>Spatial Analysis in R-Studio</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#practical-4-analysing-crime-in-2020-in-london-from-a-spatial-perspective"><i class="fa fa-check"></i>Practical 4: Analysing Crime in 2020 in London from a spatial perspective</a></li>
+</ul></li>
+<li class="part"><span><b>II Core Spatial Analysis</b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#week-6-in-geocomp"><i class="fa fa-check"></i>Week 6 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#workshop-housekeeping"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-patterns"><i class="fa fa-check"></i>Analysing Spatial Patterns</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-distributions"><i class="fa fa-check"></i>Analysing Distributions</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#spatial-autocorrelation-and-clustering-analysis"><i class="fa fa-check"></i>Spatial Autocorrelation and Clustering Analysis</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-autocorrelation-in-childhood-obesity-and-deprivation-in-london-wards"><i class="fa fa-check"></i>Analysing Spatial Autocorrelation in Childhood Obesity and Deprivation in London Wards</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-relationships"><i class="fa fa-check"></i>Analysing Relationships</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#recap---analysing-spatial-patterns-i-spatial-auto-correlation-regression"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Geometric Operations &amp; Spatial Queries</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#week-7-in-geocomp"><i class="fa fa-check"></i>Week 7 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#workshop-housekeeping-1"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#geometric-operations-spatial-queries"><i class="fa fa-check"></i>Geometric Operations &amp; Spatial Queries</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#practical-6---part-one-geometric-operations-spatial-queries-in-action"><i class="fa fa-check"></i>Practical 6 - Part One: Geometric Operations &amp; Spatial Queries In Action</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#practical-6---part-two-analysing-and-visualising-point-data"><i class="fa fa-check"></i>Practical 6 - Part Two: Analysing and Visualising Point Data</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#extension-using-spatial-queries-to-calculate-the-number-of-bike-thefts-within-400m-of-each-station"><i class="fa fa-check"></i>Extension: Using spatial queries to calculate the number of bike thefts within 400m of each station</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#recap---analysing-spatial-patterns-ii-geometric-operations-and-spatial-operations"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns II: Geometric Operations and Spatial Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a></li>
+<li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a></li>
+<li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
+<li class="chapter" data-level="10" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html"><i class="fa fa-check"></i><b>10</b> Geodemographic Classification</a></li>
+<li class="chapter" data-level="11" data-path="spatial-regression-models-optional.html"><a href="spatial-regression-models-optional.html"><i class="fa fa-check"></i><b>11</b> Spatial Regression Models (Optional)</a></li>
+<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a></li>
+<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a></li>
+<li class="part"><span><b>Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
+</ul></li>
+<li class="part"><span><b>Dissertation Help</b></span></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html"><i class="fa fa-check"></i>Extra resources for help with Quantitative Dissertations</a><ul>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#video-guidance-on-quantitative-dissertations"><i class="fa fa-check"></i>Video Guidance on Quantitative Dissertations</a></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#dataset-guidance"><i class="fa fa-check"></i>Dataset Guidance</a></li>
+</ul></li>
+<li class="part"><span><b>Alternate Tutorials</b></span></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i>A short introduction to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#sign-up-to-arcgis-online"><i class="fa fa-check"></i>Sign Up to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#practical-instructions-1"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation 2020-2021 Work Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<link href="style.css" rel="stylesheet">
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="../images/general/overview.png">
+</div>
+<div id="analysing-spatial-patterns-iii-point-pattern-analysis" class="section level1">
+<h1><span class="header-section-number">8</span> Analysing Spatial Patterns III: Point Pattern Analysis</h1>
+<p><strong>Content for this week will be released at 10am on the 9th March 2021.</strong></p>
+<!-- 2. Detection of clusters in point data using distance- and density-based approaches -->
+<!-- Our main **theoretical** focus for this week is looking at **point-pattern analysis**. Within point pattern analysis, we look to detect clusters or patterns across a set of points, including measuring density, dispersion and homogeneity in our point structures. There are several approaches to calculating and detecting these clusters, which are explained in our main lecture. We then deploy the Kernel Density Estimation technique with our data to confirm further our investigation. There is also an extension task available that looks at utilising the DB-Scan algorithm as an alternative approach to detecting and confirming the location of clusters. -->
+<!-- :::puzzle -->
+<!-- **Learning Objectives**<br><br> -->
+<!-- By the end of this week, you should be able to: -->
+<!-- * Understand how to use different geometric operations within your spatial analysis workflow for data cleaning, processing and analysis -->
+<!-- * Explain the different approaches to detecting clusters in Point-Pattern Analysis -->
+<!-- * Run a Kernel Density Estimation and explain the outputs of a KDE confidently -->
+<!-- ::: -->
+<!-- For our Point Pattern Analysis, we will be using the `spatstat` library ("spatial statistics"). The `spatstat` library contains the different Point Pattern Analysis techniques we'll want to use in this practical. -->
+<!-- If you complete the Extension, you'll also need to install `dbscan`. -->
+<!-- ### Point-Pattern Analysis {-} -->
+<!-- In our previous work, we have aggregated our point data into areal units, primarily using administrative geographies, to enable its easy comparison with other datasets provided at the same spatial scale, such as the census data used in the previous week, as well as to conduct spatial autocorrelation tests. However, when locations are precisely known, spatial point data can be used with a variety of spatial analytic techniques that go beyond the methods typically applied to areal data. The set of methods unique to point data are often referred to as point pattern analysis and geostatistics. -->
+<!-- depending on your research problem and aim, points do not necessarily have to be aggregated and there are many applications in which you want to work with the point locations directly. In fact, the R package spatstat for spatial statistics is predominantly designed for analysing spatial point patterns. The mere fact that the spatstat documentation has almost 1,800 pages should give you a good idea about the general importance of point pattern analysis within the domain of Social and Geographic Data Science. -->
+<!-- In our lecture, we will look at both distance-based methods, by employing Ripley’s K function, as well as density-based methods, particularly Kernel Density Estimation. From a practical perspective, we'll look to deploy a Kernel Density Estimation on our dataset and utilise this alongside `tmap`'s interactive plotting function to confirm some findings   . In addition, there is an extension task that looks at the use of DBScan to detect and improve on our -->
+<!-- #### Implementing Point Pattern Analysis in R using spatstat -->
+<!-- Where we are now somehow familiar with the sf and sp packages, the spatstat package expects point data to be in yet another format: ppp. An object of the class ppp represents a two-dimensional point dataset within a pre-defined area, the window of observation. Because spatstat predates sf we do need to take several steps to transform our simple features object to a ppp object. -->
+<!-- Note -->
+<!-- As we are looking at a point pattern, a ppp object does not necessarily have to have attributes associated with the events (as point data are called within spatstat). Within the spatstat environment, attributes are referred to as marks. Be aware that some functions do require these marks to be present. -->
+<!-- ```{r 06-make-some-ppp-objects, warnings=FALSE, message=FALSE} -->
+<!-- # transform sf to sp -->
+<!-- lad_sp <- as(lad,'Spatial') -->
+<!-- # get the window of observation using maptools package -->
+<!-- window <- as.owin.SpatialPolygons(lad_sp) -->
+<!-- # inspect -->
+<!-- window -->
+<!-- # get coordinates from sf object -->
+<!-- crime_points_coords <- matrix(unlist(crime_points$geometry),ncol=2,byrow=T) -->
+<!-- # inspect -->
+<!-- crime_points_coords -->
+<!-- # create ppp object -->
+<!-- crime_ppp <- ppp(x=crime_points_coords[,1],y=crime_points_coords[,2],window=window,check=T) -->
+<!-- # inspect -->
+<!-- plot(crime_ppp) -->
+<!-- ``` -->
+<!-- Note the messages **data contain duplicated points**. This is an issue in spatial point pattern analysis as one of the assumptions underlying many analytical methods is that all events are unique; some statistical procedures actually may return very wrong results if duplicate points are found within the data. Long story short: we will need to deal with duplicates points. Although the way you do this is not always straightforward, you basically have two options: -->
+<!-- 1. Remove the duplicates and pretend they are not there. However, only do this when you are sure that your research problem allows for this and you are happy to 'ignore' some of the data. For some functions (such as Kernel Density Estimation) it is also possible to assign weights to points so that, for instance, instead of having point **event A** and point **event B** at the same location you create a point **event C** with a **mark** (attribute) that specifies that this event should be weighted double. -->
+<!-- 2. Force all points to be unique. For instance, if you know that the locations are not 'actual' event locations but rather the centroids of an administrative geography, we can slightly adjust all coordinates (jitter) so that the event locations do not exactly coincide anymore. This way we effectively deduplicate our point data without having to get rid off data points. -->
+<!-- ```{r 06-lets-check-for-duplicates, warnings=FALSE, message=FALSE} -->
+<!-- # check for duplicates -->
+<!-- any(duplicated(crime_ppp)) -->
+<!-- # count the number of duplicated points -->
+<!-- sum(multiplicity(crime_ppp) > 1) -->
+<!-- ``` -->
+<!-- This means we have 291 duplicated points. This seems a lot to simply remove. As these are crime data the exact locations are not revealed for privacy and safety reasons, meaning that all crimes get ['snapped' to a predefined point location](https://data.police.uk/about/#anonymisation)! Let's shift all our coordinates slighlty to 'remove' our duplicates and enforce all points to be unique. -->
+<!-- <div class="note"> -->
+<!-- **Note**<br/> -->
+<!-- Remember that when you encounter a function in a piece of R code that you have not seen before and you are wondering what it does that you can get access the documentation through `?name_of_function`, e.g. `?multiplicity` or `rjitter`. For almost any R package, the documentation contains a list of arguments that the function takes, what these arguments mean / do, in which format the functions expects these arguments, as well as a set of usage examples.  -->
+<!-- </div> -->
+<!-- ```{r 06-jitter-jitter-jitter, warnings=FALSE, message=FALSE} -->
+<!-- # add some jitter to our points -->
+<!-- crime_ppp_jitter <- rjitter(crime_ppp,retry=TRUE,nsim=1,drop=TRUE) -->
+<!-- # count the number of duplicated points -->
+<!-- any(duplicated(crime_ppp_jitter)) -->
+<!-- # inspect -->
+<!-- plot(crime_ppp_jitter) -->
+<!-- ``` -->
+<!-- #### Distance-based methods -->
+<!-- One way of looking at a point pattern is by describing the overall distribution of the pattern using distance-based methods. With an average nearest neighbour (ANN) analysis, for instance, we can measure the average distance from each point in the study area to its nearest point. If we then plot ANN values for different order neighbours, we will get an insight into the spatial ordering of all our points relative to one another. Let's try it. -->
+<!-- ```{r 06-average-nearest-neighbours, warnings=FALSE, message=FALSE} -->
+<!-- # get the average distance to the first nearest neighbour -->
+<!-- mean(nndist(crime_ppp_jitter, k=1)) -->
+<!-- # get the average distance to the second nearest neighbour -->
+<!-- mean(nndist(crime_ppp_jitter, k=2)) -->
+<!-- # get the average distance to the third nearest neighbour -->
+<!-- mean(nndist(crime_ppp_jitter, k=3)) -->
+<!-- # get the average distance to the first, second, ..., the hundredth, nearest neighbour -->
+<!-- crime_ann <- apply(nndist(crime_ppp_jitter, k=1:100),2,FUN=mean) -->
+<!-- # plot the results -->
+<!-- plot(crime_ann ~ seq(1:100)) -->
+<!-- ``` -->
+<!-- For point patterns that are highly clusters one would expect the average distances between points to be very short. However, this is based on the important assumption that the point pattern is **stationary** throughout the study area. Further to this, the size and shape of the study area also have a very strong effect on this metric. In our case, the plot does not reveal anything interesting in particular except that higher order points seem to be slightly closer than lower order points. -->
+<!-- Rather than to look at the average distances of different orders neighbours, we can also look at the distance between a point and 'all distances' to other points and compare this to a point pattern that is generated in a random manner; i.e. compare our point distribution to a theoretical distribution that has been generated in a spatial random manner. This can be done with **Ripley's K** function. Ripley's K- function essentially summarises the distance between points for all distances using radial distance bands. The calculation is relatively straightforward: -->
+<!-- 1. For point **event A**, count the number of points inside a buffer (radius) of a certain size. Then count the number of points inside a slightly larger buffer (radius).  -->
+<!-- 2. Repeat this for every point event in the dataset. -->
+<!-- 3. Compute the average number of points in each buffer (radius) and divide this to the overall point density. -->
+<!-- 4. Repeat this using points drawn from a Poisson random model for the same set of buffers. -->
+<!-- 5. Compare the observed distribution with the distribution with the Poisson distribution. -->
+<!-- We can conduct a Ripley’s K test on our data very simply with the spatstat package using the `Kest()` function.  -->
+<!-- <div class="warning"> -->
+<!-- Be careful with running Ripley's K on large datasets as the function is essentially a series of nested loops, meaning that calculation time will increase exponentially with an increasing number of points. -->
+<!-- </div> -->
+<!-- ```{r 06-ripley-and-his-k, warnings=FALSE, message=FALSE} -->
+<!-- # calculate Ripley's K for our bicycle theft locations, maximum radius of 4 kilometres -->
+<!-- plot(Kest(crime_ppp_jitter,correction='border',rmax=4000)) -->
+<!-- ``` -->
+<!-- The *Kpois(r)* line shows the theoretical value of K for each distance radius (r) under a Poisson assumption of Complete Spatial Randomness. K values greater than the expected K, indicate clustering of points at a given distance band. In our example, bicycle theft seems to be more clustered than expected at distance below 1500 metres. In the same fashion as the Average Nearest Neighbour Analysis, Ripley's K assumes a stationary underlying point process. -->
+<!-- The maximum radius of four kilometres is, in this case, simply to zoom the plot as the line with the K values does not go beyond this distance. This is due to the *border* correction that we apply, which is necessary otherwise our Ripley's K function will run for a very long time! This border correction is also for a theorethical reason important: when analysing spatial point patterns we do not have any informatin abou the points that are situated close to the boundaries of our observation window. This means that the neighbours (which we do not know about!) of these points cannot be taken into account in the metric. This can lead to significant bias in the estimates. One way of dealing with this border effect is by using the 'border method' ([Diggle 1979](https://doi.org/10.2307/2529938), [Ripley 1988](https://ucl-new-primo.hosted.exlibrisgroup.com/permalink/f/1klfcc3/TN_cdi_cambridge_cbo_10_1017_CBO9780511624131 -->
+<!-- )), which takes out all points that are closer to the border of the observation window than they are to their nearest neighbour. -->
+<!-- #### Distance-based methods -->
+<!-- #### Density-based methods {-} -->
+<!-- Although distance-based methods can give us an idea of the distribution of the underlying point pattern and suggest that some of the data are clustered, it does not tell us where the clustering is happening.  -->
+<!-- **Density-based methods can help us out here. ** -->
+<!-- So as you saw in the lecture, we are interesting in knowing whether the distribution of points in our study area differs from ‘complete spatial randomness’ — CSR. That’s different from a CRS! Be careful! -->
+<!-- The most basic test of CSR is a quadrat analysis. We can carry out a simple quadrat analysis on our data using the quadrat count function in spatstat. Note, I wouldn’t recommend doing a quadrat analysis in any real piece of analysis you conduct, but it is useful for starting to understand the Poisson distribution… -->
+<!-- We will start with a simple quadrat count by dividing the observation window into section and counting the number of bicycle thefts within each quadrant. -->
+<!-- ```{r 06-quadrat-count, warnings=FALSE, message=FALSE, cache=TRUE} -->
+<!-- # quadratcount in a 15 x 15 grid across the observational window -->
+<!-- crime_quadrat <- quadratcount(crime_ppp_jitter,nx=15,ny=15) -->
+<!-- # inspect -->
+<!-- plot(crime_quadrat) -->
+<!-- ``` -->
+<!-- As we want to know whether or not there is any kind of spatial pattern present in our bicycle theft data, we need to look at our data and ask again whether the pattern is generated in a random manner; i.e. whether the distribution of points in our study area differs from complete spatial randomness (CSR) or whether there are some clusters present. Looking at our quadrat analysis, and with the results of our Ripley’s K in the back of our minds, it is aready quite clear that some quadrats have higher counts than others, however, we can once again generate a point dataset that adheres to the principles of complete spatial randomness and compare it to our dataset. We can do that again using a Poisson point process. -->
+<!-- ```{r 06-random-points-poisson, warnings=FALSE, message=FALSE} -->
+<!-- # create and plot a completely spatially random point pattern of the same size as our bicycle theft data -->
+<!-- plot(rpoispp(1254)) -->
+<!-- ``` -->
+<!-- The first thing you will see is that the points are not uniformly distributed. Furthermore, every time you run the function the outcome will be slightly different than the previous time because the points are sampled from a Poisson distribution. To check whether our bicycle theft points differ from complete spatial randomness (i.e. there is no clustering or dispersal of points) we can run a [Chi-Squared test] with the null hypotheses that our point data have been generated under complete spatial randomness. -->
+<!-- ```{r 06-chi-square-it, warnings=FALSE, message=FALSE, cache=TRUE} -->
+<!-- # chi-square between observed pattern and Poisson sampled points -->
+<!-- quadrat.test(crime_ppp_jitter,nx=15,ny=15) -->
+<!-- ``` -->
+<!-- The p value is well below 0.05 (or 0.01 for that matter), and we can reject the null hypothesis: our point pattern was not generated in a random matter. Not very suprising. -->
+<!-- Instead of looking at the distribution of our bicycle theft with the boundaries of our quadrats (or any other tessellation we could pick), we can also analyse our points using a Kernel Density Estimation (KDE). As was explained in the short lecture video, a KDE is a statistical technique to generate a smooth continuous surface representing the density of the underlying pattern. The resulting surface is created by placing a search window (kernel) over each point and attributing the sum of kernel values to a grid. -->
+<!-- **Kernel Density E -->
+<!-- One way to summarise your point data is to plot the density of your points under a window called a ‘Kernel.’ The size and shape of the Kernel affects the density pattern produced, but it is very easy to produce a Kernel Density Estimation (KDE) map from a ppp object using the density() function.stimation** -->
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # Kerne -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
+<!-- ``` -->
+<!-- The sigma value sets the diameter of the Kernel (in the units your map is in — in this case, as we are in British National Grid the units are in metres). Try experimenting with different values of sigma to see how that affects the density estimate. -->
+<!-- Use of sigma to vary bandwidth -->
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # Kerne -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
+<!-- ``` -->
+<!-- Again -->
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # Kerne -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
+<!-- ``` -->
+<!-- Notice the importance of the bandwidth that is selected. Larger bandwidths lead to a smoother surface, but there is a danger of oversmoothing your data! Smaller bandwidths lead to a more irregular shaped surface, but there is then the danger of undersmoothing. There are automated functions (e.g. based on maximum-likelihood estimations) that can help you with selecting an appropriate bandwidth, but in the end you will have to make a decision. -->
+<!-- Although bandwidth typically has a more pronounced effect upon the density estimation than the type of kernel used, kernel types can affect the result too. Also here applies: the selection of the kernel depends on how much you want to weigh near points relative to far points (even though this is also influenced by the bandwidth!). -->
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # kernel density estimation with a Gaussian Kernel -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=500,kernel='gaussian')) -->
+<!-- ``` -->
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # kernel density estimation with a Gaussian Kernel -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=500,kernel='quartic')) -->
+<!-- ``` -->
+<!-- Bandwidth typically has a more marked effect upon the density estimation than kernel type and is defined as the extent of the area around each grid cell from which the occurrences, and their respective kernels, are drawn. Do have a look at the article by Shi 2008 that is part of this week’s essential reading for some further considerations and deliberations when selection bandwidths. -->
+<!-- For now, however, no matter which kernel or which bandwidth (within reason, of course) we use, we can be quite confident in stating that bicycle theft in London in November 2019 is not a spatially random process and we can clearly see the areas where bicycle theft is most concentrated. -->
+<!-- #### Kernel Density Estimation in Action -->
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rasters-zonal-statistics-and-interpolation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jo-wilkin/GEOG0030/edit/master/08-week08.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/jo-wilkin/GEOG0030/raw/master/08-week08.Rmd"],
+"toc": {
+"collapse": "section",
+"toc_depth": 5
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,25 +1,151 @@
-# (PART\*) Assessment {-}
+# Spatial Regression Models (Optional)
 
-# Assessment Information  {-}
+**This content is optional - we will aim to release this within two weeks at the end of term for use in your coursework and dissertation.**
 
-Geocomputation is assessed through two separate Assessments:
-
-1) **Social Atlas:** The first assessment will involve the completion of a spatial analysis project, based on the theory, concepts and application learnt during the module. For this coursework you are required to create a small “social atlas” on a topic or area that interests you.
-
-2) **Exam:** The second assessment will take the form of an Exam, the exact format to be confirmed.
-
-<br>
-**More information on your Assessments will be provided at the end of Week 5 (i.e. 12th February 2021).**
+<!-- ## Creating maps for print with R-Studio and Q-GIS -->
 
 
-## Useful additional resources {-}
+<!-- ## Exploratory Spatial Data Analysis -->
 
-Besides the mandatory and recommended reading for this course, there are some additional resources that are worth checking out that may be useful for your first Assessment:
+<!-- :::note -->
+<!-- **Spatial Analysis, Statistics, Spatial Statistics and Geostatistics**<br> -->
 
-1. MIT's introduction course on mastering the command line: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 
+<!-- This section outlines how to quickly run a **scatter plot** and **linear regression** model in R. -->
 
-2. A useful tool to unpack command line instructions: [explainshell.com](https://www.explainshell.com/)
+<!-- ### Analysing Relationships {-} -->
 
-3. Online resource to develop and check your regular expressions: [regexr.com](https://regexr.com/5d21d)
+<!-- Identifying clusters and their distributions in our datasets is one way in identifying relationships between variables - but this still relies on our visual interpretation. -->
 
-4. Selecting colour palettes for your map making and data visualisation: [colorbrewer 2.0](https://colorbrewer2.org)
+<!-- As you're likely to be aware, we can look at the relationship between two variables through both graphs and stastistic - by using a simple scatter plot and through a simple linear regression model. -->
+
+<!-- Let's see if we can test the relationship between our obesity and deprivation variables. -->
+
+<!-- 1. Create a simple scatter plot to look at the relationship between our two variables, `y6_obesity_2014` and `IDACI_2010`: -->
+<!-- ```{r 06-scatter-plot, warnings=FALSE, message=FALSE, cache=TRUE} -->
+<!-- # Plot our obesity variable v. our deprivation variable -->
+<!-- plot(obesity_ward_sdf$y6_obesity_2014, obesity_ward_sdf$IDACI_2010) -->
+<!-- ``` -->
+
+<!-- As you can see, it looks like there is a relationship between the two - but instead of a linear relationship, we're almost looking at something logarithmic. -->
+
+<!-- This is because, if you had completed **Assignment 1**, you would find out that the distribution of `IDACI_2010` is positively skewed - as a result, we need to transform the values  -->
+
+<!-- Data transformation -->
+
+<!-- 12 Create a simple scatter plot to look at the relationship between our two variables, `y6_obesity_2014` and the log of `IDACI_2010`: -->
+<!-- ```{r 06-scatter-plot, warnings=FALSE, message=FALSE, cache=TRUE} -->
+<!-- # Plot our obesity variable v. our deprivation variable -->
+<!-- plot(obesity_ward_sdf$y6_obesity_2014, log(obesity_ward_sdf$IDACI_2010)) -->
+<!-- ``` -->
+
+<!-- Woohoo! That's better - now it looks like we've got  -->
+
+
+<!-- #### Using Linear Regression to test relationships between variables {-}  -->
+
+<!-- Linear regression is an analysis that assesses whether one or more predictor variables explain the dependent (criterion) variable.  The regression has five key assumptions: -->
+
+
+<!-- Multivariate normality - When the data is not normally distributed a non-linear transformation (e.g., log-transformation) might fix this issue. -->
+<!-- No or little multicollinearity - assumes that there is little or no multicollinearity in the data.  Multicollinearity occurs when the independent variables are too highly correlated with each other.Multicollinearity may be tested with three central criteria: -->
+<!-- 1) Correlation matrix – when computing the matrix of Pearson’s Bivariate Correlation among all independent variables the correlation coefficients need to be smaller than 1. -->
+<!-- 2) Tolerance – the tolerance measures the influence of one independent variable on all other independent variables; the tolerance is calculated with an initial linear regression analysis.  Tolerance is defined as T = 1 – R² for these first step regression analysis.  With T < 0.1 there might be multicollinearity in the data and with T < 0.01 there certainly is. -->
+<!-- 3) Variance Inflation Factor (VIF) – the variance inflation factor of the linear regression is defined as VIF = 1/T. With VIF > 5 there is an indication that multicollinearity may be present; with VIF > 10 there is certainly multicollinearity among the variables. -->
+<!-- If multicollinearity is found in the data, centering the data (that is deducting the mean of the variable from each score) might help to solve the problem.  However, the simplest way to address the problem is to remove independent variables with high VIF values. -->
+<!-- No auto-correlation - requires that there is little or no autocorrelation in the data.  Autocorrelation occurs when the residuals are not independent from each other.  In other words when the value of y(x+1) is not independent from the value of y(x). -->
+<!-- Homoscedasticity - The last assumption of the linear regression analysis is homoscedasticity.  The scatter plot is good way to check whether the data are homoscedastic (meaning the residuals are equal across the regression line).  The following scatter plots show examples of data that are not homoscedastic (i.e., heteroscedastic): -->
+
+<!-- A note about sample size.  In Linear regression the sample size rule of thumb is that the regression analysis requires at least 20 cases per independent variable in the analysis. -->
+
+<!-- ```{r 06-scatter-plot, warnings=FALSE, message=FALSE, cache=TRUE} -->
+<!-- # Plot our obesity variable v. our deprivation variable -->
+<!-- lm(obesity_ward_sdf$y6_obesity_2014, log(obesity_ward_sdf$IDACI_2010)) -->
+<!-- ``` -->
+
+<!-- Normally, you would also check the underlying assumptions of the linear model (linearity, homoscedasticity, independence, and normality) -->
+
+<!-- So if we want to develop a regression model for bike theft in London we may have to recognise this spatial component. -->
+
+<!-- The second of two key properties of spatial data: spatial heterogeneity. With the underlying process (or processes) that govern a spatial variable likely to vary across space, a single global relationship for an entire region of study may not adequately model the process that governs outcomes in any given location of the study region.  -->
+
+<!-- As a result, multiple methods have been developed to incorporate ‘space’ into traditional regression models, including spatial lag models, spatial error models, and Geographical Weighted Regression. -->
+
+<!-- TRANSFORM IDACI BY LOG -->
+
+
+
+<!-- plot(x, y, xlab="", ylab="", pch =16) -->
+
+
+<!-- smybols(x,y, circles=obesity) -->
+
+
+
+<!-- Assumption 2 - The residuals in your model should be normally distributed -->
+
+<!-- This assumption is easy to check. When we ran our Model1 earlier, one of the outputs stored in our Model 1 object is the residual value for each case (Ward) in your dataset. We can access these values using augment() from broom which will add model output to the original GCSE data… -->
+
+<!-- We can plot these as a histogram and see if there is a normal distribution: -->
+
+
+<!-- Assumption 3 - No Multicolinearity in the independent variables -->
+
+<!-- Now, the regression model we have be experimenting with so far is a simple bivariate (two variable) model. One of the nice things about regression modelling is while we can only easily visualise linear relationships in a two (or maximum 3) dimension scatter plot, mathematically, we can have as many dimensions / variables as we like. -->
+
+<!-- However, our data are very spatial and we did not incorporate this spatial distribution into our model. So if we want to develop a regression model for bike theft in London we may have to recognise this spatial component. On top of this, a regression model assumes independence of observations: what happens in LSOA001 is not related to what happens in LSOA002 or any other LSOA. However, we know from last weeks content that this is not always the case because of spatial autocorrelation. -->
+
+<!-- ### Extension: Integrating spatial variation into regression models {-} -->
+
+<!-- This week, our extension is not an activity per se, but a little more reading -->
+
+<!-- So before we fit a regression model with spatial data we need to explore the issue of autocorrelation. We already know how to do this. In this session, we will examine the data from last week, explore whether autocorrelation is an issue, and then introduce models that allow us to take into account spatial autocorrelation. We will see that there are two basic ways of adjusting for spatial autocorrelation: through a spatial lag model or through a spatial error model. -->
+
+<!-- We - well believe it or not there is a whole area of research into how we can imcoporate spat -->
+
+<!-- The most simplest (and I say "simplest") is the use of a **Spatial Error** or **Spatial Lag** model -->
+
+<!-- The concept of this -->
+
+<!-- Alongisde,  -->
+
+
+<!-- Residuals, as we have explained, give you an idea of the distance between our observed Y values and the predicted Y values. So in essence they are deviations of observed reality from your model. Your regression line or hyperplane is optimised to be the one that best represent your data if those assumptions are met. Residuals are very helpful to diagnose, then, whether your model is a good representation of reality or not. Most diagnostics of the assumptions for OLS regression rely on exploring the residuals. -->
+
+<!-- In those cases where the residual is negative this is telling us that the observed value is lower than the predicted (that is, our model is overpredicting the level of homicide for that observation) when the residual is positive the observed value is higher than the predicted (that is, our model is underpredicting the level of homicide for that observation). -->
+
+<!-- We could also extract the predicted values if we wanted. We would use the fitted() function. -->
+
+<!-- With spatial data one useful thing to do is to look at any spatial patterning in the distribution of the residuals. Notice that the residuals are the difference between the observed values for homicide and the predicted values for homicide, so you want your residual to NOT display any spatial patterning. If, on the other hand, your model display a patterning in the areas of the study region where it performs predicts badly, then you may have a problem. This is telling your model is not a good representation of the social phenomena you are studying across the full study area: there is systematically more distortion in some areas than in others. -->
+
+<!-- We are going to produce a choropleth map for the residuals, but we will use a common classification method we haven’t covered yet: standard deviations. Standard deviation is a statistical technique type of map based on how much the data differs from the mean. You measure the mean and standard deviation for your data. Then, each standard deviation becomes a class in your choropleth maps. -->
+
+<!-- In order to do that we will compute the mean and the standard deviation for the variable we want to plot and break the variable according to these values. The following code creates a new variable in which we will express the residuals in terms of standard deviations away from the mean. So, for each observation, we substract the mean and divide by the standard deviation. Remember, this is exactly what the scale function does, which we have introduced in week 7: -->
+
+<!-- ncovr_sf$sd_breaks <- scale(ncovr_sf$res_fit1)[,1] # because scale is made for matrices, we just need to get the first column using [,1] -->
+<!-- # this is equal to (ncovr_sf$res_fit1 - mean(ncovr_sf$res_fit1)) / sd(ncovr_sf$res_fit1) -->
+<!-- summary(ncovr_sf$sd_breaks) -->
+
+<!-- Next we use a new style, fixed, within the tm_fill function. When we break the variable into classes using the fixed argument we need to specify the boundaries of the classes. We do this using the breaks argument. In this case we are going to ask R to create 7 classes based on standard deviations away from the mean. Remember that a value of 1 would be 1 standard deviation higher than the mean, and -1 respectively lower. If we assume normal distribution, then 68% of all counties should lie within the middle band from -1 to +1 (you can finda refresher of this on Wikipedia). -->
+
+<!-- my_breaks <- c(-14,-3,-2,-1,1,2,3,14) -->
+
+<!-- tm_shape(ncovr_sf) +  -->
+<!-- tm_fill("sd_breaks", title = "Residuals", style = "fixed", breaks = my_breaks, palette = "-RdBu") + -->
+<!-- tm_borders(alpha = 0.1) + -->
+<!-- tm_layout(main.title = "Residuals", main.title.size = 0.7 , -->
+<!-- legend.position = c("right", "bottom"), legend.title.size = 0.8) -->
+
+<!-- Notice the spatial patterning of areas of over-prediction (negative residuals, or blue tones) and under-prediction (positive residuals, or brown tones). This visual inspection of the residuals is telling you that spatial autocorrelation may be present here. This, however, would require a more formal test. -->
+
+<!-- If the test is significant (as in this case), then we possibly need to think of a more suitable model to represent our data: a spatial regression model. Remember spatial dependence means that (more typically) there will be areas of spatial clustering for the residuals in our regression model. So our predicted line (or hyperplane) will systematically under-predict or over-predict in areas that are close to each other. That’s not good. We want a better model that does not display any spatial clustering in the residuals. -->
+
+<!-- There are two general ways of incorporating spatial dependence in a regression model, through what we called a spatial error model or by means of a spatially lagged model. There are spdep functions that provides us with some tools to help us make a decision as to which of these two is most appropriate: the Lagrange Multiplier tests. -->
+
+<!-- The difference between these two models is both technical and conceptual. The spatial error model treats the spatial autocorrelation as a nuisance that needs to be dealt with. A spatial error model basically implies that the: -->
+
+<!-- “spatial dependence observed in our data does not reflect a truly spatial process, but merely the geographical clustering of the sources of the behaviour of interest. For example, citizens in adjoining neighbohoods may favour the same (political) candidate not because they talk to their neighbors, but because citizens with similar incomes tend to cluster geographically, and income also predicts vote choice. Such spatial dependence can be termed attributional dependence” (Darmofal, 2015: 4) -->
+
+<!-- The spatially lagged model, on the other hand, incorporates spatial dependence explicitly by adding a “spatially lagged” variable y on the right hand side of our regression equation. Its distinctive characteristic is that it includes aspatially lagged “dependent” variable among the explanatory factors. It’s basically explicitly saying that the values of y in the neighbouring areas of observation n~i is an important predictor of y on each individual area n~i . This is one way of saying that the spatial dependence may be produced by a spatial process suchas the diffusion of behaviour between neighboring units: -->
+
+<!-- “If so the behaviour is likely to be highly social in nature, and understanding the interactions between interdependent units is critical to understanding the behaviour in question. For example, citizens may discuss politics across adjoining neighbours such that an increase in support for a candidate in one neighbourhood directly leads to an increase in support for the candidate in adjoining neighbourhoods” (Darmofal, 2015: 4) -->
+

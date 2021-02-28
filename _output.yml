@@ -4,6 +4,7 @@ bookdown::gitbook:
   css: assets/style.css
   config:
     toc:
+      toc_depth: 5
       collapse: section
       before: |
         <li class="toc-logo">

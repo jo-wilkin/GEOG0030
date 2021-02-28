@@ -5,7 +5,10 @@ cartography-and-visualisation-i
 programming-for-data-analysis-using-r-and-r-studio
 programming-for-giscience-and-spatial-analysis
 analysing-spatial-patterns-i-spatial-auto-correlation-regression
-analysing-spatial-patterns-ii-clusters
+analysing-spatial-patterns-ii-geometric-operations-spatial-queries
+analysing-spatial-patterns-iii-point-pattern-analysis
 rasters-zonal-statistics-and-interpolation
-geodemographics
-cartography-and-visualisation-ii
+geodemographic-classification
+spatial-regression-models-optional
+accessibility-network-analysis-optional
+for-loops-and-functions-for-automated-data-processing-visualisation-optional

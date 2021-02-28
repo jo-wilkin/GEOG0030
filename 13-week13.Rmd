@@ -1,0 +1,3 @@
+# For Loops and Functions for Automated Data Processing & Visualisation (Optional)
+
+**This content is optional - we will aim to release this within two weeks at the end of term for use in your coursework and dissertation.**

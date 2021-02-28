@@ -18,3 +18,5 @@ sp
 spData
 spdep
 RColorBrewer
+leaflet
+osmdata
