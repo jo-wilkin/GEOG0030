@@ -24,7 +24,7 @@ This week's content introduces you to geometric operations and their different u
 
 We have two areas of work to focus on:
 
-1. Understnading different geometric operations and spatial queries and their respective applications.
+1. Understanding different geometric operations and spatial queries and their respective applications.
 2. Using geometric operations and spatial queries to clean, validate and analyse spatial data.
 
 This week's content is split into **3** parts:
@@ -365,7 +365,7 @@ embed_msstream('d6eba76f-4dae-459e-b094-e20b559353b9') %>% use_align('center')
 <center>[Slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EQkN6iRA7SlKs0ETgYN_RJgByIKu_KTCa149H37o-C4SFQ?e=Fzc8CB) | [Video on Stream](https://web.microsoftstream.com/video/d6eba76f-4dae-459e-b094-e20b559353b9)</center>
 <br>
 
-#### Geometric Operation versus Spatial Query: which should I use? {-}
+### Geometric Operations & Spatial Queries In Action {-}
 
 As you'll find out in this week's practical, much of the "geoprocessing" that we need to complete with our data can be completed using different approaches of both **geometric operations** and **spatial queries** - and, as a result, can be completed in many different orders. 
 
@@ -381,7 +381,7 @@ Spatial queries are often much quicker to implement, but the disadvantage is tha
 
 We'll see this below when using a **buffer** to analyse our bike theft data.
 
-### Practical 6 - Part One: Geometric Operations & Spatial Queries In Action {-}
+### Practical 6 - Part One: Geometric Operations & Spatial Queries Approaches {-}
 
 Of all spatial data processing and analysis, geometric operations and spatial queries are certainly best explained through demonstration!
 

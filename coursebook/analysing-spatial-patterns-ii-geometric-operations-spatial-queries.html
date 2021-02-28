@@ -227,7 +227,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#week-7-in-geocomp"><i class="fa fa-check"></i>Week 7 in Geocomp</a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#workshop-housekeeping-1"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#geometric-operations-spatial-queries"><i class="fa fa-check"></i>Geometric Operations &amp; Spatial Queries</a></li>
-<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#practical-6---part-one-geometric-operations-spatial-queries-in-action"><i class="fa fa-check"></i>Practical 6 - Part One: Geometric Operations &amp; Spatial Queries In Action</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#geometric-operations-spatial-queries-in-action"><i class="fa fa-check"></i>Geometric Operations &amp; Spatial Queries In Action</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#practical-6---part-one-geometric-operations-spatial-queries-approaches"><i class="fa fa-check"></i>Practical 6 - Part One: Geometric Operations &amp; Spatial Queries Approaches</a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#practical-6---part-two-analysing-and-visualising-point-data"><i class="fa fa-check"></i>Practical 6 - Part Two: Analysing and Visualising Point Data</a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#extension-using-spatial-queries-to-calculate-the-number-of-bike-thefts-within-400m-of-each-station"><i class="fa fa-check"></i>Extension: Using spatial queries to calculate the number of bike thefts within 400m of each station</a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#recap---analysing-spatial-patterns-ii-geometric-operations-and-spatial-operations"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns II: Geometric Operations and Spatial Operations</a></li>
@@ -300,14 +301,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This week’s content introduces you to geometric operations and their different uses in spatial analysis.</p>
 <p>We have two areas of work to focus on:</p>
 <ol style="list-style-type: decimal">
-<li>Understnading different geometric operations and spatial queries and their respective applications.</li>
+<li>Understanding different geometric operations and spatial queries and their respective applications.</li>
 <li>Using geometric operations and spatial queries to clean, validate and analyse spatial data.</li>
 </ol>
 <p>This week’s content is split into <strong>3</strong> parts:</p>
 <ol style="list-style-type: decimal">
 <li><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#workshop-housekeeping-1">Workshop Housekeeping</a> (20 minutes)</li>
 <li><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#geometric-operations-spatial-queries">Geometric Operations &amp; Spatial Queries</a> (40 minutes)</li>
-<li>[Geometric Operations &amp; Spatial Queries in Action] (90 minutes)</li>
+<li><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#geometric-operations-spatial-queries-in-action">Geometric Operations &amp; Spatial Queries in Action</a> (90 minutes)</li>
 </ol>
 <p>This week, we have <strong>1 lecture</strong> and <strong>2 assignments</strong> within this week’s workshop.</p>
 <div class="puzzle">
@@ -601,8 +602,9 @@ By the end of this week, you should be able to:</p>
 </center>
 <p><br></p>
 </div>
-<div id="geometric-operation-versus-spatial-query-which-should-i-use" class="section level4 unnumbered">
-<h4>Geometric Operation versus Spatial Query: which should I use?</h4>
+</div>
+<div id="geometric-operations-spatial-queries-in-action" class="section level3 unnumbered">
+<h3>Geometric Operations &amp; Spatial Queries In Action</h3>
 <p>As you’ll find out in this week’s practical, much of the “geoprocessing” that we need to complete with our data can be completed using different approaches of both <strong>geometric operations</strong> and <strong>spatial queries</strong> - and, as a result, can be completed in many different orders.</p>
 <p>When we use <strong>geometric operations</strong>, we are always taking a data input (or inputs), manipulating their geometry according to the function/operation you’re using and then providing a modified geometry as a new data output (a spatial dataframe in R or dataset in Q-GIS, for example).</p>
 <p>The use of these operations can be quite time-consuming and, in many scenarios, we often do not want edited geometry returned to us, but simply the information on the result of our query that we can then attribute to our original dataset. For example, does this bike theft fall within 400m of a station - yes or no?</p>
@@ -611,9 +613,8 @@ By the end of this week, you should be able to:</p>
 <p>Spatial queries are often much quicker to implement, but the disadvantage is that you won’t end up with an additional dataset that you might want for visualisation purposes.</p>
 <p>We’ll see this below when using a <strong>buffer</strong> to analyse our bike theft data.</p>
 </div>
-</div>
-<div id="practical-6---part-one-geometric-operations-spatial-queries-in-action" class="section level3 unnumbered">
-<h3>Practical 6 - Part One: Geometric Operations &amp; Spatial Queries In Action</h3>
+<div id="practical-6---part-one-geometric-operations-spatial-queries-approaches" class="section level3 unnumbered">
+<h3>Practical 6 - Part One: Geometric Operations &amp; Spatial Queries Approaches</h3>
 <p>Of all spatial data processing and analysis, geometric operations and spatial queries are certainly best explained through demonstration!</p>
 <p>Therefore, to clean, process and analysis our data, we can demonstrate a range of operations and queries highlighted by our first lecture.</p>
 <p>We’re going to need to reduce both our our <code>bike_theft</code> spatial dataframe and our <code>london_stations</code> spatial dataframe to only contain data within our <code>london_ward_shp</code> spatial dataframe. This is known as either a <strong>subset</strong> or a <strong>clip</strong> and there <strong>are</strong> differences between them and how you implement them.</p>
