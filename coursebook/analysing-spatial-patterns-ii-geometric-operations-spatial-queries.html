@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Analysing Spatial Patterns II: Geometric Operations &amp; Spatial Queries | Geocomputation 2020-2021 Work Book</title>
+  <meta name="description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Analysing Spatial Patterns II: Geometric Operations &amp; Spatial Queries | Geocomputation 2020-2021 Work Book" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jo-wilkin.github.io/GEOG0030/" />
+  
+  <meta property="og:description" content="GEOG0030: Geocomputation Work Book" />
+  <meta name="github-repo" content="jo-wilkin/GEOG0030" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Analysing Spatial Patterns II: Geometric Operations &amp; Spatial Queries | Geocomputation 2020-2021 Work Book" />
+  
+  <meta name="twitter:description" content="GEOG0030: Geocomputation Work Book" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"/>
+<link rel="next" href="analysing-spatial-patterns-iii-point-pattern-analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+<a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl-logo.jpg">
+</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>Module Overview</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#geocomputation-introductory-video"><i class="fa fa-check"></i>Geocomputation Introductory Video</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#getting-in-touch-during-the-module"><i class="fa fa-check"></i>Getting in touch during the module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#noticed-a-mistake-in-this-resource"><i class="fa fa-check"></i>Noticed a mistake in this resource?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html"><i class="fa fa-check"></i>Module Information</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#self-guided-learning-for-geocomputation"><i class="fa fa-check"></i>Self-guided learning for Geocomputation</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#geocomputation-timetable"><i class="fa fa-check"></i>Geocomputation Timetable</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#what-will-i-be-learning-each-week"><i class="fa fa-check"></i>What will I be learning each week?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#reading-list"><i class="fa fa-check"></i>Reading List</a></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#troubleshooting-module-content"><i class="fa fa-check"></i>Troubleshooting Module Content</a><ul>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#additional-online-help-resources"><i class="fa fa-check"></i>Additional Online Help &amp; Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-information.html"><a href="module-information.html#feedback-weekly-and-end-of-module"><i class="fa fa-check"></i>Feedback: Weekly and End of Module</a></li>
+</ul></li>
+<li class="part"><span><b>Getting Started</b></span></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html"><i class="fa fa-check"></i>What is this Workbook?</a><ul>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#using-this-workbook"><i class="fa fa-check"></i>Using this Workbook</a></li>
+<li class="chapter" data-level="" data-path="what-is-this-workbook.html"><a href="what-is-this-workbook.html#workbook-functionality"><i class="fa fa-check"></i>Workbook Functionality</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html"><i class="fa fa-check"></i>Software Installation</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#qgis"><i class="fa fa-check"></i>QGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-and-r-studio"><i class="fa fa-check"></i>R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-1"><i class="fa fa-check"></i>R-Studio Setup 1</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#r-studio-setup-2"><i class="fa fa-check"></i>R-Studio Setup 2</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#arcgis"><i class="fa fa-check"></i>ArcGIS</a></li>
+<li class="chapter" data-level="" data-path="software-installation.html"><a href="software-installation.html#installation-issues"><i class="fa fa-check"></i>Installation Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html"><i class="fa fa-check"></i>External Usage</a><ul>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#issues-contributions"><i class="fa fa-check"></i>Issues / Contributions</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="external-usage.html"><a href="external-usage.html#version"><i class="fa fa-check"></i>Version</a></li>
+</ul></li>
+<li class="part"><span><b>I Foundational Concepts</b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a><ul>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#week-1-in-geocomp"><i class="fa fa-check"></i>Week 1 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#what-is-geocomputation"><i class="fa fa-check"></i>What is Geocomputation?</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#giscience-a-short-history"><i class="fa fa-check"></i>GIScience: A Short History</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#spatial-analysis-an-overview"><i class="fa fa-check"></i>Spatial Analysis: An Overview</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#programming-for-data-analysis"><i class="fa fa-check"></i>Programming for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#whats-next-for-us-in-geocomputation"><i class="fa fa-check"></i>What’s next for us in Geocomputation</a></li>
+<li class="chapter" data-level="" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-ready-for-our-practicals"><i class="fa fa-check"></i>Getting Ready for our Practicals</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a><ul>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#week-2-in-geocomp"><i class="fa fa-check"></i>Week 2 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#what-is-representation"><i class="fa fa-check"></i>What is Representation?</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#geographic-representation"><i class="fa fa-check"></i>Geographic Representation</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-structure-sampling-and-scale"><i class="fa fa-check"></i>Spatial Structure, Sampling and Scale</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-models"><i class="fa fa-check"></i>Spatial Data Models</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#spatial-data-file-formats"><i class="fa fa-check"></i>Spatial Data File Formats</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#gis-software---a-more-thorough-introduction-moved-to-week-5"><i class="fa fa-check"></i>GIS Software - a more thorough introduction (moved to Week 5)</a></li>
+<li class="chapter" data-level="" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#practical-1-exploring-population-changes-across-london"><i class="fa fa-check"></i>Practical 1: Exploring Population Changes Across London</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation I</a><ul>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#week-3-in-geocomp"><i class="fa fa-check"></i>Week 3 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#coordinate-systems-and-map-projections"><i class="fa fa-check"></i>Coordinate Systems and Map Projections</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#effective-data-visualisation"><i class="fa fa-check"></i>Effective Data Visualisation</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#the-modifiable-areal-unit-problem"><i class="fa fa-check"></i>The Modifiable Areal Unit Problem</a></li>
+<li class="chapter" data-level="" data-path="cartography-and-visualisation-i.html"><a href="cartography-and-visualisation-i.html#practical-2-mapping-crime-across-london-wards-and-boroughs"><i class="fa fa-check"></i>Practical 2: Mapping Crime Across London Wards and Boroughs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html"><i class="fa fa-check"></i><b>4</b> Programming (for Data Analysis) using R and R-Studio</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#week-4-in-geocomp"><i class="fa fa-check"></i>Week 4 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#an-introduction-to-programming"><i class="fa fa-check"></i>An Introduction to Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#using-r-and-r-studio-for-data-analysis"><i class="fa fa-check"></i>Using R and R-Studio for Data Analysis</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#the-tidyverse-philosophy-and-principles"><i class="fa fa-check"></i>The Tidyverse Philosophy and Principles</a></li>
+<li class="chapter" data-level="" data-path="programming-for-data-analysis-using-r-and-r-studio.html"><a href="programming-for-data-analysis-using-r-and-r-studio.html#practical-3-analysing-crime-in-2020-in-london"><i class="fa fa-check"></i>Practical 3: Analysing Crime in 2020 in London</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for GIScience and Spatial Analysis</a><ul>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#week-5-in-geocomp"><i class="fa fa-check"></i>Week 5 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-for-data-science-research"><i class="fa fa-check"></i>Spatial Analysis for Data Science Research</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-software-and-programming"><i class="fa fa-check"></i>Spatial Analysis Software and Programming</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#spatial-analysis-in-r-studio"><i class="fa fa-check"></i>Spatial Analysis in R-Studio</a></li>
+<li class="chapter" data-level="" data-path="programming-for-giscience-and-spatial-analysis.html"><a href="programming-for-giscience-and-spatial-analysis.html#practical-4-analysing-crime-in-2020-in-london-from-a-spatial-perspective"><i class="fa fa-check"></i>Practical 4: Analysing Crime in 2020 in London from a spatial perspective</a></li>
+</ul></li>
+<li class="part"><span><b>II Core Spatial Analysis</b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#week-6-in-geocomp"><i class="fa fa-check"></i>Week 6 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#workshop-housekeeping"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-patterns"><i class="fa fa-check"></i>Analysing Spatial Patterns</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-distributions"><i class="fa fa-check"></i>Analysing Distributions</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#spatial-autocorrelation-and-clustering-analysis"><i class="fa fa-check"></i>Spatial Autocorrelation and Clustering Analysis</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-autocorrelation-in-childhood-obesity-and-deprivation-in-london-wards"><i class="fa fa-check"></i>Analysing Spatial Autocorrelation in Childhood Obesity and Deprivation in London Wards</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-relationships"><i class="fa fa-check"></i>Analysing Relationships</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html"><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#recap---analysing-spatial-patterns-i-spatial-auto-correlation-regression"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns I: Spatial Auto-Correlation &amp; Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Geometric Operations &amp; Spatial Queries</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#week-7-in-geocomp"><i class="fa fa-check"></i>Week 7 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#workshop-housekeeping-1"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#geometric-operations-spatial-queries"><i class="fa fa-check"></i>Geometric Operations &amp; Spatial Queries</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#practical-6---part-one-geometric-operations-spatial-queries-in-action"><i class="fa fa-check"></i>Practical 6 - Part One: Geometric Operations &amp; Spatial Queries In Action</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#practical-6---part-two-analysing-and-visualising-point-data"><i class="fa fa-check"></i>Practical 6 - Part Two: Analysing and Visualising Point Data</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#extension-using-spatial-queries-to-calculate-the-number-of-bike-thefts-within-400m-of-each-station"><i class="fa fa-check"></i>Extension: Using spatial queries to calculate the number of bike thefts within 400m of each station</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#recap---analysing-spatial-patterns-ii-geometric-operations-and-spatial-operations"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns II: Geometric Operations and Spatial Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a></li>
+<li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a></li>
+<li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
+<li class="chapter" data-level="10" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html"><i class="fa fa-check"></i><b>10</b> Geodemographic Classification</a></li>
+<li class="chapter" data-level="11" data-path="spatial-regression-models-optional.html"><a href="spatial-regression-models-optional.html"><i class="fa fa-check"></i><b>11</b> Spatial Regression Models (Optional)</a></li>
+<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a></li>
+<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a></li>
+<li class="part"><span><b>Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
+<li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
+</ul></li>
+<li class="part"><span><b>Dissertation Help</b></span></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html"><i class="fa fa-check"></i>Extra resources for help with Quantitative Dissertations</a><ul>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#video-guidance-on-quantitative-dissertations"><i class="fa fa-check"></i>Video Guidance on Quantitative Dissertations</a></li>
+<li class="chapter" data-level="" data-path="extra-resources-for-help-with-quantitative-dissertations.html"><a href="extra-resources-for-help-with-quantitative-dissertations.html#dataset-guidance"><i class="fa fa-check"></i>Dataset Guidance</a></li>
+</ul></li>
+<li class="part"><span><b>Alternate Tutorials</b></span></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html"><i class="fa fa-check"></i>Week 2 Practical Alternate: Using AGOL for Population Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#a-short-introduction-to-arcgis-online"><i class="fa fa-check"></i>A short introduction to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#sign-up-to-arcgis-online"><i class="fa fa-check"></i>Sign Up to ArcGIS Online</a></li>
+<li class="chapter" data-level="" data-path="week-2-practical-alternate-using-agol-for-population-mapping.html"><a href="week-2-practical-alternate-using-agol-for-population-mapping.html#practical-instructions"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html"><i class="fa fa-check"></i>Week 3 Practical Alternate: Using AGOL for Crime Mapping</a><ul>
+<li class="chapter" data-level="" data-path="week-3-practical-alternate-using-agol-for-crime-mapping.html"><a href="week-3-practical-alternate-using-agol-for-crime-mapping.html#practical-instructions-1"><i class="fa fa-check"></i>Practical Instructions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Geocomputation 2020-2021 Work Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<link href="style.css" rel="stylesheet">
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="../images/general/overview.png">
+</div>
+<div id="analysing-spatial-patterns-ii-geometric-operations-spatial-queries" class="section level1">
+<h1><span class="header-section-number">7</span> Analysing Spatial Patterns II: Geometric Operations &amp; Spatial Queries</h1>
+<p>Welcome to Week 7 in Geocomputation!</p>
+<p>In a change to advertised content, this week, we’ll be looking at the use of geometric operations within spatial data processing and analysis, moving <strong>Point Pattern Analysis</strong> to next week, <strong>Interpolation</strong> to Week 9 and <strong>Geodemographics</strong> to Week 10. We’ll be covering <strong>Advanced Visualisations</strong> within each of the following weeks.</p>
+<p><strong>Geometric operations and spatial queries</strong> are not really a theorectical topic per se in spatial “pattern” analysis but rather essential building blocks to overall spatial data processing and analysis.</p>
+<p>This is because - and the clue is in the name - they conduct <strong>incredibly useful</strong> operations and queries on or using the geometry of our datasets, from calculating the area covered by an individual polygon in an areal unit dataset, or subsetting the spatial extent of a dataset based on another, to running <strong>buffer</strong> and <strong>point-in-polygon</strong> calculations.</p>
+<p>Whilst originally my intentions were to combine this week with your work on Point Pattern Analysis, after writing up this week’s practical, I’ve realised that this is more than enough content for you to look through for this week’s Geocomputation material.</p>
+<p>We’ll have a short lecture introducing these different operations and a longer practical session looking at their application in terms of <strong>spatial data cleaning, validation and analysis</strong> and we’ll also learn how to <strong>download data from OpenStreetMap</strong>. In terms of data visualisation, you’ll learn how to make <strong>interactive maps</strong> with <code>tmap</code>, <strong>small multiples</strong> and <strong>proportional symbol maps</strong>.</p>
+<div id="week-7-in-geocomp" class="section level3 unnumbered">
+<h3>Week 7 in Geocomp</h3>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/56351863-ad47-41d1-8c50-54d5cfb2cf63?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://web.microsoftstream.com/video/56351863-ad47-41d1-8c50-54d5cfb2cf63">Video on Stream</a>
+</center>
+<p><br></p>
+<p>This week’s content introduces you to geometric operations and their different uses in spatial analysis.</p>
+<p>We have two areas of work to focus on:</p>
+<ol style="list-style-type: decimal">
+<li>Understnading different geometric operations and spatial queries and their respective applications.</li>
+<li>Using geometric operations and spatial queries to clean, validate and analyse spatial data.</li>
+</ol>
+<p>This week’s content is split into <strong>3</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#workshop-housekeeping-1">Workshop Housekeeping</a> (20 minutes)</li>
+<li><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#geometric-operations-spatial-queries">Geometric Operations &amp; Spatial Queries</a> (40 minutes)</li>
+<li>[Geometric Operations &amp; Spatial Queries in Action] (90 minutes)</li>
+</ol>
+<p>This week, we have <strong>1 lecture</strong> and <strong>2 assignments</strong> within this week’s workshop.</p>
+<div class="puzzle">
+<p><strong>Learning Objectives</strong><br><br>
+By the end of this week, you should be able to:</p>
+<ul>
+<li>Understand how to use different geometric operations and spatial queries within your spatial analysis workflow for data cleaning, processing and analysis</li>
+<li>Be able to implement geometric operations, including clips and unions, and spatial queries within R and <code>sf</code></li>
+<li>Know how to download data from OpenStreetMap using the <code>osmdata</code> package</li>
+<li>Make small multiples of maps and arrange them togoether</li>
+<li>Create proportional symbol maps</li>
+</ul>
+</div>
+<p>This week, we’ll be investigating bike theft in London in 2019 - and look to confirm a very simple hypothesis: <em>that bike theft primarily occurs near tube and train stations.</em></p>
+<p>We’ll be investigating its <strong>distribution</strong> across London using the point data provided within our crime dataset.</p>
+<p>We’ll then compare this distribution to the location of train and tube stations using specific geometric operations and spatial queries that can compare the geometry of two (or more) datasets.</p>
+<p>To complete this analysis, we’ll be using two types of spatia data:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Bike theft in London in 2019</strong>: A 2019 version of our crime dataset for London. <em>With COVID-19 changing commuting patterns etc., we will focus on 2019.</em></li>
+<li><strong>Train and Tube Stations locations in London</strong></li>
+</ol>
+<p>We’ll also learn how to download data from OpenStreetMap as well as use an interactive version of <code>tmap</code> to explore the distribution of the locations of individual bike theft against the locations of these stations.</p>
+<hr />
+</div>
+<div id="workshop-housekeeping-1" class="section level3 unnumbered">
+<h3>Workshop Housekeeping</h3>
+<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.</p>
+<div id="setting-up-your-script-2" class="section level4 unnumbered">
+<h4>Setting up your script</h4>
+<ol style="list-style-type: decimal">
+<li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>wk7-bike-theft-analysis.r</code>.</p></li>
+<li><p>At the top of your script, add the following metdata (substitute accordingly):</p></li>
+</ol>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="co"># Analysing bike theft and its relation to stations using geometric analysis</span></a>
+<a class="sourceLine" id="cb218-2" title="2"><span class="co"># Script started March 2021 NAME</span></a></code></pre></div>
+</div>
+<div id="dependencies-aka-libraries-1" class="section level4 unnumbered">
+<h4>Dependencies (aka libraries)</h4>
+<p>Now we’ll install the libraries we need for this week.</p>
+<p>All of the geometric operations and spatial queries we will use are contained within the <code>sf</code> library.</p>
+<p>We will install the <code>leaflet</code> library to enable interactive mapping in <code>tmap</code>.</p>
+<p>We will also use <code>osmdata</code> to downlad data directly from OpenStreetMap.</p>
+<p>Remember to use the `install.packages(“package”) command <strong>in your console</strong>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Within your script</strong>, add the following libraries for loading:</li>
+</ol>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb219-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb219-3" title="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb219-4" title="4"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb219-5" title="5"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb219-6" title="6"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb219-7" title="7"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb219-8" title="8"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb219-9" title="9"><span class="kw">library</span>(leaflet)</a>
+<a class="sourceLine" id="cb219-10" title="10"><span class="kw">library</span>(osmdata)</a></code></pre></div>
+<p>Remember to select the lines of code you want to run and press <strong>CMD (Mac)/CTRL(Windows) + Enter/Return</strong> - we won’t remind you to run each line of code in the remainder of the practical sessions.</p>
+</div>
+<div id="datasets-for-this-week-1" class="section level4 unnumbered">
+<h4>Datasets for this week</h4>
+<p>This week, we’ll start off using three datasets:</p>
+<ul>
+<li><strong>London Ward boundaries from 2018</strong> (this should already be in your <strong>raw</strong> data folder)</li>
+<li><strong>2019 crime in London</strong> from data.police.uk</li>
+<li><strong>Train and Tube Stations</strong> from TfL.</li>
+</ul>
+<p>As we’ve already been through the data processing required for the 2020 crime dataset, this week, I’ll save you on some data cleaning!</p>
+<p><strong>1. 2019 crime in London</strong></p>
+<p>You can find a pre-stacked single csv of <strong>all crime</strong> from 2019 <a href="https://liveuclac-my.sharepoint.com/:x:/g/personal/ucfailk_ucl_ac_uk/EWxn7JE6Z_JKi7IrmXj8vksB5KHyQCT-Lp0hF9u98XMdTQ?e=MLvMYT">here</a>.</p>
+<p>This csv was created using the exact same steps we completed in Practical 3 and 4. Therefore, if you would like to challenge yourself, go ahead and create this dataset yourself using the <strong>Command Line</strong> and <strong>R</strong> code we used in those practicals to create your 2019 crime csv.</p>
+<p>Whichever approach you use, store your final <code>all_crime_2019.csv</code> in your <code>data/raw/crime</code> folder.</p>
+<p><strong>2. London Train and Tube Stations</strong></p>
+<p>You will need to also download the Train and Tube Stations data from TfL from their <strong>Open Data</strong> portal <a href="https://tfl.gov.uk/info-for/open-data-users/our-open-data?intcmp=3671">here</a>.</p>
+<p>You’ll find the data under <strong>General -&gt; Station locations</strong>.</p>
+<p>We need to download the <strong>KML</strong> file. Move your download to your <code>raw</code> data folder and create a new <code>transport</code> folder to contain it.</p>
+<p><strong>Loading our data</strong></p>
+<p>Let’s first load our London Ward shapefile from our <strong>raw -&gt; boundaries -&gt; 2018</strong> folder.</p>
+<ol style="list-style-type: decimal">
+<li>Load the 2018 London Ward boundaries:</li>
+</ol>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="co"># Read in our 2018 London Ward boundaries</span></a>
+<a class="sourceLine" id="cb220-2" title="2">london_ward_shp &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</a></code></pre></div>
+<p>We’ve used this dataset quite a few times - and if you remember in Week 5, when we first utilised the data, we checked it’s <strong>Coordinate Reference System (CRS)</strong> to confirm that it was in <strong>British National Grid (BNG)</strong>.</p>
+<p>We’ve slacked off recently with double-checking our CRSs because we’ve essentially only used one type of spatial data - these Ward shapefiles that have all come from the same source.</p>
+<p>This week, we’re going to double-check the CRS of all our datasets.</p>
+<p>If you remember the police crime data is provided with a <strong>Latitude</strong> and <strong>Longitude</strong> (i.e. coordinate references used in the Geographic Coordinate System of WGS84), so at least for this dataset, we know we’re likely going to run into differences in our CRS.</p>
+<p>We will also need to see what <strong>CRS</strong> our Tube and Train Stations data is provided in.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Check the <strong>CRS</strong> of our <code>london_ward_shp</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="co"># Get the CRS 2018 London Ward boundaries</span></a>
+<a class="sourceLine" id="cb221-2" title="2"><span class="kw">st_crs</span>(london_ward_shp)</a></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: 27700 
+##   wkt:
+## PROJCS[&quot;OSGB 1936 / British National Grid&quot;,
+##     GEOGCS[&quot;OSGB 1936&quot;,
+##         DATUM[&quot;OSGB_1936&quot;,
+##             SPHEROID[&quot;Airy 1830&quot;,6377563.396,299.3249646,
+##                 AUTHORITY[&quot;EPSG&quot;,&quot;7001&quot;]],
+##             TOWGS84[446.448,-125.157,542.06,0.15,0.247,0.842,-20.489],
+##             AUTHORITY[&quot;EPSG&quot;,&quot;6277&quot;]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+##         UNIT[&quot;degree&quot;,0.0174532925199433,
+##             AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
+##         AUTHORITY[&quot;EPSG&quot;,&quot;4277&quot;]],
+##     PROJECTION[&quot;Transverse_Mercator&quot;],
+##     PARAMETER[&quot;latitude_of_origin&quot;,49],
+##     PARAMETER[&quot;central_meridian&quot;,-2],
+##     PARAMETER[&quot;scale_factor&quot;,0.9996012717],
+##     PARAMETER[&quot;false_easting&quot;,400000],
+##     PARAMETER[&quot;false_northing&quot;,-100000],
+##     UNIT[&quot;metre&quot;,1,
+##         AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],
+##     AXIS[&quot;Easting&quot;,EAST],
+##     AXIS[&quot;Northing&quot;,NORTH],
+##     AUTHORITY[&quot;EPSG&quot;,&quot;27700&quot;]]</code></pre>
+<p>Of course it should be of no surprise that our <code>london_ward_shp</code> spatial dataframe is in <strong>BNG / ESPG: 27700</strong>, however it’s always good to check!</p>
+<p>Let’s go ahead and read in our <strong>stations</strong> dataset.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Load the London Tube and Trains dataset:</li>
+</ol>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1"><span class="co"># Read in our London stations dataset</span></a>
+<a class="sourceLine" id="cb223-2" title="2">london_stations &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/transport/stations.kml&quot;</span>)</a></code></pre></div>
+<p>This dataset is provided as a <code>kml</code> file, which stands for <strong>Keyhole Markup Language (KML)</strong>.</p>
+<p><strong>KML</strong> was originally created as a file format used to display geographic data in Google Earth.</p>
+<p>As a result, if we think back to our lectures on Geographic vs. Projected Coordinate Systems (GCS/PCS), considering GoogleEarth is a 3D application, it is quite likely that the <strong>CRS</strong> associated with this dataset will be a <strong>GCS</strong>, not a <strong>PCS</strong>.</p>
+<p>So we definitely need to check what CRS this dataset is in and decide whether we’ll need to do some reprojecting.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Check the <strong>CRS</strong> of our <code>london_stations</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="co"># Get the CRS of or london stations</span></a>
+<a class="sourceLine" id="cb224-2" title="2"><span class="kw">st_crs</span>(london_stations)</a></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: 4326 
+##   wkt:
+## GEOGCS[&quot;WGS 84&quot;,
+##     DATUM[&quot;WGS_1984&quot;,
+##         SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,
+##             AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],
+##         AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],
+##     PRIMEM[&quot;Greenwich&quot;,0,
+##         AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+##     UNIT[&quot;degree&quot;,0.0174532925199433,
+##         AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
+##     AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</code></pre>
+<p>Ahah - our suspicions are confirmed! Our <code>london_stations</code> spatial dataframe is in <strong>WGS84 / EPSG: 4326</strong>.</p>
+<p>We’re going to need to reproject our data in order to use this dataframe with our <code>london_ward_shp</code> spatial dataframe.</p>
+<p>Luckily in <strong>R</strong> and the <code>sf</code> library, this reprojection is a relatively straight-forward transformation, requiring only one function: <code>st_transform</code>.</p>
+<p>The function is very simple to use - you only need to provide the function with the dataset and the code for the new CRS you wish to use with the data.</p>
+<p>For now, we will simply store the result of this transformation as an overwrite of our current variable - but you could, in the future, rewrite this code to use pipes to pipe this transformation when loading the dataset if you are already aware of its CRS.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Transform our <code>london_stations</code> spatial dataframe from <strong>WGS84 / EPSG: 4326</strong> to <strong>BNG / EPSG: 27700</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="co"># Reproject our london_stations spatial dataframe from WGS84 to BNG Overwrite our</span></a>
+<a class="sourceLine" id="cb226-2" title="2"><span class="co"># original variable</span></a>
+<a class="sourceLine" id="cb226-3" title="3">london_stations &lt;-<span class="st"> </span><span class="kw">st_transform</span>(london_stations, <span class="dv">27700</span>)</a></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>We can double-check our new variable is in the correct CRS by using the <code>st_crs</code> command, but this time simply enter it into <strong>into the console</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="co"># Check the CRS of or london stations - TYPE INTO CONSOLE</span></a>
+<a class="sourceLine" id="cb227-2" title="2"><span class="kw">st_crs</span>(london_stations)</a></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: EPSG:27700 
+##   wkt:
+## PROJCS[&quot;OSGB 1936 / British National Grid&quot;,
+##     GEOGCS[&quot;OSGB 1936&quot;,
+##         DATUM[&quot;OSGB_1936&quot;,
+##             SPHEROID[&quot;Airy 1830&quot;,6377563.396,299.3249646,
+##                 AUTHORITY[&quot;EPSG&quot;,&quot;7001&quot;]],
+##             TOWGS84[446.448,-125.157,542.06,0.15,0.247,0.842,-20.489],
+##             AUTHORITY[&quot;EPSG&quot;,&quot;6277&quot;]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+##         UNIT[&quot;degree&quot;,0.0174532925199433,
+##             AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
+##         AUTHORITY[&quot;EPSG&quot;,&quot;4277&quot;]],
+##     PROJECTION[&quot;Transverse_Mercator&quot;],
+##     PARAMETER[&quot;latitude_of_origin&quot;,49],
+##     PARAMETER[&quot;central_meridian&quot;,-2],
+##     PARAMETER[&quot;scale_factor&quot;,0.9996012717],
+##     PARAMETER[&quot;false_easting&quot;,400000],
+##     PARAMETER[&quot;false_northing&quot;,-100000],
+##     UNIT[&quot;metre&quot;,1,
+##         AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],
+##     AXIS[&quot;Easting&quot;,EAST],
+##     AXIS[&quot;Northing&quot;,NORTH],
+##     AUTHORITY[&quot;EPSG&quot;,&quot;27700&quot;]]</code></pre>
+<p>You should see that our <code>london_stations</code> spatial dataframe is now in <strong>BNG / EPSG: 27700</strong>.</p>
+<div class="note">
+<p><strong>Deciding which CRS to use</strong><br></p>
+<p>This is only second time in our practicals that we’ve needed to consider reprojecting our datasets - so how did I choose to use BNG?</p>
+<p>Whilst we have two datasets in WGS84 (as we’ll confirm below) and one in BNG, unfortunately in spatial analysis, majority simply does not rule.</p>
+<p>As you should remember from our lectures in Week 3 on <strong>Projections and Coordinate Reference Systems</strong>, we should always choose a CRS that best represents the reality on the ground for our area of interest <strong>and</strong> the type of analysis we want to conduct.</p>
+<p>This week, we will be conducting <strong>a lot</strong> of analysis that is reliant on the <strong>distance</strong> between two points being captured accurately and we’ll also be only focusing on London as our area of interest.</p>
+<p>In this case, therefore, BNG is the most sensible and accurate choice moving forward (it rarely isn’t when it comes to mapping data about Great Britain!).</p>
+<p>If we didn’t transform our data, not only would our analysis be incorrect but our visualisations would also not work correctly.</p>
+</div>
+<p>We’re now ready to load our final dataset - our csv that contains our crime from 2019.</p>
+<p>From this csv, we want to do three things:</p>
+<ol style="list-style-type: decimal">
+<li>Extract only those crimes that are bicycle thefts, i.e. <code>crime_type == "bicycle theft"</code>.</li>
+<li>Convert our csv into a spatial dataframe that shows the locations of our crimes, determined by the latitude and longitudes provided, as points.</li>
+<li>Transform our data from <strong>WGS84 / 4326</strong> to <strong>BNG / 27700</strong>.</li>
+</ol>
+<p>Now, we’re getting pretty used to looking at code and cleaning data - so it should come of no suprise to you that we can complete all three steps at once, using our handy <code>%&gt;%</code> pipe operator.</p>
+<p>We’ll explain each line of code in the comments to help you read through the different functions, but the main function you have yet come across is: <code>st_as_sf</code>.</p>
+<p>What this function does is convert any vector, matrix or dataframe you provide in the argument into a point spatial dataframe, as long as you provide it with two columns to use for their <strong>coordinates</strong> (a bit like we did when using Q-GIS). You should also include the CRS for which those coordinates are based on, i.e. in our case, WGS84 / 4236.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Load, clean and process our 2019 crime csv:</li>
+</ol>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="co"># Read in our crime data csv from our raw data folder</span></a>
+<a class="sourceLine" id="cb229-2" title="2">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/crime/all_crime_2019.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># clean names</span></a>
+<a class="sourceLine" id="cb229-3" title="3"><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter according to crime type and ensure we have no NAs in our dataset</span></a>
+<a class="sourceLine" id="cb229-4" title="4"><span class="kw">filter</span>(crime_type <span class="op">==</span><span class="st"> &quot;Bicycle theft&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(longitude) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(latitude)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb229-5" title="5"><span class="st">    </span><span class="co"># select just the longitude and latitude columns</span></a>
+<a class="sourceLine" id="cb229-6" title="6"><span class="kw">select</span>(longitude, latitude) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># transform into a point spatial dataframe note providing the columns as the</span></a>
+<a class="sourceLine" id="cb229-7" title="7"><span class="co"># coordinates to use plus the CRS, which as our columns are long/lat is</span></a>
+<a class="sourceLine" id="cb229-8" title="8"><span class="co"># WGS84/4236</span></a>
+<a class="sourceLine" id="cb229-9" title="9"><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="dt">crs =</span> <span class="dv">4236</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># convert into BNG</span></a>
+<a class="sourceLine" id="cb229-10" title="10"><span class="kw">st_transform</span>(<span class="dv">27700</span>)</a></code></pre></div>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<p>We now have our three datasets loaded, it’s time for a little data checking.</p>
+<p>We can see just from our Environment window that in total, we have <strong>302</strong> stations and <strong>18,744</strong> crimes to look at in our analysis.</p>
+<p>We can double-check the (Attribute) tables of our newly created spatial dataframes to see what data we have to work with.</p>
+<p>You can either do this manually by clicking on the variable, or using commands such as <code>head()</code>, <code>summary()</code> and <code>names()</code> to get an understanding of our dataframe structures and the field names present - you can choose your approach, but make sure <strong>to look at your data</strong>.</p>
+<p>As you should remember from the code above, for our bicycle theft data, we actually only have our geometry column because this is all that we extracted from our crime csv.</p>
+<p>For our <code>london_stations</code> spatial dataframe, we have a little more information, including the name of the station and its address - as well as its geometry.</p>
+<p>Let’s go ahead and do the next thing on our “how to do spatial analysis” checklist and check the distribution of our data - for the first time, we’ll actually map all of our data together on one map.</p>
+<p>We’ll only customise this a little bit for now - but you could, of course, make this look a lot fancier than the map we’ll produce now!</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Map all three layers of data onto a single map using <code>tmap</code>:</li>
+</ol>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1"><span class="co"># Plot our London Wards first</span></a>
+<a class="sourceLine" id="cb231-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Then bike crime as blue</span></a>
+<a class="sourceLine" id="cb231-3" title="3"><span class="kw">tm_shape</span>(bike_theft_<span class="dv">2019</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Then our stations as red</span></a>
+<a class="sourceLine" id="cb231-4" title="4"><span class="kw">tm_shape</span>(london_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a north arrow</span></a>
+<a class="sourceLine" id="cb231-5" title="5"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># And a scale bar</span></a>
+<a class="sourceLine" id="cb231-6" title="6"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-map-all-data-1.png" width="672" /></p>
+<p>Wow, intesting to see right?</p>
+<p>Let’s think about the distribution of our data - we can already see that our bike theft is obviously highly concentrated in the centre of London although we can certainly see some clusters in the Greater London areas. This certainly is going to be an interesting dataset to analyse!</p>
+<p>Let’s go ahead and temporally remove the bike theft data from our map for now to see where our tube and train stations are located.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>To remove the bike data, simply put a comment sign in front of that piece of code and re-run the code:</li>
+</ol>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1"><span class="co"># Plot our London Wards first</span></a>
+<a class="sourceLine" id="cb232-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Then bike crime as blue COMMENTED OUT tm_shape(bike_theft_2019) +</span></a>
+<a class="sourceLine" id="cb232-3" title="3"><span class="co"># tm_dots(col=&#39;blue&#39;) + Then our stations as red</span></a>
+<a class="sourceLine" id="cb232-4" title="4"><span class="kw">tm_shape</span>(london_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a north arrow</span></a>
+<a class="sourceLine" id="cb232-5" title="5"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># And a scale bar</span></a>
+<a class="sourceLine" id="cb232-6" title="6"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-map-some-data-1.png" width="672" /></p>
+<p>Hmmm - well that’s interesting. We can see our train and tube stations are only present in primarily the north of London - and not really present in the south. This isn’t quite right! Whilst this is easier to spot if you’re familiar with the London train network - but there should <strong>definitely</strong> be train stations in the south of London…?!</p>
+<p>If we look at the distribution of our stations - and use our knowledge of the London train and tube networks (I appreciate not all of us might have!) - we can quickly identify that our original dataset only contains those train stations used by <strong>TfL</strong> within the tube network rather than all the stations in London:</p>
+<img src="images/w7/london_geog_tube_map.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<em>Transport for London’s Geographic Tube and Train Network / Station Map.</em>
+</center>
+<p><br></p>
+<p>It looks like we’re going to need to find some more data for our analysis!</p>
+<p>But this isn’t the only problem with our dataset - we can see that both our <code>bike_theft</code> spatial dataframe and our <code>london_stations</code> spatial dataframe extend beyond our London boundary.</p>
+<p>We therefore need to do some further cleaning and processing of our datasets to get them into a more “tidy” and complete format for analysis.</p>
+<p>But so far, we’ve only completed cleaning and processing on the <strong>dataframe</strong> aspect of our spatial data, never on the <strong>geometry</strong> or <strong>spatial component</strong> of our spatial data - so, how do we do this?</p>
+<p>The answer is: <strong>geometric operations and spatial queries</strong>.</p>
+</div>
+</div>
+<div id="geometric-operations-spatial-queries" class="section level3 unnumbered">
+<h3>Geometric Operations &amp; Spatial Queries</h3>
+<p><strong>Geometric operations</strong> use geometry functions to take spatial data as input (one or more datasets), analyze the data, then produce output data that is the derivative of the analysis performed on the input data (Esri, 2020).</p>
+<p><strong>Spatial queries</strong> use the geometry of two datasets to compare them against specific spatial requirements - the result of these queries can then be used to select or remove features that do or do not meet these requirements.</p>
+<p>This type of spatial data manipulation and analysis is often known as <strong>geoprocessing</strong>.</p>
+<p>These operations and queries are the <strong>building blocks</strong> of GIScience and it is incredibly impressive <strong>how</strong> much you can achieve with some very simple functions.</p>
+<p>They can be used to <strong>clean, tidy, process, validate and even analyse data</strong> - all through simply <strong>managing and manipulating geometry within space</strong>.</p>
+<p>But, as these functions are <strong>spatially-dependent</strong>, it is incredibly important that we use a CRS that accurately represents our data within space, i.e. it tries to balanace the distortion between distance, area and shape (although which you prioritise out of these can be dependent on the types of analysis you are completing).</p>
+<p>We are using BNG, which, as we know from our previous lecture and above, does the best job of preserving all three for data in Great Britain.</p>
+<p>This week’s lecture outlines geometric operations and spatial queries and provides examples of what they can be used to accomplish with spatial data.</p>
+<p>But before you get started with the lecture, I’d recommend downloading the <code>sf</code> <a href="https://github.com/rstudio/cheatsheets/raw/master/sf.pdf">cheatsheet</a> - and preferably printing it off (yes, for this once, print!) - to use as a guide as we move through the lecture and the next section.</p>
+<p>You should read each of the functions available and highlight any that you remember seeing in previous practicals.</p>
+<p>You, of course, do not need to know each of these off by heart, but reading through these examples can give you a general understanding of the operations and queries you can conduct.</p>
+<div id="lecture-what-are-geometric-operations-spatial-queries" class="section level4 unnumbered">
+<h4>Lecture: What are Geometric Operations &amp; Spatial Queries?</h4>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/d6eba76f-4dae-459e-b094-e20b559353b9?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EQkN6iRA7SlKs0ETgYN_RJgByIKu_KTCa149H37o-C4SFQ?e=Fzc8CB">Slides</a> | <a href="https://web.microsoftstream.com/video/d6eba76f-4dae-459e-b094-e20b559353b9">Video on Stream</a>
+</center>
+<p><br></p>
+</div>
+<div id="geometric-operation-versus-spatial-query-which-should-i-use" class="section level4 unnumbered">
+<h4>Geometric Operation versus Spatial Query: which should I use?</h4>
+<p>As you’ll find out in this week’s practical, much of the “geoprocessing” that we need to complete with our data can be completed using different approaches of both <strong>geometric operations</strong> and <strong>spatial queries</strong> - and, as a result, can be completed in many different orders.</p>
+<p>When we use <strong>geometric operations</strong>, we are always taking a data input (or inputs), manipulating their geometry according to the function/operation you’re using and then providing a modified geometry as a new data output (a spatial dataframe in R or dataset in Q-GIS, for example).</p>
+<p>The use of these operations can be quite time-consuming and, in many scenarios, we often do not want edited geometry returned to us, but simply the information on the result of our query that we can then attribute to our original dataset. For example, does this bike theft fall within 400m of a station - yes or no?</p>
+<p>In this case, <strong>spatial queries</strong> are the way forward. As you’ll see below, a spatial query will only return a <code>TRUE</code> or <code>FALSE</code> statement to your question. In Q-GIS, this is the “selection” process seen in the above GIF; in R and <code>sf</code>, you’ll be returned either a list of the indexes of those features that are <code>TRUE</code> to the question or a matrix that states either <code>TRUE</code> or <code>FALSE</code> for every single feature.</p>
+<p>With spatial queries, you do not edit the geometry of the dataset you’re analysing, but within R, you will end up with an attribute that you can join to said dataset (as we’ll do today). With that <code>TRUE/FALSE</code> output joined to our spatial dataframe, you can, at a later point in time, use that attribute to select only those that are <code>TRUE</code> or <code>FALSE</code> to create a new dataset if you want.</p>
+<p>Spatial queries are often much quicker to implement, but the disadvantage is that you won’t end up with an additional dataset that you might want for visualisation purposes.</p>
+<p>We’ll see this below when using a <strong>buffer</strong> to analyse our bike theft data.</p>
+</div>
+</div>
+<div id="practical-6---part-one-geometric-operations-spatial-queries-in-action" class="section level3 unnumbered">
+<h3>Practical 6 - Part One: Geometric Operations &amp; Spatial Queries In Action</h3>
+<p>Of all spatial data processing and analysis, geometric operations and spatial queries are certainly best explained through demonstration!</p>
+<p>Therefore, to clean, process and analysis our data, we can demonstrate a range of operations and queries highlighted by our first lecture.</p>
+<p>We’re going to need to reduce both our our <code>bike_theft</code> spatial dataframe and our <code>london_stations</code> spatial dataframe to only contain data within our <code>london_ward_shp</code> spatial dataframe. This is known as either a <strong>subset</strong> or a <strong>clip</strong> and there <strong>are</strong> differences between them and how you implement them.</p>
+<p>Furthermore, we need additional data that adds in the remaining train stations that exist in London - but are managed by companies other than TfL.</p>
+<p>We’ll therefore look into how we can use geometric operations and spatial queries to compare two similar datasets (as well as download data from OpenStreetMap).</p>
+<p>Once we’ve created our two final datasets, we can then think of ways we can look to quantify the relationship between the locations of bike theft and train stations - using both geometric operation and spatial query approaches.</p>
+<p>Let’s get started with the simplest task at hand - “clipping” our dataset to our <code>london_ward_shp</code> spatial dataframe.</p>
+<div id="clipping-our-bike-theft-data-to-london" class="section level4 unnumbered">
+<h4>Clipping our bike theft data to London</h4>
+<p>When we want to reduce a dataset to the spatial extent of another, there are <strong>two</strong> different approaches to conducting this in spatial analysis - a <strong>subset</strong> or a <strong>clip</strong> - which each deal with the geometry of the resulting dataset in slightly different ways.</p>
+<ul>
+<li>A <strong>clip</strong>-type operation works a bit like a <strong>cookie-cutter</strong> - it will take the geometry of “dough” layer (i.e. the layer you want to clip), places a “cookie-cutter” layer on top (i.e. the layer you want to clip <strong>by</strong>) and then returns <strong>only</strong> the dough contained <strong>within</strong> the cookie-cutter. This will mean that the <strong>geometry</strong> of our resulting “dough” layer will be modified, if it contains observation features that extend further than the “cookie-cutter” extent - it will literally “cut” the geometry of our data.</li>
+</ul>
+<img src="images/w7/clip.gif" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Clipping demo’ed in QGIS for easy visualisation!</em>
+</center>
+<p><br></p>
+<ul>
+<li>A <strong>subset</strong>-type operation is what is known in GIScience-speak as a <strong>select by location</strong> query - in this case, our subset will return the <strong>full</strong> geometry of each observation feature that <strong>intersects</strong> with our “<strong>clip</strong> when our”’“cookie-cutter” layer. Any geometry that does not intersect with our clip layer will be removed from the geometry of our resulting layer.</li>
+</ul>
+<img src="images/w7/subset.gif" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>In QGIS, once we complete our spatial query to generate our subset, we need to export this selection and save as a new layer.</em>
+</center>
+<p><br></p>
+<p>Luckily for us, as we are using point data, we can (theorectically) use either approach because it is not possible to split the geometry of a single point feature. However, if a point feature does fall on the same geometry as our “clip” layer, it will be excluded from our dataset.</p>
+<p>When it comes to polygon and line data, not understanding the differences between the two approaches can lead you into difficulties with your data processing - as outlined by our examples in the GIFs above and below - there will be differences in the feature geometry between the clipped layer and the subset layer:</p>
+<img src="images/w7/clip_subset_compare.gif" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Zooming in to see the difference between a clip and a subset.</em>
+</center>
+<p><br></p>
+<p>As you should be able to see, when our polygons are clipped, those that intersect with the the boundary of the clip layer are “cut” to conform to this extent. When we use the subset / spatial query operation, those that intersect with the the boundary of the clip layer are returned in their entirety and <strong>not cut</strong> to conform to the precse extent of the clip layer.</p>
+<p><strong>Implementing spatial subsetting and clipping in R</strong></p>
+<p>Each approach is implemented differently in R - and can actually be used together to speed up the effiency in your code.</p>
+<p>To <strong>subset</strong> our data, we only need to use the <strong>base R</strong> library to selection we learnt about in Week 5, using <code>[]</code> brackets.</p>
+<ol style="list-style-type: decimal">
+<li>Subset our <code>bike_theft_2019</code> spatial dataframe by our <code>london_ward_shp</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="co"># Subset our bike_theft_2019 spatial dataframe by the london_ward_shp spatial</span></a>
+<a class="sourceLine" id="cb233-2" title="2"><span class="co"># dataframe Note the comma - do not forget this!</span></a>
+<a class="sourceLine" id="cb233-3" title="3">bike_theft_<span class="dv">2019</span>_subset &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span>[london_ward_shp, ]</a></code></pre></div>
+<p>You should now see our subset has <strong>18,690</strong> variables instead of <strong>18,744</strong>. You can go ahead and <code>plot()</code> the subset layer using your console if you’d like.</p>
+<p>Conversely, if we want to <strong>clip</strong> our data, we need to use the <code>st_intersection</code> command from the <code>sf</code> library.</p>
+<p>Frustratingly, this is a slightly mis-leading name as we see the use of the word ‘intersects’ in our subset above in Q-GIS and within another function within <code>sf</code>, <code>st_intersects()</code> (which is more similar to the QGIS spatial query), however, this is what the function is called, so please just be aware of this moving forward.</p>
+<p>As you’ll see in your <code>sf</code> cheatsheet, the <code>st_intersection()</code> function “creates geometry to the shared portion of x and y” (<em>Garnett, 2019</em>), aka performs our clip.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Clip our our <code>bike_theft_2019</code> spatial dataframe by our <code>london_ward_shp</code> spatial dataframe using the <code>st_intersection()</code> query:</li>
+</ol>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="co"># Subset our bike_theft_2019 spatial dataframe by the london_ward_shp spatial</span></a>
+<a class="sourceLine" id="cb234-2" title="2"><span class="co"># dataframe Note we overwrite our original variable here, as we&#39;ll continue to</span></a>
+<a class="sourceLine" id="cb234-3" title="3"><span class="co"># use this in our code</span></a>
+<a class="sourceLine" id="cb234-4" title="4">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_intersection</span>(london_ward_shp)</a></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<p>Again, you should now see we have <strong>18,690</strong> obesrvations in our <code>bike_theft_2019</code> spatial dataframe.</p>
+<p>We can see, therefore, with our point data, whichever approach we would take would not affect the final outcome - this is not necessarily the same for line and polygon data as shown above.</p>
+<p>As we only need one of these outputs, you can go ahead and remove the <code>bike_theft_2019_subset</code> spatial dataframe from your environment (<code>rm(bike_theft_2019_subset)</code> in your <strong>console</strong>) to keep our Environment tidy.</p>
+<p><strong>Which approach should I use in the future?</strong></p>
+<p>Which approach you use with future data is always dependent on the dataset you want to use - and the output you need. For example, is keeping the geometry of your observation features in your dataset important?</p>
+<p>Out of the two, the <strong>subset</strong> approach is the fastest to use as R is simply comparing the geometries rather than also editing the geometries.</p>
+<p>As a result, when we have a significantly large dataset we want to <strong>clip</strong>, my recommendation is to actually first <strong>subset</strong> your spatial dataframe and then <strong>clip</strong> use the <code>st_intersection()</code> function, to reduce your processing time.</p>
+</div>
+<div id="creating-our-london-outline-from-our-london-ward-data" class="section level4 unnumbered">
+<h4>Creating our London outline from our London ward data</h4>
+<p>Before we go ahead and wrangle our <code>london_stations</code> spatial dataframe, we’re going to look at how we can <strong>dissolve</strong> our <code>london_ward_shp</code> spatial dataframe into a single feature.</p>
+<p>As you would have seen in the GIF of my Q-GIS processing, I used only an outline of London to clip/subset the bike theft data.</p>
+<p>Whilst both our subset and <code>st_intersection()</code> function has worked with our original <code>london_ward_shp</code> spatial dataframe, reducing this dataset to a single feature would make our processing even faster.</p>
+<p>Furthermore, reducing a spatial dataframe to a single observation is often required when using R and <code>sf</code>’s geometric operations to complete geometric comparisions - we’ll see what I mean about this in the next section when we look at our <code>london_stations</code> spatial dataframe.</p>
+<p>Sometimes, also, we simply want to map an outline of an area, such as London, rather than add in the additional spatial complexities of our wards.</p>
+<p>To achieve just a single ‘observation’ that represents the <strong>outline geometry</strong> of our dataset, we use the geometric operation, <code>st_union</code>.</p>
+<p>What a union does (and you can read this off your cheatsheet) is ‘creates a single geometry from multiple geometries’ (<em>Garnett, 2019</em>).</p>
+<p>Let’s go ahead and see if we can use this to create our London outline.</p>
+<ol style="list-style-type: decimal">
+<li>Union our <code>london_ward_shp</code> spatial dataframe to create a single outline of London:</li>
+</ol>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="co"># Use st_union to create a single outline of london from our london_ward_shp</span></a>
+<a class="sourceLine" id="cb236-2" title="2"><span class="co"># spatial dataframe</span></a>
+<a class="sourceLine" id="cb236-3" title="3">london_outline &lt;-<span class="st"> </span>london_ward_shp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_union</span>()</a></code></pre></div>
+<p>You should see that our <code>london_outline</code> spatial data frame only has one observation.</p>
+<p>You can now go ahead and <code>plot()</code> your <code>london_outline</code> spatial dataframe from your console and see what it looks like - hopefully you’ll now have an outline of London:</p>
+<p><img src="GEOG0030_files/figure-html/07-plot-london-1.png" width="672" /></p>
+<p>You can also use the <code>st_union()</code> to union two datasets into one - this can be used to “merge” data together that are of the same spatial type.</p>
+<div class="codetime">
+<p><strong>Using <code>dplyr</code> to complete a Dissolve geometric operation</strong><br></p>
+<p>Whilst <code>sf</code> contains many handy geometric operations, one critical geometric operation it does not contain is something known as a <strong>dissolve</strong>.</p>
+<p>In Q-GIS (and the majority of other GIS software), a <strong>dissolve</strong> can create a union of features within a single dataset <strong>based on an attribute</strong> within that dataset.</p>
+<img src="images/w7/esri-dissolve.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>How dissolve works. Source: Esri, 2020.</em>
+</center>
+<p><br></p>
+<p>To achieve this type of dissolve within <code>sf</code>, we can actually use the <code>dplyr</code> library and its <code>group_by()</code> and <code>summarise()</code> functions.</p>
+<p>What we ask R to do is to group our spatial dataframe by the attribute we want to dissolve by - and then summarise these features by the sum of their area to essentially create a union of them.</p>
+<p>We can demonstrate this with our <code>london_ward_shp</code> spatial dataframe - for example, we can group our wards by the <code>DISTRICT</code> column and calculate sum the area of the individual observation features within each group using the <code>HECTARES</code> column, which we use to then summarise our spatial dataframe to produce the final union geometries.</p>
+<ol style="list-style-type: decimal">
+<li>Dissolve our <code>london_ward_shp</code> spatial dataframe using the <code>DISTRICT</code> column using our <code>dplyr</code> approach:</li>
+</ol>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1"><span class="co"># Pipe our grouped dstrict london_wards into the dplyr summarise function and</span></a>
+<a class="sourceLine" id="cb237-2" title="2"><span class="co"># summarise it by its area Store this output as a london_boroughs</span></a>
+<a class="sourceLine" id="cb237-3" title="3">london_boroughs &lt;-<span class="st"> </span>london_ward_shp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(DISTRICT) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">area =</span> <span class="kw">sum</span>(HECTARES))</a></code></pre></div>
+<p>Now, the clue is a little bit in the name - but if you now plot your dissolved dataset, you’ll see we’ve created a new spatial dataframe from our <code>london_ward_shp</code> spatial dataframe that resembles our Borough data all the way from Practical 1!</p>
+<p><img src="GEOG0030_files/figure-html/07-plot-london-2-1.png" width="672" /></p>
+<p>Of course, we could have utilised the borough dataset we already have in our raw folder, but there will be times when data like this does not exist - and you need to create it from a dataset you already have!</p>
+</div>
+</div>
+<div id="finding-an-alternative-train-station-dataset" class="section level4 unnumbered">
+<h4>Finding an alternative train station dataset</h4>
+<p>We’ve seen that our current <code>london_stations</code> spatial dataframe really does not provide the coverage of train stations in London that we’d expect - we’ve obviously gone and downloaded not neessarily the <em>wrong</em> dataset per se, but just one that does not fulfil our spatial coverage requirements.</p>
+<p>The issue we face, however, is that if you search for a London - or even England - dataset of train stations, there simply isn’t one to be found!</p>
+<p>So where can we get this data from?</p>
+<div id="introducing-openstreetmap-and-its-contents" class="section level5 unnumbered">
+<h5>Introducing OpenStreetMap and its contents</h5>
+<p>If you’ve never come across OpenStreetMap (OSM) before, it is a <strong>free editable map of the world</strong>.</p>
+<p>It was first created in 2004 by Steve Coast in the UK to counteract the predominance of proprietary map data in the UK and elsewhere.</p>
+<p>For example, your main interaction with maps, beyond this course, might be with a well-known application called Google Maps. All the data that underpins Google Maps is however completely properietary, i.e. owned by Google - and beyond using their services on the App and browser versions, you can’t actually “get access” to the data you see in front of you.</p>
+<p>For OpenStreetMap (OSM), this is completely the opposite - not only is the data not owned by anyone specifically (although it is licensed and copyrighted by OpenStreetMap and its contributors), you can both contribute data to the map yourself with relative ease and download the data that is within the map itself.</p>
+<p>The data on the map has been provided through a <a href="https://wiki.openstreetmap.org/wiki/Contributors">range of sources</a>, from user submitted GIS data, contributor digitisation of satellite imagery during mapathons, as well as the incorporation of ‘authoritative’ data from Open Data programmes and initiatives, such as Ordnance Survey’s Open Data or the U.S’s TIGER dataset.</p>
+<p>Whilst February 25th 2021 saw the <strong>100,000,000th edit</strong> to the map, the map’s spatial coverage is still unequal across the world - plus, as you’ll find if you use the data, the accuracy and quality of the data can often be quite questionable or simply missing attribute details that we’d like to have, e.g. types of roads and their speed limits, to complete specific types of spatial analysis.</p>
+<p>There are a lot of initiatives out there to change this - and something I’ve been involved in on and off for a long time and would highly advocate for you to at least read into to see where you can give back, particularly if you go on to use OSM substantially!</p>
+<p>As a result, <strong>do not expect OSM to contain every piece of spatial data that you’d want</strong> - it is doing its best, but ultimately it takes a long time and a lot of human power to map the whole world!</p>
+<p>Furthermore, it’s always a good idea to think through <em>if</em> and <em>how</em> you can validate the data to be confident in its coverage - we’re going to look at this today in terms of our station dataset.</p>
+<p>For now, we will focus on how we can download our required data - train stations in London - from OSM in R.</p>
+</div>
+</div>
+<div id="downloading-data-from-openstreetmap" class="section level4 unnumbered">
+<h4>Downloading data from OpenStreetMap</h4>
+<p>Whilst there are various approaches to downloading data from OpenStreetMap, which you can read about <a href="https://wiki.openstreetmap.org/wiki/Downloading_data">here</a>.</p>
+<p>We will of course use the one that is most straightforward to us using R - we’ll use the <code>osmdata</code> library to <strong>directly extract our required OpenStreetMap (OSM) data into a variable within our Environment</strong>.</p>
+<p>The <code>osmdata</code> library grants access within R to the <strong>Overpass API</strong> that allows us to run queries on OSM data and then import the data as either <code>sf</code> or <code>sp</code> objects. I’d highly recommend reading more about the Overpass API originations or experiment within its web browser form <a href="https://overpass-turbo.eu">here</a>, which even contains a “wizard” to help you get started with writing queries.</p>
+<p>These queries are at the <strong>heart</strong> of these data downloads.</p>
+<p>To use the library (and API), we need to know how to write and run a query, which requires identifying the <code>key</code> and <code>value</code> that we need within our query to select the correct data.</p>
+<p>This is the trickiest bit of using the library - and requires getting familiar with OSM’s approach to tagging datasets.</p>
+<p>Essentially every map element (whether a point, line or polygon) in OSM is “tagged” with different attribute data.</p>
+<p>The first tag any element will be provided with is its <strong>key</strong> - what type of human or physical “on-the-ground” feature does our element represent.</p>
+<p>As part of this tag, each element will also be provided with a <strong>value</strong> that is a subcategory of this key.</p>
+<p>In our case, we’re looking for train stations, which fall under the key, <strong>Public Transport</strong>, with a value of <strong>station</strong> as outlined in their <a href="https://wiki.OpenStreetMap.org/wiki/Key:public_transport">wiki</a>.</p>
+<p>These <strong>keys</strong> and <strong>values</strong> are used in our queries to extract only map elements of that feature type - to find out how a feature is “tagged” in OSM is simply a case of reading through the OSM documentation and beoming familiar with their <strong>keys</strong> and <strong>values</strong>.</p>
+<p>You can see more <a href="https://wiki.openstreetmap.org/wiki/Tags">here</a> for future use, for example in your coursework and/or dissertation.</p>
+</div>
+<div id="extracting-train-stations-in-london-from-osm" class="section level4 unnumbered">
+<h4>Extracting train stations in London from OSM</h4>
+<p>To extract a train station dataset from OSM using the <code>osmdata</code> library, we need to follow four key steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Obtain the <strong>bounding box</strong> of where we want our data to be extracted from, i.e. London, to prevent OSM searching the whole map of the world for our feature (although the API query does have in-built time and spatial coverage limits to stop this from happening!).</p></li>
+<li><p>Submit this bounding box to the OSM query alongside the <strong>key/value</strong> combination of the feature we want to extract.</p></li>
+<li><p>Create an <code>sf</code> OSM data object from this query.</p></li>
+<li><p>Retrieve the data that we want from this object - in our case, point data!</p></li>
+</ol>
+<p>Let’s see this in action.</p>
+<ol style="list-style-type: decimal">
+<li>Extract elements from OSM that are tagged as <code>public_transport = station</code> from OSM into an <code>osmdata_sf()</code> object :</li>
+</ol>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1"><span class="co"># Define our bbox coordinates, here we extract the coordinates from our london</span></a>
+<a class="sourceLine" id="cb238-2" title="2"><span class="co"># outline using the st_bbox function Note we also temporally reproject the</span></a>
+<a class="sourceLine" id="cb238-3" title="3"><span class="co"># london_outline spatial dataframe before obtaining the bbox We need our bbox</span></a>
+<a class="sourceLine" id="cb238-4" title="4"><span class="co"># coordinates in WGS84 (not BNG), hence reprojection</span></a>
+<a class="sourceLine" id="cb238-5" title="5">p_bbox &lt;-<span class="st"> </span><span class="kw">st_bbox</span>(<span class="kw">st_transform</span>(london_outline, <span class="dv">4326</span>))</a>
+<a class="sourceLine" id="cb238-6" title="6"></a>
+<a class="sourceLine" id="cb238-7" title="7"><span class="co"># Pass our bounding box coordinates into the OverPassQuery (opq) function</span></a>
+<a class="sourceLine" id="cb238-8" title="8">london_stations_osm &lt;-<span class="st"> </span><span class="kw">opq</span>(<span class="dt">bbox =</span> p_bbox) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Pipe this into the add_osm_feature data query function to extract our stations</span></a>
+<a class="sourceLine" id="cb238-9" title="9"><span class="kw">add_osm_feature</span>(<span class="dt">key =</span> <span class="st">&quot;public_transport&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;station&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Pipe this into our osmdata_sf object</span></a>
+<a class="sourceLine" id="cb238-10" title="10"><span class="kw">osmdata_sf</span>()</a></code></pre></div>
+<center>
+<em>Note, you can find out more about this and how to construct your queries at the following tutorial: <a href="https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html" class="uri">https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html</a> and more about using OpenStreetMap and its various key/values at the <a href="https://wiki.OpenStreetMap.org/wiki/Main_Page">OSM Wiki</a> and specifically its [Map Features] page(<a href="https://wiki.OpenStreetMap.org/wiki/Map_features" class="uri">https://wiki.OpenStreetMap.org/wiki/Map_features</a>).</em>
+</center>
+<p><br></p>
+<p>In the code above, we have completed steps 1-3. We now need to extract only the points data from our <code>osmdata_sf()</code> object.</p>
+<div class="note">
+<p><strong>Understanding the <code>osmdata_sf()</code> and the OSM data object</strong><br>
+When we download OSM data - and extract it as above - our query will return <strong>all</strong> elements tagged as our <strong>key/value</strong> combination into our <code>osmdata_sf()</code> OSM data object.</p>
+<p>This means all elements - any <strong>points, lines and polygons</strong> - associated with our tag will be returned.</p>
+<p>Obviously we would think with our <code>public_transport = station</code> tag, we would only return point data representing our train and tube stations in London.</p>
+<p>But if we use the <code>summary()</code> function on our <code>london_stations_osm</code> osm data object, we can see that not only is <strong>a lot</strong> of other data stored in our OSM data object (including the bounding box we used within our query, plus metadata about our query), but our query has returned both <strong>points</strong> and <strong>polygons</strong> - currently stored within this OSM data object as individual spatial data frames.</p>
+<p><em>Note, the length of these <code>sf</code> spatial dataframes within the data object is equal to the number of attributes associated with these spatial dataframes, not the number of observations within them.</em></p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1"><span class="co"># Summarise our london_stations_osm - you can enter this into your console</span></a>
+<a class="sourceLine" id="cb239-2" title="2"><span class="kw">summary</span>(london_stations_osm)</a></code></pre></div>
+<pre><code>##                   Length Class  Mode     
+## bbox                1    -none- character
+## overpass_call       1    -none- character
+## meta                3    -none- list     
+## osm_points        143    sf     list     
+## osm_lines           0    -none- NULL     
+## osm_polygons       51    sf     list     
+## osm_multilines      0    -none- NULL     
+## osm_multipolygons   5    sf     list</code></pre>
+<p>To extract only the points of our tube and train stations from our <code>london_stations_osm</code> osm data object, we simply need to extract this dataframe and store this under our variable as we’ll do in a second.</p>
+<p>But, whenever you’re dealing with OSM data, just remember that your query can return multiple different types of map elements (and their respective geometry), so always be clear in knowing which type of spatial data you’ll need and remember to extract this from your osm data object.</p>
+</div>
+<p>As we also provided our bounding box in WGS84 coordinates, we also should know that we’ll need to reproject our extracted spatial dataframe from WGS84 to BNG - and we’ll tidy it up (with the London outline) at the same time to make sure our stations are only within London.</p>
+<center>
+<strong>Note, we’ll just overwrite our current variable.</strong>
+</center>
+<ol start="2" style="list-style-type: decimal">
+<li>Extract train station points from our osm data object and process/clean ready for analysis.</li>
+</ol>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="co"># Extract only the points data from our osmdata object &amp; fields we want to keep</span></a>
+<a class="sourceLine" id="cb241-2" title="2"><span class="co"># Note, I checked the points object in the osmdata object to identify the fields</span></a>
+<a class="sourceLine" id="cb241-3" title="3"><span class="co"># to keep</span></a>
+<a class="sourceLine" id="cb241-4" title="4">london_stations_osm &lt;-<span class="st"> </span>london_stations_osm<span class="op">$</span>osm_points[, <span class="kw">c</span>(<span class="st">&quot;osm_id&quot;</span>, <span class="st">&quot;name&quot;</span>, <span class="st">&quot;network&quot;</span>, </a>
+<a class="sourceLine" id="cb241-5" title="5">    <span class="st">&quot;operator&quot;</span>, <span class="st">&quot;public_transport&quot;</span>, <span class="st">&quot;railway&quot;</span>)] <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Reproject our dataset to BNG for future use</span></a>
+<a class="sourceLine" id="cb241-6" title="6"><span class="kw">st_transform</span>(<span class="dv">27700</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># And clip our osm data to our london outline shapefile</span></a>
+<a class="sourceLine" id="cb241-7" title="7"><span class="kw">st_intersection</span>(london_outline)</a></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<p>You should now see the our <code>london_stations_osm</code> variable in our Environment now stores a points spatial dataframe containing <strong>all</strong> train and tube stations within London - my query has retrieved 1573 features, with the 7 fields selected.</p>
+<img src="GEOG0030_files/figure-html/07-plot-london-3-1.png" width="672" />
+<center>
+<em>Plotting our osm stations and its fields.</em>
+</center>
+<p><br></p>
+</div>
+<div id="cleaning-our-osm-station-dataset" class="section level4 unnumbered">
+<h4>Cleaning our OSM station dataset</h4>
+<p>With the accuracy of OSM a little questionable, we want to complete some data validation tasks to check its quality and to confirm that it at least contains the data we see in our authoritative <code>london_stations</code> spatial dataframe.</p>
+<div id="check-our-osm-train-and-tube-station-data" class="section level5 unnumbered">
+<h5>Check our OSM train and tube station data</h5>
+<p>First, we’ll check the quality of our data extract - as we can see in our plot above, not all of our stations appear to be of the same value in our <code>railway</code> field.</p>
+<p>If we check the field using our <code>count()</code> function, you’ll see that there are some different values and NAs in our dataset.</p>
+<ol style="list-style-type: decimal">
+<li>Use the <code>count()</code> function to understand what values we have within our <code>railway</code> field:</li>
+</ol>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">count</span>(london_stations_osm, railway)</a></code></pre></div>
+<pre><code>## Simple feature collection with 7 features and 2 fields
+## geometry type:  MULTIPOINT
+## dimension:      XY
+## bbox:           xmin: 505082.2 ymin: 159027.2 xmax: 556214 ymax: 200138.6
+## CRS:            EPSG:27700
+##                  railway   n                       geometry
+## 1               entrance   2 MULTIPOINT ((532814.8 16572...
+## 2                station 592 MULTIPOINT ((505082.2 17672...
+## 3                   stop   2 MULTIPOINT ((513225.1 18452...
+## 4        subway_entrance   9 MULTIPOINT ((512210.7 17613...
+## 5 train_station_entrance   2 MULTIPOINT ((529171.5 18417...
+## 6              tram_stop   6 MULTIPOINT ((524730.4 17025...
+## 7                   &lt;NA&gt; 960 MULTIPOINT ((505605.4 18418...</code></pre>
+<p>As we can see, not everything in our <code>london_stations_osm</code> spatial dataframe is a ‘station’ as recorded by OSM.</p>
+<p>We actually have a lot of <strong>NAs</strong> (960!) in our spatial dataframe - and it is <strong>highly unlikely</strong> these represent stations in London.</p>
+<p>In fact, a quick search online can tell us that there are <a href="https://tfl.gov.uk/corporate/about-tfl/what-we-do"><strong>270</strong> tube stations</a> in the London network as well as <a href="https://en.wikipedia.org/wiki/List_of_London_railway_stations"><strong>330</strong> train stations</a> in Greater London.</p>
+<center>
+<em>Never fear about searching for this information as a way to validate your data!</em>
+</center>
+<p>With <strong>592</strong> stations detailed in our <code>railway</code> field, it’s likely that these are the only points in our dataset that represent actual stations in London (with a difference of 8 to our researched number likely due to not duplicating major train stations such as Waterloo or Euston that also double as tube stations).</p>
+<p>As a result, we’ll go on the best information we have from this attribute and our search and remove all other points from our OSM dataset - we’ll, of course, use the <code>filter()</code> function for this.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Filter out those points that are not railway stations:</li>
+</ol>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="co"># Extract only the points data from our osmdata object &amp; fields we want to keep</span></a>
+<a class="sourceLine" id="cb245-2" title="2">london_stations_osm &lt;-<span class="st"> </span>london_stations_osm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(railway <span class="op">==</span><span class="st"> &quot;station&quot;</span>)</a></code></pre></div>
+<p>We should now have <strong>592</strong> stations left in our observations. That’s a much closer number to our estimated research number of 600.</p>
+</div>
+<div id="check-the-spatial-distribution-of-the-osm-data-against-the-authoritative-tfl-data-through-interactive-mapping" class="section level5 unnumbered">
+<h5>Check the spatial distribution of the OSM data against the authoritative TfL data through interactive mapping</h5>
+<p>We’ve now cleaned our <code>london_stations_osm</code> spatial dataframe to remove all those points within our dataset that are not tagged as <code>railway=station</code>.</p>
+<p>Our <code>london_stations</code> spatial dataframe is of course an <strong>authoritative</strong> dataset from TfL, so we know at least that this data should be accurate - therefore, it would be great if we could compare our two datasets to one another spatially to double-check our <code>london_stations_osm</code> spatial dataframe contains all the data within our <code>london_stations</code> spatial dataframe.</p>
+<p>We can first look at this by comparing their distributions visually on a map.</p>
+<p>But first, as our <code>london_stations</code> spatial dataframe still extends outside of London, we’ll go ahead and clip this.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Clip our <code>london_stations</code> spatial dataframe to the London outline:</li>
+</ol>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1">london_stations &lt;-<span class="st"> </span>london_stations <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_intersection</span>(london_ward_shp)</a></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<p>We now have <strong>286</strong> stations left in our <code>london_stations</code> spatial dataframe to compare with our <code>london_stations_osm</code> spatial dataframe.</p>
+<p>Let’s go ahead and compare our two stations spatial data frames spatial distribution visually on a map.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Map our two spatial dataframes to compare their spatial coverage:</li>
+</ol>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="co"># Plot our London Wards first with a grey background</span></a>
+<a class="sourceLine" id="cb248-2" title="2"><span class="kw">tm_shape</span>(london_outline) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Plot OSM station data in black</span></a>
+<a class="sourceLine" id="cb248-3" title="3"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Plot TfL station data in red</span></a>
+<a class="sourceLine" id="cb248-4" title="4"><span class="kw">tm_shape</span>(london_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add north arrow</span></a>
+<a class="sourceLine" id="cb248-5" title="5"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add scale bar</span></a>
+<a class="sourceLine" id="cb248-6" title="6"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add our OSM contributors statement</span></a>
+<a class="sourceLine" id="cb248-7" title="7"><span class="kw">tm_credits</span>(<span class="st">&quot;© OpenStreetMap contributors&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-map-some-data-23-1.png" width="672" /></p>
+<p>What we can see is that it looks like our OSM data actual does a much better job at covering all train and tube stations across London (not a surpise with 300 more stations in the dataset) - but still it’s pretty hard to get a sense of comparison from a static map like this whether it contains all of the tube and train stations in our <code>london_stations</code> spatial dataframe.</p>
+<p>One <strong>really cool thing</strong> about the <code>tmap</code> library that we haven’t looked at yet, is that we can change its mode from a static map such as the one above, to <strong>an interactive map</strong> that enables us to interrogate the spatial coverage of our two station spatial dataframes further.</p>
+<p>To do so, we use the <code>tmap_mode()</code> function and change it from its default <code>plot()</code> mode to a <code>view()</code> model.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Change <code>tmap</code>’s mode to <code>view</code> (from <code>plot</code>) and plot our data interactively:</li>
+</ol>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="co"># Change tmap mode to view / interactive mapping</span></a>
+<a class="sourceLine" id="cb249-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
+<a class="sourceLine" id="cb249-3" title="3"></a>
+<a class="sourceLine" id="cb249-4" title="4"><span class="co"># Plot our London Wards first Plot our London Wards first with just a border</span></a>
+<a class="sourceLine" id="cb249-5" title="5"><span class="kw">tm_shape</span>(london_outline) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Plot OSM station data in black</span></a>
+<a class="sourceLine" id="cb249-6" title="6"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Plot TfL station data in red</span></a>
+<a class="sourceLine" id="cb249-7" title="7"><span class="kw">tm_shape</span>(london_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="images/w7/int-map.gif" width="550pt" style="display: block; margin: auto;" /></p>
+<p><strong>NOTE, the workbook will not display any of our interactive maps as this requires significant processing from your web browser. Here we provide a GIF of what your interactive map should look like. We’ll only do this once for this example.</strong></p>
+<p>Well that’s super cool - using the interactive map, what we can see is that whilst we <strong>do</strong> have overlap with our datasets, and more importantly, our <code>london_stations_osm</code> spatial dataframe seems to contain all of the data within the <code>london_stations</code> spatial dataframe, although there are definitely differences in their precise location.</p>
+<p>Now depending on what level of accuracy we’re willing to accept with our assumption that our OSM data contains the <strong>same</strong> data as our TfL data, we could leave our comparison here and move forward with our analysis.</p>
+<p>There are however several more steps we could complete to validate this assumption.</p>
+<p>The easiest first step is to simply reverse the order of our datasets to check that each <code>london_stations</code> spatial dataframe point is covered.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Reverse our map drawing order to check no red point appears through:</li>
+</ol>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="co"># Plot our London Wards first with just a border</span></a>
+<a class="sourceLine" id="cb250-2" title="2"><span class="kw">tm_shape</span>(london_outline) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Plot TfL station data in red</span></a>
+<a class="sourceLine" id="cb250-3" title="3"><span class="kw">tm_shape</span>(london_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Plot OSM station data in black</span></a>
+<a class="sourceLine" id="cb250-4" title="4"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</a></code></pre></div>
+<p>This looks pretty good - but still the question is: can we be sure?</p>
+<p>It would be really useful if we could spatially quantify whether we have any missing stations from our data. And guess what?</p>
+<p>By <strong>using geometric operations and spatial queries</strong>, we can!</p>
+</div>
+</div>
+<div id="comparing-our-stations-datasets-through-geometric-operations-and-spatial-queries" class="section level4 unnumbered">
+<h4>Comparing our stations datasets through geometric operations and spatial queries</h4>
+<p>Using geometric operations and spatial queries, we can look to find if any of our stations in our <code>london_stations</code> spatial dataframe are not present the <code>london_stations_osm</code> spatial dataframe.</p>
+<p>We can use specific geometric operations and/or queries that let us check whether or not all points within our <code>london_stations</code> spatial dataframe spatially intersect with our <code>london_stations_osm</code> spatial dataframe, i.e. we can complete the opposite our clip/intersection that we conducted earlier.</p>
+<p>The issue we face however is that, as we saw above, our points are slightly offset from one another as the datasets have ultimately given the same stations slightly different locations.
+This offset means we need to think a little about the geometric operation or spatial query that we want to use.</p>
+<p>We will approach this question in two different ways to highlight the differences between geometric operations and spatial queries:</p>
+<ol style="list-style-type: decimal">
+<li>We’ll use <strong>geometric operations</strong> to generate geometries that highlight missing stations from our <code>london_stations</code> spatial dataframe (i.e. ones that are not present in the<code>london_stations_osm</code> spatial dataframe.)</li>
+<li>We’ll use <strong>spatial queries</strong> to provide us with a list of features in our <code>london_stations</code> spatial dataframe that do not meet our spatial requirements (i.e. are not present in the<code>london_stations_osm</code> spatial dataframe.)</li>
+</ol>
+<p>We’ll demonstrate both below to give you an introduction to each approach - it ultimately will be up to you to decide which approach your prefer.</p>
+<div id="validating-our-osm-data-against-our-authoritative-tfl-data-using-geometric-operations" class="section level5 unnumbered">
+<h5>Validating our OSM data against our authoritative TfL data using geometric operations</h5>
+<p>As highlighted above, the offset between our spatial dataframes adds a little complexity to our geometric operations code.</p>
+<p>To be able to make our direct spatial comparisons across our spatial dataframes, what we first need to do is try to **snap*’** the geometry of our <code>london_stations</code> spatial dataframe to our <code>london_stations_osm</code> spatial dataframe for points within a given distance threshold.</p>
+<p>This will mean that any points in the <code>london_stations</code> spatial dataframe that are within a specific distance of the <code>london_stations_osm</code> spatial dataframe will have their geometry changed to that of the <code>london_stations_osm</code> spatial dataframe.</p>
+<img src="images/w7/snap1.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Snapping points to a line. In our case we snap our points to other points.</em>
+</center>
+<p><br></p>
+<p>By placing a threshold on this “snap”, we stop too many points moving about if they are unlikely to be representing the same station (e.g. further than 200m or so away) - but this still allows us to create more uniformity across our datasets’ geometries (and tries to reduce the uncertainty we add by completing this process).</p>
+<p>After a quick investigation of the interactive map and looking at those points that appear to be the same station but spatially apart against the scale bar, I’ve settled on a distance of 150m.</p>
+<ol style="list-style-type: decimal">
+<li>Snap our our <code>london_stations</code> spatial dataframe to our <code>london_stations_osm</code> spatial dataframe for points within a 150m distance threshold.</li>
+</ol>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="co"># Snap points from our london_stations sdf that are 150m within our</span></a>
+<a class="sourceLine" id="cb251-2" title="2"><span class="co"># london_stations_osm sdf to the same geometry</span></a>
+<a class="sourceLine" id="cb251-3" title="3">london_stations_snap &lt;-<span class="st"> </span><span class="kw">st_snap</span>(london_stations, london_stations_osm, <span class="dv">150</span>)</a></code></pre></div>
+<p>Now we have out ‘snapped’ geometry, we can look to compare our two datasets to calculate whether or not our <code>london_stations_osm</code> spatial dataframe is missing any data from our <code>london_stations_snap</code> spatial dataframe.</p>
+<p>To do so, we will use the <code>st_difference()</code> function which will return us the geometries of those points in our <code>london_stations_snap</code> spatial dataframe that are missing in our our <code>london_stations_osm</code> spatial dataframe.</p>
+<p>However to use this function successfully (and this seems to be required for many of the comparison geometric operations in <code>sf</code>), we need to convert our our <code>london_stations_osm</code> spatial dataframe into a single geometry to enable this comparision.</p>
+<p><em>Note, this simplification of the geometry for geometric operations is not needed in Q-GIS.</em></p>
+<p>To simplify our <code>london_stations_osm</code> spatial dataframe into a single geometry, we simply use the <code>st_union()</code> code we used with our London outline above.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Simplify the <code>london_stations_osm</code> spatial dataframe and then compare this to the <code>london_stations_snap</code> spatial dataframe to identify any missing stations:</li>
+</ol>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="co"># Create a single geometry version of our `london_stations_osm` spatial dataframe</span></a>
+<a class="sourceLine" id="cb252-2" title="2"><span class="co"># for comparison</span></a>
+<a class="sourceLine" id="cb252-3" title="3">london_stations_osm_compare &lt;-<span class="st"> </span>london_stations_osm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_union</span>()</a>
+<a class="sourceLine" id="cb252-4" title="4"></a>
+<a class="sourceLine" id="cb252-5" title="5"><span class="co"># Compare our two point geometries to identify missing stations</span></a>
+<a class="sourceLine" id="cb252-6" title="6">missing_stations &lt;-<span class="st"> </span><span class="kw">st_difference</span>(london_stations_snap, london_stations_osm_compare)</a></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<p>You should now find that we have an answer - and apparently have <strong>3</strong> missing stations with our <code>london_stations_osm</code> spatial dataframe.</p>
+<p>Let’s go ahead and plot this interactively to see where these station are truly missing!</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Plot our missing stations against our <code>london_stations_osm</code> spatial dataframe and identify whether these stations are missing or not!</li>
+</ol>
+<p><em>Note, I recommend changing the basemap to the Esri Topo Map - do not use the OSM map as we, of course, are using data from OSM! Esri’s data is from Ordnance Survey and their own datasets so we won’t run into issues of the basemap presenting the same data.</em></p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="co"># Plot our london_stations_osm spatial dataframe in black</span></a>
+<a class="sourceLine" id="cb254-2" title="2"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Plot our missing_stations spatial dataframe in green</span></a>
+<a class="sourceLine" id="cb254-3" title="3"><span class="kw">tm_shape</span>(missing_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</a></code></pre></div>
+<p>Zoom in to our three missing stations - are these stations actually missing, or simply are the two locations (between the TfL dataset and the OSM dataset) too far apart that our snapping didn’t work?</p>
+<p>If you investigate these three missing stations, you can actually see that our <code>london_stations_osm</code> spatial dataframe dataset is actually <strong>more accurate</strong> than the TFL locations.</p>
+<p>All three missing stations were not in fact missing, but a) in our OSM dataset but b) at a greater offset than 150m - and in all three cases, or OSM locations were more accurate!</p>
+<p>We can safely suggest that we can move forward with only using the <code>london_stations_osm</code> spatial dataframe and do not need to follow through with adding any more data to this dataset.</p>
+</div>
+<div id="validating-our-osm-data-against-our-authoritative-tfl-data-using-spatial-queries" class="section level5 unnumbered">
+<h5>Validating our OSM data against our authoritative TfL data using spatial queries</h5>
+<p>Before we go ahead and move forward with our analysis, we’ll have a look at how we can implement the above quantification using <strong>spatial queries</strong> instead of <strong>geometric operations</strong>.</p>
+<p>Usually, when we want to find out if two spatial dataframes have the same or similar geometries, we would use one of the following queries:</p>
+<ul>
+<li><code>st_equals()</code></li>
+<li><code>st_intersects()</code></li>
+<li><code>st_crosses()</code></li>
+<li><code>st_overlaps()</code></li>
+<li><code>st_touches()</code></li>
+</ul>
+<p>Specifically, we’d want to use `st_equals() to “identify if our two spatial dataframes and their geometry share the <strong>exactly the same</strong> space” <em>(Garnett, 2019)</em>.</p>
+<p>The other four options are modifications of the <em>exact</em> aspect, with ‘share any’, ‘have commonalities’, ‘share space’ or ‘share a common point’ their respective qualifications:</p>
+<img src="images/w7/sr4sq.png" width="250pt" style="display: block; margin: auto;" />
+<center>
+<em>Conceptualising Spatial Relationships. Source: Esri.</em>
+</center>
+<p><br></p>
+<p>Ultimately which query (or spatial relationship conceptualisation) you would choose would depend on the qualifications you are trying to place on your dataset.</p>
+<p>In our case, considering our <code>london_stations</code> spatial dataframe and our <code>london_stations_osm</code> spatial dataframe, we have to consider <strong>the offset between our datasets</strong>.</p>
+<p>We could, of course, <em>snap</em> our spatial dataframe as above - but woudn’t it be great if we could skip this step?</p>
+<p>Luckily we can!</p>
+<p><strong>Introducing the <code>st_is_within_distance()</code> spatial query</strong></p>
+<p>To do so, instead of <em>snapping</em> the <code>london_stations</code> spatial dataframe to the <code>london_stations_osm</code> spatial dataframe, we can use the <code>st_is_within_distance()</code> spatial query to ask whether our points in our <code>london_stations</code> spatial dataframe are within 150m of our <code>london_stations_osm</code> spatial dataframe.</p>
+<p>This ultimately means we can skip the snapping and <code>st_difference</code> steps - and complete our processing in two simple steps.</p>
+<p>However, one thing to be aware of when running spatial queries in R and <code>sf</code> is that whichever spatial dataframe is the comparison geometry (i.e. spatial dataframe <code>y</code> in our queries), this spatial dataframe <strong>must</strong> (again) be a <strong>single geometry</strong> - as we saw above in our <code>st_difference</code> geometric operation.</p>
+<p>If it is not a single geometry, then the query will be run <code>x</code> number of observations * <code>y</code> spatial dataframe number of observations times, which is not the output that we want.</p>
+<p>By converting our comparison spatial dataframe to a single geometry, the query is only run for the number of observations in <code>x</code>.</p>
+<p>You should also be aware that any of our spatial queries will return <strong>one</strong> of <strong>two potential outputs</strong>:</p>
+<ul>
+<li>EITHER a <strong>list</strong> detailing the <strong>indexes</strong> of all those observation features in <code>x</code> that do intersect with <code>y</code></li>
+<li>OR a <strong>matrix</strong> that contains a <code>TRUE</code> or <code>FALSE</code> statement about this relationship.</li>
+</ul>
+<p>To define whether we want a list or a matrix output, we set the <code>sparse</code> parameter within our query to <code>TRUE</code> or <code>FALSE</code> respectively.</p>
+<p>We will see how we can use the list in a later query, but with a matrix, we can simply join this back into our <code>x</code> spatial dataframe as a new column - which we’ll do now.</p>
+<ol style="list-style-type: decimal">
+<li>Query whether the points in our <code>london_stations</code> spatial dataframe are within 150m of our <code>london_stations_osm</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="co"># Create a single geometry version of our `london_stations_osm` spatial dataframe</span></a>
+<a class="sourceLine" id="cb255-2" title="2"><span class="co"># for comparison We did this above, so you should have this variable already We</span></a>
+<a class="sourceLine" id="cb255-3" title="3"><span class="co"># simply place it here to remind us for future code! london_stations_osm_compare</span></a>
+<a class="sourceLine" id="cb255-4" title="4"><span class="co"># &lt;- london_stations_osm %&gt;% st_union()</span></a>
+<a class="sourceLine" id="cb255-5" title="5"></a>
+<a class="sourceLine" id="cb255-6" title="6"><span class="co"># Compare our two point geometries to identify missing stations</span></a>
+<a class="sourceLine" id="cb255-7" title="7">london_stations<span class="op">$</span>in_osm_data &lt;-<span class="st"> </span><span class="kw">st_is_within_distance</span>(london_stations, london_stations_osm_compare, </a>
+<a class="sourceLine" id="cb255-8" title="8">    <span class="dt">dist =</span> <span class="dv">150</span>, <span class="dt">sparse =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>We can go ahead and <code>count()</code> the results of our query.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Count the results of our query:</li>
+</ol>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="co"># Count the number of stations within 150m of our the OSM spatial dataframe</span></a>
+<a class="sourceLine" id="cb256-2" title="2"><span class="kw">count</span>(london_stations, in_osm_data)</a></code></pre></div>
+<pre><code>## Simple feature collection with 2 features and 2 fields
+## geometry type:  MULTIPOINT
+## dimension:      XY
+## bbox:           xmin: 505625.9 ymin: 168579.9 xmax: 556144.8 ymax: 196387.1
+## CRS:            EPSG:27700
+## # A tibble: 2 x 3
+##   in_osm_data[,1]     n                                                 geometry
+## * &lt;lgl&gt;           &lt;int&gt;                                         &lt;MULTIPOINT [m]&gt;
+## 1 FALSE               3 ((533644.3 188926.1), (537592.5 179814.9), (538301.6 17…
+## 2 TRUE              283 ((505625.9 184164.2), (507565.2 185008.3), (507584.9 17…</code></pre>
+<p>Great - we can see we have <strong>3</strong> stations missing (3 <code>FALSE</code> observations), just like we had in our geometric operations approach.</p>
+<p>We can double-check this by mapping our two layers together.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Map our <code>missing_stations</code> spatial dataframe and our <code>london_stations</code> spatial dataframe (by the <code>in_osm_data</code> column) for comparison:</li>
+</ol>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="co"># Plot our london_stations by the in_osm_data column</span></a>
+<a class="sourceLine" id="cb258-2" title="2"><span class="kw">tm_shape</span>(london_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;in_osm_data&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add our missing_stations spatial dataframe</span></a>
+<a class="sourceLine" id="cb258-3" title="3"><span class="kw">tm_shape</span>(missing_stations) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)</a></code></pre></div>
+<p>You can turn on and off the <code>missing_stations</code> layer to compare the locations of these points to the <code>FALSE</code> stations within our <code>london_stations_osm</code> spatial dataframe, generated by our spatial query.</p>
+</div>
+</div>
+<div id="quantifying-distances-between-our-bike-thefts-and-train-stations" class="section level4 unnumbered">
+<h4>Quantifying distances between our bike thefts and train stations</h4>
+<p>We now have our London bike theft and train stations ready for analysis - we just need to complete one last step of processing with this dataset - calculating <strong>whether or not a bike theft occurs near to a train station or not</strong>.</p>
+<p>As above, we can use both <strong>geometric operations</strong> OR <strong>spatial queries</strong> to complete this analysis, which we’ll demonstrate below.</p>
+<div id="geometric-operations-approach" class="section level5 unnumbered">
+<h5>Geometric operations approach</h5>
+<p><strong>Step One: generate buffer for use within our analysis* </strong></p>
+<p>Our first approach using <strong>geometric operations</strong> will involve the creation of a <strong>buffer</strong> around each train station to then <strong>identify</strong> which bike thefts occur within 400m of a train or tube station.</p>
+<p>Once again, the <code>sf</code> library has a function for generating buffers - we just need to know how to deploy it successfully on our <code>london_stations_osm</code> spatial dataframe.</p>
+<p>When it comes to buffers, we need to consider two main things - what distance will we use (and are we in the right CRS to use a buffer) and do we want individual buffers or a single buffer!</p>
+<img src="images/w7/buffer.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>A single versus multiple buffer. The single buffer represents a ‘unioned/dissolved’ version of the multiple buffer option. Source: Q-GIS, 2020.</em>
+</center>
+<p>In terms of CRS, we want to make sure we use a CRS that defines its measurement units in metres - this is because it makes life significantly easier when calculating these buffers. If our CRS does not use metres as its measurement unit, it might be in a base unit of an Arc Degree or something else that creates difficulties when converting between a required metre distance and the measurement unit of that CRS.</p>
+<p>When using a CRS with a non-metres unit, you have two options: 1) reproject your data into a CRS that uses metres as its base unit OR 2) convert your metre distance into the respective unit. This type of manipulation applies to QGIS - but here we have a +1 for ArcGIS, where you can proactively set or change the units you’ll use for your buffer!</p>
+<p>In our case, we are using British National Grid and, luckily for us, the units of the CRS is metres, so we do not need to worry about this.</p>
+<p>In terms of determing whether we can create a single or multiple buffers, we can investigate the documentation of the function st_buffer to find out what additional parameters it takes - and how.</p>
+<p>What we can find out is that we need to (of course!) provide a distance for our buffer - but whatever figure we supply, this will be interpreted within the units of the CRS we are using.</p>
+<p>Fortunately none of this is our concern - we know we can simply input the figure or 400 into our buffer and this will generate a buffer of 400m.</p>
+<p>The one issue we do face though is that the parameter arguments do not allow us to dissolve our buffers into a single record, as we can, for example, in QGIS. But, as we’ve seen above, there is some code we can use to dissolve our buffers into a single feature after generating them.</p>
+<p>Let’s create our single buffer:</p>
+<ol style="list-style-type: decimal">
+<li>Create a single buffer representing 400m away from all train stations in London:</li>
+</ol>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1"><span class="co"># Generate a 400m buffer around our london_stations_osm dataset, union it to</span></a>
+<a class="sourceLine" id="cb259-2" title="2"><span class="co"># create one buffer</span></a>
+<a class="sourceLine" id="cb259-3" title="3">station_400m_buffer &lt;-<span class="st"> </span>london_stations_osm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_buffer</span>(<span class="dt">dist =</span> <span class="dv">400</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_union</span>()</a></code></pre></div>
+<p>You can then go ahead and plot our buffer to see the results, entering <code>plot(station_400m_buffer)</code> within the console:</p>
+<p><img src="GEOG0030_files/figure-html/07-plot-buffer-stations-1.png" width="672" /></p>
+<p>We can now go ahead and utilise this buffer to find out which bike thefts have occured within 400m of a train or tube station in London.</p>
+<p><strong>Step Two: Use buffer to identify bike theft that occurs within 400m of a station</strong></p>
+<p>To find out which bike thefts have occured within 400m of a station, we will use the <code>st_intersects()</code> function.</p>
+<p>Before we move forward, one thing to clarify is that a completely *<strong>NEW</strong> function <strong>AND NOT</strong> the <code>st_intersections()</code> function we’ve been used so far!</p>
+<p>Unlike the <code>st_intersections()</code> function which creates a ‘clip’ of our dataset, i.e. produces a new spatial dataframe containing the clipped geometry, the <code>st_intersects()</code> function simply identifies whether “x and y geometry share any space” <em>(Garnett, 2019)</em>.</p>
+<p>As explained above, as with all spatial queries, the <code>st_intersects()</code> function can produce two different outputs: either a list detailing the <strong>indexes</strong> of all those observation features in <code>x</code> that do intersect with <code>y</code> OR a matrix that contains a <code>TRUE</code> or <code>FALSE</code> statement about this relationship.</p>
+<p>As with our previous spatial query, we’ll continue to use the matrix approach - this means for every single bike theft in London, we’ll know whether or not it occured within our chosen distance of a train station and join this as a new column to our <code>bike_theft_2019</code> spatial dataframe.</p>
+<ol style="list-style-type: decimal">
+<li>Detect which bike thefts occur within 400m of a train or tube station:</li>
+</ol>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1"><span class="co"># Test whether a bike theft intersects with our station_buffer and store this as</span></a>
+<a class="sourceLine" id="cb260-2" title="2"><span class="co"># a new column called nr_train_400m Note, we use the base R approach of creating</span></a>
+<a class="sourceLine" id="cb260-3" title="3"><span class="co"># a new column with our code in this case We set the `sparse` parameter to</span></a>
+<a class="sourceLine" id="cb260-4" title="4"><span class="co"># `FALSE` to have a value returned for each theft, not just the indexes of those</span></a>
+<a class="sourceLine" id="cb260-5" title="5"><span class="co"># that do intersect</span></a>
+<a class="sourceLine" id="cb260-6" title="6">bike_theft_<span class="dv">2019</span><span class="op">$</span>nr_train_<span class="dv">400</span> &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_intersects</span>(station_400m_buffer, </a>
+<a class="sourceLine" id="cb260-7" title="7">    <span class="dt">sparse =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>We could go ahead and recode this to create a 1 or 0, or YES or NO after processing, but for now we’ll leave it as TRUE or FALSE.</p>
+<p>We can go ahead and now visualise our <code>bike_theft_2019</code> based on this column, to see those occuring near to a train station.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Map our <code>bike_theft_2019</code> spatial dataframe by the <code>nr_train_400m</code> column:</li>
+</ol>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1"><span class="co"># Set tmap back to drawing mode (you are welcome to leave yours as View, if you&#39;d</span></a>
+<a class="sourceLine" id="cb261-2" title="2"><span class="co"># like)</span></a>
+<a class="sourceLine" id="cb261-3" title="3"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a>
+<a class="sourceLine" id="cb261-4" title="4"></a>
+<a class="sourceLine" id="cb261-5" title="5"><span class="co"># Plot our london outline border</span></a>
+<a class="sourceLine" id="cb261-6" title="6"><span class="kw">tm_shape</span>(london_outline) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Plot our bike theft and visualise the nr_train_400m column</span></a>
+<a class="sourceLine" id="cb261-7" title="7"><span class="kw">tm_shape</span>(bike_theft_<span class="dv">2019</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;nr_train_400&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;BuGn&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Plus our train stations on top</span></a>
+<a class="sourceLine" id="cb261-8" title="8"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">palette =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add our OSM contributors statement</span></a>
+<a class="sourceLine" id="cb261-9" title="9"><span class="kw">tm_credits</span>(<span class="st">&quot;© OpenStreetMap contributors&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-intersect-map-1.png" width="672" /></p>
+<p>It should be of no surprise that visually we can of course see some defined clusters of our points around the various train stations - after all that’s what we’ve based our analysis around!</p>
+<p>We can then utilise this resulting dataset to calculate the percentage of bike thefts have occured at this distance - but we’ll do so once we’ve looked at the spatial query approach to obtaining the same data.</p>
+</div>
+</div>
+<div id="spatial-query-approach" class="section level4 unnumbered">
+<h4>Spatial Query Approach</h4>
+<p>After our previous demonstration, it should come of no surprise that the spatial query approach is even faster than our geometric operations - and in actual fact, we’re going to go ahead and use the <strong>same</strong> spatial query we used earlier with our station comparison: <code>st_is_within_distance()</code>.</p>
+<p><strong>Step One (and only one): Query Dataset</strong></p>
+<p>We will use this query to ask: for each point within our dataset, is this within 400m of a london station?</p>
+<p>We’ll again need to use the <strong>single geometry</strong> version of our <code>london_stations_osm</code> spatial dataframe for this comparison - and again use the <code>sparse=FALSE</code> to create a matrix that we’ll simply join back to our <code>bike_theft_2019</code> spatial dataframe as a new column.</p>
+<ol style="list-style-type: decimal">
+<li>Calculate for each point in our <code>bike_theft_2019</code> spatial dataframe whether it is within 400m of a station and store this result as a new column in our <code>bike_theft_2019</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1"><span class="co"># Compare our two point geometries to identify missing stations</span></a>
+<a class="sourceLine" id="cb262-2" title="2">bike_theft_<span class="dv">2019</span><span class="op">$</span>nr_train_<span class="dv">400</span>_sq &lt;-<span class="st"> </span><span class="kw">st_is_within_distance</span>(bike_theft_<span class="dv">2019</span>, london_stations_osm_compare, </a>
+<a class="sourceLine" id="cb262-3" title="3">    <span class="dt">dist =</span> <span class="dv">400</span>, <span class="dt">sparse =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>We can again compare the outputs of our two different approaches to check that we have the same output - either through our <code>count()</code> or mapping approach.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Map both the spatial query (<code>nr_train_400_sq</code>) and geoemtric operation (<code>nr_train_400</code>) output columns within our <code>bike_theft_2019</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1"><span class="co"># set tmap to interactive</span></a>
+<a class="sourceLine" id="cb263-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
+<a class="sourceLine" id="cb263-3" title="3"></a>
+<a class="sourceLine" id="cb263-4" title="4"><span class="co"># Plot our bike theft by the nr_train_400 column</span></a>
+<a class="sourceLine" id="cb263-5" title="5"><span class="kw">tm_shape</span>(bike_theft_<span class="dv">2019</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;nr_train_400&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add our bike theft plot by the nr_train_400_sq column</span></a>
+<a class="sourceLine" id="cb263-6" title="6"><span class="kw">tm_shape</span>(bike_theft_<span class="dv">2019</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;nr_train_400_sq&quot;</span>)</a></code></pre></div>
+<p>Again, you can swap between the two layers to check the different outputs.</p>
+<p>As we can see, we have achieved the exact same output - with fewer lines of code and, as a result, quicker processing.</p>
+<p>However, unlike with the geometric operations, we do not have a buffer to visualse this distance around a train station, which we might want to do for maps in a report or presentation, for example.</p>
+<p>Once again, it will be up to you to determine which approach you prefer to use - some people prefer using the more visual techniques of <strong>geometric operations</strong>, whereas others might find <strong>spatial queries</strong> to answer the same questions.</p>
+</div>
+<div id="calculating-bike-thefts-within-400m-of-a-tube-or-train-station" class="section level4 unnumbered">
+<h4>Calculating bike thefts within 400m of a tube or train station</h4>
+<p>Now we have, for each bike theft in our <code>bike_theft_2019</code> spatial dataframe, an attribute of whether it occurs within 400m of a train or tube station.</p>
+<p>We can quite quickly use the <code>count()</code> function to find out just how many thefts these clusters of theft represent.</p>
+<pre><code>## Simple feature collection with 2 features and 2 fields
+## geometry type:  MULTIPOINT
+## dimension:      XY
+## bbox:           xmin: 504411 ymin: 159848 xmax: 556531.4 ymax: 199863.8
+## CRS:            EPSG:27700
+## # A tibble: 2 x 3
+##   nr_train_400[,1]     n                                                geometry
+## * &lt;lgl&gt;            &lt;int&gt;                                        &lt;MULTIPOINT [m]&gt;
+## 1 FALSE            11269 ((504411 176098.6), (504516 177404.7), (504696.1 18293…
+## 2 TRUE              7421 ((505379.1 184132.3), (505432.2 184465.3), (505759.2 1…</code></pre>
+<p>In my case, 7,405 out of 18,690 bike thefts, i.e. <strong>40%</strong>, occur within 400m of a train station - that’s quite a staggering amount, but if we consider commuter behaviour - and certain “crime theories” such as routine activity theory - this occurence is not be unexpected.</p>
+<p>After all, if a bike is left at a train station, it is unlikely to be watched by a ‘suitable guardian’ nor is a simple bike lock likely to deter a thief, making it a ‘suitable target’.
+Furthermore, train stations are often located in areas of high areas of daytime populations - particularly in London. Therefore, to understand whether there are any key ‘hotspots’ of bike theft in London, it might be worth aggregating by the Ward unit and running a few spatial autocorrelation tests - as we’ll do in a minute.</p>
+<p>Overall, our main hypothesis - that bike thefts occur primarily near train and tube stations - isn’t quite proven, but so far we have managed to quantify that a substantial amount of bike thefts do occur within 400m of these areas.</p>
+<div class="assignment">
+<p><strong>Assignment 1: Calculate bike theft at varying distances</strong><br>
+Before we go ahead and conduct our aggregation, I’d like you to re-run the above analysis at four more distances:</p>
+<ul>
+<li><strong>100m</strong></li>
+<li><strong>200m</strong></li>
+<li><strong>300m</strong></li>
+<li><strong>500m</strong></li>
+</ul>
+<p>and calculate the percentage of bike theft at these different distances.</p>
+<p>You can choose whether you would like to use the <strong>geometric operations</strong> or <strong>spatial queries</strong> approach.</p>
+<p><strong>What do you think could explain the substantial differences in counts as we increase away from the train station from 100 to 200m?</strong></p>
+<p>Note, this is not a trick question - but perhaps one you might find easier to answer if you re-read the <a href="giscience-and-gis-software.html#what-is-representation">What is Representation?</a> section from our first week?</p>
+<p>You might want to think of an additional dataset that we could use to improve our methodology.</p>
+<p>One additional question is: <strong>what limitations do we face in studying the points of our theft dataset in terms of knowing the precise location of our theft</strong>.</p>
+<p>To answer this question, I would suggest reading back through our content in Week 5 on how the police data is processed.</p>
+<p><strong>I will ask for answers to these questions in our seminar in Week 8.</strong></p>
+</div>
+<p>You’ve now completed the majority of data cleaning and processing we need to now move on with our analysis.</p>
+<p>Before you do, I’d recommend you take a break from the workshop.</p>
+</div>
+</div>
+<div id="practical-6---part-two-analysing-and-visualising-point-data" class="section level3 unnumbered">
+<h3>Practical 6 - Part Two: Analysing and Visualising Point Data</h3>
+<p>We now have our final dataset and an answer to our question - but could we do a little more with our analysis?</p>
+<p>The answer to this is of course (and always!) yes.</p>
+<p>We’ll look at two approaches that both show how we can use the <code>st_intersects()</code> function to conduct what we know as <strong>point-in-polygon</strong> counts to visualise our data in two different ways.</p>
+<div id="aggregating-to-our-ward-dataset" class="section level4 unnumbered">
+<h4>1. Aggregating to our Ward dataset</h4>
+<p>In our first approach, we’ll conduct a very familiar procedure: aggregating our data to the ward level.</p>
+<p>At the moment, we’ve now calculated for each bike theft whether or not it occurs within 400m of a tube or train station.</p>
+<p>We can use this to see if specific wards are <strong>hotspots</strong> of bike crimes near stations across London.</p>
+<p>To do this, we’ll be using the same process we used in QGIS - counting <strong>the number of points in each of our polygons</strong>, i.e. the number of bike thefts in each ward.</p>
+<p>To do so in R and with <code>sf</code>, it is one line of code - which at first look does not sound at all like it is completing a <strong>point-in-polygon (PIP)</strong> calculation - but it does!</p>
+<div id="running-a-point-in-polygon-calculation-in-r" class="section level5 unnumbered">
+<h5>Running a Point-in-Polygon calculation in R</h5>
+<p>To create a PIP count within sf, we use the <code>st_intersects</code> function again - but instead of using the matrix output of TRUE or FALSE that we’ve used before, what we actually want to <strong>extract from our function is the total number of points it identifies as intersecting with our <code>london_ward_shp</code> spatial dataframe</strong>.</p>
+<p>To achieve this, we use the <code>length()</code> function from the <strong>base R</strong> package to count the number of wards returned within the index list its <code>sparse</code> output creates.</p>
+<p>Remember, this <code>sparse</code> output creates a list of the bike thefts (by their index) that intersect with each ward - therefore, the <code>length()</code> function will return the length of this list, i.e. how many bike thefts each ward contains or, in other words, a <strong>Point-in-Polygon</strong> count!</p>
+<p>This time around therefore we do not set the <code>sparse</code> function to <code>FALSE</code> but leave it as <code>TRUE</code> (its default) by not entering the parameter.</p>
+<p>As a result, we can calculate the number of bike thefts per ward and the number of bike thefts within 400m of a station per ward and use this to generate a <strong>rate</strong> for each ward of the number of bikes thefts that occur near a train station for identification of these <strong>hotspots</strong>.</p>
+<ol style="list-style-type: decimal">
+<li>Calculate the number of bike thefts per ward and the number of bike thefts within 400m of a station per ward using the PIP operation via <code>intersects()</code>:</li>
+</ol>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="co"># Run a PIP for total number of bike thefts occuring within a ward using</span></a>
+<a class="sourceLine" id="cb265-2" title="2"><span class="co"># st_intersects function</span></a>
+<a class="sourceLine" id="cb265-3" title="3">london_ward_shp<span class="op">$</span>total_bike_theft &lt;-<span class="st"> </span><span class="kw">lengths</span>(<span class="kw">st_intersects</span>(london_ward_shp, bike_theft_<span class="dv">2019</span>))</a>
+<a class="sourceLine" id="cb265-4" title="4"></a>
+<a class="sourceLine" id="cb265-5" title="5"><span class="co"># Run a PIP for number of bike thefts within 400m of train station within a ward</span></a>
+<a class="sourceLine" id="cb265-6" title="6"><span class="co"># using st_intersects function Note addition of filter statement to extract only</span></a>
+<a class="sourceLine" id="cb265-7" title="7"><span class="co"># those bike thefts near a station</span></a>
+<a class="sourceLine" id="cb265-8" title="8">london_ward_shp<span class="op">$</span>nr_station_bike_theft &lt;-<span class="st"> </span><span class="kw">lengths</span>(<span class="kw">st_intersects</span>(london_ward_shp, <span class="kw">filter</span>(bike_theft_<span class="dv">2019</span>, </a>
+<a class="sourceLine" id="cb265-9" title="9">    nr_train_<span class="dv">400</span> <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)))</a></code></pre></div>
+<p>As you can see from the code above, we’ve now calculated our total bike theft and bike theft near a train station for each ward.</p>
+<p>The final step in our processing therefore is to create our <strong>rate of potentially station-related bike theft = bike theft near train station / total bike theft</strong>.</p>
+<p>*Note, we are looking specifically at the phenomena of whether bike theft occurs near to a train or tube station or not - not . By normalising by the total bike theft, we are</p>
+<p>To do so, we’ll use the same approach of generating a new column within our <code>london_ward_shp</code> spatial dataframe - and then use a mathematical formula to calculate our rate, just as we did in Week 3 in QGIS.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Calculate the rate of bike theft within 400m of a train or tube station out of all bike thefts for each ward</li>
+</ol>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="co"># Calculate the rate of bike thefts within 400m of train or tube station Times by</span></a>
+<a class="sourceLine" id="cb266-2" title="2"><span class="co"># 100 to get a percentage</span></a>
+<a class="sourceLine" id="cb266-3" title="3">london_ward_shp<span class="op">$</span>btns_rate &lt;-<span class="st"> </span>(london_ward_shp<span class="op">$</span>nr_station_bike_theft<span class="op">/</span>london_ward_shp<span class="op">$</span>total_bike_theft) <span class="op">*</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb266-4" title="4"><span class="st">    </span><span class="dv">100</span></a></code></pre></div>
+</div>
+<div id="visualising-our-data-using-small-multiples" class="section level5 unnumbered">
+<h5>Visualising our data using “small multiples”</h5>
+<p>To best visualise our Ward aggregated bike data, we’re going to use the approach of creating “small multiples” maps that enables, using the <code>tm_arrange()</code> function.</p>
+<p>Creating small multiples allows us to plot three different maps within one visualisation - enabling easy comparison and quick visualisation. Small multiples can be used in other visualisations beyond maps and is a very popular technique in statistical chart visualisation.</p>
+<p>It allows you to plot multiple data variables clearly - but also allow you to compare them to one another quickly. You should always aim to be visualising related or similar variables at the same spatial scale for them to work most effectively.</p>
+<p>In comparison to using <strong>facets</strong> mapping approach (that we’ll look at in more detail next week), using small multiples also enables us to customise/modify each map individually - such as details in their respective legends as well as individual symbolisation and styling. <em>In addition, facet mapping really does have a <strong>specific</strong> purpose, which does not suit what we want to achieve here.</em></p>
+<p>To use small multiples in <code>tmap</code>, we simply store each map we want to create as an individual (programming) variable that we then load and visualise using the <code>tm_arrange()</code> function.</p>
+<ol style="list-style-type: decimal">
+<li>Create a <code>tmap</code> of each of our three data variables, store these as programming variables and load these using <code>tm_arrange()</code> function:</li>
+</ol>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" title="1"><span class="co"># Ensure tmap is in plot mode</span></a>
+<a class="sourceLine" id="cb267-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a>
+<a class="sourceLine" id="cb267-3" title="3"></a>
+<a class="sourceLine" id="cb267-4" title="4"><span class="co"># Create our first map and store at btm_1: Plot our London wards by the</span></a>
+<a class="sourceLine" id="cb267-5" title="5"><span class="co"># total_bike_theft column</span></a>
+<a class="sourceLine" id="cb267-6" title="6">btm_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;total_bike_theft&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;YlGn&quot;</span>, </a>
+<a class="sourceLine" id="cb267-7" title="7">    <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Total Bike Theft&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a legend etc</span></a>
+<a class="sourceLine" id="cb267-8" title="8"><span class="kw">tm_layout</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>), <span class="dt">legend.title.size =</span> <span class="fl">0.8</span>, <span class="dt">legend.text.size =</span> <span class="fl">0.5</span>, </a>
+<a class="sourceLine" id="cb267-9" title="9">    <span class="dt">scale =</span> <span class="fl">0.65</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>)  <span class="co">#+</span></a>
+<a class="sourceLine" id="cb267-10" title="10"><span class="co"># tm_compass(type=&#39;arrow&#39;, position = c(&#39;right&#39;, &#39;bottom&#39;)) + tm_scale_bar(breaks</span></a>
+<a class="sourceLine" id="cb267-11" title="11"><span class="co"># = c(0, 5, 10, 15, 20), position = c(&#39;left&#39;, &#39;bottom&#39;))</span></a>
+<a class="sourceLine" id="cb267-12" title="12"></a>
+<a class="sourceLine" id="cb267-13" title="13"><span class="co"># Create our second map and store at btm_2: Plot our London wards by the</span></a>
+<a class="sourceLine" id="cb267-14" title="14"><span class="co"># nr_station_bike_theft column</span></a>
+<a class="sourceLine" id="cb267-15" title="15">btm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;nr_station_bike_theft&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;BuGn&quot;</span>, </a>
+<a class="sourceLine" id="cb267-16" title="16">    <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Near Station Bike Theft&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a legend etc</span></a>
+<a class="sourceLine" id="cb267-17" title="17"><span class="kw">tm_layout</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>), <span class="dt">legend.title.size =</span> <span class="fl">0.8</span>, <span class="dt">legend.text.size =</span> <span class="fl">0.5</span>, </a>
+<a class="sourceLine" id="cb267-18" title="18">    <span class="dt">scale =</span> <span class="fl">0.65</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>)  <span class="co">#+</span></a>
+<a class="sourceLine" id="cb267-19" title="19"><span class="co"># tm_compass(type=&#39;arrow&#39;, position = c(&#39;right&#39;, &#39;bottom&#39;)) + tm_scale_bar(breaks</span></a>
+<a class="sourceLine" id="cb267-20" title="20"><span class="co"># = c(0, 5, 10, 15, 20), position = c(&#39;left&#39;, &#39;bottom&#39;))</span></a>
+<a class="sourceLine" id="cb267-21" title="21"></a>
+<a class="sourceLine" id="cb267-22" title="22"><span class="co"># Create our third map and store at btm_3: Plot our London wards by the btns_rate</span></a>
+<a class="sourceLine" id="cb267-23" title="23"><span class="co"># column</span></a>
+<a class="sourceLine" id="cb267-24" title="24">btm_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;btns_rate&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;YlGnBu&quot;</span>, </a>
+<a class="sourceLine" id="cb267-25" title="25">    <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Near Station Bike Theft Rate&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a legend etc</span></a>
+<a class="sourceLine" id="cb267-26" title="26"><span class="kw">tm_layout</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>), <span class="dt">legend.title.size =</span> <span class="fl">0.8</span>, <span class="dt">legend.text.size =</span> <span class="fl">0.5</span>, </a>
+<a class="sourceLine" id="cb267-27" title="27">    <span class="dt">scale =</span> <span class="fl">0.65</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>)  <span class="co">#+</span></a>
+<a class="sourceLine" id="cb267-28" title="28"><span class="co"># tm_compass(type=&#39;arrow&#39;, position = c(&#39;right&#39;, &#39;bottom&#39;)) + tm_scale_bar(breaks</span></a>
+<a class="sourceLine" id="cb267-29" title="29"><span class="co"># = c(0, 5, 10, 15, 20), position = c(&#39;left&#39;, &#39;bottom&#39;))</span></a>
+<a class="sourceLine" id="cb267-30" title="30"></a>
+<a class="sourceLine" id="cb267-31" title="31"><span class="co"># You can uncomment our north arrow and scale bar if you would like</span></a>
+<a class="sourceLine" id="cb267-32" title="32"></a>
+<a class="sourceLine" id="cb267-33" title="33"><span class="co"># Arrange our three maps into 2 rows</span></a>
+<a class="sourceLine" id="cb267-34" title="34"><span class="kw">tmap_arrange</span>(btm_<span class="dv">1</span>, btm_<span class="dv">2</span>, btm_<span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-map-bike-rate-1.png" width="672" /></p>
+<p>You can go ahead and customise these maps as you would like, including changing their classification styles and breaks.</p>
+<p>I have currently removed the north arrow and scale bar for clarity and the intention would be to use these maps as graphics in a report.</p>
+<p>By stacking our three variables together, we can gain a better understanding of their respective and interrelated distributions.</p>
+</div>
+</div>
+<div id="aggregating-and-visualising-bike-theft-by-train-station" class="section level4 unnumbered">
+<h4>2. Aggregating and visualising bike theft by train station</h4>
+<p>There are however many issues with aggregating point data to an areal unit - particularly when we are looking at a variable we cannot really normalise by population but ultimately know is likely to be affected by population!</p>
+<p>After all, we can see in our previously visualisations that our rates will be heavily influenced by a) the number of train stations in each ward and b) the size of the ward (particulary as we’re dealing with distances here).</p>
+<p>As a result, aggregation by an areal unit might not be the best approach to visualising our data.</p>
+<p>When we are use counts of points from specific locations, as in our scenario, we can look to use <strong>proportional symbols</strong> to visualise our data.</p>
+<p>Proportional symbols are a type of thematic map that use map symbols that vary in size to represent a quantitative variable. Proportional symbols maps can “take totals as input data and it uses the data values to calculate the area of a symbol, that are then proportional and comparable to one another” (Field, 2020).</p>
+<div class="sugreading">
+<p><strong>Mapping coronavirus responsibly</strong><br>
+One of the best explanations on how to map event data - in this case, COVID-19 - well, is a blog post released by one of Esri’s resident cartographers, Kenneth Field.</p>
+<p>In February 2020, as COVID-19 was beginning to spread across the world, Kenneth took aim at the irresponsible maps coming out that were trying to map COVID-19. <em>(He later went on to advise the BBC in the UK to help them out after they had a dodgy few weeks in the cartography business.)</em></p>
+<p>You can read his blog post <a href="https://www.esri.com/arcgis-blog/products/product/mapping/mapping-coronavirus-responsibly/">here</a> - it’s only approximately 15 minutes, but gives you a good insight into how to make a good map when it comes to mapping event data.</p>
+</div>
+<p>To use proportional symbols with our <code>london_stations_osm</code> spatial dataframe, we need to calculate, for each train station, the number of bike thefts that have occured within 400m.</p>
+<p>To calculate this, we’ll use a solely <strong>geometric operations</strong> approach as, at the point of writing this practical, this seems to be the best way forward.</p>
+<p>We will:</p>
+<ol style="list-style-type: decimal">
+<li>Create individual 400m buffers for each of the stations in our <code>london_stations_osm</code> spatial dataframe.</li>
+<li>Use the <code>st_intersects</code> function for a PIP calculation of number of bike thefts within each buffer.</li>
+<li>Join this number to our individual train stations using a <strong>spatial join</strong>.</li>
+<li>Visualise this count at each station using proportional symbols.</li>
+</ol>
+<p>We’ve completed steps 1 and 2 before, but we’ve not yet come across our <strong>last</strong> but <strong>super important geometric operation: a spatial join.</strong></p>
+<p><strong>Spatial joins</strong> can be used to match attributes between two features that <strong>do not have a similar attribute to match them through an attribute join</strong>.</p>
+<p>Whilst we are certainly now familiar with joining two datasets by using shared ‘key’ variable, a spatial data join applies the same concept, but instead <em>“relies on shared areas of geographic space (it is also known as spatial overlay). As with attribute data, joining adds a new column to the target object (the argument x in joining functions), from a source object (y)” (Lovelace et al, 2021)</em>.</p>
+<p>To conduct a spatial join in R, we use the <code>st_join()</code> function from the <code>sf</code> library.</p>
+<p>In our <code>st_join()</code> code below, we also add two parameters:</p>
+<ul>
+<li><code>left=TRUE</code> (in the similar idea of a <code>left_join</code>) that all observations in our <code>london_stations_osm</code> spatial dataframe is kept during our join.</li>
+<li><code>largest=TRUE</code> to ensure that if we find that point overlaps with any other buffers, the buffer it generated is the buffer from which our count statistic is taken.</li>
+</ul>
+<p>Let’s move ahead with our <strong>final</strong> steps of data processing and analysis.</p>
+<ol style="list-style-type: decimal">
+<li>Generate the individual buffers for our stations and count the number of bike thefts within each.</li>
+</ol>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1"><span class="co"># Generate a 400m buffer around each of our london_stations_osm dataset</span></a>
+<a class="sourceLine" id="cb268-2" title="2">indi_station_400m_buffer &lt;-<span class="st"> </span>london_stations_osm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_buffer</span>(<span class="dt">dist =</span> <span class="dv">400</span>)</a>
+<a class="sourceLine" id="cb268-3" title="3"></a>
+<a class="sourceLine" id="cb268-4" title="4"><span class="co"># Count the number of bike thefts within each of our buffers, store as a new</span></a>
+<a class="sourceLine" id="cb268-5" title="5"><span class="co"># column</span></a>
+<a class="sourceLine" id="cb268-6" title="6">indi_station_400m_buffer<span class="op">$</span>total_bike_theft &lt;-<span class="st"> </span><span class="kw">lengths</span>(<span class="kw">st_intersects</span>(indi_station_400m_buffer, </a>
+<a class="sourceLine" id="cb268-7" title="7">    bike_theft_<span class="dv">2019</span>))</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Join the <code>total_bike_theft</code> column to our <code>london_stations_osm</code> spatial dataframe using the <code>st_join()</code> function to enable a spatial join with the <code>indi_station_400m_buffer</code>:</li>
+</ol>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" title="1"><span class="co"># Join the `total_bike_theft` column to our `london_stations_osm` spatial</span></a>
+<a class="sourceLine" id="cb269-2" title="2"><span class="co"># dataframe</span></a>
+<a class="sourceLine" id="cb269-3" title="3">london_stations_osm &lt;-<span class="st"> </span>london_stations_osm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_join</span>(indi_station_400m_buffer[<span class="st">&quot;total_bike_theft&quot;</span>], </a>
+<a class="sourceLine" id="cb269-4" title="4">    <span class="dt">left =</span> <span class="ot">TRUE</span>, <span class="dt">largest =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<p>We can now go ahead and plot our data as proportional symbols by using the <code>tm_bubbles()</code> function - here we simply provide our function’s <code>size</code> parameters with the column we want to visualise our data by.</p>
+<p>To avoid overcomplicating our visualisation, we’ll keep our bubbles to one colour.</p>
+<p><em>Instead of using proportional symbols, you could also colour our</em> <code>london_stations_osm</code> <em>spatial dataframe by the</em> <code>total_bike_theft</code> <em>column, with the parameters as</em> <code>col="total_bike_theft", palette="Blues"</code><em>. But for now we’ll keep it focused on our proportional symbols as this is the point of our mapping here!</em></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Plot the resulting count column as proportional symbols using the <code>tm_bubbles()</code> function:</li>
+</ol>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" title="1"><span class="co"># Ensure tmap is in the plot mode</span></a>
+<a class="sourceLine" id="cb271-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a>
+<a class="sourceLine" id="cb271-3" title="3"></a>
+<a class="sourceLine" id="cb271-4" title="4"><span class="co"># Plot our London outline in grey</span></a>
+<a class="sourceLine" id="cb271-5" title="5"><span class="kw">tm_shape</span>(london_outline) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Plot our lond_stations_osm as bubbles, using the total_bike_theft to determine</span></a>
+<a class="sourceLine" id="cb271-6" title="6"><span class="co"># size</span></a>
+<a class="sourceLine" id="cb271-7" title="7"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_bubbles</span>(<span class="dt">size =</span> <span class="st">&quot;total_bike_theft&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;skyblue4&quot;</span>, </a>
+<a class="sourceLine" id="cb271-8" title="8">    <span class="dt">style =</span> <span class="st">&quot;pretty&quot;</span>, <span class="dt">scale =</span> <span class="dv">1</span>, <span class="dt">border.col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">title.size =</span> <span class="st">&quot;Bike theft within 400m of station&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb271-9" title="9"><span class="st">    </span><span class="kw">tm_layout</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;top&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add a north arrow</span></a>
+<a class="sourceLine" id="cb271-10" title="10"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;top&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add a scale bar</span></a>
+<a class="sourceLine" id="cb271-11" title="11"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add our OSM contributors statement</span></a>
+<a class="sourceLine" id="cb271-12" title="12"><span class="kw">tm_credits</span>(<span class="st">&quot;© OpenStreetMap contributors&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-bubble-maps-1.png" width="672" /></p>
+<p>And that’s it - here’s potentially our final map, and perhaps the best representation of our data.</p>
+<p>We’ve just only tackled a small amount of the different geometric operations and spatial queries you can do with spatial data within R.</p>
+<p>There’s many more available for us to use - but this would make this practical so much longer.</p>
+<p>Again, make sure to read through your <code>sf</code> cheatsheet to find out about the different types of operations and queries we can run on spatial data - and feel free to try them out on our data above.</p>
+<div class="assignment">
+<p><strong>Assignment 2: Small multiples of bike theft near train stations in London in 2019</strong><br></p>
+<p>For your second assignment this week, I’d like you to add your Proportional Symbols map to your small multiples arrangement and export your four maps.</p>
+<p>Try to style these in similar aesthetics to ensure they work with one another.</p>
+<p>Upload your final map visualisation to the respective folder in your seminar group.</p>
+<p>I’d like you to also think about what each map tells us about bike theft in London and specifically bike theft near train stations in London.</p>
+<p>Prepare some notes, as <strong>I will be asking about this in our seminar in Week 8.</strong></p>
+</div>
+</div>
+<div id="limitations-of-visualising-and-analysing-point-data-through-aggregation" class="section level4 unnumbered">
+<h4>Limitations of visualising and analysing point data through aggregation</h4>
+<p>Our final approaches here to analysing our point data looks to aggregate our bike theft crime by either aggregating it at the ward scale or to each station.</p>
+<p>But, often, aggregation of individual points does not communicate the clustering present within our data very clearly.</p>
+<p>Instead, it might have been best to look to analyse the precise clustering of our data and compare the distributions of these clusters against our train station locations.</p>
+<p>To achieve this type of analysis, we can look to the topic of <strong>Point Pattern Analysis</strong>, which we’ll be covering in detail next week, to see whether our clusters of bike theft can help answer our original hypothesis: <em>that bike theft primarily occurs near tube and train stations.</em></p>
+<hr />
+</div>
+</div>
+<div id="extension-using-spatial-queries-to-calculate-the-number-of-bike-thefts-within-400m-of-each-station" class="section level3 unnumbered">
+<h3>Extension: Using spatial queries to calculate the number of bike thefts within 400m of each station</h3>
+<p>As we’ve demonstrated, there are often several approaches to using <strong>geometric operations</strong> and <strong>spatial queries</strong> to process the same data and achieve the same output.</p>
+<p>To create the data for our proportional symbols map, we focused on a purely <strong>geometric operations</strong> approach.</p>
+<p><strong>But could we have completed this processing using spatial queries - and would it have bee faster?</strong></p>
+<p>The task for this week’s extension is to simply answer this question - and provide the code that completes this analysis.</p>
+<p>This truly is a challenge I’d be very keen to hear the answer to - as it’s not a question I’ve yet asked or solved myself in R (just simply not having time to consider it!).</p>
+<p>Therefore, if you can solve this, please upload your final script to our seminar folders as usual.</p>
+<p>My recommendations are to study the outputs of your queries, for example, if you remove the <code>sparse</code> parameter or try to you run the query on the entire dataset, not the single unioned feature, and see what is produced.</p>
+<p>Remember, each time, we’ve had to union the comparison dataset in order to run our query successfully - but not unioning our data <em>could</em> be the answer to this coding challenge!</p>
+<p>I look forward to seeing if any of you can solve this by our seminar in Week 8!</p>
+<hr />
+</div>
+<div id="recap---analysing-spatial-patterns-ii-geometric-operations-and-spatial-operations" class="section level3 unnumbered">
+<h3>Recap - Analysing Spatial Patterns II: Geometric Operations and Spatial Operations</h3>
+<p>This week, we’ve looked at <strong>Geometric Operations</strong> and <strong>Spatial Operations</strong> and how we can put them into action to process, clean, validate and analyse our spatial data.</p>
+<p>They really are the building blocks to spatial analysis!</p>
+<p>What you should also have seen is that there are of course differences in how they work, with geometric operations editing the geometries of our datasest, whilst spatial operations providing simply an answer to our question.</p>
+<p>We’ve seen how we can use both of these approaches to conduct proximity-based calculations, as well as using geometric operations for <strong>Point-in-Polygon</strong> counts.</p>
+<p>We’ve also expanded our visualisation knowledge, creating both an examplee of small multiple maps and a proportional symbol map.</p>
+<p>Finally, you’ve had a basic introduction into how to download OpenStreetMap data for use within R.</p>
+<p>Overall, a very busy week indeed. Next week, we’ll move onto the next section of content on <strong>[Analysing Spatial Patterns: Point Pattern Analysis]</strong>.</p>
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Understand how to use different geometric operations and spatial queries within your spatial analysis workflow for data cleaning, processing and analysis</li>
+<li>Be able to implement geometric operations, including clips and unions, and spatial queries within R and <code>sf</code></li>
+<li>Know how to download data from OpenStreetMap using the <code>osmdata</code> package</li>
+<li>Run Point-in-Polygon operations</li>
+<li>Make small multiples of maps and arrange them togoether</li>
+<li>Create proportional symbol maps</li>
+</ul>
+</div>
+<hr />
+<div id="acknowledgements-10" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>This page is original to GEOG0030.</p>
+<p>The datasets used in this workshop (and resulting maps):</p>
+<ul>
+<li>© OpenStreetMap contributors</li>
+<li>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence)</li>
+<li>Contains Ordnance Survey data © Crown copyright and database right [2015]</li>
+<li>Crime data obtained from data.police.uk (Open Government Licence).</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysing-spatial-patterns-iii-point-pattern-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jo-wilkin/GEOG0030/edit/master/07-week07.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/jo-wilkin/GEOG0030/raw/master/07-week07.Rmd"],
+"toc": {
+"collapse": "section",
+"toc_depth": 5
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

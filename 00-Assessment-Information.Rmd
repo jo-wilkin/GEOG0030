@@ -1,0 +1,25 @@
+# (PART\*) Assessment {-}
+
+# Assessment Information  {-}
+
+Geocomputation is assessed through two separate Assessments:
+
+1) **Social Atlas:** The first assessment will involve the completion of a spatial analysis project, based on the theory, concepts and application learnt during the module. For this coursework you are required to create a small “social atlas” on a topic or area that interests you.
+
+2) **Exam:** The second assessment will take the form of an Exam, the exact format to be confirmed.
+
+<br>
+**More information on your Assessments will be provided at the end of Week 5 (i.e. 12th February 2021).**
+
+
+## Useful additional resources {-}
+
+Besides the mandatory and recommended reading for this course, there are some additional resources that are worth checking out that may be useful for your first Assessment:
+
+1. MIT's introduction course on mastering the command line: [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) 
+
+2. A useful tool to unpack command line instructions: [explainshell.com](https://www.explainshell.com/)
+
+3. Online resource to develop and check your regular expressions: [regexr.com](https://regexr.com/5d21d)
+
+4. Selecting colour palettes for your map making and data visualisation: [colorbrewer 2.0](https://colorbrewer2.org)

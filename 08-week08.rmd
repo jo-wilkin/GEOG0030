@@ -1,3 +1,211 @@
-# Rasters, Zonal Statistics and Interpolation
+# Analysing Spatial Patterns III: Point Pattern Analysis
 
 **Content for this week will be released at 10am on the 9th March 2021.**
+
+<!-- 2. Detection of clusters in point data using distance- and density-based approaches -->
+
+
+<!-- Our main **theoretical** focus for this week is looking at **point-pattern analysis**. Within point pattern analysis, we look to detect clusters or patterns across a set of points, including measuring density, dispersion and homogeneity in our point structures. There are several approaches to calculating and detecting these clusters, which are explained in our main lecture. We then deploy the Kernel Density Estimation technique with our data to confirm further our investigation. There is also an extension task available that looks at utilising the DB-Scan algorithm as an alternative approach to detecting and confirming the location of clusters. -->
+
+<!-- :::puzzle -->
+<!-- **Learning Objectives**<br><br> -->
+<!-- By the end of this week, you should be able to: -->
+
+<!-- * Understand how to use different geometric operations within your spatial analysis workflow for data cleaning, processing and analysis -->
+<!-- * Explain the different approaches to detecting clusters in Point-Pattern Analysis -->
+<!-- * Run a Kernel Density Estimation and explain the outputs of a KDE confidently -->
+<!-- ::: -->
+
+<!-- For our Point Pattern Analysis, we will be using the `spatstat` library ("spatial statistics"). The `spatstat` library contains the different Point Pattern Analysis techniques we'll want to use in this practical. -->
+
+<!-- If you complete the Extension, you'll also need to install `dbscan`. -->
+
+<!-- ### Point-Pattern Analysis {-} -->
+
+<!-- In our previous work, we have aggregated our point data into areal units, primarily using administrative geographies, to enable its easy comparison with other datasets provided at the same spatial scale, such as the census data used in the previous week, as well as to conduct spatial autocorrelation tests. However, when locations are precisely known, spatial point data can be used with a variety of spatial analytic techniques that go beyond the methods typically applied to areal data. The set of methods unique to point data are often referred to as point pattern analysis and geostatistics. -->
+
+<!-- depending on your research problem and aim, points do not necessarily have to be aggregated and there are many applications in which you want to work with the point locations directly. In fact, the R package spatstat for spatial statistics is predominantly designed for analysing spatial point patterns. The mere fact that the spatstat documentation has almost 1,800 pages should give you a good idea about the general importance of point pattern analysis within the domain of Social and Geographic Data Science. -->
+
+<!-- In our lecture, we will look at both distance-based methods, by employing Ripley’s K function, as well as density-based methods, particularly Kernel Density Estimation. From a practical perspective, we'll look to deploy a Kernel Density Estimation on our dataset and utilise this alongside `tmap`'s interactive plotting function to confirm some findings   . In addition, there is an extension task that looks at the use of DBScan to detect and improve on our -->
+
+<!-- #### Implementing Point Pattern Analysis in R using spatstat -->
+
+<!-- Where we are now somehow familiar with the sf and sp packages, the spatstat package expects point data to be in yet another format: ppp. An object of the class ppp represents a two-dimensional point dataset within a pre-defined area, the window of observation. Because spatstat predates sf we do need to take several steps to transform our simple features object to a ppp object. -->
+
+<!-- Note -->
+<!-- As we are looking at a point pattern, a ppp object does not necessarily have to have attributes associated with the events (as point data are called within spatstat). Within the spatstat environment, attributes are referred to as marks. Be aware that some functions do require these marks to be present. -->
+
+<!-- ```{r 06-make-some-ppp-objects, warnings=FALSE, message=FALSE} -->
+<!-- # transform sf to sp -->
+<!-- lad_sp <- as(lad,'Spatial') -->
+<!-- # get the window of observation using maptools package -->
+<!-- window <- as.owin.SpatialPolygons(lad_sp) -->
+<!-- # inspect -->
+<!-- window -->
+<!-- # get coordinates from sf object -->
+<!-- crime_points_coords <- matrix(unlist(crime_points$geometry),ncol=2,byrow=T) -->
+<!-- # inspect -->
+<!-- crime_points_coords -->
+<!-- # create ppp object -->
+<!-- crime_ppp <- ppp(x=crime_points_coords[,1],y=crime_points_coords[,2],window=window,check=T) -->
+<!-- # inspect -->
+<!-- plot(crime_ppp) -->
+<!-- ``` -->
+
+<!-- Note the messages **data contain duplicated points**. This is an issue in spatial point pattern analysis as one of the assumptions underlying many analytical methods is that all events are unique; some statistical procedures actually may return very wrong results if duplicate points are found within the data. Long story short: we will need to deal with duplicates points. Although the way you do this is not always straightforward, you basically have two options: -->
+
+<!-- 1. Remove the duplicates and pretend they are not there. However, only do this when you are sure that your research problem allows for this and you are happy to 'ignore' some of the data. For some functions (such as Kernel Density Estimation) it is also possible to assign weights to points so that, for instance, instead of having point **event A** and point **event B** at the same location you create a point **event C** with a **mark** (attribute) that specifies that this event should be weighted double. -->
+<!-- 2. Force all points to be unique. For instance, if you know that the locations are not 'actual' event locations but rather the centroids of an administrative geography, we can slightly adjust all coordinates (jitter) so that the event locations do not exactly coincide anymore. This way we effectively deduplicate our point data without having to get rid off data points. -->
+
+<!-- ```{r 06-lets-check-for-duplicates, warnings=FALSE, message=FALSE} -->
+<!-- # check for duplicates -->
+<!-- any(duplicated(crime_ppp)) -->
+<!-- # count the number of duplicated points -->
+<!-- sum(multiplicity(crime_ppp) > 1) -->
+<!-- ``` -->
+
+<!-- This means we have 291 duplicated points. This seems a lot to simply remove. As these are crime data the exact locations are not revealed for privacy and safety reasons, meaning that all crimes get ['snapped' to a predefined point location](https://data.police.uk/about/#anonymisation)! Let's shift all our coordinates slighlty to 'remove' our duplicates and enforce all points to be unique. -->
+
+<!-- <div class="note"> -->
+<!-- **Note**<br/> -->
+<!-- Remember that when you encounter a function in a piece of R code that you have not seen before and you are wondering what it does that you can get access the documentation through `?name_of_function`, e.g. `?multiplicity` or `rjitter`. For almost any R package, the documentation contains a list of arguments that the function takes, what these arguments mean / do, in which format the functions expects these arguments, as well as a set of usage examples.  -->
+<!-- </div> -->
+
+<!-- ```{r 06-jitter-jitter-jitter, warnings=FALSE, message=FALSE} -->
+<!-- # add some jitter to our points -->
+<!-- crime_ppp_jitter <- rjitter(crime_ppp,retry=TRUE,nsim=1,drop=TRUE) -->
+<!-- # count the number of duplicated points -->
+<!-- any(duplicated(crime_ppp_jitter)) -->
+<!-- # inspect -->
+<!-- plot(crime_ppp_jitter) -->
+<!-- ``` -->
+
+<!-- #### Distance-based methods -->
+<!-- One way of looking at a point pattern is by describing the overall distribution of the pattern using distance-based methods. With an average nearest neighbour (ANN) analysis, for instance, we can measure the average distance from each point in the study area to its nearest point. If we then plot ANN values for different order neighbours, we will get an insight into the spatial ordering of all our points relative to one another. Let's try it. -->
+
+<!-- ```{r 06-average-nearest-neighbours, warnings=FALSE, message=FALSE} -->
+<!-- # get the average distance to the first nearest neighbour -->
+<!-- mean(nndist(crime_ppp_jitter, k=1)) -->
+<!-- # get the average distance to the second nearest neighbour -->
+<!-- mean(nndist(crime_ppp_jitter, k=2)) -->
+<!-- # get the average distance to the third nearest neighbour -->
+<!-- mean(nndist(crime_ppp_jitter, k=3)) -->
+<!-- # get the average distance to the first, second, ..., the hundredth, nearest neighbour -->
+<!-- crime_ann <- apply(nndist(crime_ppp_jitter, k=1:100),2,FUN=mean) -->
+<!-- # plot the results -->
+<!-- plot(crime_ann ~ seq(1:100)) -->
+<!-- ``` -->
+
+<!-- For point patterns that are highly clusters one would expect the average distances between points to be very short. However, this is based on the important assumption that the point pattern is **stationary** throughout the study area. Further to this, the size and shape of the study area also have a very strong effect on this metric. In our case, the plot does not reveal anything interesting in particular except that higher order points seem to be slightly closer than lower order points. -->
+
+<!-- Rather than to look at the average distances of different orders neighbours, we can also look at the distance between a point and 'all distances' to other points and compare this to a point pattern that is generated in a random manner; i.e. compare our point distribution to a theoretical distribution that has been generated in a spatial random manner. This can be done with **Ripley's K** function. Ripley's K- function essentially summarises the distance between points for all distances using radial distance bands. The calculation is relatively straightforward: -->
+
+<!-- 1. For point **event A**, count the number of points inside a buffer (radius) of a certain size. Then count the number of points inside a slightly larger buffer (radius).  -->
+<!-- 2. Repeat this for every point event in the dataset. -->
+<!-- 3. Compute the average number of points in each buffer (radius) and divide this to the overall point density. -->
+<!-- 4. Repeat this using points drawn from a Poisson random model for the same set of buffers. -->
+<!-- 5. Compare the observed distribution with the distribution with the Poisson distribution. -->
+
+<!-- We can conduct a Ripley’s K test on our data very simply with the spatstat package using the `Kest()` function.  -->
+
+<!-- <div class="warning"> -->
+<!-- Be careful with running Ripley's K on large datasets as the function is essentially a series of nested loops, meaning that calculation time will increase exponentially with an increasing number of points. -->
+<!-- </div> -->
+
+<!-- ```{r 06-ripley-and-his-k, warnings=FALSE, message=FALSE} -->
+<!-- # calculate Ripley's K for our bicycle theft locations, maximum radius of 4 kilometres -->
+<!-- plot(Kest(crime_ppp_jitter,correction='border',rmax=4000)) -->
+<!-- ``` -->
+
+<!-- The *Kpois(r)* line shows the theoretical value of K for each distance radius (r) under a Poisson assumption of Complete Spatial Randomness. K values greater than the expected K, indicate clustering of points at a given distance band. In our example, bicycle theft seems to be more clustered than expected at distance below 1500 metres. In the same fashion as the Average Nearest Neighbour Analysis, Ripley's K assumes a stationary underlying point process. -->
+
+<!-- The maximum radius of four kilometres is, in this case, simply to zoom the plot as the line with the K values does not go beyond this distance. This is due to the *border* correction that we apply, which is necessary otherwise our Ripley's K function will run for a very long time! This border correction is also for a theorethical reason important: when analysing spatial point patterns we do not have any informatin abou the points that are situated close to the boundaries of our observation window. This means that the neighbours (which we do not know about!) of these points cannot be taken into account in the metric. This can lead to significant bias in the estimates. One way of dealing with this border effect is by using the 'border method' ([Diggle 1979](https://doi.org/10.2307/2529938), [Ripley 1988](https://ucl-new-primo.hosted.exlibrisgroup.com/permalink/f/1klfcc3/TN_cdi_cambridge_cbo_10_1017_CBO9780511624131 -->
+<!-- )), which takes out all points that are closer to the border of the observation window than they are to their nearest neighbour. -->
+
+
+<!-- #### Distance-based methods -->
+
+<!-- #### Density-based methods {-} -->
+
+<!-- Although distance-based methods can give us an idea of the distribution of the underlying point pattern and suggest that some of the data are clustered, it does not tell us where the clustering is happening.  -->
+
+<!-- **Density-based methods can help us out here. ** -->
+
+<!-- So as you saw in the lecture, we are interesting in knowing whether the distribution of points in our study area differs from ‘complete spatial randomness’ — CSR. That’s different from a CRS! Be careful! -->
+
+<!-- The most basic test of CSR is a quadrat analysis. We can carry out a simple quadrat analysis on our data using the quadrat count function in spatstat. Note, I wouldn’t recommend doing a quadrat analysis in any real piece of analysis you conduct, but it is useful for starting to understand the Poisson distribution… -->
+
+<!-- We will start with a simple quadrat count by dividing the observation window into section and counting the number of bicycle thefts within each quadrant. -->
+
+
+<!-- ```{r 06-quadrat-count, warnings=FALSE, message=FALSE, cache=TRUE} -->
+<!-- # quadratcount in a 15 x 15 grid across the observational window -->
+<!-- crime_quadrat <- quadratcount(crime_ppp_jitter,nx=15,ny=15) -->
+<!-- # inspect -->
+<!-- plot(crime_quadrat) -->
+<!-- ``` -->
+
+<!-- As we want to know whether or not there is any kind of spatial pattern present in our bicycle theft data, we need to look at our data and ask again whether the pattern is generated in a random manner; i.e. whether the distribution of points in our study area differs from complete spatial randomness (CSR) or whether there are some clusters present. Looking at our quadrat analysis, and with the results of our Ripley’s K in the back of our minds, it is aready quite clear that some quadrats have higher counts than others, however, we can once again generate a point dataset that adheres to the principles of complete spatial randomness and compare it to our dataset. We can do that again using a Poisson point process. -->
+
+<!-- ```{r 06-random-points-poisson, warnings=FALSE, message=FALSE} -->
+<!-- # create and plot a completely spatially random point pattern of the same size as our bicycle theft data -->
+<!-- plot(rpoispp(1254)) -->
+<!-- ``` -->
+
+<!-- The first thing you will see is that the points are not uniformly distributed. Furthermore, every time you run the function the outcome will be slightly different than the previous time because the points are sampled from a Poisson distribution. To check whether our bicycle theft points differ from complete spatial randomness (i.e. there is no clustering or dispersal of points) we can run a [Chi-Squared test] with the null hypotheses that our point data have been generated under complete spatial randomness. -->
+
+<!-- ```{r 06-chi-square-it, warnings=FALSE, message=FALSE, cache=TRUE} -->
+<!-- # chi-square between observed pattern and Poisson sampled points -->
+<!-- quadrat.test(crime_ppp_jitter,nx=15,ny=15) -->
+<!-- ``` -->
+
+<!-- The p value is well below 0.05 (or 0.01 for that matter), and we can reject the null hypothesis: our point pattern was not generated in a random matter. Not very suprising. -->
+
+<!-- Instead of looking at the distribution of our bicycle theft with the boundaries of our quadrats (or any other tessellation we could pick), we can also analyse our points using a Kernel Density Estimation (KDE). As was explained in the short lecture video, a KDE is a statistical technique to generate a smooth continuous surface representing the density of the underlying pattern. The resulting surface is created by placing a search window (kernel) over each point and attributing the sum of kernel values to a grid. -->
+
+<!-- **Kernel Density E -->
+
+<!-- One way to summarise your point data is to plot the density of your points under a window called a ‘Kernel.’ The size and shape of the Kernel affects the density pattern produced, but it is very easy to produce a Kernel Density Estimation (KDE) map from a ppp object using the density() function.stimation** -->
+
+
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # Kerne -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
+<!-- ``` -->
+
+<!-- The sigma value sets the diameter of the Kernel (in the units your map is in — in this case, as we are in British National Grid the units are in metres). Try experimenting with different values of sigma to see how that affects the density estimate. -->
+
+<!-- Use of sigma to vary bandwidth -->
+
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # Kerne -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
+<!-- ``` -->
+
+<!-- Again -->
+
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # Kerne -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
+<!-- ``` -->
+
+<!-- Notice the importance of the bandwidth that is selected. Larger bandwidths lead to a smoother surface, but there is a danger of oversmoothing your data! Smaller bandwidths lead to a more irregular shaped surface, but there is then the danger of undersmoothing. There are automated functions (e.g. based on maximum-likelihood estimations) that can help you with selecting an appropriate bandwidth, but in the end you will have to make a decision. -->
+
+<!-- Although bandwidth typically has a more pronounced effect upon the density estimation than the type of kernel used, kernel types can affect the result too. Also here applies: the selection of the kernel depends on how much you want to weigh near points relative to far points (even though this is also influenced by the bandwidth!). -->
+
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # kernel density estimation with a Gaussian Kernel -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=500,kernel='gaussian')) -->
+<!-- ``` -->
+
+
+<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
+<!-- # kernel density estimation with a Gaussian Kernel -->
+<!-- plot(density.ppp(crime_ppp_jitter,sigma=500,kernel='quartic')) -->
+<!-- ``` -->
+
+<!-- Bandwidth typically has a more marked effect upon the density estimation than kernel type and is defined as the extent of the area around each grid cell from which the occurrences, and their respective kernels, are drawn. Do have a look at the article by Shi 2008 that is part of this week’s essential reading for some further considerations and deliberations when selection bandwidths. -->
+
+<!-- For now, however, no matter which kernel or which bandwidth (within reason, of course) we use, we can be quite confident in stating that bicycle theft in London in November 2019 is not a spatially random process and we can clearly see the areas where bicycle theft is most concentrated. -->
+
+<!-- #### Kernel Density Estimation in Action -->
