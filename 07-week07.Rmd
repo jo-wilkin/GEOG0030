@@ -1203,7 +1203,7 @@ As you can see from the code above, we’ve now calculated our total bike theft 
 
 The final step in our processing therefore is to create our **rate of potentially station-related bike theft = bike theft near train station / total bike theft**. 
 
-*Note, we are looking specifically at the phenomena of whether bike theft occurs near to a train or tube station or not - not . By normalising by the total bike theft, we are 
+*Note, we are looking specifically at the phenomena of whether bike theft occurs near to a train or tube station or not. By normalising by the total bike theft, we are creating a rate that shows specifically where there are hotspots of bike theft near train stations. This, however, will be of course influenced by the number of train stations within a ward, the size of the ward, and of course the number of bikes and potentially daytime and residential populations within an area.*
 
 To do so, we’ll use the same approach of generating a new column within our `london_ward_shp` spatial dataframe - and then use a mathematical formula to calculate our rate, just as we did in Week 3 in QGIS.
 

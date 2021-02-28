@@ -1221,7 +1221,7 @@ Before we go ahead and conduct our aggregation, I’d like you to re-run the abo
 <a class="sourceLine" id="cb265-9" title="9">    nr_train_<span class="dv">400</span> <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)))</a></code></pre></div>
 <p>As you can see from the code above, we’ve now calculated our total bike theft and bike theft near a train station for each ward.</p>
 <p>The final step in our processing therefore is to create our <strong>rate of potentially station-related bike theft = bike theft near train station / total bike theft</strong>.</p>
-<p>*Note, we are looking specifically at the phenomena of whether bike theft occurs near to a train or tube station or not - not . By normalising by the total bike theft, we are</p>
+<p><em>Note, we are looking specifically at the phenomena of whether bike theft occurs near to a train or tube station or not. By normalising by the total bike theft, we are creating a rate that shows specifically where there are hotspots of bike theft near train stations. This, however, will be of course influenced by the number of train stations within a ward, the size of the ward, and of course the number of bikes and potentially daytime and residential populations within an area.</em></p>
 <p>To do so, we’ll use the same approach of generating a new column within our <code>london_ward_shp</code> spatial dataframe - and then use a mathematical formula to calculate our rate, just as we did in Week 3 in QGIS.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Calculate the rate of bike theft within 400m of a train or tube station out of all bike thefts for each ward</li>
