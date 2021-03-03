@@ -125,11 +125,11 @@ Whichever approach you use, store your final `all_crime_2019.csv` in your `data/
 
 **2. London Train and Tube Stations**
 
-You will need to also download the Train and Tube Stations data from TfL from their **Open Data** portal [here](https://tfl.gov.uk/info-for/open-data-users/our-open-data?intcmp=3671). 
+Through an online search, I've managed to find a KML version of TfL's Train and Tube Stations data feed that is accessible in their **Open Data** [portal](https://tfl.gov.uk/info-for/open-data-users/our-open-data?intcmp=3671). 
 
-You'll find the data under **General -> Station locations**. 
+You can downlaod this KML directly [here](https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/Ed5oa4iyN-hHhStHzH_UfLkBBGAfxCFindW87vQSdeWOqA?e=o9dheU) as it does not seem to be available directly from the portal.
 
-We need to download the **KML** file. Move your download to your `raw` data folder and create a new `transport` folder to contain it.
+Move your download to your `raw` data folder and create a new `transport` folder to contain it.
 
 **Loading our data**
 
