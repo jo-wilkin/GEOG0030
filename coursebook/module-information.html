@@ -233,7 +233,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#extension-using-spatial-queries-to-calculate-the-number-of-bike-thefts-within-400m-of-each-station"><i class="fa fa-check"></i>Extension: Using spatial queries to calculate the number of bike thefts within 400m of each station</a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#recap---analysing-spatial-patterns-ii-geometric-operations-and-spatial-operations"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns II: Geometric Operations and Spatial Operations</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a></li>
+<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#week-8-in-geocomp"><i class="fa fa-check"></i>Week 8 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#workshop-housekeeping-2"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis"><i class="fa fa-check"></i>Point Pattern Analysis</a></li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis-in-r-with-spatstat">Point Pattern Analysis in R with <code>spatstat</code></a></li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#extension-point-pattern-analysis-in-r-with-dbscan">Extension: Point Pattern Analysis in R with <code>dbscan</code></a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#recap---analysing-spatial-patterns-iii-point-pattern-analysis"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns III: Point Pattern Analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a></li>
 <li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
 <li class="chapter" data-level="10" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html"><i class="fa fa-check"></i><b>10</b> Geodemographic Classification</a></li>
@@ -386,32 +393,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td align="left">7</td>
 <td align="left">01/03/2021</td>
 <td align="left">Core Spatial Analysis</td>
-<td align="left">Analysing Spatial Patterns II: Clusters</td>
-<td align="left">Help/Study Groups</td>
+<td align="left">Analysing Spatial Patterns II: Geometric Operations &amp; Spatial Queries</td>
+<td align="left">N/A</td>
 </tr>
 <tr class="odd">
 <td align="left">8</td>
 <td align="left">08/03/2021</td>
 <td align="left">Core Spatial Analysis</td>
-<td align="left">Rasters, Zonal Statistics and Interpolation</td>
+<td align="left">Analysing Spatial Patterns III: Point Pattern Analysis</td>
 <td align="left">Seminar</td>
 </tr>
 <tr class="even">
 <td align="left">9</td>
 <td align="left">15/03/2021</td>
-<td align="left">Advanced Spatial Analysis</td>
-<td align="left">Geodemographics</td>
-<td align="left">Help/Study Groups</td>
+<td align="left">Core Spatial Analysis</td>
+<td align="left">Rasters, Zonal Statistics and Interpolation</td>
+<td align="left">N/A</td>
 </tr>
 <tr class="odd">
 <td align="left">10</td>
 <td align="left">22/03/2021</td>
-<td align="left">Cartography &amp; Visualisation</td>
-<td align="left">Cartography and Visualisation II</td>
+<td align="left">Advanced Spatial Analysis</td>
+<td align="left">Geodemographics</td>
 <td align="left">Seminar</td>
 </tr>
 </tbody>
 </table>
+<p>In addition, there are additional optional topics offered at the end of term.</p>
 <p>The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading (see the <a href="module-information.html#reading-list">Reading List</a> below), particularly to help with your second assessment.</p>
 <p>In addition to our course, there are many other online resources and tutorials that can help expand on the topics and content we cover - whilst it is not necessary for your assessments, you are encouraged to go beyond our recommendations and fully engage with applied GIS research, methods and visualisation techniques.</p>
 <p>Following certain ‘movers and shakers’ in the GIScience / Spatial Data Science world is one approach to learn more about what’s happening in the field and might prove inspirational for your dissertation ideas later this year.</p>
@@ -479,8 +487,7 @@ You're doing it right if you get frustrated: if you're not frustrated, you're (p
 <h2>Feedback: Weekly and End of Module</h2>
 <p>We can only make this course better through your feedback. We collect feedback:</p>
 <ul>
-<li><p><strong>At the end of every practical.</strong> There is a link to an anonymous feedback form, please let us know if something is unclear and we will go over it in a future session.</p></li>
-<li><p><strong>At the end of the module.</strong> The standard UCL feedback form will be available to fill in on Moodle.</p></li>
+<li><strong>At the end of the module.</strong> The standard UCL feedback form will be available to fill in on Moodle.</li>
 </ul>
 <div id="acknowledgements-1" class="section level4 unnumbered">
 <h4>Acknowledgements</h4>

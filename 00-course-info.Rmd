@@ -56,10 +56,12 @@ The topics covered over the next ten weeks are:
 | 5             | 08/02/2021    | Foundational Concepts | Programming for Spatial Analysis & ESDA | Help/Study Groups |
 | **READING WEEK** | **READING WEEK**  | **READING WEEK CODING CHALLENGE** | - | - |
 | 6             | 22/02/2021    | Core Spatial Analysis | Analysing Spatial Patterns I: Spatial Auto-Correlation & Regression | Seminar |
-| 7             | 01/03/2021    | Core Spatial Analysis | Analysing Spatial Patterns II: Clusters | Help/Study Groups |
-| 8             | 08/03/2021    | Core Spatial Analysis | Rasters, Zonal Statistics and Interpolation | Seminar |
-| 9             | 15/03/2021    | Advanced Spatial Analysis | Geodemographics | Help/Study Groups |
-| 10            | 22/03/2021    | Cartography & Visualisation | Cartography and Visualisation II | Seminar |
+| 7             | 01/03/2021    | Core Spatial Analysis | Analysing Spatial Patterns II: Geometric Operations & Spatial Queries | N/A |
+| 8             | 08/03/2021    | Core Spatial Analysis | Analysing Spatial Patterns III: Point Pattern Analysis | Seminar |
+| 9             | 15/03/2021    | Core Spatial Analysis | Rasters, Zonal Statistics and Interpolation | N/A |
+| 10            | 22/03/2021    | Advanced Spatial Analysis | Geodemographics | Seminar |
+
+In addition, there are additional optional topics offered at the end of term.
 
 The lectures and practicals of this course only form a part of the learning process. You are expected to undertake wider reading (see the [Reading List] below), particularly to help with your second assessment. 
 
@@ -137,8 +139,6 @@ In addition to our course, there are many online tutorials that can help with le
 ## Feedback: Weekly and End of Module {-}
 
 We can only make this course better through your feedback. We collect feedback:
-
-* **At the end of every practical.**  There is a link to an anonymous feedback form, please let us know if something is unclear and we will go over it in a future session.
 
 * **At the end of the module.** The standard UCL feedback form will be available to fill in on Moodle.
 

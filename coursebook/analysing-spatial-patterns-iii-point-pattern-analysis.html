@@ -233,7 +233,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#extension-using-spatial-queries-to-calculate-the-number-of-bike-thefts-within-400m-of-each-station"><i class="fa fa-check"></i>Extension: Using spatial queries to calculate the number of bike thefts within 400m of each station</a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html"><a href="analysing-spatial-patterns-ii-geometric-operations-spatial-queries.html#recap---analysing-spatial-patterns-ii-geometric-operations-and-spatial-operations"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns II: Geometric Operations and Spatial Operations</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a></li>
+<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a><ul>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#week-8-in-geocomp"><i class="fa fa-check"></i>Week 8 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#workshop-housekeeping-2"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis"><i class="fa fa-check"></i>Point Pattern Analysis</a></li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis-in-r-with-spatstat">Point Pattern Analysis in R with <code>spatstat</code></a></li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#extension-point-pattern-analysis-in-r-with-dbscan">Extension: Point Pattern Analysis in R with <code>dbscan</code></a></li>
+<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#recap---analysing-spatial-patterns-iii-point-pattern-analysis"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns III: Point Pattern Analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a></li>
 <li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
 <li class="chapter" data-level="10" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html"><i class="fa fa-check"></i><b>10</b> Geodemographic Classification</a></li>
@@ -281,152 +288,876 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="analysing-spatial-patterns-iii-point-pattern-analysis" class="section level1">
 <h1><span class="header-section-number">8</span> Analysing Spatial Patterns III: Point Pattern Analysis</h1>
-<p><strong>Content for this week will be released at 10am on the 9th March 2021.</strong></p>
-<!-- 2. Detection of clusters in point data using distance- and density-based approaches -->
-<!-- Our main **theoretical** focus for this week is looking at **point-pattern analysis**. Within point pattern analysis, we look to detect clusters or patterns across a set of points, including measuring density, dispersion and homogeneity in our point structures. There are several approaches to calculating and detecting these clusters, which are explained in our main lecture. We then deploy the Kernel Density Estimation technique with our data to confirm further our investigation. There is also an extension task available that looks at utilising the DB-Scan algorithm as an alternative approach to detecting and confirming the location of clusters. -->
-<!-- :::puzzle -->
-<!-- **Learning Objectives**<br><br> -->
-<!-- By the end of this week, you should be able to: -->
-<!-- * Understand how to use different geometric operations within your spatial analysis workflow for data cleaning, processing and analysis -->
-<!-- * Explain the different approaches to detecting clusters in Point-Pattern Analysis -->
-<!-- * Run a Kernel Density Estimation and explain the outputs of a KDE confidently -->
-<!-- ::: -->
-<!-- For our Point Pattern Analysis, we will be using the `spatstat` library ("spatial statistics"). The `spatstat` library contains the different Point Pattern Analysis techniques we'll want to use in this practical. -->
-<!-- If you complete the Extension, you'll also need to install `dbscan`. -->
-<!-- ### Point-Pattern Analysis {-} -->
-<!-- In our previous work, we have aggregated our point data into areal units, primarily using administrative geographies, to enable its easy comparison with other datasets provided at the same spatial scale, such as the census data used in the previous week, as well as to conduct spatial autocorrelation tests. However, when locations are precisely known, spatial point data can be used with a variety of spatial analytic techniques that go beyond the methods typically applied to areal data. The set of methods unique to point data are often referred to as point pattern analysis and geostatistics. -->
-<!-- depending on your research problem and aim, points do not necessarily have to be aggregated and there are many applications in which you want to work with the point locations directly. In fact, the R package spatstat for spatial statistics is predominantly designed for analysing spatial point patterns. The mere fact that the spatstat documentation has almost 1,800 pages should give you a good idea about the general importance of point pattern analysis within the domain of Social and Geographic Data Science. -->
-<!-- In our lecture, we will look at both distance-based methods, by employing Ripley’s K function, as well as density-based methods, particularly Kernel Density Estimation. From a practical perspective, we'll look to deploy a Kernel Density Estimation on our dataset and utilise this alongside `tmap`'s interactive plotting function to confirm some findings   . In addition, there is an extension task that looks at the use of DBScan to detect and improve on our -->
-<!-- #### Implementing Point Pattern Analysis in R using spatstat -->
-<!-- Where we are now somehow familiar with the sf and sp packages, the spatstat package expects point data to be in yet another format: ppp. An object of the class ppp represents a two-dimensional point dataset within a pre-defined area, the window of observation. Because spatstat predates sf we do need to take several steps to transform our simple features object to a ppp object. -->
-<!-- Note -->
-<!-- As we are looking at a point pattern, a ppp object does not necessarily have to have attributes associated with the events (as point data are called within spatstat). Within the spatstat environment, attributes are referred to as marks. Be aware that some functions do require these marks to be present. -->
-<!-- ```{r 06-make-some-ppp-objects, warnings=FALSE, message=FALSE} -->
-<!-- # transform sf to sp -->
-<!-- lad_sp <- as(lad,'Spatial') -->
-<!-- # get the window of observation using maptools package -->
-<!-- window <- as.owin.SpatialPolygons(lad_sp) -->
-<!-- # inspect -->
-<!-- window -->
-<!-- # get coordinates from sf object -->
-<!-- crime_points_coords <- matrix(unlist(crime_points$geometry),ncol=2,byrow=T) -->
-<!-- # inspect -->
-<!-- crime_points_coords -->
-<!-- # create ppp object -->
-<!-- crime_ppp <- ppp(x=crime_points_coords[,1],y=crime_points_coords[,2],window=window,check=T) -->
-<!-- # inspect -->
-<!-- plot(crime_ppp) -->
-<!-- ``` -->
-<!-- Note the messages **data contain duplicated points**. This is an issue in spatial point pattern analysis as one of the assumptions underlying many analytical methods is that all events are unique; some statistical procedures actually may return very wrong results if duplicate points are found within the data. Long story short: we will need to deal with duplicates points. Although the way you do this is not always straightforward, you basically have two options: -->
-<!-- 1. Remove the duplicates and pretend they are not there. However, only do this when you are sure that your research problem allows for this and you are happy to 'ignore' some of the data. For some functions (such as Kernel Density Estimation) it is also possible to assign weights to points so that, for instance, instead of having point **event A** and point **event B** at the same location you create a point **event C** with a **mark** (attribute) that specifies that this event should be weighted double. -->
-<!-- 2. Force all points to be unique. For instance, if you know that the locations are not 'actual' event locations but rather the centroids of an administrative geography, we can slightly adjust all coordinates (jitter) so that the event locations do not exactly coincide anymore. This way we effectively deduplicate our point data without having to get rid off data points. -->
-<!-- ```{r 06-lets-check-for-duplicates, warnings=FALSE, message=FALSE} -->
-<!-- # check for duplicates -->
-<!-- any(duplicated(crime_ppp)) -->
-<!-- # count the number of duplicated points -->
-<!-- sum(multiplicity(crime_ppp) > 1) -->
-<!-- ``` -->
-<!-- This means we have 291 duplicated points. This seems a lot to simply remove. As these are crime data the exact locations are not revealed for privacy and safety reasons, meaning that all crimes get ['snapped' to a predefined point location](https://data.police.uk/about/#anonymisation)! Let's shift all our coordinates slighlty to 'remove' our duplicates and enforce all points to be unique. -->
-<!-- <div class="note"> -->
-<!-- **Note**<br/> -->
-<!-- Remember that when you encounter a function in a piece of R code that you have not seen before and you are wondering what it does that you can get access the documentation through `?name_of_function`, e.g. `?multiplicity` or `rjitter`. For almost any R package, the documentation contains a list of arguments that the function takes, what these arguments mean / do, in which format the functions expects these arguments, as well as a set of usage examples.  -->
-<!-- </div> -->
-<!-- ```{r 06-jitter-jitter-jitter, warnings=FALSE, message=FALSE} -->
-<!-- # add some jitter to our points -->
-<!-- crime_ppp_jitter <- rjitter(crime_ppp,retry=TRUE,nsim=1,drop=TRUE) -->
-<!-- # count the number of duplicated points -->
-<!-- any(duplicated(crime_ppp_jitter)) -->
-<!-- # inspect -->
-<!-- plot(crime_ppp_jitter) -->
-<!-- ``` -->
-<!-- #### Distance-based methods -->
-<!-- One way of looking at a point pattern is by describing the overall distribution of the pattern using distance-based methods. With an average nearest neighbour (ANN) analysis, for instance, we can measure the average distance from each point in the study area to its nearest point. If we then plot ANN values for different order neighbours, we will get an insight into the spatial ordering of all our points relative to one another. Let's try it. -->
-<!-- ```{r 06-average-nearest-neighbours, warnings=FALSE, message=FALSE} -->
-<!-- # get the average distance to the first nearest neighbour -->
-<!-- mean(nndist(crime_ppp_jitter, k=1)) -->
-<!-- # get the average distance to the second nearest neighbour -->
-<!-- mean(nndist(crime_ppp_jitter, k=2)) -->
-<!-- # get the average distance to the third nearest neighbour -->
-<!-- mean(nndist(crime_ppp_jitter, k=3)) -->
-<!-- # get the average distance to the first, second, ..., the hundredth, nearest neighbour -->
-<!-- crime_ann <- apply(nndist(crime_ppp_jitter, k=1:100),2,FUN=mean) -->
-<!-- # plot the results -->
-<!-- plot(crime_ann ~ seq(1:100)) -->
-<!-- ``` -->
-<!-- For point patterns that are highly clusters one would expect the average distances between points to be very short. However, this is based on the important assumption that the point pattern is **stationary** throughout the study area. Further to this, the size and shape of the study area also have a very strong effect on this metric. In our case, the plot does not reveal anything interesting in particular except that higher order points seem to be slightly closer than lower order points. -->
-<!-- Rather than to look at the average distances of different orders neighbours, we can also look at the distance between a point and 'all distances' to other points and compare this to a point pattern that is generated in a random manner; i.e. compare our point distribution to a theoretical distribution that has been generated in a spatial random manner. This can be done with **Ripley's K** function. Ripley's K- function essentially summarises the distance between points for all distances using radial distance bands. The calculation is relatively straightforward: -->
-<!-- 1. For point **event A**, count the number of points inside a buffer (radius) of a certain size. Then count the number of points inside a slightly larger buffer (radius).  -->
-<!-- 2. Repeat this for every point event in the dataset. -->
-<!-- 3. Compute the average number of points in each buffer (radius) and divide this to the overall point density. -->
-<!-- 4. Repeat this using points drawn from a Poisson random model for the same set of buffers. -->
-<!-- 5. Compare the observed distribution with the distribution with the Poisson distribution. -->
-<!-- We can conduct a Ripley’s K test on our data very simply with the spatstat package using the `Kest()` function.  -->
-<!-- <div class="warning"> -->
-<!-- Be careful with running Ripley's K on large datasets as the function is essentially a series of nested loops, meaning that calculation time will increase exponentially with an increasing number of points. -->
-<!-- </div> -->
-<!-- ```{r 06-ripley-and-his-k, warnings=FALSE, message=FALSE} -->
-<!-- # calculate Ripley's K for our bicycle theft locations, maximum radius of 4 kilometres -->
-<!-- plot(Kest(crime_ppp_jitter,correction='border',rmax=4000)) -->
-<!-- ``` -->
-<!-- The *Kpois(r)* line shows the theoretical value of K for each distance radius (r) under a Poisson assumption of Complete Spatial Randomness. K values greater than the expected K, indicate clustering of points at a given distance band. In our example, bicycle theft seems to be more clustered than expected at distance below 1500 metres. In the same fashion as the Average Nearest Neighbour Analysis, Ripley's K assumes a stationary underlying point process. -->
-<!-- The maximum radius of four kilometres is, in this case, simply to zoom the plot as the line with the K values does not go beyond this distance. This is due to the *border* correction that we apply, which is necessary otherwise our Ripley's K function will run for a very long time! This border correction is also for a theorethical reason important: when analysing spatial point patterns we do not have any informatin abou the points that are situated close to the boundaries of our observation window. This means that the neighbours (which we do not know about!) of these points cannot be taken into account in the metric. This can lead to significant bias in the estimates. One way of dealing with this border effect is by using the 'border method' ([Diggle 1979](https://doi.org/10.2307/2529938), [Ripley 1988](https://ucl-new-primo.hosted.exlibrisgroup.com/permalink/f/1klfcc3/TN_cdi_cambridge_cbo_10_1017_CBO9780511624131 -->
-<!-- )), which takes out all points that are closer to the border of the observation window than they are to their nearest neighbour. -->
-<!-- #### Distance-based methods -->
-<!-- #### Density-based methods {-} -->
-<!-- Although distance-based methods can give us an idea of the distribution of the underlying point pattern and suggest that some of the data are clustered, it does not tell us where the clustering is happening.  -->
-<!-- **Density-based methods can help us out here. ** -->
-<!-- So as you saw in the lecture, we are interesting in knowing whether the distribution of points in our study area differs from ‘complete spatial randomness’ — CSR. That’s different from a CRS! Be careful! -->
-<!-- The most basic test of CSR is a quadrat analysis. We can carry out a simple quadrat analysis on our data using the quadrat count function in spatstat. Note, I wouldn’t recommend doing a quadrat analysis in any real piece of analysis you conduct, but it is useful for starting to understand the Poisson distribution… -->
-<!-- We will start with a simple quadrat count by dividing the observation window into section and counting the number of bicycle thefts within each quadrant. -->
-<!-- ```{r 06-quadrat-count, warnings=FALSE, message=FALSE, cache=TRUE} -->
-<!-- # quadratcount in a 15 x 15 grid across the observational window -->
-<!-- crime_quadrat <- quadratcount(crime_ppp_jitter,nx=15,ny=15) -->
-<!-- # inspect -->
-<!-- plot(crime_quadrat) -->
-<!-- ``` -->
-<!-- As we want to know whether or not there is any kind of spatial pattern present in our bicycle theft data, we need to look at our data and ask again whether the pattern is generated in a random manner; i.e. whether the distribution of points in our study area differs from complete spatial randomness (CSR) or whether there are some clusters present. Looking at our quadrat analysis, and with the results of our Ripley’s K in the back of our minds, it is aready quite clear that some quadrats have higher counts than others, however, we can once again generate a point dataset that adheres to the principles of complete spatial randomness and compare it to our dataset. We can do that again using a Poisson point process. -->
-<!-- ```{r 06-random-points-poisson, warnings=FALSE, message=FALSE} -->
-<!-- # create and plot a completely spatially random point pattern of the same size as our bicycle theft data -->
-<!-- plot(rpoispp(1254)) -->
-<!-- ``` -->
-<!-- The first thing you will see is that the points are not uniformly distributed. Furthermore, every time you run the function the outcome will be slightly different than the previous time because the points are sampled from a Poisson distribution. To check whether our bicycle theft points differ from complete spatial randomness (i.e. there is no clustering or dispersal of points) we can run a [Chi-Squared test] with the null hypotheses that our point data have been generated under complete spatial randomness. -->
-<!-- ```{r 06-chi-square-it, warnings=FALSE, message=FALSE, cache=TRUE} -->
-<!-- # chi-square between observed pattern and Poisson sampled points -->
-<!-- quadrat.test(crime_ppp_jitter,nx=15,ny=15) -->
-<!-- ``` -->
-<!-- The p value is well below 0.05 (or 0.01 for that matter), and we can reject the null hypothesis: our point pattern was not generated in a random matter. Not very suprising. -->
-<!-- Instead of looking at the distribution of our bicycle theft with the boundaries of our quadrats (or any other tessellation we could pick), we can also analyse our points using a Kernel Density Estimation (KDE). As was explained in the short lecture video, a KDE is a statistical technique to generate a smooth continuous surface representing the density of the underlying pattern. The resulting surface is created by placing a search window (kernel) over each point and attributing the sum of kernel values to a grid. -->
-<!-- **Kernel Density E -->
-<!-- One way to summarise your point data is to plot the density of your points under a window called a ‘Kernel.’ The size and shape of the Kernel affects the density pattern produced, but it is very easy to produce a Kernel Density Estimation (KDE) map from a ppp object using the density() function.stimation** -->
-<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
-<!-- # Kerne -->
-<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
-<!-- ``` -->
-<!-- The sigma value sets the diameter of the Kernel (in the units your map is in — in this case, as we are in British National Grid the units are in metres). Try experimenting with different values of sigma to see how that affects the density estimate. -->
-<!-- Use of sigma to vary bandwidth -->
-<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
-<!-- # Kerne -->
-<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
-<!-- ``` -->
-<!-- Again -->
-<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
-<!-- # Kerne -->
-<!-- plot(density.ppp(crime_ppp_jitter,sigma=100)) -->
-<!-- ``` -->
-<!-- Notice the importance of the bandwidth that is selected. Larger bandwidths lead to a smoother surface, but there is a danger of oversmoothing your data! Smaller bandwidths lead to a more irregular shaped surface, but there is then the danger of undersmoothing. There are automated functions (e.g. based on maximum-likelihood estimations) that can help you with selecting an appropriate bandwidth, but in the end you will have to make a decision. -->
-<!-- Although bandwidth typically has a more pronounced effect upon the density estimation than the type of kernel used, kernel types can affect the result too. Also here applies: the selection of the kernel depends on how much you want to weigh near points relative to far points (even though this is also influenced by the bandwidth!). -->
-<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
-<!-- # kernel density estimation with a Gaussian Kernel -->
-<!-- plot(density.ppp(crime_ppp_jitter,sigma=500,kernel='gaussian')) -->
-<!-- ``` -->
-<!-- ```{r 07-kde-ppp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, echo=FALSE} -->
-<!-- # kernel density estimation with a Gaussian Kernel -->
-<!-- plot(density.ppp(crime_ppp_jitter,sigma=500,kernel='quartic')) -->
-<!-- ``` -->
-<!-- Bandwidth typically has a more marked effect upon the density estimation than kernel type and is defined as the extent of the area around each grid cell from which the occurrences, and their respective kernels, are drawn. Do have a look at the article by Shi 2008 that is part of this week’s essential reading for some further considerations and deliberations when selection bandwidths. -->
-<!-- For now, however, no matter which kernel or which bandwidth (within reason, of course) we use, we can be quite confident in stating that bicycle theft in London in November 2019 is not a spatially random process and we can clearly see the areas where bicycle theft is most concentrated. -->
-<!-- #### Kernel Density Estimation in Action -->
+<p>Welcome to Week 8 in Geocomputation!</p>
+<p>This week, we’ll be looking at how we can use Point Pattern Analysis (PPA) to detect and delineate clusters within point data.</p>
+<p>Within point pattern analysis, we look to detect clusters or patterns across a set of points, including measuring <strong>density</strong>, <strong>dispersion</strong> and <strong>homogeneity</strong> in our point structures.</p>
+<p>There are several approaches to calculating and detecting these clusters, which are explained in our main lecture. We then deploy several PPA techniques, including Kernel Density Estimation, on our bike theft data to continue our investigation from last week.</p>
+<p>Within the Extension, we then look at the DB-Scan algorithm as an alternative approach to detecting and confirming the location of clusters in relation to our train and tube stations.</p>
+<p>In terms of data visualisation, you’ll learn how to add a basemap to a <code>tmap</code> static map and how to use <code>tmap</code> to map a raster dataset.</p>
+<div id="week-8-in-geocomp" class="section level3 unnumbered">
+<h3>Week 8 in Geocomp</h3>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/fbc69a34-f795-4e06-b513-b911cb6ba8dd?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://web.microsoftstream.com/video/fbc69a34-f795-4e06-b513-b911cb6ba8dd">Video on Stream</a>
+</center>
+<p><br></p>
+<p>This week’s content introduces you to Point Pattern Analysis and its use in spatial analysis.</p>
+<p>We have three areas of work to focus on:</p>
+<ol style="list-style-type: decimal">
+<li>Understanding Point Pattern Analysis and its different techniques</li>
+<li>Applying different PPA techniques in R using the <code>spatstat</code> library</li>
+<li>Extension: Application of <code>dbscan</code> for Point Pattern Analysis</li>
+</ol>
+<p>This week’s content is split into <strong>4</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#workshop-housekeeping-2">Workshop Housekeeping</a> (20 minutes)</li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis">Point Pattern Analysis</a> (30 minutes)</li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis-in-r-with-spatstat">Point Pattern Analysis in R with <code>spatstat</code></a> (90 minutes)</li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#extension-point-pattern-analysis-in-r-with-dbscan">Extension: Point Pattern Analysis in R with <code>dbscan</code></a> (45 minutes)</li>
+</ol>
+<p>This week, we have <strong>1 lecture</strong> and <strong>1 assignment</strong> within this week’s main workshop content. In addition, we have a second short video and pratical in this week’s Extension.</p>
+<div class="puzzle">
+<p><strong>Learning Objectives</strong><br><br>
+By the end of this week, you should be able to:</p>
+<ul>
+<li>Explain the different approaches to detecting clusters in Point-Pattern Analysis</li>
+<li>Run a Kernel Density Estimation and explain the outputs of a KDE confidently</li>
+<li>Run a Ripley’s K function and compare to a Poisson distribution</li>
+<li>Add a basemap within the <code>tmap</code> environment</li>
+<li>Map a raster dataset within the <code>tmap</code> environment</li>
+<li>Extension: run a DBSCAN analysis and interact with its outputs</li>
+<li>Extension: Identify a <code>for</code> loop within a chunk of code</li>
+</ul>
+</div>
+<p>This week, we continue to investigate bike theft in London in 2019 - as we look to confirm our very simple hypothesis: <em>that bike theft primarily occurs near tube and train stations.</em></p>
+<p>This week, instead of looking at the distance of individual bike thefts from train stations, we’ll look to analyse the distribution of clusters in relation to the stations.</p>
+<p>We’ll first look at this visually in our main workshop content and then, in our Extension task, look to compare these clusters to the location of train and tube stations quantitatively using geometric operations, covered last week.</p>
+<p>To complete this analysis, we’ll continue to use:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Bike theft in London in 2019</strong>: A 2019 version of our crime dataset for London.</li>
+<li><strong>Train and Tube Stations locations in London</strong></li>
+</ol>
+<p>from last week. As a result, our workshop housekeeping this week will be relatively short!</p>
+<hr />
+</div>
+<div id="workshop-housekeeping-2" class="section level3 unnumbered">
+<h3>Workshop Housekeeping</h3>
+<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.</p>
+<div id="setting-up-your-script-3" class="section level4 unnumbered">
+<h4>Setting up your script</h4>
+<ol style="list-style-type: decimal">
+<li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>wk8-bike-theft-PPA.r</code>.</p></li>
+<li><p>At the top of your script, add the following metdata (substitute accordingly):</p></li>
+</ol>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1"><span class="co"># Analysing bike theft and its relation to stations using point pattern analysis</span></a>
+<a class="sourceLine" id="cb272-2" title="2"><span class="co"># Script started March 2021 NAME</span></a></code></pre></div>
+</div>
+<div id="dependencies-aka-libraries-2" class="section level4 unnumbered">
+<h4>Dependencies (aka libraries)</h4>
+<p>Now we’ll install the libraries we need for this week.</p>
+<p>All of the geometric operations and spatial queries we will use are contained within the <code>sf</code> library.</p>
+<p>For our Point Pattern Analysis, we will be using the <code>spatstat</code> library (“spatial statistics”). The <code>spatstat</code> library contains the different Point Pattern Analysis techniques we’ll want to use in this practical.</p>
+<p>We’ll also need the <code>raster</code> library, which provides classes and functions to manipulate geographic (spatial) data in ‘raster’ format. We’ll use this package briefly today, but look into it in more detail next week.</p>
+<p>We’ll also using the <code>rosm</code> library (“R OSM”), which provides access to and plots OpenStreetMap and Bing Maps tiles to create high-resolution basemaps.</p>
+<p>If you complete the Extension, you’ll also need to install <code>dbscan</code>.</p>
+<p>Remember to use the `install.packages(“package”) command <strong>in your console</strong>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Within your script</strong>, add the following libraries for loading:</li>
+</ol>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb273-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb273-3" title="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb273-4" title="4"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb273-5" title="5"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb273-6" title="6"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb273-7" title="7"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb273-8" title="8"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb273-9" title="9"><span class="kw">library</span>(spatstat)</a>
+<a class="sourceLine" id="cb273-10" title="10"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb273-11" title="11"><span class="kw">library</span>(rosm)</a>
+<a class="sourceLine" id="cb273-12" title="12"><span class="kw">library</span>(dbscan)</a>
+<a class="sourceLine" id="cb273-13" title="13"><span class="kw">library</span>(leaflet)</a></code></pre></div>
+<p>Remember to select the lines of code you want to run and press <strong>CMD (Mac)/CTRL(Windows) + Enter/Return</strong> - we won’t remind you to run each line of code in the remainder of the practical sessions.</p>
+</div>
+<div id="datasets-for-this-week-2" class="section level4 unnumbered">
+<h4>Datasets for this week</h4>
+<p>This week, we’ll continue to use our data from last week. This includes:</p>
+<ul>
+<li><strong>London Ward boundaries from 2018</strong> (this should already be in your <strong>raw</strong> data folder)</li>
+<li><strong>2019 crime in London</strong> from data.police.uk</li>
+<li><strong>Train and Tube Stations</strong> from <strong>OpenStreetMap</strong>.</li>
+</ul>
+<p>You should load these datasets as new variables in this week’s script.</p>
+<p>You should have the original data files for both the London Wards and 2019 crime already in your <strong>raw</strong> data folder.</p>
+<p>If you did not export your OpenStreetMap train and tube stations from our practical last week and do not have your working environment saved, you will need to re-run parts of your code from last week to download and then export the OpenStreetMap data.</p>
+<p>If this is the case, before you get started with this week’s script, open last week’s script: <code>wk7-bike-theft-analysis.r</code>.</p>
+<p>Then, if your <code>london_stations_osm</code> is not already in your Environment window, to generate and export the OpenStreetMap (OSM) train and tube stations data, you will need to run the code that:</p>
+<ul>
+<li>Loads your libraries</li>
+<li>Generates your OSM download</li>
+<li>Filters your OSM download to stations only</li>
+</ul>
+<p>Once you’ve run this code, you can write out your OSM station data to your <strong>raw -&gt; transport</strong> folder using the following code in your console:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1"><span class="co"># Write out london_stations_osm to a shapefile</span></a>
+<a class="sourceLine" id="cb274-2" title="2"><span class="kw">st_write</span>(london_stations_osm, <span class="st">&quot;data/raw/transport/osm_stations.shp&quot;</span>)</a></code></pre></div>
+<p><em>For those of you with your variable saved from last week and already in your Environment, I would still recommend writing out our <code>london_stations_osm</code> variable to a shapefile anyway and then follow the next instructions to reload it back in. This ensures that in the future, this script will work as a standalone script and is not reliant on Week 7’s output.</em></p>
+<p>We can now load all three datasets into R.</p>
+<p><strong>Loading our data</strong></p>
+<p>Let’s go ahead and load all of our data at once - we did our due diligence last week and know what our data looks like and what CRS they are in, so we can go ahead and use pipes to make loading our data more efficient.</p>
+<ol style="list-style-type: decimal">
+<li>Load all three datasets and conduct necessary pre-processing:</li>
+</ol>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="co"># Load all three datasets</span></a>
+<a class="sourceLine" id="cb275-2" title="2"></a>
+<a class="sourceLine" id="cb275-3" title="3"><span class="co"># Read in our 2018 London Ward boundaries Already in BNG - we checked last week</span></a>
+<a class="sourceLine" id="cb275-4" title="4">london_ward_shp &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</a>
+<a class="sourceLine" id="cb275-5" title="5"></a>
+<a class="sourceLine" id="cb275-6" title="6"><span class="co"># Read in our OSM tube and train stations data Already converted into BNG last</span></a>
+<a class="sourceLine" id="cb275-7" title="7"><span class="co"># week</span></a>
+<a class="sourceLine" id="cb275-8" title="8">london_stations_osm &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/transport/osm_stations.shp&quot;</span>)</a>
+<a class="sourceLine" id="cb275-9" title="9"></a>
+<a class="sourceLine" id="cb275-10" title="10"><span class="co"># Read in our crime data csv from our raw data folder</span></a>
+<a class="sourceLine" id="cb275-11" title="11">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/crime/all_crime_2019.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># clean names</span></a>
+<a class="sourceLine" id="cb275-12" title="12"><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter according to crime type and ensure we have no NAs in our dataset</span></a>
+<a class="sourceLine" id="cb275-13" title="13"><span class="kw">filter</span>(crime_type <span class="op">==</span><span class="st"> &quot;Bicycle theft&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(longitude) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(latitude)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb275-14" title="14"><span class="st">    </span><span class="co"># select just the longitude and latitude columns</span></a>
+<a class="sourceLine" id="cb275-15" title="15">dplyr<span class="op">::</span><span class="kw">select</span>(longitude, latitude) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># transform into a point spatial dataframe note providing the columns as the</span></a>
+<a class="sourceLine" id="cb275-16" title="16"><span class="co"># coordinates to use plus the CRS, which as our columns are long/lat is</span></a>
+<a class="sourceLine" id="cb275-17" title="17"><span class="co"># WGS84/4236</span></a>
+<a class="sourceLine" id="cb275-18" title="18"><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="dt">crs =</span> <span class="dv">4236</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># convert into BNG</span></a>
+<a class="sourceLine" id="cb275-19" title="19"><span class="kw">st_transform</span>(<span class="dv">27700</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># clip to London</span></a>
+<a class="sourceLine" id="cb275-20" title="20"><span class="kw">st_intersection</span>(london_ward_shp)</a></code></pre></div>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Let’s create a quick map of our data to check it loaded correctly:</li>
+</ol>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1"><span class="co"># Plot our London Wards first</span></a>
+<a class="sourceLine" id="cb278-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Then bike crime as blue</span></a>
+<a class="sourceLine" id="cb278-3" title="3"><span class="kw">tm_shape</span>(bike_theft_<span class="dv">2019</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Then our stations as red</span></a>
+<a class="sourceLine" id="cb278-4" title="4"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a north arrow</span></a>
+<a class="sourceLine" id="cb278-5" title="5"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># And a scale bar</span></a>
+<a class="sourceLine" id="cb278-6" title="6"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-map-all-data-1.png" width="672" /></p>
+<p>Great - that looks familiar! This means we can move forward with our data analysis and theoretical content for this week.</p>
+</div>
+</div>
+<div id="point-pattern-analysis" class="section level3 unnumbered">
+<h3>Point Pattern Analysis</h3>
+<p>In our previous practicals, we have aggregated our point data into areal units, primarily using administrative geographies, that facilitates its easy comparison with other datasets provided at the same spatial scale, such as the census data, as well as enables us to conduct spatial autocorrelation tests and choropleth mapping.</p>
+<p>However, when locations are precisely known, spatial point data can be used with a variety of spatial analytic techniques that go beyond the methods typically applied to areal data. As we saw last week, we were able to use specific geometric operations, such as distance queries, buffers and point-in-polygon counts, on the precise locations of our points for analysis, as well as proportional symbols mapping for visualisation.</p>
+<p>Depending on your research problem and aim, points do not necessarily have to be aggregated and there are many applications in which you want to work with the point locations directly.</p>
+<p>In particular, there are <strong>two core areas of spatial analysis techniques</strong> that have developed that are unique to point data: <strong>point pattern analysis</strong> and <strong>geostatistics</strong>.</p>
+<p>Whilst we will look at geostatistics next week, this week, we focus on <strong>Point Pattern Analysis</strong>.</p>
+<div id="what-is-point-pattern-analysis" class="section level4 unnumbered">
+<h4>What is Point Pattern Analysis?</h4>
+<p>Point pattern analysis (PPA) studies the spatial distribution of points (<em>Boots &amp; Getis, 1988</em>). As outlined above, PPA uses the <strong>density</strong>, <strong>dispersion</strong> and <strong>homogeneity</strong> in our point datasets to assess, quantify and characterise its distribution.</p>
+<p>Over the last fifty years, various methods and measurements have been developed to analyze, model, visualize, and interpret these properties of point patterns (<a href="https://gistbok.ucgis.org/bok-topics/point-pattern-analysis">Qiang et al, 2020</a>).</p>
+<p>There are three main categories of PPA techniques:</p>
+<ul>
+<li>Descriptive statistics</li>
+<li>Density-based methods</li>
+<li>Distanced-based merthods</li>
+</ul>
+<p>The use of <strong>descriptive statistics</strong> will provide a summary of the basic characteristics of a point pattern, such as its central tendency and dispersion. Descriptive statistics provide a simple way of visualising a dataset as a whole, from plotting the median or mean centre, or, often preferably, a standard deviational eclispse for those datasets that display a directional pattern.</p>
+<p>Descriptive statistics are however somewhat limited in what they can communicate about a dataset’s pattern. More powerful techniques have been developed to explore point patterns, which will either be <strong>density-based</strong> or <strong>distanced-based</strong>, depending on the spatial properties the technique is considering (Gimond, 2020).</p>
+<p><strong>Density-based methods</strong> focus on the <strong>first-order</strong> properties of a dataset, i.e. the variation in the individual locations of the points in the dataset across the area of interest, and will characterise our dataset’s distribution accordingly in terms of density.</p>
+<p><strong>Distanced-based methods</strong> focus on the <strong>second-order</strong> properties of a dataset, i.e. the interactions between points within our data and whether they appear to have influence on one another and form clusters, and will characterise our dataset’s distribution accordingly in terms of dispersion.</p>
+<p>In our lecture, we will look at all three categories and their specific techniques in preparation for applying several of them to our bike theft dataset afterwards in R ,using the <code>spatstat</code> library.</p>
+</div>
+<div id="lecture-point-pattern-analysis" class="section level4 unnumbered">
+<h4>Lecture: Point Pattern Analysis</h4>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/4c8cef92-7da9-4b02-9f51-9836e6a3715a?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EVWb1ZH5A0VAgG-7-pa4hMQBPFEYTwk9dlSltFyR_zA0JQ?e=1ZuJeN">Slides</a> | <a href="https://web.microsoftstream.com/video/4c8cef92-7da9-4b02-9f51-9836e6a3715a">Video on Stream</a>
+</center>
+<p><br></p>
+</div>
+</div>
+<div id="point-pattern-analysis-in-r-with-spatstat" class="section level3 unnumbered">
+<h3>Point Pattern Analysis in R with <code>spatstat</code></h3>
+<p>We’ve now heard about the different types of PPA techniques available to us as geographers and spatially-enabled thinkers to assess our dataset and its distribution - so it’s about time we apply this within R to our bike theft dataset.</p>
+<p>To do so, we’ll be using the <code>spatstat</code> library, that has been developed by Baddeley, Rubak and Turner since <strong>2005</strong>. As their documentation states, <code>spatstat</code> “is a package for the statistical analysis of spatial data. Its main focus is the analysis of spatial patterns of points in two-dimensional space” (Baddeley et al, 2021).</p>
+<p>According to it’s “Get Started with <code>spatstat</code>” documentation, "<code>spatstat</code> supports a very wide range of popular techniques for statistical analysis for spatial point patterns, including:</p>
+<ul>
+<li>Kernel estimation of density/intensity</li>
+<li>Quadrat counting and clustering indices</li>
+<li>Detection of clustering using Ripley’s K-function</li>
+<li>Model-fitting</li>
+<li>Monte Carlo tests</li>
+</ul>
+<p>as well as some advanced statistical techniques" (<a href="https://cran.r-project.org/web/packages/spatstat/vignettes/getstart.pdf">Baddeley et al, 2020</a>).</p>
+<p>We will only cover a brief amount of the functionality the package offers - it has almost 1,800 pages of documentation and over 1000 commands, so it would be near impossible to cover everything even if we had a full module dedicated just to PPA.</p>
+<p>Instead, this week, we’ll look to see how we can use <code>spatstat</code> to conduct the key PPA techniques outlined earlier in our lecture, including:</p>
+<ul>
+<li>Quadrat Analysis</li>
+<li>Kernel Density Estimation</li>
+<li>Nearest Neighbour</li>
+<li>Ripley’s K function</li>
+</ul>
+<p>But before we get started with our analysis, you need to know one critical piece of information in order to use <code>spatstat</code>: we need our data to be in the format of the <code>ppp</code> object.</p>
+<div id="using-spatstat-in-r-the-ppp-object" class="section level4 unnumbered">
+<h4>Using <code>spatstat</code> in R: the ppp object</h4>
+<p>If you remember me explaining in Week 5, there are some spatial packages in R that require us to convert our data from an <code>sf</code> simple features object (e.g. for point data, a SpatialPoints object) into a different spatial object class - and <code>spatstat</code> is one of them!</p>
+<p><strong>The <code>spatstat</code> package expects point data to be in the <code>ppp</code> format.</strong></p>
+<p>The <code>ppp</code> format is specific to <code>spatstat</code>, but you may find it used in other spatial libraries. An object of the class <code>ppp</code> represents a two-dimensional point dataset within a pre-defined area, known as the <strong>window of observation</strong>, a class in its own right, known as <code>owin</code> in <code>spatstat</code>.
+We can either directly create a <code>ppp</code> object from a list of coordinates (as long as they are supplied with a window) <strong>or</strong> convert from another data type (using the <code>as.ppp()</code> function).</p>
+<p>However, as <code>spatstat</code> predates <code>sf</code>, this conversion function does not yet work with <code>sf</code> data objects. Instead, therefore, we have to create a workaround workflow that enables us to extract the coordinates from our <code>bike_theft_2019</code> spatial dataframe for use within the <code>ppp</code> function.</p>
+<p><em>We could of course simply reload the csv from our raw data files and supply the coordinates from the dataframe we would generate - but where’s the fun in that?!</em></p>
+<p>Instead, we will:</p>
+<ul>
+<li>Extract the geometry of our bike theft points from our <code>bike_theft_2019</code> spatial dataframe using the <code>st_coordinates()</code> function from the <code>sf</code> library</li>
+<li>Store this geometry as two separate columns within a matrix</li>
+<li>Provide these columns, alongside an observation window equal to our <code>london_ward_shp</code> spatial dataframe, to create a PPP object</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Create our <code>spatstat</code> <code>ppp</code> object for use in our PPA:</li>
+</ol>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1"><span class="co"># First, let&#39;s set our window of observation as the entirety of London</span></a>
+<a class="sourceLine" id="cb279-2" title="2">window &lt;-<span class="st"> </span><span class="kw">as.owin</span>(london_ward_shp)</a>
+<a class="sourceLine" id="cb279-3" title="3"></a>
+<a class="sourceLine" id="cb279-4" title="4"><span class="co"># Next, extract the coordinates of our bike_theft_2019 sdf This stores our</span></a>
+<a class="sourceLine" id="cb279-5" title="5"><span class="co"># coordinates as a matrix</span></a>
+<a class="sourceLine" id="cb279-6" title="6">bike_theft_xy &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_coordinates</span>()</a>
+<a class="sourceLine" id="cb279-7" title="7"></a>
+<a class="sourceLine" id="cb279-8" title="8"><span class="co"># Create a ppp object, setting x and y equal to the respective columns in our</span></a>
+<a class="sourceLine" id="cb279-9" title="9"><span class="co"># matrix Set the window equal to our window variable</span></a>
+<a class="sourceLine" id="cb279-10" title="10">bike_theft_ppp &lt;-<span class="st"> </span><span class="kw">ppp</span>(<span class="dt">x =</span> bike_theft_xy[, <span class="dv">1</span>], <span class="dt">y =</span> bike_theft_xy[, <span class="dv">2</span>], <span class="dt">window =</span> window)</a></code></pre></div>
+<pre><code>## Warning: data contain duplicated points</code></pre>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="co"># Plot our ppp object</span></a>
+<a class="sourceLine" id="cb281-2" title="2"><span class="kw">plot</span>(bike_theft_ppp)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-spatstat-ppp-object-1.png" width="672" /></p>
+<p>Our plot shows us our <code>bike_theft_ppp</code> ppp object, which includes both the coordinate points of our bike theft data and our London window.</p>
+<p>You should also see your <code>bike_theft_ppp</code> ppp object variable appear in your Environment window - as well as see a message stating that our data <em>contain duplicated points</em>.</p>
+<p>Let’s see if this is true - we can first use a logical statement from the <strong>R base library</strong> to check if our <code>bike_theft_ppp</code> object contains duplicated points and then count the total number of duplicates exist using the <code>multiplicity</code> function (which “counts the number of duplicates for each point in a spatial point pattern”) from the <code>spatstat</code> library.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Check and count how many duplicated points our dataset contains:</li>
+</ol>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1"><span class="co"># Check for duplicates using the anyDuplicated function</span></a>
+<a class="sourceLine" id="cb282-2" title="2"><span class="kw">anyDuplicated</span>(bike_theft_ppp)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1"><span class="co"># Count the number of duplicated points and sum this</span></a>
+<a class="sourceLine" id="cb284-2" title="2"><span class="kw">sum</span>(<span class="kw">multiplicity</span>(bike_theft_ppp) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] 12323</code></pre>
+<p>This means we have 12,323 (out of 18,690!) duplicated points.</p>
+<div class="codetime">
+<p><strong>What’s the issue with duplicated ponts?</strong></p>
+<p>One of the <strong>key assumptions</strong> underlying many analytical methods is that <strong>all events are unique</strong>. In fact, some statistical procedures actually may return very wrong results if duplicate points are found within the data.</p>
+<p>In terms of our bike theft data, it is unsurprising that it contains duplicates. If you remember from earlier on in our module, we explained how the Police service record the locations of the crimes within the dataset and how they use <a href="https://data.police.uk/about/#anonymisation"><strong>snapping points</strong></a>, to which crimes are snapped to in order to preserve the anonynmity and privacy of those involved.</p>
+<p>This is an issue in spatial point pattern analysis as we need our “events”, i.e. each record of a crime and its respective location, to <strong>be unique</strong> in order for our analysis to be accurate.</p>
+<p>To account for these issues within our dataset (and other datasets that contain duplicates), we have three options:</p>
+<ol style="list-style-type: decimal">
+<li><p>We can remove the duplicates and pretend they simply are not there. However, this is feasible only when your research problem allows for this, i.e. the number of points at each location is not as important as the locations themselves, and therefore you are happy to ‘ignore’ some of the data.</p></li>
+<li><p>Create and assign a weighting schema to our points, where each point will have an attribute that details the number of events that occur in that location - and utlise this weight within our PPA techniques. Weights however can only be used with certain PPA techniques (e.g. Kernel Density Estimation).</p></li>
+<li><p>Force all points to be unique by utilising a function that offsets our points randomly from their current location. If the <strong>precise</strong> location is not important for your analysis - or, for example, you are dealing with data that in our case is already slightly offset, we can introduce a “jitter” to our dataset that slightly adjusts all coordinates so that the event locations do not exactly coincide anymore. This way, our duplicates will no longer have the same precise location. This approach however introduces a certain level of uncertainty into the precise location of any analysis derived from our datasets, e.g. cluster extents, as we’ll see later.</p></li>
+</ol>
+<p>Each approach will have a specific compromise, which you will have to decide upon depending on the type of analysis you are completing.</p>
+<p>In our case, we will choose the jitter approach to keep all of our bike theft events. We know that already the location of our bike thefts are not precise locations of the original theft, therefore adding additional offset will not detract from our analysis. Furthermore, the number of thefts is incredibly important to our analysis, thereore option 1 is not feasible with 12,323 duplicated points. We also want to demonstrate a range of techniques in our practical today, so option 2 is also not viable.</p>
+</div>
+<p>Let’s shift all our coordinates slighlty to ‘remove’ our duplicates and essentially ‘move’ all points into unique locations.</p>
+<p>We’ll use the <code>rjitter</code> function from the <code>spatstat</code> library, which applies an independent random displacement to each point in a point pattern.</p>
+<p>If you look at the <code>rjitter</code> documentation, you’ll also find that we can set many parameters to ensure that the radius of pertubation is kept small etc and you can read about the parameters we’ve used in our current code.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Add a “jitter” (i.e. offset) to our <code>bike_theft_ppp</code> object - and then check for duplicates:</li>
+</ol>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="co"># Add an offset to our points using the rjitter function</span></a>
+<a class="sourceLine" id="cb286-2" title="2">bike_theft_ppp_jitter &lt;-<span class="st"> </span><span class="kw">rjitter</span>(bike_theft_ppp, <span class="dt">retry =</span> <span class="ot">TRUE</span>, <span class="dt">nsim =</span> <span class="dv">1</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb286-3" title="3"></a>
+<a class="sourceLine" id="cb286-4" title="4"><span class="co"># Count the number of duplicated points of the new jitter dataset</span></a>
+<a class="sourceLine" id="cb286-5" title="5"><span class="kw">anyDuplicated</span>(bike_theft_ppp_jitter)</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="co"># Plot the resulting ppp object</span></a>
+<a class="sourceLine" id="cb288-2" title="2"><span class="kw">plot</span>(bike_theft_ppp_jitter)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-jitter-jitter-jitter-1.png" width="672" /></p>
+<p>Great, we now have our bike theft data in a format ready to be analysed with our different PPA techniques using the <code>spatstat</code> library!</p>
+<div class="note">
+<p><strong>Events, marks and <code>ppp</code> objects</strong><br></p>
+<p>One additional thing to note about the <code>ppp</code> data object is that a ppp object does not necessarily have to have any attributes (our fields) associated with the events each point our point data represents.</p>
+<p><strong>If</strong> your data does have attributes (such as calculating a weight as outlined above for dealing with duplications), these attributes are referred to as <strong>marks</strong> within the <code>spatstat</code> environment and thus documentation.</p>
+<p>Be aware that some functions do require these marks to be present - and you’ll find this out only from the <code>spatstat</code> documentation. We will not use any functions/techniques today that require marks.</p>
+</div>
+<p>We’ll first look at how we can deploy <strong>density-based</strong> methods, including Quadrat Analysis and Kernel Density Estimation, and then <strong>distance-based</strong> methods, including Nearest Neighbour and Ripley’s K function, on our bike theft data using <code>spatstat</code>.</p>
+<p><em>Despite its extensive coverage of many complex PPA techniques, the <code>spatstat</code> library does not contain many functions to analyse our data using basic descriptive statistics, therefore we will not look at descriptive statistics at this time. However, if you would like to create a Standard Deviational Ellipse (SDE) of your data at any point, you should look at the <code>aspace</code> library which contains a function to create a SDE. This library is also available as a plug-in in QGIS.</em></p>
+</div>
+<div id="density-based-methods" class="section level4 unnumbered">
+<h4>Density-Based Methods</h4>
+<p>Density-based techniques are used to characterise the pattern of a point dataset utilising its general distribution.</p>
+<p>A bit like our spatial autocorrelation techniques, we can calculate densities at both the <strong>global</strong> and <strong>local</strong> scale.</p>
+<p>However, as you’ll see, for PPA, global density really does not tell us much more about the distribution of our data - in terms of areas of high and low densities, for example.</p>
+<p>This is where <strong>local density</strong> techniques such as <strong>Quadrat Analysis</strong> and <strong>Kernel Density Estimation</strong> can help us visualise these differences in density in our data’s distribution.</p>
+<div id="global-density" class="section level5 unnumbered">
+<h5>Global Density</h5>
+<p>We can create a simple understanding of our data’s distribution by first understanding its <strong>global density</strong> - this is simply the ratio of the observed number of points, <span class="math inline">\(n\)</span> , to the study region’s surface area, <span class="math inline">\(a\)</span>:</p>
+<center>
+<span class="math inline">\(\widehat{\lambda} =\frac{n}{a}\)</span>
+</center>
+<p><br></p>
+<ol style="list-style-type: decimal">
+<li>Calculate the global density of our bike theft point data relative to London:</li>
+</ol>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1"><span class="co"># Calculate the global density of our bike points Try to understand this code</span></a>
+<a class="sourceLine" id="cb289-2" title="2"><span class="co"># yourself - I&#39;ll ask in the seminar how this equation works!</span></a>
+<a class="sourceLine" id="cb289-3" title="3">global_density &lt;-<span class="st"> </span><span class="kw">length</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>NAME)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">st_area</span>(london_ward_shp))</a>
+<a class="sourceLine" id="cb289-4" title="4"></a>
+<a class="sourceLine" id="cb289-5" title="5"><span class="co"># Return global_density to our console</span></a>
+<a class="sourceLine" id="cb289-6" title="6">global_density</a></code></pre></div>
+<pre><code>## 1.172009e-05 [1/m^2]</code></pre>
+<p>We can see that we have a global density of 0.0000172 bike thefts per m^2 in London.</p>
+<p>This simple density analysis could be supported with further descriptive statistics, however we still would know little about the local density of our points.</p>
+</div>
+<div id="local-density-quadrat-analysis" class="section level5 unnumbered">
+<h5>Local Density: Quadrat Analysis</h5>
+<p>The most basic approach to understanding a point pattern’s local density is to simply measure the density at different locations within the study area. This approach helps us assess if the density is constant across the study area.</p>
+<p>The most simplest approach to this measurement is through <strong>Quadrat Analysis</strong>, where the study area is divided into sub-regions, aka <em>quadrats</em>. The point density is then computed for each quadrat, by dividing the number of points in each quadrat by the quadrat’s area.</p>
+<p>As you will have seen in the lecture, quadrats can take on many different shapes (and utlise different approaches to creating these shapes). The most basic approach is using squares (or rather, a grid). Furthermore, the choice of quadrat numbers and quadrat shape can influence the measure of local density and therefore must be chosen with care.</p>
+<p>We will start with a simple quadrat count by dividing the observation window into 15 x 15 sections and then counting the number of bicycle thefts within each quadrant using the <code>quadratcount()</code> function within R.</p>
+<ol style="list-style-type: decimal">
+<li>Calculate the number of bike thefts in our quadrats in London:</li>
+</ol>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" title="1"><span class="co"># quadratcount in a 15 x 15 grid across the observational window</span></a>
+<a class="sourceLine" id="cb291-2" title="2">biketheft_quadrat &lt;-<span class="st"> </span><span class="kw">quadratcount</span>(bike_theft_ppp_jitter, <span class="dt">nx =</span> <span class="dv">10</span>, <span class="dt">ny =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb291-3" title="3"><span class="co"># inspect</span></a>
+<a class="sourceLine" id="cb291-4" title="4"><span class="kw">plot</span>(biketheft_quadrat)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-quadrat-count-1.png" width="672" /></p>
+<p>Our resulting quadrat count shows total counts of bike theft - we can see quite quickly that the quadrats in central London are likely to have a higher local density as their count is much higher than those on the outskirts of London.</p>
+<p>If we divided our count by the area covered by each quadrat, we’d also be able to calculate a precise local density. We won’t do this for now, as realistically, it is not often that you’d want to use quadrat analysis for actual PPA.</p>
+<p>But the reason why we look at this technique is that it provides us with an easy way to think about how to compare our data distribution and how this relates to the <strong>Poisson distribution of Complete Spatial Randomness (CSR)</strong>.</p>
+<p><strong>Quadrat Analysis &amp; Complete Spatial Randomness Testing</strong></p>
+<p>When looking at the distribution of our points and the respective patterns they show, the key question we often want to answer as geographers and spatially-enabled thinkers is: are our points clustered, randomly distributed (i.e. display complete spatial randomness), uniform or dispersed?</p>
+<p>Whilst we can visually assess this distribution, to be able to statistically quantify our data’s distribution, we can compare its distribution to that of the <strong>Poisson distribution</strong>.</p>
+<p>The Poisson distribution describes the probability or rate of an event happening over a fixed interval of time or space.</p>
+<p>The Poisson Distribution applies when:</p>
+<ul>
+<li>The events are discrete and can be counted in integers</li>
+<li>Events are independent of each other</li>
+<li>The average number of events over space or time is known</li>
+</ul>
+<p>Point data that contains a random distribution of points is said to have a <strong>Poisson distribution</strong>. The Poisson distribution is very useful in Point Pattern Analysis as it allows us to compare a random expected model to our observations.</p>
+<p>Essentially, if our data does not fit the Poisson model, then we can infer that something interesting might be going on and our events might not actually be independent of each other. Instead, they might be clustered or dispersed and there is likely to be underlying processes influencing these patterns.</p>
+<p>The most basic test of CSR with the Poisson distribution in PPA can be completed with our <strong>Quadrat Analysis</strong> results.</p>
+<p>We compare our quadrat results with a Poisson distribution for the same quadrats and determine whether the pattern is generated in a random manner; i.e. whether the distribution of points in our study area differs from complete spatial randomness (CSR) or whether there are some clusters present.</p>
+<p>To enable this, we can run a <strong>Chi-Squared Test</strong> of our data against a theoretical randomly generated point pattern dataset with the same number of points and window, with the null hypotheses that our point data have been generated under complete spatial randomness.</p>
+<p>Our chi-squared test will tell us whether our data is distributed under the null hypothesis - and determine whether there is a statistically significant difference between the expected distribution (i.e. CSR) and the observed distribution (our bike theft point data).</p>
+<p>We use the <code>quadrat.test()</code> function from <code>spatstat</code> that “performs a test of Complete Spatial Randomness for a given point pattern, based on quadrat counts” (<code>spatstat</code> documentation, 2020).</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Run a Chi-Squared Test of our data to confirm whether or not the data is randomly distributed:</li>
+</ol>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1"><span class="co"># Chi-square between observed point pattern of our data and Poisson sampled</span></a>
+<a class="sourceLine" id="cb292-2" title="2"><span class="co"># points</span></a>
+<a class="sourceLine" id="cb292-3" title="3"><span class="kw">quadrat.test</span>(bike_theft_ppp_jitter, <span class="dt">nx =</span> <span class="dv">10</span>, <span class="dt">ny =</span> <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## Warning: Some expected counts are small; chi^2 approximation may be inaccurate</code></pre>
+<pre><code>## 
+##  Chi-squared test of CSR using quadrat counts
+## 
+## data:  bike_theft_ppp_jitter
+## X2 = 56524, df = 80, p-value &lt; 2.2e-16
+## alternative hypothesis: two.sided
+## 
+## Quadrats: 81 tiles (irregular windows)</code></pre>
+<p>Our <span class="math inline">\(p\)</span> value is well below 0.05 (or 0.01 for that matter), which means there is a statistically signficant difference between the expected distribution (i.e. CSR) and the observed distribution (our bike theft point data).</p>
+<p>We can therefore reject the null hypothesis that our point data have been generated under complete spatial randomness and confirm that our point pattern was not generated in a random matter. This is hardly very suprising!</p>
+<p>However our completing both a quadrat analysis and the resulting Chi-Squared test is not exactly the most efficient way of looking to understand the relative local densities of our dataset - nor can we compare these results to the location of our train and tube stations to look into our original hypothesis: <em>that bike theft primarily occurs near tube and train stations</em>.</p>
+</div>
+<div id="local-density-kernel-density-estimation" class="section level5 unnumbered">
+<h5>Local Density: Kernel Density Estimation</h5>
+<p>We now have an understanding of whether our data is randomly distributed or not - and our quadrats give us a very coarse understanding of where there may be clusters within our data.</p>
+<p>But instead of looking at the distribution of our bike theft with the boundaries of our quadrats (or any other tessellation we could pick), we can also analyse our points using a <strong>Kernel Density Estimation (KDE)</strong>.</p>
+<p>As explained in our lecture, <strong>KDE</strong> is a statistical technique to generate a smooth continuous distribution between data points that represent the density of the underlying pattern.</p>
+<p>Within <strong>spatial analysis</strong>, a KDE will produce a surface (raster) that details the estimated distribution of our event point data over space. Each cell within our raster contains a value that is this estimated density at that locatiion; when visualised in its entirety as the whole raster, we can quickly identify areas of high and low density, i.e. where are clusters are located in our dataset.</p>
+<p>To create this surface, a KDE computes a localised density for small subsets of our study area - but unlike quadrat analysis, these subsets overlap one another to create a <em>moving</em> sub-region window, defined by a <strong>kernel</strong>.</p>
+<p>A <strong>kernel</strong> defines the shape and size of the window and can also weight the points, using a defined kernel function (Gimond, 2020).</p>
+<p>The simplest kernel function is a basic kernel where each point in the kernel window is assigned equal weight.</p>
+<p>The kernel density approach generates a grid of density values whose cell size is smaller than that of the kernel window. Each cell is assigned the density value computed for the kernel window centered on that cell (Gimond, 2020).</p>
+<p>The resulting surface is created from these individually, locally calculated density values.</p>
+<p>Producing a KDE in R is very straight-forward in <code>spatstat</code>, using your ppp object and the <code>density.ppp()</code> function.</p>
+<p>However, you will need to consider both the <strong>bandwidth</strong> or diameter of your Kernel (<code>sigma</code>) and whether you want to apply a weighting to your points using a function, as we’ll see below.</p>
+<p>First, let’s go ahead and create a simple KDE of bike theft with our bandwidth set to 100m.</p>
+<ol style="list-style-type: decimal">
+<li>Generate a KDE of our bike theft data, with a kernel of 100m:</li>
+</ol>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1"><span class="co"># Kernel density estimation of our bike theft ppp object Note sigma is defined in</span></a>
+<a class="sourceLine" id="cb295-2" title="2"><span class="co"># the same units as your CRS, in this case metres for BNG</span></a>
+<a class="sourceLine" id="cb295-3" title="3"><span class="kw">plot</span>(<span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">100</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-kde-ppp-1.png" width="672" /></p>
+<p>We can see from just our KDE that there are visible clusters present within our bike theft data, particularly in and around central London. We can even see our south-west cluster that we saw in our proportional symbols map last week.</p>
+<p>We can go ahead and vary our bandwidth to to see how that affects the density estimate.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Change the sigma to a bandwith of 500m:</li>
+</ol>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1"><span class="co"># Kernel density estimation of our bike theft ppp object with 500m bandwith</span></a>
+<a class="sourceLine" id="cb296-2" title="2"><span class="kw">plot</span>(<span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">500</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-kde-ppp-2-1.png" width="672" /></p>
+<p>Our clusters now appear brighter and larger than our KDE with a 100m bandwidth - this is because changing the bandwidth enables your KDE to take into account more points within its calculation, resulting in a smoother surface.</p>
+<p>However, there are issues with oversmoothing your data - as you can see above, our clusters are not as well defined and therefore we may attribute high levels of bike theft to areas where there actually isn’t that much!</p>
+<p>Smaller bandwidths will lead to a more irregular shaped surface, where we have more precision in our defined clusters - but, once again, there are issues of undersmoothing. In our case, as we know bike theft is not exactly a phenomena that obeys strict square boundaries, we may run into similar issues of boundary effects that we see in areal unit aggregation, and end up not extending our clusters far enough to cover our “hotspot” areas.</p>
+<p>Whilst there are automated functions (e.g. based on maximum-likelihood estimations) that can help you with selecting an appropriate bandwidth, in the end you will have to make a decision on what is most appropriate for your dataset. Thinking through the phenomenom that you are analysing will help - a bit like our decisions we made last week in terms of thinking through our buffer sizes!</p>
+<p>Although bandwidth typically has a more pronounced effect upon the density estimation than the type of kernel used, kernel types can affect the result too.</p>
+<p>When we use a different kernel type, we are looking to weight the points within our kernel differently:</p>
+<img src="images/w8/kerneltypes.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<br><em>Kernel Types and Their Distributions. Source: Wikipedia.</em>
+</center>
+<p><br></p>
+<p>Each function will result in a slightly different estimation.</p>
+<p>As Levine explains: “The normal distribution weighs all points in the study area, though near points are weighted more highly than distant points. The other four techniques use a circumscribed circle around the grid cell. The uniform distribution weighs all points within the circle equally. The quartic function weighs near points more than far points, but the fall off is gradual. The triangular function weighs near points more than far points within the circle, but the fall off is more rapid. Finally, the negative exponential weighs near points much more highly than far points within the circle and the decay is very rapid.” (<a href="https://nij.ojp.gov/sites/g/files/xyckuh171/files/media/document/CrimeStat%2520IV%2520Chapter%252010.pdf">Levine, 2013: 10.10</a>).</p>
+<p>So which one should you use?</p>
+<p>Levine (2013, ibid) produces the following guidance: <em>“The use of any of one of these depends on how much the user wants to weigh near points relative to far points. Using a kernel function which has a big difference in the weights of near versus far points (e.g., the negative exponential or the triangular) tends to produce finer variations within the surface than functions which weight more evenly (e.g., the normal distribution, the quartic, or the uniform); these latter ones tend to smooth the distribution more.”</em></p>
+<p>Deciding which function is most suitable for your analysis will all depend on what you are trying to capture.</p>
+<p>We can compare and see the impact of different functions on our current dataset looking at the default kernel in <code>density.ppp()</code>, which gaussian, alongisde the epanechnikov, quartic or disc kernels. Note, the sigma in these KDEs is set to 400m:</p>
+<p><img src="GEOG0030_files/figure-html/08-kde-ppp-3-1.png" width="672" /></p>
+<p>To change the kernel within your KDE, you simply need to add the <code>kernel=</code> parameter and set it to one of the kernels available, denoted as a string, e.g. “epanechnikov”, “quartic”, “disc”.</p>
+<p>Ultimately, bandwidth will have a more marked effect upon the density estimation than kernel type.</p>
+<p>For now, however, no matter which kernel or which bandwidth (within reason, of course) we use, we can be quite confident in stating that bike theft in London in 2019 is not a spatially random process and we can clearly see the areas where bicycle theft is most concentrated.</p>
+</div>
+<div id="kde-and-raster-mapping" class="section level5 unnumbered">
+<h5>KDE and Raster Mapping</h5>
+<p>We’ve now seen how we can create a KDE to show the local density of our dataset - but how can we use this new data in our original analysis that looks to find out whether bike theft primarily occurs near tube and train stations?</p>
+<p>The main use of a KDE is primarily for visual analysis of our point data distribution - we could easily write at least a hundred words on what our KDE above shows.</p>
+<p>However, our current plotting approach is quite limited - if you hadn’t noticed, we’ve primarily been using the <strong>R base plotting</strong> techniques to display the results of our <code>density.ppp()</code> function. It would therefore be difficult to create any maps that allow visual comparison to our train stations - nor could we really complete any further analysis on our KDE dataset.</p>
+<p>This is because, at the moment, our KDE raster is stored as a <code>spatstat</code> object - and is not, currently, a standalone raster dataset. As a result, we cannot use our KDE with other visualisation libraries such as <code>tmap</code> - or in the future <code>ggplot2</code>.</p>
+<p>To enable this use, we need to first <strong>export our KDE <code>spatstat</code> object into a standalone raster</strong> that can be used with these libraries. We therefore need to look to the <code>raster</code> library that is capable of doing just that!</p>
+<p>Until now, with our spatial data, we’ve primarily used <strong>vector</strong> data that the <code>sf</code> library can read, load and manage - however the <code>sf</code> library does not contain the right functions to enable the same reading, loading and management of <strong>raster</strong> data. As a result, <em>it is not a suitable spatial library for dealing with raster data.</em></p>
+<p>Instead, we need to use the <code>raster</code> library, which is the default spatial library for dealing with raster data (i.e. just as we use <code>sf</code> for vector, we use <code>raster</code> for raster!).</p>
+<p>We’ll look into this library and its many functions in a little more detail next week as we look at geostatistics and interpolation.</p>
+<p>For this week, we need the library for only one very specific task: export our <code>spatstat</code> KDE object into a raster dataset that we can then map in the <code>tmap</code> library - alongside, as you’ll see, a basemap for visualisation.</p>
+<p><strong>Converting our <code>spatstat</code> KDE object into a raster</strong></p>
+<p>To convert <code>spatstat</code> KDE object into a raster, we only need one very simple function from the raster library: <code>raster()</code>.</p>
+<p>This function “creates a RasterLayer object. RasterLayer objects can be created from scratch, a file, an Extent object, a matrix, an ‘image’ object, or from a Raster, Spatial, <strong>im (spatstat)</strong>, asc, kasc (adehabitat), grf (geoR) or kde object” (<code>raster</code> documentation.</p>
+<p>We can check to see if this function will work with our current <code>spatstat</code> KDE object by double-checking the documentation for <code>density.ppp()</code> function and looking at what <strong>Value</strong> the function returns (i.e. what object type is the KDE image we see above).</p>
+<p>The documentation tells us that the result, by default, from the <code>density.ppp()</code> function is “a pixel image (<strong>object of class "im"</strong>)” (<code>spatstat</code> documentation) - this matches one of the accepted inputs of the <code>raster()</code> function, as shown above, so we know our function will work with our resulting kde object.</p>
+<p>To return a raster from our <code>density.ppp()</code> function, we simply need to pipe its output into the <code>raster</code> function, as we’ll do below.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Pipe the output of our <code>density.ppp()</code> function into the <code>raster()</code> function:</li>
+</ol>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="co"># Create a raster directly from the output of our KDE 400g stands for a 400m</span></a>
+<a class="sourceLine" id="cb297-2" title="2"><span class="co"># bandwidth, to match our distance from last week, with a gaussian kernel</span></a>
+<a class="sourceLine" id="cb297-3" title="3">kde_400g_raster &lt;-<span class="st"> </span><span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">400</span>, <span class="dt">edge =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb297-4" title="4"><span class="st">    </span><span class="kw">raster</span>()</a>
+<a class="sourceLine" id="cb297-5" title="5"></a>
+<a class="sourceLine" id="cb297-6" title="6"><span class="co"># Plot the resulting raster</span></a>
+<a class="sourceLine" id="cb297-7" title="7"><span class="kw">plot</span>(kde_400g_raster)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-kde-raster-1.png" width="672" /></p>
+<p>We now have a standalone raster we can use with a) any (analysis-oriented) functions in the <code>raster()</code> library (more on this next week) and b) our visualisation libraries, including <code>tmap</code>.</p>
+<p>Before we go ahead, one issue we will face - although it is not clear in the plot above - is that our resulting raster does not have a Coordinate Reference System. Without a CRS, as we should know by now, that we’ll have issues with both any analysis or visualisation that we’d like to do with our raster, particularly if we use other datasets with our raster.</p>
+<p>A bit like using the <code>st_crs</code> in <code>sf</code>, we can use the <code>crs()</code> function within the <code>raster</code> library to check our <code>kde_400g_raster</code> CRS.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Check the CRS of our <code>kde_400g_raster</code>:</li>
+</ol>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="co"># Check the CRS of the `kde_400g_raster`</span></a>
+<a class="sourceLine" id="cb298-2" title="2"><span class="kw">crs</span>(kde_400g_raster)</a></code></pre></div>
+<pre><code>## CRS arguments: NA</code></pre>
+<p>You should see an <strong>NA</strong> appear within our CRS arguments - the <code>kde_400g_raster</code> does not have a CRS, so we’ll need to set the CRS. We can use the same <code>crs()</code> function to set a raster’s CRS - unlike <code>sf</code>’s <code>st_crs()</code> function though, we need to provide our CRS as “a character string describing a projection and datum in the PROJ.4 format” (<code>raster</code> documentation), rather than only the EPSG code.</p>
+<div class="note">
+<p><strong>Finding your PROJ4 string</strong><br>
+You’re likely to have missed this link in our previous practical/lecture on CRSs, but if you need to find the Proj4 string for a CRS, as in our case here, <a href="https://spatialreference.org" class="uri">https://spatialreference.org</a> is your one-stop shop for this information. It not only provides the Proj4 string, but also lots of other ways of defining a CRS that you might use in your code.</p>
+<p>Here is the direct link to its webpage for British National Grid (EPSG:27700): <a href="https://spatialreference.org/ref/epsg/osgb-1936-british-national-grid/" class="uri">https://spatialreference.org/ref/epsg/osgb-1936-british-national-grid/</a></p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Set the CRS of our <code>kde_400g_raster</code> using the Proj4 string from <a href="https://spatialreference.org" class="uri">https://spatialreference.org</a> and check the resulting raster CRS:</li>
+</ol>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="co"># Set the CRS of the `kde_400g_raster` to BNG</span></a>
+<a class="sourceLine" id="cb300-2" title="2"><span class="kw">crs</span>(kde_400g_raster) &lt;-<span class="st"> &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs &quot;</span></a>
+<a class="sourceLine" id="cb300-3" title="3"></a>
+<a class="sourceLine" id="cb300-4" title="4"><span class="co"># Check the CRS of the `kde_400g_raster`</span></a>
+<a class="sourceLine" id="cb300-5" title="5"><span class="kw">crs</span>(kde_400g_raster)</a></code></pre></div>
+<pre><code>## CRS arguments:
+##  +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000
+## +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs
+## +towgs84=446.448,-125.157,542.060,0.1502,0.2470,0.8421,-20.4894</code></pre>
+<p>Great, you should now see your raster has the correct CRS arguments! It’s certainly not as easy to read as “British National Grid” or “27700”, but if you deal within BNG and R for long enough, you’ll probably be able to write out the Proj4 string from memory ;) .</p>
+<p><strong>Mapping our KDE raster using <code>tmap</code></strong></p>
+<p>Now we have our raster ready to map - let’s map it using <code>tmap</code>. We now can introduce a new function from the <code>tmap</code> library: <code>tm_raster()</code> that allows us to map rasters using <code>tmap</code>.</p>
+<p>We use the same “Grammar of Graphics” approach that we’ve used with our vector data and will first provide <code>tmap</code> with our <code>kde_400g_raster</code> as a <code>tm_shape()</code>. We then add the <code>tm_raster()</code> function, with the required and optional parameters we want to include.</p>
+<p>In this case, we’ll start off with providing the <code>tm_raster()</code> function with the data variable we’d like to map, plus a palette to use to map our data.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Map our <code>kde_400g_raster</code> using <code>tmap</code>:</li>
+</ol>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1"><span class="co"># Map our kde_400g_raster using tmap</span></a>
+<a class="sourceLine" id="cb302-2" title="2"><span class="kw">tm_shape</span>(kde_400g_raster) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;layer&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;viridis&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-kde-raster-map-1.png" width="672" /></p>
+<p>With our <code>kde_400g_raster</code> using <code>tmap</code>, we can go ahead and customise our map as we would do with our vector mapping - for example, changing the legend tile, adding a title, north arrow etc.</p>
+<p><em>Again, I highly recommend exploring the </em><code>tm_raster()</code> <em>Help documentation to see the different parameters you can provide within the function to change its visualisation with </em><code>tmap</code><em>.</em></p>
+<p>This would be a completely acceptable way to map our <code>kde_400g_raster</code> - but we’ve been there, done that before, so why not try something different?!</p>
+<p><strong>Mapping our KDE raster with a basemap and change of opacity</strong></p>
+<p>So far in our mapping and visualisation efforts, we’ve created static plots with several layers or used <code>tmap</code>s interactive mode to interrogate our data with a basemap.</p>
+<p>In our current case using a KDE, wouldn’t it be great if we could mix these two approaches and layer our <code>kde_400g_raster</code> over a basemap to identify statically (i.e. for use in a report or paper), where are clusters are?</p>
+<p>Well, of course, once again thanks to R and its awesome community base, there’s a library and function for that!</p>
+<p>We can use the <code>rosm</code> library to generate a static raster “tile” from OpenStreetMap that we can use as our basemap for our KDE.</p>
+<p>Within the <code>rosm</code> library, we use the <code>osm.raster()</code> function that generates a raster image of OpenStreetMap for the Area Of Interest (provided either as a Bounding Box or a Spatial Object, i.e. our raster) provided.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Generate a raster of OpenStreetMap that covers the bounding box of our <code>kde_400g_raster</code>:</li>
+</ol>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1"><span class="co"># Generate basemap for our kde raster, crop to its bounding box</span></a>
+<a class="sourceLine" id="cb303-2" title="2">osm_basemap &lt;-<span class="st"> </span><span class="kw">osm.raster</span>(kde_400g_raster, <span class="dt">crop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb303-3" title="3"></a>
+<a class="sourceLine" id="cb303-4" title="4"><span class="co"># Plot the resulting basemap, using the tm_rgb to plot the three Red, Green, Blue</span></a>
+<a class="sourceLine" id="cb303-5" title="5"><span class="co"># layers together We&#39;ll explain a little more about RGB next week!</span></a>
+<a class="sourceLine" id="cb303-6" title="6"><span class="kw">tm_shape</span>(osm_basemap) <span class="op">+</span><span class="st"> </span><span class="kw">tm_rgb</span>()</a></code></pre></div>
+<pre><code>## Warning: Raster values found that are outside the range [0, 255]</code></pre>
+<p><img src="GEOG0030_files/figure-html/08-osm-basemap-1.png" width="672" /></p>
+<p>We can now see we have a base map for the whole of London that we can layer our <code>kde_400g_raster</code> upon - but as you might see, it needs a little bit of tidying up before we go ahead and use it as a basemap. We can see that we have some whitespace either side of our basemap, which we’d like to remove.</p>
+<p>To remove this whitespace, we can use the <code>crop()</code> function from the <code>raster()</code> package and we can crop our basemap to the spatial extent of our <code>london_ward_shp</code> spatial dataframe.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Crop our OpenStreetMap basemap to our <code>london_ward_shp</code> spatial dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1"><span class="co"># Crop our osm_basemap to the extent of our london_ward_shp</span></a>
+<a class="sourceLine" id="cb305-2" title="2">london_osm_basemap &lt;-<span class="st"> </span><span class="kw">crop</span>(osm_basemap, london_ward_shp)</a></code></pre></div>
+<p>To crop our basemap to the precise shape of our <code>london_ward_shp</code> spatial dataframe, we’d need to look into generating something called a <em>mask</em> - we’ll not look at this week, but hopefully have time to quickly look at the process in Week 9!</p>
+<p>We should now have our OpenStreetMap basemap cropped to the right extent.</p>
+<p>But if we look back at our <code>kde_400g_raster</code> map, we can see that in its current format, we won’t exactly see much of London beneath our KDE:</p>
+<pre><code>## Warning: Raster values found that are outside the range [0, 255]</code></pre>
+<p><img src="GEOG0030_files/figure-html/08-kde-osm-layer-1.png" width="672" /></p>
+<p>We can do two things to improve our visualisation here.</p>
+<ul>
+<li>We can change the opacity (<code>alpha</code>) of our <code>kde_400g_raster</code> to make the OSM basemap more visible through our map.</li>
+<li>We can remove the lowest values (&lt;0.0001) from our <code>kde_400g_raster</code> to show ony the areas of higher density (i.e. the clusters) within our <code>kde_400g_raster</code>.</li>
+</ul>
+<p>We’ll do both in one chunk of code and then go ahead and create our final map.</p>
+<p>We use the <strong>base R approach</strong> here of selecting all rows with values less than 0.0001 and reclassing them as NAs. We obviously cannot use <code>dplyr</code> to do this because our data is a raster and not a dataframe! There is a <code>reclassify()</code> function within the <code>raster</code> library, but this is a much more complicated function than we need right now - we might have chance to look at it next week instead!</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Reclass our low values to NA within our <code>kde_400g_raster</code> and set its opacity to for mapping on our OSM basemap:</li>
+</ol>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1"><span class="co"># Reclass our low raster values to NA using the base R approach</span></a>
+<a class="sourceLine" id="cb307-2" title="2">kde_400g_raster[kde_400g_raster <span class="op">&lt;</span><span class="st"> </span><span class="fl">1e-04</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb307-3" title="3"></a>
+<a class="sourceLine" id="cb307-4" title="4"><span class="co"># Layer two rasters together for final visualisation</span></a>
+<a class="sourceLine" id="cb307-5" title="5"><span class="kw">tm_shape</span>(london_osm_basemap) <span class="op">+</span><span class="st"> </span><span class="kw">tm_rgb</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(kde_400g_raster) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;layer&quot;</span>, </a>
+<a class="sourceLine" id="cb307-6" title="6">    <span class="dt">palette =</span> <span class="st">&quot;viridis&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## Warning: Raster values found that are outside the range [0, 255]</code></pre>
+<p><img src="GEOG0030_files/figure-html/08-kde-reclass-map-1.png" width="672" /></p>
+<p>It looks like we have a map showing the kernel density estimation of bike theft in London! Great work!</p>
+<p>We’re now one step closer to visually investigating our original hypothesis - that bike theft primarily occurs near tube and train stations.</p>
+<p>To help with our analysis, we could go ahead and change the <code>tmap_mode</code> to the view mode and use the basemap to visually investigate the distribution of bike theft and its relation to train stations.</p>
+<p>Alternatively, we could make a static map that overlays our <code>london_stations_osm</code> spatial dataframe as part of our map and compare their location against our visible clusters, that we could use for visual analysis and confirmation of our hypothesis.</p>
+<p>Fortunately enough, this is exactly the task set for you in this week’s assignment!</p>
+<div class="assignment">
+<p><strong>Mapping and comparing our bike theft KDE and train and tube station locations in London</strong><br></p>
+<p>For this week’s assignment, I’d like you to produce a finished KDE map for bike theft in London that also shows the <strong>location of train stations</strong> relative to our KDE clusters. You can adjust the bandwidth and kernel settings if you’d like - but I’d like you to create a final map that contains this additional data layer as well our expected mapping conventions, plus a title and a renamed legend title.</p>
+<p>Also think about adding your <code>tm_credits()</code> box as well - we’ve got a whole basemap that uses OpenStreetMap aswell as our stations so it’s a priority that we attribute this dataset accordingly!</p>
+<p>To export your map as a PNG, simply use the same code from previous weeks.</p>
+<p>I’d like you to then upload your PNG within the <strong>bike-thefts</strong> folder for your relevant seminar - you’ll see I’ve created a specific KDE folder for this PNG.</p>
+<p>You don’t need to write anything alongside your PNG - but just have a look at our datasets and decide whether or not our hypothesis is confirmed, and how confident you are in this assessment.</p>
+</div>
+<p>Kernel Density Estimation is one of the most well-used PPA techniques, and as you’ll see from your final map, a good way of visualising the general distribution of points against another spatial feature or phenomena.</p>
+<p>Understanding how to use KDE and make great KDE maps is therefore the biggest priority coming out of this week’s workshop.</p>
+</div>
+<div id="alternative-kde-mapping-using-the-adehabitathr-library" class="section level5 unnumbered">
+<h5>Alternative KDE mapping using the <code>adehabitatHR</code> library</h5>
+<p>One alternative method to creating a KDE within R - outside of the <code>spatstat</code> library - that Q-Steppers on this course will have come across is the use of the <code>adehabitatHR</code> library. This library is actually a package that is aimed at estimating the “Home Range Habitat” of animals, primarly for ecologists and those that study wildlife. It utilises theory from PPA to create Kernel Density Estimations of animal habitats, primarily using points generated from GPS or VHF collars.</p>
+<p>As a result, for us Geographers and spatially-enabled thinkers, it has relatively limited utility for more general PPA, i.e. it does not contain all the other PPA techniques we’ve come across and will come across today. But, what it does have is a <strong>really</strong> useful function that enables us to create “thresholds” of our KDE in terms of “50% of bike theft occurs within this area”.</p>
+<p>For example, using the <code>adehabitatHR</code> library, we can create a map that looks like this:</p>
+<pre><code>## Warning in kernelUD(bike_theft_2019_sp): xy should contain only one column (the id of the animals)
+## id ignored</code></pre>
+<p><img src="GEOG0030_files/figure-html/08-use-habitat-library-1.png" width="672" /></p>
+<p>That details where 25%, 50% and 75% of all bike theft within London in 2019 occurred (according to the KDE).</p>
+<p>For those of you not on the Q-Step course (or those of you who are but have forgotten where to access a tutorial on this), Prof James Cheshire has a very simple and straightforward practical <a href="https://jamescheshire.github.io/learningR/representing-densities.html#point-densities">here</a> that takes you through the steps to creating the above map.</p>
+<p>To get the code to work, you’ll need to:</p>
+<ul>
+<li>Install and load the <code>sp</code> and <code>adehabitatHR</code> libraries for your code to work (you do not need the other libraries used within the pracitcal).</li>
+<li>Coerce your <code>bike_theft_2019</code> <code>sf</code> spatial dataframe to an <code>sp</code> object type (the <code>adehabitatHR</code> library does not accept <code>sf</code> objects at the moment), using the following code: <code>bike_theft_2019_sp &lt;- as_Spatial(bike_theft_2019)</code> before using the <code>kernelUD()</code> function shown in the practical.</li>
+</ul>
+<p>And now you have two ways of visualising point densities using Kernel Density Estimation. You could, if you wanted (this really is optional!), <strong>create a second KDE map using this approach but mapping the location of train and tube stations with our thresholds</strong> instead of the bike theft data as above. If you do create this map, feel free to upload it to the folder with your assignment map.</p>
+<p>If you haven’t already, go take and break before continuing on with this workshop!</p>
+</div>
+</div>
+<div id="distance-based-methods" class="section level4 unnumbered">
+<h4>Distance-Based Methods</h4>
+<p>We’ve spent a good amount of time looking at using density-based methods to a) quantify whether our point data is randomly distributed or not and b) visualise and identify high and low areas of density, showing if our data is clustered and where. This is because, as you’ll see, the KDE is the most effective way of visualising clusters within our point data.</p>
+<p>Overall, within PPA, (kernel) density estimation is certainly a prominent technique, but as we outlined in our lecture, we also have <strong>distance-based</strong> methods that allow us to quantify the 2nd order properties of our data, i.e. the influence the location of these points have on one another.</p>
+<p>Distance-based measures analyze the spatial distribution of points using distances between point pairs, with the majority using Euclidean distance, to determine quantitatively whether our data is, again, randomly distributed or shows sign of clustering or dispersion.</p>
+<p>These methods are a more rigorous alternative to using the Quadrat Analysis approach, and enables us to assess clustering within our point data at both a global and local scale.</p>
+<div id="global-clustering-average-nearest-neighbour" class="section level5 unnumbered">
+<h5>Global Clustering: Average Nearest Neighbour</h5>
+<p>Average Nearest Neighbour (ANN) is the average distance between all points within a dataset and their invidividual nearest point (known as Nearest-Neighbour Distance (NND)).</p>
+<p>ANN is used as a global indicator to measure the overall pattern of a point set (Clark &amp; Evans, 1954). The ANN of a given point collection can be compared with the expected ANN from points following complete spatial randomness (CSR) to test whether our point data is clustered or dispersed (<a href="https://gistbok.ucgis.org/bok-topics/point-pattern-analysis">Yuan et al, 2020)</a>.</p>
+<img src="images/w8/ann_ppa.png" width="650pt" style="display: block; margin: auto;" />
+<center>
+<br><em>Relations between different point patterns and mean nearest neighbor distance (NND).. Source: Yuan et al, 2020.</em>
+</center>
+<p><br></p>
+<p>The approach is similar to that of the Quadrat Analysis simulation we saw above, but by using distance rather than density grouped to arbitrary quadrats, ANN is likely to be a more robust quantification of our point distribution.</p>
+<p>We can calculate the ANN for our dataset by using the <code>nndist()</code> function from the <code>spatstat</code> library.</p>
+<ol style="list-style-type: decimal">
+<li>Calculate the average nearest neighbour for our bike theft data:</li>
+</ol>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1"><span class="co"># Calculate the average distance to nearest neighbour We calculate the nndist</span></a>
+<a class="sourceLine" id="cb310-2" title="2"><span class="co"># (NND) for each point, then take the mean for ANN</span></a>
+<a class="sourceLine" id="cb310-3" title="3"><span class="kw">mean</span>(<span class="kw">nndist</span>(bike_theft_ppp_jitter, <span class="dt">k =</span> <span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## [1] 61.39365</code></pre>
+<p>We can see that the average nearest neighbour for all points is 61.3 metres (1dp).</p>
+<p>To understand whether our dataset is clustered or dispersed, we now need to run a Monte Carlo simulation of running the ANN test for multiple (think hundreds) of Poisson distributions of our 18,690 bike thefts within our London ward in order to generate a graph as above. Then, similar to our Global Moran’s I calculation in Week 6, we would compare our mean to that of all of the means generated to determine whether our dataset is clustered or dispersed.</p>
+<p>The code and computing requirements to complete this analysis is quite complex, therefore, we look instead to different approach, which is to plot the ANN values for different order neighbours (i.e. first closest point, second closest point etc), to get an insight into the spatial ordering of all our points relative to one another.</p>
+<p>For point patterns that are highly clustered, we would expect that the average distances between points to be very short. However, this is based on the important assumption that the point pattern is stationary throughout the study area. Further to this, the size and shape of the study area also have a very strong effect on this metric.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Calculate the average nearest neighbour to the <span class="math inline">\(k\)</span> nearest neighbours for our bike theft data:</li>
+</ol>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="co"># We can calculate the ANN for up to 100 neighbours using the apply function and</span></a>
+<a class="sourceLine" id="cb312-2" title="2"><span class="co"># providing k with a range as follows:</span></a>
+<a class="sourceLine" id="cb312-3" title="3">bike_theft_ann &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">nndist</span>(bike_theft_ppp_jitter, <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>), <span class="dv">2</span>, <span class="dt">FUN =</span> mean)</a>
+<a class="sourceLine" id="cb312-4" title="4"></a>
+<a class="sourceLine" id="cb312-5" title="5"><span class="co"># plot the results of k ANN</span></a>
+<a class="sourceLine" id="cb312-6" title="6"><span class="kw">plot</span>(bike_theft_ann <span class="op">~</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-average-nearest-neighbours-1.png" width="672" /></p>
+<p>In our case, the plot does not reveal anything interesting in particular except that higher order points seem to be slightly closer than lower order points.</p>
+<p>Overall, the ANN is a good approach to conduct statistical tests on large datasets (if we were to run the Monte Carlo simulation explore above), but visually it does not tell us a huge amount about our dataset!</p>
+</div>
+<div id="local-clustering-ripleys-k-function" class="section level5 unnumbered">
+<h5>Local Clustering: Ripley’s K function</h5>
+<p>One way of getting around the limitations of both the ANN and Quadrat Analysis is to use <strong>Ripley’s K function</strong>.</p>
+<p>Ripley’s K function looks at the distance between a point and ‘all distances’ to other points and automatically compare this to a Poisson-distribution point pattern (without the need to add in Monte Carlo simulation code as above).</p>
+<p>Ripley’s K function essentially summarises the distance between points for all distances using radial distance bands. The calculation is relatively straightforward:</p>
+<ol style="list-style-type: decimal">
+<li>For point <strong>event A</strong>, count the number of points inside a buffer (radius) of a certain size. Then count the number of points inside a slightly larger buffer (radius).</li>
+<li>Repeat this for every point event in the dataset.</li>
+<li>Compute the average number of points in each buffer (radius) and divide this to the overall point density.</li>
+<li>Repeat this using points drawn from a Poisson random model for the same set of buffers.</li>
+<li>Compare the observed distribution with the distribution with the Poisson distribution.</li>
+</ol>
+<p>We can conduct a Ripley’s K test on our data very simply with the spatstat package using the <code>Kest()</code> function.</p>
+<div class="codetime">
+<p><strong>Overdoing it with Ripley’s K function</strong><br>
+Be careful with running Ripley’s K on large datasets as the function is essentially a series of nested loops, meaning that calculation time will increase exponentially with an increasing number of points.</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Run a Ripley’s K function on our bike theft data using the <code>Kest()</code> function:</li>
+</ol>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1"><span class="co"># calculate Ripley&#39;s K for our bicycle theft locations, maximum radius of 1</span></a>
+<a class="sourceLine" id="cb313-2" title="2"><span class="co"># kilometre</span></a>
+<a class="sourceLine" id="cb313-3" title="3"><span class="kw">plot</span>(<span class="kw">Kest</span>(bike_theft_ppp_jitter, <span class="dt">correction =</span> <span class="st">&quot;border&quot;</span>, <span class="dt">rmax =</span> <span class="dv">5000</span>))</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-ripley-and-his-k-1.png" width="672" /></p>
+<p>The <em>Kpois(r)</em> line shows the theoretical value of K for each distance radius (r) under a Poisson assumption of Complete Spatial Randomness.</p>
+<p>When our observed/calculated K values are greater than the expected K, this indicates clustering of points at a given distance band.</p>
+<p>In our dataset, we can see our observed distribution exceeds the Poisson distribution across our distance bands - therefore our data is more clustered than what would be expected in a random distribution across our various local scales.</p>
+<p>There are several limitations to Ripley’s K - in the same fashion as the Average Nearest Neighbour Analysis- it assumes a stationary underlying point process.</p>
+<p>From our previous analysis and visualisation of our bike theft data, we know that this is unlikely to be the case, with the prevalence of bike theft influenced by a multitude of factors that they themselves vary over space.</p>
+</div>
+</div>
+<div id="using-point-pattern-analysis-for-research" class="section level4 unnumbered">
+<h4>Using Point Pattern Analysis for Research</h4>
+<p>Point Pattern Analysis comes in many shapes and forms. You now have been introduced to some of the most well-known techniques such as Kernel Density Estimation and Ripley’s K to analyse point patterns and understand our key question: is our data clustered, randomly distributed or dispersed?</p>
+<p>We can use a combination of the techniques deployed above to provide a statistical answer to this question, whilst also visualsing the location of these clusters using Kernel Density Estimation.
+Keep in mind that there is not really ‘one method’ to use within PPA, which methods are suitable for your research problem depend on the questions you want answered as much as they depend on the underlying point distribution.</p>
+<p>In our case, the use of KDE - and the resulting map you’ll have produced for your assignment - is the closest we can get in terms of using PPA to answer our main research hypothesis: <em>that bike theft primarily occurs near tube and train stations.</em></p>
+<p>If we reflect on our KDE map versus our geometric operations / spatial query approach of last week, which do you think has been most successful in helping us answer our research question?</p>
+<p>Do you think it would be worthwhile using a mixture of approaches to investigate our research question?</p>
+<p>As you’ll find, if you move forward with the analysis of point dattern in your coursework or dissertation research, it can be quite difficult to obtain an “absolute” answer to our question - and instead we can only do what we can in terms of quantifying and visualising our data and their relationships to try to provide a “best answer” to our problem.</p>
+<p>There are also plenty of other PPA techniques that we have not covered in our workshop this week - but I highly recommend you look at “An Introduction to R for Spatial Analysis &amp; Mapping” by Brundson and Comber (2015) if you’d like to find alternatives.</p>
+<hr />
+</div>
+</div>
+<div id="extension-point-pattern-analysis-in-r-with-dbscan" class="section level3 unnumbered">
+<h3>Extension: Point Pattern Analysis in R with <code>dbscan</code></h3>
+<p>The use of our techniques above are useful exploratory techniques for telling us if we have spatial clusters present in our point data, but they are not able to tell us precisely <em>where</em> in our area of interest the clusters are occurring - even with KDE, there are obvious limitations to the spatial resolution of our clusters.</p>
+<p>One popular technique for discovering precise clusters in space (be this physical space or variable space) is an algorithm known as DB-SCAN, a density based algorithm. For the complete overview of the DBSCAN algorithm, you can read the original paper by <a href="https://www.aaai.org/Papers/KDD/1996/KDD96-037.pdf">Ester et al. (1996)</a> or consult the <a href="https://en.wikipedia.org/wiki/DBSCAN">wikipedia</a> page.</p>
+<p>Whilst DBSCAN is a relatively old algorithm, in recent years, there has been a substantial resurgence in its use within data science and specifically, within spatial analysis. You can read an excellent “Call to Arms” paper that backs the DBSCAN algorithm <a href="https://dl.acm.org/doi/10.1145/3068335">here</a>.</p>
+<p>Within spatial data science, DB-Scan is being used within a lot of urban analysis, including delineating urban areas through the use of point data such as <a href="https://www-sciencedirect-com.libproxy.ucl.ac.uk/science/article/pii/S0094119019300944?via%3Dihub#ack0001">this paper</a> by Arribas-Bel et al in 2019 at the University of Liverpool.</p>
+<p>For our extension this week, we’ll look at how we can use DB-Scan to detect clusters within our bike theft dataset - and then how we can use the clusters to further answer our original research question/hypothesis: .</p>
+<div id="what-is-dbscan" class="section level4 unnumbered">
+<h4>What is DBSCAN?</h4>
+<p>DBSCAN is an algorithm that searches our dataset to create clusters of points, using two inputs:</p>
+<ul>
+<li>The minimum number of points, <code>MinPts</code>, that should be considered as a cluster</li>
+<li>The distance, or <code>epsilon</code>, within with the algorithm should search.</li>
+</ul>
+<p>Clusters are identified from a set of core points, where there is both a minimum number of points within the distance search, alongside border points, where a point is directly reachable from a core point, but does not contain the set minimum number of points within its radius. Any points that are not reachable from any other point are outliers or noise.</p>
+<p>Both parameters need to be finely tuned, typically requiring manual experimentation in both cases before an appropriate value can be selected.</p>
+The following short video on YouTube explains the algorithm really effectively:
+<center>
+<div class="vembedr" align="left">
+<div>
+<iframe src="https://www.youtube.com/embed/_A9Tq6mGtLI" width="533" height="300" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+<a href="https://youtu.be/_A9Tq6mGtLI">Original Video</a>
+</center>
+<p>In summary, across a set of points, DBSCAN will group together points that are close to each other based on a distance measurement and a minimum number of points. It also marks as outliers the points that are in low-density regions.</p>
+<p>The algorithm can be used to find associations and structures in data that are hard to find through visual observation alone, but that can be relevant and useful to find patterns and predict trends.</p>
+<p>However, DBSCAN will only work well if you are able to successfully define the distance and minimum points parameters and your clusters do not vary considerably in density.</p>
+<p>We have two libraries we can use to complete a DBSCAN analysis, the <code>dbscan</code> library and <code>fpc</code>. In our case today, we’ll use the newer <a href="https://cran.r-project.org/web/packages/dbscan/dbscan.pdf"><code>dbscan</code></a> package and its <code>dbscan</code> function. According to the creators of this package, <em>“the implementation is significantly faster and can work with larger data sets then dbscan in fpc.”</em>. It is however worth knowing that <code>fpc</code> was one of the first libraries to include DBSCAN analysis within R, so you may see others using it.</p>
+<p>Make sure you have installed and loaded the <code>dbscan</code> library before completing this analysis.</p>
+</div>
+<div id="conducting-a-dbscan-analysis" class="section level4 unnumbered">
+<h4>Conducting a DBSCAN analysis</h4>
+<p>To conduct a DBSCAN analysis using the <code>dbscan</code> library, we use the <code>dbscan()</code> function.</p>
+<p>It’s an incredibly simple function as it only takes <strong>3</strong> parameters: our point dataset, the epsilon and the minimum points.</p>
+<p>For our analysis, we’ll set our <code>epsilon</code> to the 200m and then set our minimum cluster to 20.</p>
+<p>The function however will only take a data matrix or dataframe of points - not a spatial dataframe, as we have with our original <code>bike_theft_2019</code> spatial dataframe variable.</p>
+<p>Luckily, previously in our earlier analysis, we already created a matrix - <code>bike_theft_xy</code>- when we needed to supply coordinates to the <code>ppp()</code> function in <code>spatstat</code>.</p>
+<p>We can therefore easliy proceed with our DBSCAN analysis.</p>
+<ol style="list-style-type: decimal">
+<li>Run a DBSCAN analysis on our bike theft data:</li>
+</ol>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1"><span class="co"># Run dbscan&#39;s DB-Scan function on our bike theft matrix, with eps and minPts set</span></a>
+<a class="sourceLine" id="cb314-2" title="2"><span class="co"># as follows We add dbscan:: prior to our dbscan function to ensure R uses the</span></a>
+<a class="sourceLine" id="cb314-3" title="3"><span class="co"># dbscan function from the dbscan library</span></a>
+<a class="sourceLine" id="cb314-4" title="4">bktheft_dbscan &lt;-<span class="st"> </span>dbscan<span class="op">::</span><span class="kw">dbscan</span>(bike_theft_xy, <span class="dt">eps =</span> <span class="dv">200</span>, <span class="dt">minPts =</span> <span class="dv">20</span>)</a></code></pre></div>
+<p>If you investigate the result from the <code>dbscan</code> function, you’ll see that it is a “list” of three objects: a vector detailing the cluster for each of our bike theft observations / events, and two double objects that simply contain the <code>eps</code> and <code>minPts</code> parameter values used.</p>
+<p>We can go ahead and quickly plot our DBSCAN result from this list using the <strong>R base</strong> plotting as follows.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Plot our DBSCAN analysis:</li>
+</ol>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1"><span class="co"># Plot our bike theft points, styling them by the associated cluster in the</span></a>
+<a class="sourceLine" id="cb315-2" title="2"><span class="co"># bktheft_dbscan outpout</span></a>
+<a class="sourceLine" id="cb315-3" title="3"><span class="kw">plot</span>(bike_theft_xy, <span class="dt">col =</span> bktheft_dbscan<span class="op">$</span>cluster)</a>
+<a class="sourceLine" id="cb315-4" title="4"><span class="co"># Add our london_ward_shp file</span></a>
+<a class="sourceLine" id="cb315-5" title="5"><span class="kw">plot</span>(london_ward_shp<span class="op">$</span>geometry, <span class="dt">add =</span> T)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/08-db-scan-plot-dbscan-1.png" width="672" /></p>
+<p>These initial results are super ineresting. We can see some very defined clusters around the outskirts of central London - and of course, a few significantly large clusters within central London.</p>
+<p>Here we run into our main issue with DBSCAN, as outlined above, that it will not work too well if our clusters vary considerably in density.</p>
+<p>It’s evident just from this initial run, that the clustering we see in outer vs. central London has different density properties: to account for the higher occurence of bike theft and thus higher density, we theoretically need to have a more sensitive <em>epsilon</em> measure to enable more refined mapping of the clusters in this area. However, this will then create more separation in our otherwise well-defined outer London clusters.</p>
+<p>For example, below is a plot of a DBSCAN analysis run at a 100m:</p>
+<p><img src="GEOG0030_files/figure-html/08-db-scan-small-1.png" width="672" /></p>
+<p>Therefore, to obtain a more precise analysis for central London, it would be worth seperating this bike theft data out and re-running DBSCAN at a more local scale, and with finer resolution <code>eps</code> and <code>minPts</code> parameter values.</p>
+<p>For now, we’ll continue with our 200m DBSCAN output.</p>
+</div>
+<div id="working-with-the-dbscan-output" class="section level4 unnumbered">
+<h4>Working with the DBSCAN output</h4>
+<p>As stated above, the DBSCAN output contains three objects, including a vector detailing the cluster for each of our bike theft observations / events. At the moment, we’re visualising our clusters by mapping our points from the <code>bike_theft_2019</code> spatial dataframe, but colouring them by their related cluster number.</p>
+<p>To be able to work with our DBSCAN output effectively - and for example, plot the clusters as individual polygons - we first need to add our cluster groups back to into our original point dataset (the <code>bike_theft_2019</code> spatial dataframe).</p>
+<p>To add the cluster groups to our point data, we can simply use the <code>mutate</code> function from the <code>dplyr</code> library - as you should know by now, computers are very organised and not random, therefore we can trust that the computer will use the same order to read in the points and therefore join the correct cluster to the correct point.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Add the associated DBSCAN cluster number to each of the <code>bike_theft_2019</code> observations:</li>
+</ol>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="co"># Add the cluster number column to our monduli points data frame, store as new</span></a>
+<a class="sourceLine" id="cb316-2" title="2"><span class="co"># variable</span></a>
+<a class="sourceLine" id="cb316-3" title="3">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dbcluster =</span> bktheft_dbscan<span class="op">$</span>cluster)</a></code></pre></div>
+<p>Now we have each of our bike theft points in London associated with a specific cluster, we can generate a polygon that represents these clusters in space, as we can sort of see in our above plot.</p>
+<p>To do so, we will utilise a geometric operation from last week we did not use: the <code>st_convex_hull()</code> function.</p>
+<p>If you look at your <code>sf</code> cheatsheet, you’ll see that the <code>st_convex_hull()</code> function “creates geometry that represents the minimum convex geometry of x” (<code>sf</code> cheatsheet). I.e. it can be used to create a polygon that represents the minimum coverage of our individual clusters - as we’ll see below.</p>
+<p>As a result, we can use this function to create a polygon that represents the geometry of all points within each cluster - if we provide the function with each cluster and its associated points - which can then ultimately create a final spatial dataframe that contains polygons for all clusters.</p>
+<p>To enable this, we’ll use something called a <code>for</code> loop that will make our processing way more efficient - although it might seem quite complex at the start!</p>
+<p>A <code>for</code> loop simply repeats the code contained within it - for a specific value, usually contained within a index.</p>
+<p>Don’t worry if you do not understand this or our explanations below - we have an optional tutorial for you to look at over Easter which goes into much finer detail in explanation of how a <code>for</code> loop works if this becomes of interest to you. <code>For</code> loops enable more efficient programming in R (and other programming languages) - but luckily in R, we have functions such as <code>lapply()</code> that allow us to do some of the basic tasks we use <code>for</code> loops in other programming languages, easily and without having to learn how to use a <code>for</code> loop.</p>
+<p>Below, we use a <code>for</code> loop to:</p>
+<ul>
+<li>Filter our <code>bike_theft_2019</code> spatial dataframe by each cluster into a subset</li>
+<li>For each subset, we union these points into a single set of geometry observations</li>
+<li>We then calculate the convex hull of that single set of geometry observations</li>
+<li>This creates a polygon which we extract and store its geometry into a list</li>
+<li>We then have final list containing all the geometries of our cluster polygons</li>
+<li>We convert this list of geometries into a spatial dataframe, referenced to British National Grid</li>
+</ul>
+<p>To make our <code>for</code> loop work, we utilise both <strong>indexing</strong> and <strong>selection</strong> techniques that we came across partly in Week 5 to make sure our <code>for</code> loop iterates over <strong>each</strong> cluster in our dataset and then stores this within our geometry list.</p>
+<p>Let’s take a look:</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Run our <code>for</code> loop to generate a polygon dataset that represents our bike theft clusters:</li>
+</ol>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1"><span class="co"># First we create an empty list to store the resulting convex hull geometries Set</span></a>
+<a class="sourceLine" id="cb317-2" title="2"><span class="co"># the length of this list to the total number of clusters found</span></a>
+<a class="sourceLine" id="cb317-3" title="3">geometry_list &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="dt">length =</span> <span class="kw">max</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>dbcluster))</a>
+<a class="sourceLine" id="cb317-4" title="4"></a>
+<a class="sourceLine" id="cb317-5" title="5"><span class="co"># Create a counter, starting it at 0, our first cluster index</span></a>
+<a class="sourceLine" id="cb317-6" title="6">counter &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb317-7" title="7"></a>
+<a class="sourceLine" id="cb317-8" title="8"><span class="co"># Begin for loop, iterating across each clusters, cluster_index starts at 0, goes</span></a>
+<a class="sourceLine" id="cb317-9" title="9"><span class="co"># to 101 (our total number of clusters)</span></a>
+<a class="sourceLine" id="cb317-10" title="10"></a>
+<a class="sourceLine" id="cb317-11" title="11"><span class="cf">for</span> (cluster_index <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>dbcluster))) {</a>
+<a class="sourceLine" id="cb317-12" title="12">    </a>
+<a class="sourceLine" id="cb317-13" title="13">    <span class="co"># filter our entire bike_theft_2019 sdf by the cluster index returns only points</span></a>
+<a class="sourceLine" id="cb317-14" title="14">    <span class="co"># for *that* cluster</span></a>
+<a class="sourceLine" id="cb317-15" title="15">    biketheft_cluster_subset &lt;-<span class="st"> </span><span class="kw">filter</span>(bike_theft_<span class="dv">2019</span>, dbcluster <span class="op">==</span><span class="st"> </span>cluster_index)</a>
+<a class="sourceLine" id="cb317-16" title="16">    </a>
+<a class="sourceLine" id="cb317-17" title="17">    <span class="co"># for these points, first union them, then calculate the convex hull</span></a>
+<a class="sourceLine" id="cb317-18" title="18">    cluster_polygon &lt;-<span class="st"> </span>biketheft_cluster_subset <span class="op">%&gt;%</span><span class="st"> </span>st_union <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_convex_hull</span>()</a>
+<a class="sourceLine" id="cb317-19" title="19">    </a>
+<a class="sourceLine" id="cb317-20" title="20">    <span class="co"># at this point, you could export this single cluster polygon into a single</span></a>
+<a class="sourceLine" id="cb317-21" title="21">    <span class="co"># dataset if you wanted - but we&#39;d prefer not to have 101 shapefiles to then</span></a>
+<a class="sourceLine" id="cb317-22" title="22">    <span class="co"># union!  instead, we&#39;ll add the geometry of the polygon into our list.  store</span></a>
+<a class="sourceLine" id="cb317-23" title="23">    <span class="co"># these geometry of this polygon into its position within the list</span></a>
+<a class="sourceLine" id="cb317-24" title="24">    geometry_list[counter] &lt;-<span class="st"> </span>(cluster_polygon)</a>
+<a class="sourceLine" id="cb317-25" title="25">    </a>
+<a class="sourceLine" id="cb317-26" title="26">    <span class="co"># add one to the counter, to move to the next cluster and the next position</span></a>
+<a class="sourceLine" id="cb317-27" title="27">    <span class="co"># within the list</span></a>
+<a class="sourceLine" id="cb317-28" title="28">    counter &lt;-<span class="st"> </span>counter <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb317-29" title="29">}</a>
+<a class="sourceLine" id="cb317-30" title="30"></a>
+<a class="sourceLine" id="cb317-31" title="31"><span class="co"># Set our geometry list to a multi-polygon</span></a>
+<a class="sourceLine" id="cb317-32" title="32">bike_theft_clusters &lt;-<span class="st"> </span><span class="kw">st_sfc</span>(geometry_list, <span class="dt">crs =</span> <span class="dv">27700</span>)</a></code></pre></div>
+<p>And that is our <code>for</code> loop complete - if you didn’t quite understand it, do not worry as this is much more advanced programming than you’re expected to know in Geocomputation!</p>
+<p>There will be an optional tutorial released at the end of term that will go into more detail about the <code>for</code> loop construction - and if you take <em>Mining Social and Geographic Datasets</em> next year, you’re very likely to come across building <code>for</code> loops there!</p>
+</div>
+<div id="mapping-dbscan-clusters" class="section level4 unnumbered">
+<h4>Mapping DBSCAN clusters</h4>
+<p>We now have a polygon spatial dataframe, <code>bike_theft_clusters</code>, that show the general location and distribution of bike theft clusters in London.</p>
+<p>Let’s go ahead and investigate them - we will use <code>tmap</code> to interactively look at their coverage. I’d highly recoomend swapping your basemap from the Esri canvas to OpenStreetMap - and zoom in!:</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Map our bike theft clusters:</li>
+</ol>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="co"># Set tmap to view mode</span></a>
+<a class="sourceLine" id="cb318-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
+<a class="sourceLine" id="cb318-3" title="3"></a>
+<a class="sourceLine" id="cb318-4" title="4"><span class="co"># Map our bike theft clusters and their borders</span></a>
+<a class="sourceLine" id="cb318-5" title="5"><span class="kw">tm_shape</span>(bike_theft_clusters) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>()</a>
+<a class="sourceLine" id="cb318-6" title="6"></a>
+<a class="sourceLine" id="cb318-7" title="7"><span class="co"># Note, our interactive map will not load here to save on webpage processing</span></a>
+<a class="sourceLine" id="cb318-8" title="8"><span class="co"># requirements!</span></a></code></pre></div>
+<p>What do you think of the clusters? What do they tell you about the distribution of bike theft in London?</p>
+<p>Let’s go ahead and add our <code>london_stations_osm</code> dataset to our map - this will help highlight the location of the stations relative to our bike thefts.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Map our bike theft clusters and stations:</li>
+</ol>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" title="1"><span class="co"># Set tmap to view mode</span></a>
+<a class="sourceLine" id="cb319-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
+<a class="sourceLine" id="cb319-3" title="3"></a>
+<a class="sourceLine" id="cb319-4" title="4"><span class="co"># Map our bike theft clusters and their borders</span></a>
+<a class="sourceLine" id="cb319-5" title="5"><span class="kw">tm_shape</span>(bike_theft_clusters) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>()</a>
+<a class="sourceLine" id="cb319-6" title="6"></a>
+<a class="sourceLine" id="cb319-7" title="7"><span class="co"># Note, our interactive map will not load here to save on webpage processing</span></a>
+<a class="sourceLine" id="cb319-8" title="8"><span class="co"># requirements!</span></a></code></pre></div>
+<p>So what does our data show? What can we conclude from our current analysis? What steps could we next complete with our bike theft analysis?</p>
+<p>These are all questions I’d like you to think about in preparation for our seminar in Week 10 - but essentially, as you can see, investigation a pheonomena like theft, in relation to another geographical feature, i.e. stations, can be quite open-ended and we can utilise a range of techniques to try to investigate and “proove” a relationship between our variables of interest. There are many more calculations we could do with our clusters and station data - I’ll be interested to hear if you think of any in our seminar in Week 10.</p>
+<p>Overall, I think the results of our analysis using DBSCAN present some really interesting insights into bike theft relative to train stations - particularly if you know anything about cycling in London, and typical areas of cycling (or rather road cycling) that certainly are present in the south-west area (e.g. Richmond Park etc.).</p>
+<p>Ultimately, there will be a lot of factors that will influence bike theft within the city and its wider metropolitan area - but through both our geometric and point pattern analysis, there are certainly some stations I would not be keen to leave my bike (looking at you Hampton Wick - and of course, the central city area!). These insights can be used to help local planning organisations and communities think about improving bike storage at these various locations - as not having safe and secure areas to lock a bike will certainly put people off from cycling to a train station and other areas where clusters of bike theft is present.</p>
+<p>Here, we’ve shown how we can use DBSCAN to create clusters around point data - and how to then extract these clusters as polygons for use within mapping (and further analysis if you would like).</p>
+<p>There are many applications of this workflow beyond mapping crime clusters - you’re welcome to look through <a href="https://jtvandijk.github.io/GEOG0114/spatial-analysis-for-urban-mapping-applications.html">a tutorial</a> I wrote on using DBSCAN for mapping settlement outlines for my MSc course in Autumn 2020 that provides a similar application of DBSCAN as the Arribas-Bel et al (2020) paper highlighted above - altough you won’t be able to access the videos.</p>
+<hr />
+</div>
+</div>
+<div id="recap---analysing-spatial-patterns-iii-point-pattern-analysis" class="section level3 unnumbered">
+<h3>Recap - Analysing Spatial Patterns III: Point Pattern Analysis</h3>
+<p>This week, we’ve looked at Point Pattern Analysis and how it can be used to analyse spatial patterns within point data.</p>
+<p>Primarily, as geographers and spatially-enabled thinkers, we are keen to understand our point data’s distribution and understand whether are our points clustered, randomly distributed (i.e. display complete spatial randomness), uniform or dispersed.</p>
+<p>We’ve looked at various techniques that enable us to statistically and visually assess our data’s distribution and understand whether our data is randomly distributed or not.</p>
+<p>Primarily, our main focus is using Kernel Density Estimation as a technique for the visual display and analysis of our data and its respective areas of high and low density. However, as shown in our Extension, we can also use DBSCAN to create precise cluster outlines that can be also used for visual analysis - but also can be further used for quantitative analysis, via geometric operations.</p>
+<p>We’ve also taken our bike theft analysis as far as we want to at the moment - you’ll be happy to know we’re moving onto new datasets next week - but ultimately, there is no “one-way” to analyse spatial data. Whether using PPA or geometric analysis, such as a Point-in-Polygon count, we’ll face limitations in our methods, introducing a certain level of uncertainty in our findings at each stage.</p>
+<p>However, as you become more familiar with spatial analysis (and read more papers on how others investigate specific pheonomena!), you’ll be able to decide which approach suits the questions you ultimately want to answer.</p>
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Explain the different approaches to detecting clusters in Point-Pattern Analysis</li>
+<li>Run a Kernel Density Estimation and explain the outputs of a KDE confidently</li>
+<li>Run a Ripley’s K function and compare to a Poisson distribution</li>
+<li>Add a basemap within the <code>tmap</code> environment</li>
+<li>Map a raster dataset within the <code>tmap</code> environment</li>
+<li>Extension: run a DBSCAN analysis and interact with its outputs</li>
+<li>Extension: Identify a <code>for</code> loop within a chunk of code</li>
+</ul>
+</div>
+<hr />
+<div id="acknowledgements-11" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>Part of this page is adapted from <a href="https://jtvandijk.github.io/GEOG0114/point-pattern-analysis.html">GEOG0114: Principles of Spatial Analysis: Point Pattern Analysis</a> by Dr Joanna Wilkin (this Workbook’s author) and Dr Justin Van Dijk at UCL, <a href="https://mgimond.github.io/Spatial/chp11-0.html">Point Pattern Analysis</a> by Dr Manuel Gimond at Colby College, <a href="https://andrewmaclachlan.github.io/CASA0005repo/analysing-spatial-patterns.html">CASA005: Point Pattern Analysis</a> by Dr Andrew MacLachlan at CASA, UCL and <a href="https://maczokni.github.io/crimemapping_textbook_bookdown/studying-spatial-point-patterns.html#spatial-point-patterns-along-networks">Crime Mapping in R: Studying Point Patterns</a> by Juanjo Medina and Reka Solymosi. Significant updates to code and explanations have been made in this practical.</p>
+<p>The datasets used in this workshop (and resulting maps):</p>
+<ul>
+<li>© OpenStreetMap contributors</li>
+<li>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence)</li>
+<li>Contains Ordnance Survey data © Crown copyright and database right [2015]</li>
+<li>Crime data obtained from data.police.uk (Open Government Licence).</li>
+</ul>
 
+</div>
+</div>
 </div>
             </section>
 
