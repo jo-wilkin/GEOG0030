@@ -202,7 +202,7 @@ All analysis conducted on a raster dataset therefore is primarily conducted on t
 
 Probably one of the most common or well-known types of raster data are those that we can derive from remote sensing, including satellite and RADAR/LIDAR imagery that we see used in many environmental modelling applications, such as land use and pollution monitoring. 
 
-However, over the last few years, raster data has increasingly being used within spatial data science applications. For example, [Worldpop], [Facebook], and [] all have created raster-based estimates of population density (and other variables), that you can access openly via their respective links.
+However, over the last few years, raster data has increasingly being used within spatial data science applications. For example, [Worldpop](www.worldpop.org) and [Facebook](https://dataforgood.fb.com/tools/population-density-maps/) have created raster-based estimates of population density (and other variables), that you can access openly via their respective links.
 
 Beyond their benefits in computational requirements and even, for some geographical phenomena, visualisation capacity and capabilities, a key advantage of raster data is that is relatively straight-forward to standardise data across space (i.e. different countries) and across variables (i.e. different datasets) to enable greater compatibility and easier comparison of datasets than its vector counterparts. We have, for example, seen that we can run into issues quickly even with data on London, as our ward boundaries have changed so frequently even over just the last ten years.
 
@@ -514,7 +514,7 @@ We might also want to smooth the data across space so that we cannot interpret t
 
 To predict the values of the cells of our resulting raster, we need to determine how to interpolate between our points, i.e. develop a set of procedures that enable us to calculate predicted values of the variable of interest with confidence - and, of course, repetitively.
 
-Within spatial interpolation, two approaches have developed: **deterministic** and **geostatistical**. These two approaches !!!
+Within spatial interpolation, two approaches have developed: **deterministic** and **geostatistical**.
 
 This week's lecture outlines the difference between the two and explains how the two main techniques associated with each, **Inverse Distance Weighted** and **Kriging**, work to create our resulting surfaces.
 
