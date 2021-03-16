@@ -147,8 +147,8 @@ For this week, I've gone ahead and downloaded the data for you, which you can ac
 
 | PopChange Raster                            | File Type         | Link |
 | :------                                     | :------      | :------ |
-| Population surface GB 2001 - Total Population    | `asc`        | [Download]() |
-| Population surface GB 2011 - Total Population    | `asc`        | [Download]() |
+| Population surface GB 2001 - Total Population    | `asc`        | [Download](https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/ER5EaNRmUf5Bmj9O9x1TrpEBQ9uquE-jUubWD99LDMj0Ng?e=9DTKT5) |
+| Population surface GB 2011 - Total Population    | `asc`        | [Download](https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/EVj0bPVIzC9Jrziz03vccX8B4TNqQ4eMwYbwEnjFHDbn8A?e=ZP6s6R) |
 
 Once downloaded, copy over these files into your **data --> raw --> population** folder.
 
