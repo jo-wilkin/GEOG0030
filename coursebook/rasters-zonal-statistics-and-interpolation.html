@@ -241,7 +241,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#extension-point-pattern-analysis-in-r-with-dbscan">Extension: Point Pattern Analysis in R with <code>dbscan</code></a></li>
 <li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#recap---analysing-spatial-patterns-iii-point-pattern-analysis"><i class="fa fa-check"></i>Recap - Analysing Spatial Patterns III: Point Pattern Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a></li>
+<li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a><ul>
+<li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#week-9-in-geocomp"><i class="fa fa-check"></i>Week 9 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#workshop-housekeeping-3"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1"><i class="fa fa-check"></i>Raster Data</a></li>
+<li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#interpolation-theory-and-techniques"><i class="fa fa-check"></i>Interpolation: Theory and Techniques</a></li>
+<li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#interpolation-application-in-r"><i class="fa fa-check"></i>Interpolation: Application in R</a></li>
+<li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#extension-single-value-rasters-v.-multi-band-imagery"><i class="fa fa-check"></i>Extension: Single-Value Rasters v. Multi-Band Imagery</a></li>
+<li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#recap---rasters-zonal-statistics-and-interpolation"><i class="fa fa-check"></i>Recap - Rasters, Zonal Statistics and Interpolation</a></li>
+</ul></li>
 <li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
 <li class="chapter" data-level="10" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html"><i class="fa fa-check"></i><b>10</b> Geodemographic Classification</a></li>
 <li class="chapter" data-level="11" data-path="spatial-regression-models-optional.html"><a href="spatial-regression-models-optional.html"><i class="fa fa-check"></i><b>11</b> Spatial Regression Models (Optional)</a></li>
@@ -288,8 +296,1028 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="rasters-zonal-statistics-and-interpolation" class="section level1">
 <h1><span class="header-section-number">9</span> Rasters, Zonal Statistics and Interpolation</h1>
-<p><strong>Content for this week will be released at 10am on the 16th March 2021.</strong></p>
+<p>Welcome to Week 9 in Geocomputation!</p>
+<p>This week, we’ll be covering two topics: <strong>1) Raster data</strong> and <strong>2) Interpolation</strong>.</p>
+<p>So far, the majority of our module has focused on the use of vector data and table data (that we’ve then joined to vector data). This week, we switch it up by focusing primarily on raster data and its analysis.</p>
+<p>As you saw last week, our analysis of point data using the <strong>Kernel Density Estimation</strong> created a raster dataset that we needed to process for further analysis and visualisation.</p>
+<p>This week’s focus on <strong>Interpolation</strong> will also yield a raster dataset from our analysis of point data - therefore we’ll start this week with a focus on raster data and its applications, including the analysis of several raster datasets together using map algebra.</p>
+<p>We’ll then see how we can use different interpolation methods to generate raster data from point data. These techniques are split into two categories, <em>deterministic</em> and <em>geostatistical</em>, and we will look to make sure we understand the difference between the two.</p>
+<p>Within the Extension, we’ll take a quick look at satellite imagery and how and why we use the <code>tm_rgb()</code> function to map raster datasets that have multiple bands (rather than the <code>tm_raster()</code> function), including the OpenStreetMap basemap from last week.</p>
+<div id="week-9-in-geocomp" class="section level3 unnumbered">
+<h3>Week 9 in Geocomp</h3>
+<em>Welcome video and lecture videos to be updated on Wednesday morning.</em>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<center>
+<a href="">Video on Stream</a>
+</center>
+<p><br></p>
+<p>This week’s content introduces you to raster data, map algebra and interpolation.</p>
+<p><em>I told you much of spatial analysis seems like spatial maths!</em></p>
+<p>We have three areas of work to focus on:</p>
+<ol style="list-style-type: decimal">
+<li>Understanding raster data and map algebra</li>
+<li>Applying different interpolation techniques in R using the <code>raster</code> library</li>
+<li>Extension: Using raster and vector data together through zonal statistics</li>
+</ol>
+<p>This week’s content is split into <strong>4</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li><a href="rasters-zonal-statistics-and-interpolation.html#workshop-housekeeping-3">Workshop Housekeeping</a> (10 minutes)</li>
+<li><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1">Raster Data</a> (40 minutes)</li>
+<li><a href="rasters-zonal-statistics-and-interpolation.html#interpolation-theory-and-techniques">Interpolation: Theory and Techniques</a> (40 minutes)</li>
+<li><a href="rasters-zonal-statistics-and-interpolation.html#interpolation-application-in-r">Interpolation: Application in R</a> (60 minutes)</li>
+<li><a href="rasters-zonal-statistics-and-interpolation.html#extension-single-value-rasters-v.-multi-band-imagery">Extension: Single-Value Rasters v. Multi-Band Imagery</a> (5 minutes)</li>
+</ol>
+<p>This week, we have <strong>2 short lectures</strong> and <strong>2 assignments</strong> within this week’s main workshop content.</p>
+<div class="puzzle">
+<p><strong>Learning Objectives</strong><br><br>
+By the end of this week, you should be able to:</p>
+<ul>
+<li>Use, analyse and visualise raster data in R confidently.</li>
+<li>Utilise map algebra to analyse two or more raster datasets together.</li>
+<li>Utilise vector and raster data together using zonal statistics.</li>
+<li>Explain what interpolation is and the different techniques we can use.</li>
+<li>Implement different geostatistical techniques in R.</li>
+<li>Utilise vector and raster data together using zonal statistics.</li>
+</ul>
+</div>
+<p>After first looking at population change in London using raster data, we will then look at generating pollution maps in London from individual point readings taken from air quality monitoring sites across London.</p>
+<p>To complete this analysis, we’ll be using several new datasets:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Population rasters for England</strong>: Raster datasets containing estimated population counts for England in 2001 and 2011 at a spatial resolution of 1km.</li>
+<li><strong>NO<sub>2</sub> Readings across London</strong>: A (csv) dataset contain readings of NO<sub>2</sub> for individual air quality monitoring sites in London.</li>
+</ol>
+<p>We’ll also use our London Wards (2018) adminstrative boundaries dataset at various points within both practicals.</p>
+<hr />
+</div>
+<div id="workshop-housekeeping-3" class="section level3 unnumbered">
+<h3>Workshop Housekeeping</h3>
+<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.</p>
+<div id="setting-up-your-script-4" class="section level4 unnumbered">
+<h4>Setting up your script</h4>
+<ol style="list-style-type: decimal">
+<li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>wk9-pollution-raster-analysis.r</code>.</p></li>
+<li><p>At the top of your script, add the following metdata (substitute accordingly):</p></li>
+</ol>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" title="1"><span class="co"># Analysing population change and pollution in London Script started March 2021</span></a>
+<a class="sourceLine" id="cb320-2" title="2"><span class="co"># NAME</span></a></code></pre></div>
+</div>
+<div id="dependencies-aka-libraries-3" class="section level4 unnumbered">
+<h4>Dependencies (aka libraries)</h4>
+<p>Now we’ll install the libraries we need for this week.</p>
+<p>In addition to those libraries you should now be familiar with, we will need to install and use:</p>
+<ul>
+<li><code>rgdal</code>, preferably version 1.4-8: for under-the-hood spatial data management</li>
+<li><code>rgeos</code>, preferably version 0.5-2: for more under-the-hood spatial data management</li>
+<li><code>gstat</code>: to complete our various interpolation techniques</li>
+<li><code>opendata</code>: to download our pollution data directly from London Air</li>
+</ul>
+<p>We’ll also be using <code>spatstat</code> as an alternative for <code>gstat</code> for those of you who have issues running this code.</p>
+<p>To download the specific versions of rgdal and rgeos, first install the package <code>devtools</code> (<code>install.packages("devtools")</code>), then use the following code:</p>
+<ul>
+<li><code>install_version("rgdal", version="1.4-8")</code></li>
+<li><code>install_version("rgeos", version="0.5-2")</code></li>
+<li><code>install_version("gstat", version="2.0-6")</code></li>
+</ul>
+<p>This <em>should</em> install the correct version of the packages you’ll need for today. You can double-check this by looking inthe <strong>Packages</strong> window after installation.</p>
+<p><em>If you already have these packages installed (which it is quite likely you will) and they are a newer version than the version listed above, you may need to uninstall these packages using the Package window if you want to run the</em> <code>gstat</code> <em>code. However, do wait until you’re at relevant section in the practical to see if this is necessary.</em></p>
+<p>Remember to use the <code>install.packages("package")</code> command <strong>in your console</strong>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Within your script</strong>, add the following libraries for loading:</li>
+</ol>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb321-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb321-3" title="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb321-4" title="4"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb321-5" title="5"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb321-6" title="6"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb321-7" title="7"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb321-8" title="8"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb321-9" title="9"><span class="kw">library</span>(sp)</a>
+<a class="sourceLine" id="cb321-10" title="10"><span class="kw">library</span>(rgdal)</a>
+<a class="sourceLine" id="cb321-11" title="11"><span class="kw">library</span>(rgeos)</a>
+<a class="sourceLine" id="cb321-12" title="12"><span class="kw">library</span>(gstat)</a>
+<a class="sourceLine" id="cb321-13" title="13"><span class="kw">library</span>(spatstat)</a>
+<a class="sourceLine" id="cb321-14" title="14"><span class="kw">library</span>(openair)</a></code></pre></div>
+<p>Remember to select the lines of code you want to run and press <strong>CMD (Mac)/CTRL(Windows) + Enter/Return</strong> - we won’t remind you to run each line of code in the remainder of the practical sessions.</p>
+</div>
+<div id="datasets-for-this-week-3" class="section level4 unnumbered">
+<h4>Datasets for this week</h4>
+<div id="population-data" class="section level5 unnumbered">
+<h5>1) Population Data</h5>
+<p>For the first part of this week’s practical material we will be using raster datasets from the <a href="https://www.liverpool.ac.uk/geography-and-planning/research/popchange/introduction/">Population Change and Geographic Inequalities in the UK, 1971-2011 (PopChange)</a> project.</p>
+<p>In this <a href="https://esrc.ukri.org/research/our-research/secondary-data-analysis-initiative/">ESRC-funded project</a>, researchers from the University of Liverpool created raster population surfaces from publicly available Census data (1971, 1981, 1991, 2001, 2011). These population surfaces are estimates of counts of people, displayed within a regular grid raster of a spatial resolution of 1km. These surfaces can be used <em>“to explore, for example, changes in the demographic profiles of small areas, area deprivation, or country of birth”</em> (PopChange, 2021).</p>
+<p>To enable this, the researchers have created several categories of rasters, including: Total Population, Population by Age, Population by Country of Birth, Population by Ethnicty etc.</p>
+<p>This week we will use the <strong>Total Population</strong> datasets.</p>
+<p><strong>Downloading Total Population Datasets from PopChange</strong></p>
+<p>To access data directly from the PopChange website requires a simple registration for log-in, you can then navigate through the datasets and choose those you would like to download.</p>
+<p>For this week, I’ve gone ahead and downloaded the data for you, which you can access directly from the links below:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">PopChange Raster</th>
+<th align="left">File Type</th>
+<th align="left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Population surface GB 2001 - Total Population</td>
+<td align="left"><code>asc</code></td>
+<td align="left"><a href="">Download</a></td>
+</tr>
+<tr class="even">
+<td align="left">Population surface GB 2011 - Total Population</td>
+<td align="left"><code>asc</code></td>
+<td align="left"><a href="">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Once downloaded, copy over these files into your <strong>data –&gt; raw –&gt; population</strong> folder.</p>
+<p>Note, I went ahead and found the metadata file for these datasets which confirm that <em>“each ASCII GRID is in BNG coordinate system”</em>, therefore we will not need to worry about checking our data’s CRS this week.</p>
+</div>
+<div id="pollution-data" class="section level5 unnumbered">
+<h5>2) Pollution Data</h5>
+<p>For the second part of this week’s practical material, we will explore several methods of interpolation by looking at air pollution in London by getting data from the <a href="https://www.londonair.org.uk/LondonAir/General/about.aspx">Londonair</a> website.</p>
+<p><strong>Londonair</strong> is the website of the London Air Quality Network (LAQN), and shows air pollution in London and south east England that is provided by the <a href="https://www.imperial.ac.uk/school-public-health/environmental-research-group/">Environmental Research Group</a> of Imperial College London.</p>
+<p>The data are captured by hundreds of sensors at various continuous monitoring sites in London and the south east of England. The best of it all? The data are publicly available for download - and we can use an R package to directly interact with the data without needing to download it!</p>
+<p>The <code>openair</code> <a href="https://davidcarslaw.github.io/openair/">R package</a> enables us to import our data directly using the <code>importMeta()</code> and <code>importKCL()</code> functions. To understand these functions, I’d recommend looking at the <a href="https://cloud.r-project.org/web/packages/openair/openair.pdf">documentation of the openair package</a> so that you get an idea why we use them in our code below!</p>
+<p>However, there is one issue with this package. Because <code>openair</code> contains <strong>C++</strong> code, a compiler is needed (<strong>C++</strong> is a compiled language, which was briefly covered in Week 4 - you don’t really need to know all the details about this at this stage in your programming career/for Geocomputation). For Windows, for example, <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> is needed. Depending on your system and configuration this can sometimes be a hassle and simply not worth the various instructions I’d probably need to write out to help each of you.</p>
+<p>Fortunately, even though packed with functionality, we will only use <code>openair</code> to download all the air pollution data we are interested in: in case you cannot get <code>openair</code> to work on your computer, I’ve provided a direct download of the dataset instead. However, I’ve gone ahead and provided the code in the relevant section if you’d like to try ti use the library to interact with the data - a small warning is that it took over 10 minutest to download the data required for our practical.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Pollution Data</th>
+<th align="left">Type</th>
+<th align="left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Air pollution in London for 2019 (NO<sub>2</sub>)</td>
+<td align="left"><code>csv</code></td>
+<td align="left"><a href="https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/EX0CUaNyTJFErdFzI2RAJ80B-aLusy0Qcu5u1hgJYTPfGQ?e=TcUprT">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Once downloaded, copy over these files into your <strong>data –&gt; raw –&gt; pollution</strong> folder (i.e. create a new <code>pollution</code> folder for your dataset!).</p>
+</div>
+<div id="london-ward-data" class="section level5 unnumbered">
+<h5>3) London Ward Data</h5>
+<p>We’ll also be using our London Ward data (2018), so make sure you haven’t deleted this from your <strong>raw</strong> folder ;) .</p>
+</div>
+</div>
+</div>
+<div id="raster-data-1" class="section level3 unnumbered">
+<h3>Raster Data</h3>
+<p>In the previous weeks, we have predominantly worked with <strong>vector data</strong> and/or <strong>table data</strong> that we then join to vector data for analysis.</p>
+<p>However, depending on the nature of your research problem, you may also encounter <strong>raster data</strong>.</p>
+<p>Each of these GIS models has its own advantages and disadvantages, that were briefly explored in Week 2 of our module.</p>
+<img src="images/w9/09_raster_and_vector.gif" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>A hypothetical raster and a vector model of landuse. Source: Esri, 2019.</em>
+</center>
+<p><br></p>
+<p>If you remember, the main difference between vector and raster models is how they are structured.</p>
+<p>Our vectors are represented by three different types of geometries: points, lines and polygons. We’ve used point data in the form of our stations and bike theft, and polygons in the form of our Ward and Borough boundaries.</p>
+<p>In comparison, our raster datasets are composed of pixels (or grid cells) - a bit like a photograph. This means that a raster dataset represents a geographic phenomemon by dividing the world into a set of rectangular cells that are laid out in a grid. Each cell holds one value that represents the value of that phenomena at the location, e.g. a population density at that grid cell location. In comparison to vector data, we do not have an <em>attribute table</em> containing fields to analyse.</p>
+<p>All analysis conducted on a raster dataset therefore is primarily conducted on the cell values of a raster, rather than on the attribute values of the observations contained within our dataset or the precise geometries of our dataset, as we’ve seen in the last two weeks, with our vector data.</p>
+<p>Probably one of the most common or well-known types of raster data are those that we can derive from remote sensing, including satellite and RADAR/LIDAR imagery that we see used in many environmental modelling applications, such as land use and pollution monitoring.</p>
+<p>However, over the last few years, raster data has increasingly being used within spatial data science applications. For example, [Worldpop], [Facebook], and [] all have created raster-based estimates of population density (and other variables), that you can access openly via their respective links.</p>
+<p>Beyond their benefits in computational requirements and even, for some geographical phenomena, visualisation capacity and capabilities, a key advantage of raster data is that is relatively straight-forward to standardise data across space (i.e. different countries) and across variables (i.e. different datasets) to enable greater compatibility and easier comparison of datasets than its vector counterparts. We have, for example, seen that we can run into issues quickly even with data on London, as our ward boundaries have changed so frequently even over just the last ten years.</p>
+<p>This standardisation can occur as raster data has:</p>
+<ul>
+<li>An <strong>origin</strong> point from which the grid extends and then a precise number of columns and rows within said dataset;</li>
+<li>A specifc <strong>spatial resolution</strong> which refers to the <strong>cell size</strong> of the raster dataset, e.g. are the grid square 100m x 100m, 1000m x 1000m etc?</li>
+</ul>
+<p>From these two values, it is possible to calculate the size of our raster (number of columns X spatial resoution by the number of rows X spatial resolution) as well as * <strong>snap</strong> future rasters (or <em>resample</em> current rasters) to both the <strong>spatial extent</strong> and the <strong>spatial delineation</strong> of one raster dataset (i.e. ensure the cells between the rasters will align with one another).</p>
+<p>This enables us to create rasters that essentially “line up with one another” - and by doing so, we areable to complete specific calculations between our raster datasets known as <strong>Map Algebra</strong>.</p>
+<div id="what-is-map-algebra" class="section level4 unnumbered">
+<h4>What is Map Algebra?</h4>
+<p>Map algebra is exactly what it sounds like - it basically involves doing maths with maps!</p>
+<p>The key difference is that, within spatial analysis, it only applies to raster data, hence it’s name as either <strong>map algebra</strong> or <strong>raster math</strong>.</p>
+<p><strong>Map algebra</strong> is a set-based algebra for manipulating geographic data, coined by <a href="https://en.wikipedia.org/wiki/Dana_Tomlin">Dana Tomlin</a> in the early 1980s.</p>
+<p>Map algebra uses maths-like operations, including addition, subtraction and multiplication to update raster cell values - depending on the output you’re looking to achieve.</p>
+<img src="images/w9/map-algebra.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Conceptual idea of what is map algebra. Source: GISGeography, 2021.</em>
+</center>
+<p><br></p>
+<p>The most common type of map algebra is to apply these operations using <em>a cell-by-cell function</em>. Conceptually, this approach will directly stack rasters on top of one another and complete the mathematical operations that you’ve supplied to the cells that are aligned with each other.</p>
+<p>These operations might include:</p>
+<ul>
+<li><strong>Arithmetic operations</strong> that use basic mathematical functions like addition, subtraction, multiplication and division.</li>
+<li><strong>Statistical operations</strong> that use statistical operations such as minimum, maximum, average and median.</li>
+<li><strong>Relational operations</strong>, which compare cells using functions such as greater than, smaller than or equal to.</li>
+<li><strong>Trigonometric operations</strong>, which use sine, cosine, tangent, arcsine between two or more raster layers.</li>
+<li><strong>Exponential and logarithmic operations</strong> that use exponent and logarithm functions.</li>
+</ul>
+<p>But it is also possible to run (some of) these operations at a different scale.</p>
+<p>Map algebra functions can be applied using for <strong>four</strong> different approaches:</p>
+<ul>
+<li><strong>Local</strong>: The simplest approach - completing functions on a cell-by-cell basis.</li>
+<li><strong>Global</strong>: Used to apply a bulk change to all cells in a raster using a function, e.g. add 1 to all values in a raster, or calculate the euclidean distance each cell is away from a specifc cell.</li>
+<li><strong>Focal</strong>: Apply a function to a set of neighborhood values to calculate the output for a single cell, e.g. using a moving window, such as kernel.</li>
+<li><strong>Zonal</strong>: Apply a function to a group of cells within a specified zone (zone can be provided as a raster or vector format).</li>
+</ul>
+<p>The utilisation of these functions can enable many different types of specialised raster analysis, such as recoding or reclassifying indivdual rasters to reduce complexity in their data values, generating the <em>Normalised Difference Vegetation Index</em> for a satellite imagery dataset, or calculating <em>Least Cost Estimate Surfaces</em> to find the most “efficient” path from one cell in a raster to another.</p>
+<p>Furthermore, using multiple raster datasets, it is possible to combine these data through our “mathemetical overlays”, from the basic mathematical operations mentioned above to more complex modelling, such as prediction using Bayes theorem.</p>
+<p>The results of these overlays have many applications, including identifying suitable locations for placing a new school or modelling risk to viruses, such as the Zika virus (e.g. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6863140/">Cunze et al, 2019</a> and <a href="https://www.sciencedirect.com/science/article/pii/S0001706X16303886?casa_token=vJFKzU7IYf4AAAAA:LkKoIPdcLztD9qmWaDEUq56H3so9PPRXvgN8hy6IidqblVRJ1FWawqlGBKybvHhYYdfRY-DLadVi">Santos &amp; Meneses, 2017</a> for those of you interested in this application), and, of course, as highlighted above, population density.</p>
+<p>Our first lecture for this week provides <strong>raster data</strong> and <strong>map algebra</strong>.</p>
+</div>
+<div id="lecture-raster-data-and-map-algebra" class="section level4 unnumbered">
+<h4>Lecture: Raster Data and Map Algebra</h4>
+<center>
+<div class="vembedr" align="left">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EVAPqEZC_ANBvl2qaNitW0QBuEd01J-y9r_Q_TBjVyjxPg?e=Ubaaqg">Lecture slides</a> | <a href="">Watch on MS stream</a>
+</center>
+<p><br></p>
+<p>We do not have a huge amount of time this week to look into map algebra fully - including the many applications mentioned above. But for those of you interested in environmental modelling or more complex data science specialising in Bayesian modelling, there are many tutorials and videos out there that can explore these in more detail.</p>
+<div class="sugreading">
+<p><strong>GIS Geography’s explanation on Map Algebra</strong></p>
+<p>The majority of the images on our lecture slides today on Map Algebra are taking from <a href="https://gisgeography.com/map-algebra-global-zonal-focal-local/">GIS Geography’s excellent article on “What is Map Algebra?”</a>.</p>
+<p>This website is an excellent resource for simple explanations of basic GIS concepts such as Map Algebra and, as we’ll see later on in the workshop, our different interpolation techniques.</p>
+<p>Alternatively, Manuel Gimond’s <a href="https://mgimond.github.io/Spatial/chp10-0.html">Lecture Notes on Map Algebra</a> are also an excellent resource, as usual.</p>
+</div>
+<p>To get to grips with the concept of Map Algebra, we will finally conduct the population change analysis I mentioned at the start of the module, using the first set of raster data we downloaded first.</p>
+</div>
+<div id="analysing-population-change-in-london-using-map-algebra" class="section level4 unnumbered">
+<h4>Analysing Population Change in London using Map Algebra</h4>
+<p>The first part of our practical this week will look at Map Algebra in action - and some simple raster data process - by looking to analyse population change in London between 2001 and 2011 (i.e. the formative years of your very own childhood!).</p>
+<p>To do so, we’re going to complete a very simple bit of map algebra - we will substract the values of the 2011 raster dataset from the 2011 raster dataset and then map the resulting values, i.e. population change.</p>
+<p>One question to think about - and reflect on as we move forward with this practical - is that we already know that small-area counts of people in a variety of population subgroups are publicly released for each Census and via the Mid-Yeat estimates, so why was it necessary to create these raster population surfaces?</p>
+<p>Before we open up the data in R, try to have a ‘non-spatial sneak peak’ at the <code>.asc</code> file by opening it in a normal text editor, for instance, <em>TextEdit</em> on Mac OS or <em>NotePad</em> on Windows.</p>
+<p>What you will notice is that the <code>asc</code> file, which is an exchange format, is in very fact a flat plain text file!</p>
+<p><img src="images/w9/07_raster_as_text.png" width="550pt" style="display: block; margin: auto;" />
+<br></p>
+<p>Reflecting on what we’ve just read about rasters and their format, what do you think the first few lines of the <code>asc</code> file, when opened with a text editor, mean?</p>
+<div id="loading-and-processing-raster-data" class="section level5 unnumbered">
+<h5>Loading and Processing Raster Data</h5>
+<p>Let’s get started and take a look at our data - first we need to load it into R (using the <code>raster</code> library) and then we can quickly plot it using the <strong>base R</strong> plot function.</p>
+<ol style="list-style-type: decimal">
+<li>Load our two population rasters and plot using R’s base function:</li>
+</ol>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" title="1"><span class="co"># Load our two raster datasets</span></a>
+<a class="sourceLine" id="cb322-2" title="2">pop_<span class="dv">2001</span> &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;data/raw/population/5a_ascii_grid2001_Total_Population_UsRsPopA.asc&quot;</span>)</a>
+<a class="sourceLine" id="cb322-3" title="3">pop_<span class="dv">2011</span> &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&quot;data/raw/population/5a_ascii_grid2011_Total_Population_URPopAll.asc&quot;</span>)</a>
+<a class="sourceLine" id="cb322-4" title="4"></a>
+<a class="sourceLine" id="cb322-5" title="5"><span class="co"># Inspect 2001 - this can be a little slow, especially for large raster</span></a>
+<a class="sourceLine" id="cb322-6" title="6"><span class="kw">plot</span>(pop_<span class="dv">2001</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-load-raster%20data-1.png" width="672" /></p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" title="1"><span class="co"># Plot 2011 - this can be a little slow, especially for large rasters</span></a>
+<a class="sourceLine" id="cb323-2" title="2"><span class="kw">plot</span>(pop_<span class="dv">2011</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-load-raster%20data-2.png" width="672" /></p>
+<p><em>Note, if your maps have struggled to plot, do not worry - we’re going to go ahead and reduce the size of our rasters ASAP! You may however need to terminate and/or restart R if it has got stuck trying to load your raster maps.</em></p>
+<p>You should see that whilst your maps look very similar, the legend certainly shows that the values associated with each cell has grown over the 10 years between 2001 and 2011 - we see our maximum increase from 15,000 people per cell to 20,000 people per cell.</p>
+<p>Now we could complete some more simple analysis on our raster dataset (e.g. extracting basic descriptive statistics for each), but we’ll move forward with our London-focused analysis instead.</p>
+<p>Now we have our raster data loaded, we want to reduce it to show only London using our London Ward shapefile.</p>
+<p>To do so, we will use a combination of two techniques - the <code>crop()</code> function we came across last week - and then using a <code>mask</code> to refine our raster further.</p>
+<p>If you remember using the <code>crop()</code> function last week on our OSM basemap, it will crop any raster by the overall spatial extent or rather <em>bounding box</em> of the <code>y</code> dataset. As a result, the raster returned will be rectangular (or square) in shape - and <em>not cropped</em> to the precise geometry of the <code>y</code> dataset that we see in the use of the <code>st_intersections()</code> function that we use with vector data.</p>
+<p>To reduce a raster to the (almost) precise geometry of the <code>y</code> dataset, we need to instead use a <code>mask</code> approach. The reason why I say “almost” is because a <code>mask</code> will only work when using <strong>two</strong> raster datasets. As a result, we need to turn our <code>y</code> dataset (in our case, the London Ward shapefile) into a raster - a process simply known as “rasterize” or “rasterizing”.</p>
+<p>This process of rasterizing will turn our polygon dataset into a raster and thus simplify/alter the geometry of our dataset to coerce it into a grid-based dataset:</p>
+<img src="images/w9/rtovector.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Rasterising a line vector - forcing geometries into a grid. Source: Lovelace et al, 2020.</em>
+</center>
+<p><br></p>
+<p>As a result, it will be an “almost” precise geometry.</p>
+<p>To ensure our resulting raster of our London Ward shapefile matches the spatial delineation (aligns our cells) and resolution (make cells the same size) of our population rasters, instead of separately rasterising (using the <code>rasterise()</code> function) our London Ward shapefile and then masking (using the <code>mask()</code> function) our rasters by the resutling raster, we can combine this into one, still using the <code>rasterise()</code> function but adding the london population rasters into the function and the <code>mask</code> parameter set to <code>True</code>.</p>
+<p>Let’s go ahead and generate our output and see this code in action.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Load our London Ward shapefile and use this to first crop, then mask our population rasters (through rasterising):</li>
+</ol>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" title="1"><span class="co"># Load london ward data as per usual</span></a>
+<a class="sourceLine" id="cb324-2" title="2">london_ward &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</a>
+<a class="sourceLine" id="cb324-3" title="3"></a>
+<a class="sourceLine" id="cb324-4" title="4"><span class="co"># Crop raster to extent greater london</span></a>
+<a class="sourceLine" id="cb324-5" title="5">lonpop_<span class="dv">2001</span> &lt;-<span class="st"> </span><span class="kw">crop</span>(pop_<span class="dv">2001</span>, london_ward)</a>
+<a class="sourceLine" id="cb324-6" title="6">lonpop_<span class="dv">2011</span> &lt;-<span class="st"> </span><span class="kw">crop</span>(pop_<span class="dv">2011</span>, london_ward)</a>
+<a class="sourceLine" id="cb324-7" title="7"></a>
+<a class="sourceLine" id="cb324-8" title="8"><span class="co"># Rasterise London Ward, and mask each pop raster by this new raster using</span></a>
+<a class="sourceLine" id="cb324-9" title="9"><span class="co"># mask=True parameter</span></a>
+<a class="sourceLine" id="cb324-10" title="10">lonpop_<span class="dv">2001</span> &lt;-<span class="st"> </span><span class="kw">rasterize</span>(london_ward, lonpop_<span class="dv">2001</span>, <span class="dt">mask =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb324-11" title="11">lonpop_<span class="dv">2011</span> &lt;-<span class="st"> </span><span class="kw">rasterize</span>(london_ward, lonpop_<span class="dv">2011</span>, <span class="dt">mask =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb324-12" title="12"></a>
+<a class="sourceLine" id="cb324-13" title="13"><span class="co"># Plot the 2001 London population raster</span></a>
+<a class="sourceLine" id="cb324-14" title="14"><span class="kw">plot</span>(lonpop_<span class="dv">2001</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-confine-that-area-yall-1.png" width="672" /></p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1"><span class="co"># Plot the 2011 London population raster</span></a>
+<a class="sourceLine" id="cb325-2" title="2"><span class="kw">plot</span>(lonpop_<span class="dv">2011</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-confine-that-area-yall-2.png" width="672" /></p>
+<p>You should now have generated two plots for each year - you can quickly flick between the two and see there is evidence of population change between our two datasets.</p>
+<p>We could go ahead and make a few nicer <code>tmap</code>s of our current datasets, but we’ll save this until we’ve managed to process our population change variable as well.</p>
+</div>
+<div id="calculating-population-change" class="section level5 unnumbered">
+<h5>Calculating Population Change</h5>
+<p>Now we have our two London population rasters, we’re now ready to go ahead and calculate population change between our two datasets - and the code in R to do so is incredibly simple: it’s simple subtraction!</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Subtract our 2001 population raster from our 2011 population raster:</li>
+</ol>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" title="1"><span class="co"># Subtract 2001 population from 2011 population to get population change</span></a>
+<a class="sourceLine" id="cb326-2" title="2">lonpop_change &lt;-<span class="st"> </span>lonpop_<span class="dv">2011</span> <span class="op">-</span><span class="st"> </span>lonpop_<span class="dv">2001</span></a>
+<a class="sourceLine" id="cb326-3" title="3"></a>
+<a class="sourceLine" id="cb326-4" title="4"><span class="co"># Plot the results</span></a>
+<a class="sourceLine" id="cb326-5" title="5"><span class="kw">plot</span>(lonpop_change)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-local-is-lekker-1.png" width="672" /></p>
+<p>We now have a raster that shows us population change in London - and to our surprise, there are areas in which population has actually declined.</p>
+<p>We, again, could go ahead and make a few nicer <code>tmap</code>s of our current datasets now, but I’m still not happy with our final dataset. We can utilise some of the focal and zonal functions from our map algebra catalogue to further “enhance” our understanding of population change in London.</p>
+</div>
+<div id="analysing-population-change" class="section level5 unnumbered">
+<h5>Analysing Population Change</h5>
+<p>To further analyse our population change raster, we can create a ‘pseduo’ hotspot map of our <code>lonpop_change</code> raster by calculating a smoothed version of our raster using the <code>focal()</code> function.</p>
+<p>This will enable us to see more clearly where there are areas of high counts (surrounded by areas of high counts) and vice versa - just like our KDE analysis of bike theft last week.</p>
+<p>Using the <code>focal()</code> function, we generate a raster that summarises the average (mean) value, using the <code>fun=</code> parameter set to <code>mean</code>, of the <strong>9</strong> nearest neighbours for each cell, using a weight matrix defined in our <code>w</code> parameter and set to a <code>matrix</code> (consisting of our cell with 3 rows and 3 columns as neighbours) as you’ll see in the code below.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Calculate the smoothed estimation of our <code>lonpop_change</code> raster:</li>
+</ol>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" title="1"><span class="co"># Using a focal statistics (of 9 neighbours) to calculate smoothed raster</span></a>
+<a class="sourceLine" id="cb327-2" title="2">lonpop_smooth &lt;-<span class="st"> </span><span class="kw">focal</span>(lonpop_change, <span class="dt">w =</span> <span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>), <span class="dt">fun =</span> mean)</a>
+<a class="sourceLine" id="cb327-3" title="3"></a>
+<a class="sourceLine" id="cb327-4" title="4"><span class="co"># Plot results</span></a>
+<a class="sourceLine" id="cb327-5" title="5"><span class="kw">plot</span>(lonpop_smooth)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-focus-on-the-hood-1.png" width="672" /></p>
+<p>Our areas of high population growth are now more visible in our dataset. Our areas of population decline are potentially not as stark, but are certainly still visible within our raster.</p>
+<p>What do you think? Does this communicate population change better than our raw values?</p>
+<p>We can also look to use zonal functions to better represent our population change by aggregating our data to coarser resolutions.</p>
+<p>For example, we can reisze our raster’s spatial resolution to contain larger grid cells which will, of course, simplify our data, making larger trends more visible in our data - but of course, may end up obfuscating smaller trends.</p>
+<p>We can resize our <code>lonpop_change</code> raster by using the <code>aggregate()</code> function and setting the <code>fact=</code> (factor) parameter to the “order” of rescaling we’d like (in our case, 2 times larger both width and height).</p>
+<p>We then provide the <code>fun=</code> (function) by which to aggregate our data, in this case, we’ll continue to use the <code>mean</code> but we could in fact provide <code>min</code> or <code>max</code> depending on our future applications/analysis of our dataset.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Aggregate our <code>lonpop_change</code> raster to a coarse spatial resolution, at an order of 2:</li>
+</ol>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" title="1"><span class="co"># Rescale raster and aggregate based on mean</span></a>
+<a class="sourceLine" id="cb328-2" title="2">lonpop_change_agg &lt;-<span class="st"> </span><span class="kw">aggregate</span>(lonpop_change, <span class="dt">fact =</span> <span class="dv">2</span>, <span class="dt">fun =</span> mean)</a>
+<a class="sourceLine" id="cb328-3" title="3"></a>
+<a class="sourceLine" id="cb328-4" title="4"><span class="co"># Plot resulting raster</span></a>
+<a class="sourceLine" id="cb328-5" title="5"><span class="kw">plot</span>(lonpop_change_agg)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-zone-zone-zone-1.png" width="672" /></p>
+<p>Another very common technique used in raster analysis via map algebra is the use of <strong>zonal statistics</strong>.</p>
+<p>As outlined earlier, a zonal statistics operation is one that calculates statistics on cell values of a raster (a value raster) within specific zones that are defined by another dataset.</p>
+<p>The zones can be provided by both <strong>raster</strong> and <strong>vector</strong> data - as a result, <strong>zonal statistics</strong> are a really useful tool if we need to aggregate data from a raster dataset for use within further analysis that primarily uses vector data, such as when we’re analysing data within administrative boundaries.</p>
+<p>For example, in our case, we can aggregate the <code>lonpop_change</code> raster to our actual London Ward boundaries, i.e. calculate for each ward in our dataset, the average (or other function) population change, as determined by our raster.</p>
+<p>We can, of course, use other functions other than the <code>mean</code> - what function you use will simply depend on your application. <em>Esri has a great resource on how Zonal statistics works with other functions and raster data, found <a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/h-how-zonal-statistics-works.htm">here</a>.</em></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Aggregate our <code>lonpop_change</code> raster to our London Ward boundaries:</li>
+</ol>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" title="1"><span class="co"># Aggregate to administrative geography Note: the output is a vector that is</span></a>
+<a class="sourceLine" id="cb329-2" title="2"><span class="co"># forced to a SpatialPolygons object (not sf)</span></a>
+<a class="sourceLine" id="cb329-3" title="3">london_ward_pop &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw">extract</span>(lonpop_change, london_ward, <span class="dt">fun =</span> mean, <span class="dt">sp =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb329-4" title="4"></a>
+<a class="sourceLine" id="cb329-5" title="5"><span class="co"># Plot via tmap</span></a>
+<a class="sourceLine" id="cb329-6" title="6"><span class="kw">tm_shape</span>(london_ward_pop) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;layer&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-I-am-in-the-zone-1.png" width="672" /></p>
+<p>We now have a vector dataset that we could go ahead and run many of the analyses that we’ve completed in Week 7, such as a spatial autocorrelation tests, to prove any of the visual analysis claims we might have made in our analysis of our raster above.</p>
+<p>Furthermore, we can use this data within other analyses we might want to complete - for example, if we are using population change as a specific variable to analyse another dataset that is only available as a vector dataset / at the ward level.</p>
+<p>Trying to calculate populaton change, particularly across decades as we have done here, is quite difficult with our Census and Mid-Year Estimates given the differences in our Ward boundaries and the impact this has when we try to join datasets from different years that then have different codes that we need to join by attribute.</p>
+<p>Using raster data, such as these datasets, are a good workaround to these issues, but, of course, with any data processing, will add some level of uncertainty into our datasets.</p>
+<div class="codetime">
+<p><strong>Using Functions from different libraries within the same name</strong><br/></p>
+<p>Whilst I’ve mentioned this before, I wanted to flag this again, particularly with the introduction of the <code>raster</code> package. As you’ve seen in the previous code, and in other practicals, many libraries (loaded packages) share the same function names.</p>
+<p>This can be a problem when these packages are loaded in a same R session. For instance <code>extract</code> is not only the name of a function in the <code>raster</code> package, but also the name of functions in the <code>magrittr</code> and <code>tidyr</code> packages.</p>
+<p>To ensure you are using the function that you think you are using, you can specify the package using the <code>::</code> approach, as follows: <code>library::function</code>, e.g. <code>tidyr::extract</code> or <code>raster::extract</code>.</p>
+</div>
+<p>We have had a quick exploration of raster data and seen specific ways we can process the data (e.g. crop and mask to specific extents) as well as shown how we can use map algebra to process two datasets together.</p>
+<p>There is of course so much more that you can do with these datasets and mathemetical functions that we just do not have time for in our workshop - but you’ll be able to find specific tutorials on how to utilise map algebra for specific applications online, if it ends being a suitable technique for your own future analysis.</p>
+<div class="reading">
+<p><strong>Online Tutorials on Map Algebra and Raster Analysis</strong><br></p>
+<p>To further your understanding on Map Algebra and general spatial data processing (for both raster and vector data), one resource I can highly recommend you continue to work through is the <a href="https://geocompr.robinlovelace.net/spatial-operations.html">Geocomputation with R</a> online book by Lovelace et al (2020).</p>
+<p>Chapters 4 and 5 give you a cohesive introduction to the many functions the <code>sf</code> and <code>raster</code> libraries contain and may proove to be of significant use for both your coursework or your Dissertation analysis.</p>
+<p>We, of course, cannot cover everything in this course - or else our Workbook would be even longer than it is! Instead, we provide you with examples, as above, in the spirit that you’ll be able to utilise resources such as this online book to add to your analysis code as and when you need!</p>
+</div>
+<p>For now, I have a short theory-based assignment I’d like you to complete in time for next Week’s seminar.</p>
+<div class="assignment">
+<p><strong>Calculating the number of people in London underserved by public transport</strong><br></p>
+<p>The first assignment this week is a purely theoretical question:</p>
+<p><em>How can we use a combination of the techniques we’ve used over the last few weeks to calculate the number of people in London underserved by public transport?</em></p>
+<p>To answer the question, I would like you to think of a method using what you’ve learnt above in regards to map algebra and your use of point data in the previous weeks, to think about how we can calculate the number of people who are <strong>not within 400m euclidean distance walk</strong> of a <strong>bus, tube or train station</strong> in London.</p>
+<p>I’ll ask for suggestions in our Seminar in Week 10. This is a prime example of how we can use mathematical raster overlays to complete spatial analysis that by using vector data alone is likely to be incredibly difficult.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="interpolation-theory-and-techniques" class="section level3 unnumbered">
+<h3>Interpolation: Theory and Techniques</h3>
+<p>The second half of our workshop this week focuses on interpolation.</p>
+<p>Spatial interpolation is the prediction of a given phenomenon in unmeasured locations.</p>
+<p>There are many reasons why we may wish to interpolate point data across a map.</p>
+<p>It could be because we are trying to predict a variable across space, including in areas where there are little to no data.</p>
+<p>We might also want to smooth the data across space so that we cannot interpret the results of individuals, but still identify the general trends from the data. This is particularly useful when the data corresponds to individual persons and disclosing their locations is unethical.</p>
+<p>To predict the values of the cells of our resulting raster, we need to determine how to interpolate between our points, i.e. develop a set of procedures that enable us to calculate predicted values of the variable of interest with confidence - and, of course, repetitively.</p>
+<p>Within spatial interpolation, two approaches have developed: <strong>deterministic</strong> and <strong>geostatistical</strong>. These two approaches !!!</p>
+<p>This week’s lecture outlines the difference between the two and explains how the two main techniques associated with each, <strong>Inverse Distance Weighted</strong> and <strong>Kriging</strong>, work to create our resulting surfaces.</p>
+<center>
+<div class="vembedr" align="left">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EaZ7nbbTxsVLswROrZPMlvgBCFjZVlJSsk2EFsOPIgABOw?e=z7SHAh">Lecture slides</a> | <a href="">Watch on MS stream</a>
+</center>
+<p><br></p>
+<p>We’ll now put these techniques into action by interpolating our air quality point data into a raster surface to understand further how air pollution varies across London.</p>
+</div>
+<div id="interpolation-application-in-r" class="section level3 unnumbered">
+<h3>Interpolation: Application in R</h3>
+<p>Before we get going within interpolating our pollution dataset, let’s first take a look at the distribution of the London Air monitoring sites in London:</p>
+<img src="images/w9/07_london_air.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Locations of the London Air monitoring sites in London</em> (<a href="https://www.londonair.org.uk/london/asp/publicdetails.asp">Londonair 2020</a>).
+</center>
+<p><br></p>
+<p>What are your thoughts about the distribution of the sites? Do you think they’ll provide enough data for an accurate enough interpolation?</p>
+<p>Ultimately, monitoring sites and the sensor stations present at them can be expensive to install and run - therefore, identifying the most important places for data collection will somewhat determine their location, alongside trying to create a somewhat even distribution over London. As we can see in the locations of the stations above, there are certainly some areas in London that do not have a station nearby, whilst others (such as central London) where there are many stations available.</p>
+<p>When using interpolation, the distribution and density of our data points will impact the accuracy of our final raster - and we may end up with a level of uncertainty in the areas where data is more sparse, such as the north-west and the south-east of London.</p>
+<p>Despite this, we can still create an interpolated surface for our pollutant of interest - we just need to interpret our final raster with acknowledgement of these limitations.</p>
+<p>For this week’s practical, we’ll go ahead and use the Londonair’s data to study the levels of <strong>Nitrogen Dioxide (NO<sub>2</sub>) in London for 2019</strong>.</p>
+<div class="fyi">
+<p><strong>Why study Nitrodgen Dioxide levels?</strong><br></p>
+<p>For those of you unfamiliar with atmospheric gases and their relation to pollution, Nitrogen Dioxide is one of the main pollutants we monitor due to its adverse impacts on health.</p>
+<p>Londonair provide an <a href="https://www.londonair.org.uk/LondonAir/guide/home.aspx">excellent guide</a> on the different pollutants they monitor, with the following is directly extracted from the guide:</p>
+<blockquote>
+<p>Nitrogen dioxide (NO2) is one of a group of gases called nitrogen oxides. Road transport is estimated to be responsible for about 50% of total emissions of nitrogen oxides, which means that nitrogen dioxide levels are highest close to busy roads and in large urban areas. Gas boilers in buildings are also a source of nitrogen oxides.</p>
+</blockquote>
+<blockquote>
+<p>There is good evidence that nitrogen dioxide is harmful to health. The most common outcomes are respiratory symptoms such as shortness of breath and cough. Nitrogen dioxide inflames the lining of the lung and reduces immunity to lung infections such as bronchitis. Studies also suggest that the health effects are more pronounced in people with asthma compared to healthly individuals.</p>
+</blockquote>
+<blockquote>
+<p>In recent years the average level of nitrogen dioxide within London has not fallen as quickly as predicted. This largely appears to be the result of diesel cars creating more nitrogen dioxide than was anticipated.</p>
+</blockquote>
+<blockquote>
+<p>Nitrogen dioxide also reacts with hydrocarbons in the presence of sunlight to create ozone, and contributes to the formation of particles.</p>
+</blockquote>
+<p>In addition to NO<sub>2</sub>, we could also extend our study to other pollutants to get a more cohesive picture of how pollution varies over London. Londonair collects data on the main pollutants monitored in London: carbon monoxide (CO); nitrogen dioxide (NO2); ground level ozone (03); particles (PM10); sulphur dioxide (SO2).</p>
+</div>
+<p>We will access data directly from Londonair that contains readings for the various Monitoring Locations shown above. The data will be provided to us either as a “served” database (via the <code>openair</code> library) or via the csv provided for download. Either approach will provide us with a dataframe that contains the coordinates of these Monitoring Locations (i.e. a potential point data) alongside the readings taken for each of these Locations the entirety of 2019.</p>
+<p>Once we have our data loaded and processed in the right format, we will start interpolating our data using at first two deterministic models: <strong>1) Thiessen Polygons</strong> and <strong>2) Inverse Distance Weighting (IDW).</strong> Next, we will then look at how we can conduct a <strong>Geostatistical</strong> interpolation through <strong>Ordinary Kriging</strong>.</p>
+<div id="loading-and-processing-pollution-data-in-r" class="section level4 unnumbered">
+<h4>Loading and Processing Pollution Data in R</h4>
+<p><strong>Option 1: Import data using <code>openair</code></strong></p>
+<p>Let’s get started by importing our data using the functionality provided by the <code>openair</code> package or, alternatively, reading in the data you downloaded above.</p>
+<p><em>Remember, you should have installed and loaded the <code>openair</code> package during our housekeeping part to make this work!</em></p>
+<ol style="list-style-type: decimal">
+<li>Import our data from Londonair using the <code>openair</code>:</li>
+</ol>
+<p><em>I will leave this code here as our example - but even for my connection, this took over 10 minutes to run. As a result, I’d advise using Option 2 and read in the zipfile.csv.</em></p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" title="1"><span class="co"># Option 1: get data using openair package</span></a>
+<a class="sourceLine" id="cb330-2" title="2"></a>
+<a class="sourceLine" id="cb330-3" title="3"><span class="co"># Import all monitoring sites using the importMeta function</span></a>
+<a class="sourceLine" id="cb330-4" title="4">sites &lt;-<span class="st"> </span><span class="kw">importMeta</span>(<span class="dt">source=</span><span class="st">&#39;kcl&#39;</span>,<span class="dt">all=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb330-5" title="5"></a>
+<a class="sourceLine" id="cb330-6" title="6"><span class="co"># Import pollution data for 2019 for all monitoring sites // this will take 5-10 minutes</span></a>
+<a class="sourceLine" id="cb330-7" title="7"><span class="co"># If you have a poor internet connection or slow computer, I&#39;d recommend not using this approach - but at least you can see its possible in R!</span></a>
+<a class="sourceLine" id="cb330-8" title="8">pollution &lt;-<span class="st"> </span><span class="kw">importKCL</span>(<span class="dt">site=</span><span class="kw">c</span>(sites<span class="op">$</span>code), <span class="dt">year=</span><span class="dv">2019</span>, <span class="dt">pollutant=</span><span class="st">&#39;no2&#39;</span>, <span class="dt">meta=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb330-9" title="9"></a>
+<a class="sourceLine" id="cb330-10" title="10"><span class="co"># Filter out NA values for nitrogen dioxide</span></a>
+<a class="sourceLine" id="cb330-11" title="11">pollution &lt;-<span class="st"> </span><span class="kw">filter</span>(pollution,<span class="op">!</span><span class="kw">is.na</span>(no2))</a></code></pre></div>
+<p>If you do run the above code, you should end up with 995 sites (i.e. we are taking data from 995 individual monitoring stations) - setting our <code>all</code> parameter to <code>FALSE</code> means that only the site code, site name, latitude and longitude and site type are imported. Setting <code>all = TRUE</code> will import all available meta data and provide details (when available) or the individual pollutants measured at each site.</p>
+<p>For <code>pollution</code>, you’ll see messages that warn us the certain sites do not exist, e.g. ‘XXX_2019 does not exist - ignoring that one’ message. We are essenitally just forcing a download for all possible sites, irrespective of whether the monitoring site was active in 2019. As you’ll see, quite a few of the sites appear to not exist in 2019.</p>
+<p>If your code is still running after 10-15 minutes, I’d highly recommend terminating the process and simply reading in the data as below.</p>
+<p><strong>Option 2: Import data from csv</strong></p>
+<p>As the <code>openair</code> download does take a signinifcant amount of time to download, you are welcome to use the csv I have processed for you - you can download the csv from the <a href="rasters-zonal-statistics-and-interpolation.html#pollution-data">2) Pollution Data</a> section.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Import our data directly from the csv within the zip folder you have downloaded:</li>
+</ol>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" title="1"><span class="co"># Option 2: using downloaded csv file</span></a>
+<a class="sourceLine" id="cb331-2" title="2"></a>
+<a class="sourceLine" id="cb331-3" title="3"><span class="co"># Read in downloaded data As the file is quite large, we will read it directly</span></a>
+<a class="sourceLine" id="cb331-4" title="4"><span class="co"># from zip</span></a>
+<a class="sourceLine" id="cb331-5" title="5">pollution &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/pollution/no2_london_2019.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb331-6" title="6"></a>
+<a class="sourceLine" id="cb331-7" title="7"><span class="co"># pollution dataframe dimensions</span></a>
+<a class="sourceLine" id="cb331-8" title="8"><span class="kw">dim</span>(pollution)</a></code></pre></div>
+<pre><code>## [1] 1596509       7</code></pre>
+<p>Reading in the csv might take a little time - we have 1,596,509 observations with 7 variables - that’s quite a substantial dataset!</p>
+<p>Let’s take a look at why it’s so large.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Look at the first five rows of our dataframe:</li>
+</ol>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1"><span class="co"># Return first five rows of our pollution dataframe</span></a>
+<a class="sourceLine" id="cb333-2" title="2"><span class="kw">head</span>(pollution)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   date                  no2 site              code  latitude longitude site_type
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;    
+## 1 2019-07-01 12:00:00  14.5 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 2 2019-07-01 13:00:00  16.1 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 3 2019-07-01 14:00:00  16.2 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 4 2019-07-01 15:00:00  21.8 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 5 2019-07-01 16:00:00  19.7 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 6 2019-07-01 17:00:00  17.5 Southwark - Towe… SK8       51.5   -0.0782 Roadside</code></pre>
+<p>Interesting - we can see that in our first five rows we have data for the <strong>same site</strong> - and if we look at the <strong>date</strong> field, we can see we have a reading observation for every hour! With 24 hours in the day, 365 days in a year and potentially hundreds of sites, it should therefore be of no surprise that we have such a big csv!</p>
+<p>In the end, for this practical, we only want to create one raster - so to make our data more useable, we will go ahead and aggregate the data and get the average NO<sub>2</sub> value for each monitoring site over 2019.</p>
+<p>We could, of course, look to return the <strong>max</strong> or <strong>min</strong>, or, for example, create monthly averages instead (and create 12 rasters!) - there’s a lot we could do with just this single dataset beyond what we’ll look at today!</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Use the <code>dplyr</code> library functions to return the mean NO<sub>2</sub> value for each monitoring site over 2019. Let’s also make sure that we retain the latitude and longitude of our monitoring sites:</li>
+</ol>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="co"># Aggregate data to unique latitude and longitude combinations, remove monitoring</span></a>
+<a class="sourceLine" id="cb335-2" title="2"><span class="co"># sites without coordinates Summarise the no2 by the mean</span></a>
+<a class="sourceLine" id="cb335-3" title="3">avg_pollution &lt;-<span class="st"> </span>pollution <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(latitude, longitude) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">no2 =</span> <span class="kw">mean</span>(no2)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb335-4" title="4"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(latitude <span class="op">|</span><span class="st"> </span>longitude))</a>
+<a class="sourceLine" id="cb335-5" title="5"></a>
+<a class="sourceLine" id="cb335-6" title="6"><span class="co"># Return the first five rows of our new avg_pollution dataframe</span></a>
+<a class="sourceLine" id="cb335-7" title="7"><span class="kw">head</span>(avg_pollution)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+## # Groups:   latitude [6]
+##   latitude longitude   no2
+##      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1     49.8    -7.56  35.6 
+## 2     50.4    -4.14  17.5 
+## 3     50.7    -1.83  11.5 
+## 4     50.8     0.284 15.7 
+## 5     50.8     0.181  7.23
+## 6     50.8     0.272 11.4</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1"><span class="co"># Return the histogram of our no2 values</span></a>
+<a class="sourceLine" id="cb337-2" title="2"><span class="kw">hist</span>(avg_pollution<span class="op">$</span>no2)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-that-is-mean-1.png" width="672" /></p>
+<p>We should now see that we only have our (hopefully unique!) latitude and longitude coordinates and the average NO<sub>2</sub> value associated with each.</p>
+<p>Our histogram also shows us the general distribution of our values - we can see that we have a slight positive skew to our dataset.</p>
+<p>To use this data within our different interpolation methods, we’ll need to transform our data into a point spatial dataframe using the <code>st_as_sf()</code> function that we’ve come across before.</p>
+<p>One thing you should notice is that the latitude and longitude are, of course, in WGS84 - therefore, we’ll need to reproject our resulting spatial dataframe into British National Grid. We’ll also make sure that all of our points are within our London Ward extent, using the <code>st_intersection()</code> function from the previous week.</p>
+<p>Also, as we’re yet to make any pretty maps this week, we’ll go ahead and deploy our proportional symbols map code on our resulting spatial dataframe to see the distribution of our variables spatially.</p>
+<p>All this code must be getting pretty familiar to you by now!</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Create a spatial dataframe containing our London monitoring sites and their average NO<sub>2</sub> reading - then map the data:</li>
+</ol>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1"><span class="co"># load London Wards for reference map as we&#39;ve already done this, I&#39;ve commented</span></a>
+<a class="sourceLine" id="cb338-2" title="2"><span class="co"># it out - but if you are running this practical separately to above you might</span></a>
+<a class="sourceLine" id="cb338-3" title="3"><span class="co"># need to reload it in!  london_ward &lt;- &lt;-</span></a>
+<a class="sourceLine" id="cb338-4" title="4"><span class="co"># read_sf(&#39;data/raw/boundaries/2018/London_Ward.shp&#39;)</span></a>
+<a class="sourceLine" id="cb338-5" title="5"></a>
+<a class="sourceLine" id="cb338-6" title="6"><span class="co"># Create a point spatial dataframe and project into british national grid (epsg</span></a>
+<a class="sourceLine" id="cb338-7" title="7"><span class="co"># 27700)</span></a>
+<a class="sourceLine" id="cb338-8" title="8">pollution_points &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(avg_pollution, <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), </a>
+<a class="sourceLine" id="cb338-9" title="9">    <span class="dt">crs =</span> <span class="dv">4326</span>)[, <span class="dv">1</span>] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_transform</span>(<span class="dv">27700</span>)</a>
+<a class="sourceLine" id="cb338-10" title="10"></a>
+<a class="sourceLine" id="cb338-11" title="11"><span class="co"># Ensure all points are within the boundaries of Greater London We could have</span></a>
+<a class="sourceLine" id="cb338-12" title="12"><span class="co"># directly pipe our output above into this, but now we have all points in one</span></a>
+<a class="sourceLine" id="cb338-13" title="13"><span class="co"># spatial dataframe as well</span></a>
+<a class="sourceLine" id="cb338-14" title="14">lonpollution_points &lt;-<span class="st"> </span>pollution_points <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_intersection</span>(london_ward)</a></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" title="1"><span class="co"># Create a proportional symbols map</span></a>
+<a class="sourceLine" id="cb340-2" title="2"></a>
+<a class="sourceLine" id="cb340-3" title="3"><span class="co"># Ensure tmap is in the plot mode</span></a>
+<a class="sourceLine" id="cb340-4" title="4"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a>
+<a class="sourceLine" id="cb340-5" title="5"></a>
+<a class="sourceLine" id="cb340-6" title="6"><span class="co"># Plot our London wards in grey</span></a>
+<a class="sourceLine" id="cb340-7" title="7"><span class="kw">tm_shape</span>(london_ward) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">palette =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">border.col =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Plot our pollution_points as bubbles, using the NO2 field to determine size</span></a>
+<a class="sourceLine" id="cb340-8" title="8"><span class="kw">tm_shape</span>(lonpollution_points) <span class="op">+</span><span class="st"> </span><span class="kw">tm_bubbles</span>(<span class="dt">size =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;mediumorchid&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;pretty&quot;</span>, </a>
+<a class="sourceLine" id="cb340-9" title="9">    <span class="dt">scale =</span> <span class="dv">1</span>, <span class="dt">border.col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">title.size =</span> <span class="st">&quot;Average NO2 ug/m3 reading in 2019&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb340-10" title="10"><span class="st">    </span><span class="kw">tm_layout</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;top&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add a north arrow</span></a>
+<a class="sourceLine" id="cb340-11" title="11"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;top&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add a scale bar</span></a>
+<a class="sourceLine" id="cb340-12" title="12"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Add our data statement</span></a>
+<a class="sourceLine" id="cb340-13" title="13"><span class="kw">tm_credits</span>(<span class="st">&quot;Air quality data from London Air&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-prepare-air-pol-data-further-1.png" width="672" /></p>
+<p>Our proportional symbols map already tells us a little about our dataset - we can see that NO<sub>2</sub> levels are much higher towards the centre of London, although we can see some anomalies in the south-west, for example.</p>
+<p>But we can also see how and why a smoothed surface of our data <strong>could</strong> be really useful for further interpretion - and this is where interpolating our data comes in!</p>
+</div>
+<div id="thiessen-polygons-basic-deterministic-approach" class="section level4 unnumbered">
+<h4>Thiessen Polygons: Basic Deterministic Approach</h4>
+<p>The first step we can take to interpolate the data across space is to create Thiessen polygons.</p>
+<p>Thiessen polygons are formed to assign boundaries of the areas closest to each unique point.</p>
+<img src="images/w9/thiessen.jpg" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>Creating a set of thiessen polygons or voronois. Source: Esri, 2020.</em>
+</center>
+<p><br></p>
+<p>Therefore, for every point in a dataset, it has a corresponding Thiessen polygon.</p>
+<div class="fyi">
+<p><strong>Thiessen versus Voronoi - are they the same thing?</strong><br>
+The quick answer to this is YES! You’ll see the words thiessen and voronoi being used interchangeably to describe this type of geometry created from point data.</p>
+<p>In the field of GIS we tend to refer to them as Thiessen polygons, after the American meteorologist who frequented their use. In other fields, particularly mathematics and computer science, they are generally referred to as Voronoi diagrams, in honour of the mathematician Georgy Voronyi.</p>
+</div>
+<p>Let’s go ahead and create our thiessen-voronoi polygons.</p>
+<p>Whilst the <code>spatstat</code> library from last week offers a simple function to create our thiessen-voronois (<code>dirichlet()</code> tesselation function), to use the <code>spatstat</code> library, we’ll first need to convert our <code>lonpollution_points</code> into a <code>ppp</code> spatial object.</p>
+<p>Whilst this is a completely feasible and valid approach to generating these polygons (and one you’ll see in some of the tutorials linked below), we can actually go ahead and create thiessen polygons within the <code>sf</code> library.</p>
+<p>You might remember from the <code>sf</code> cheatsheet that there is in fact a function called <code>st_voronoi()</code>- however to use it with our dataset takes a little bit of “fudging” with our code as it does not directly work with a point geometry as we would expect.</p>
+<p>Luckily, after a quick browse of various help forums and trial and error, and I was able to find a very simple bit of code that enables us to generate our voronois all in <code>sf</code>.</p>
+<p>The post can be found <a href="https://gis.stackexchange.com/questions/362134/i-want-to-create-a-voronoi-diagram-while-retaining-the-data-in-the-data-frame">here</a>.</p>
+<p>The code creates a simple function called <code>st_voronoi_point()</code> that we can use to generate voronois directly from a point dataset. You do not need to understand the code behind the function (all the code contained in the <code>{}</code> brackets), but simply understand what input (a point spatial dataframe) and output (a voronoi polygon spatial dataframe) it will provide.</p>
+<p>You need to copy over both the function and the code underneath. Copying the function stores this function in your computer’s memory for this R session and means the function itself can be used time and time again within the same session or script.</p>
+<p>The first of the two lines of code below the function then “call” this function on our <code>lonpollutions_points</code> spatial dataframe. The second essentially joins the attribute fields of our <code>lonpollutions_points</code> spatial dataframe to our new voronoi spatial dataframe and stores this as a new variable.</p>
+<p><em>(The code actually “sets” the geometry of our <code>lonpollutions_points</code> spatial dataframe to that of the <code>lon_points_voronoi</code> spatial dataframe and stores this as a new variable, but the sentence above is a little easier to understand!)</em></p>
+<p>We then map our resulting thiessen-voronoi polygons by the NO<sub>2</sub> value associated with them.</p>
+<ol style="list-style-type: decimal">
+<li>Create the <code>st_voronoi_point()</code> function and then generate and map thiessen-voronoi polygons:</li>
+</ol>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1"><span class="co"># First set of code creates our function</span></a>
+<a class="sourceLine" id="cb341-2" title="2"></a>
+<a class="sourceLine" id="cb341-3" title="3"><span class="co"># function to get polygon from boundary box</span></a>
+<a class="sourceLine" id="cb341-4" title="4">st_voronoi_point &lt;-<span class="st"> </span><span class="cf">function</span>(points) {</a>
+<a class="sourceLine" id="cb341-5" title="5">    <span class="co">## points must be POINT geometry</span></a>
+<a class="sourceLine" id="cb341-6" title="6">    <span class="cf">if</span> (<span class="op">!</span><span class="kw">all</span>(<span class="kw">st_geometry_type</span>(points) <span class="op">==</span><span class="st"> &quot;POINT&quot;</span>)) {</a>
+<a class="sourceLine" id="cb341-7" title="7">        <span class="kw">stop</span>(<span class="st">&quot;Input not  POINT geometries&quot;</span>)</a>
+<a class="sourceLine" id="cb341-8" title="8">    }</a>
+<a class="sourceLine" id="cb341-9" title="9">    g =<span class="st"> </span><span class="kw">st_combine</span>(<span class="kw">st_geometry</span>(points))  <span class="co"># make multipoint</span></a>
+<a class="sourceLine" id="cb341-10" title="10">    v =<span class="st"> </span><span class="kw">st_voronoi</span>(g)</a>
+<a class="sourceLine" id="cb341-11" title="11">    v =<span class="st"> </span><span class="kw">st_collection_extract</span>(v)</a>
+<a class="sourceLine" id="cb341-12" title="12">    <span class="kw">return</span>(v[<span class="kw">unlist</span>(<span class="kw">st_intersects</span>(points, v))])</a>
+<a class="sourceLine" id="cb341-13" title="13">}</a>
+<a class="sourceLine" id="cb341-14" title="14"></a>
+<a class="sourceLine" id="cb341-15" title="15"><span class="co"># Second set of code calls our function and creates our voronois with attributes</span></a>
+<a class="sourceLine" id="cb341-16" title="16"></a>
+<a class="sourceLine" id="cb341-17" title="17"><span class="co"># Generate voronois from our point data using our new function</span></a>
+<a class="sourceLine" id="cb341-18" title="18">lon_points_voronoi =<span class="st"> </span><span class="kw">st_voronoi_point</span>(lonpollution_points)</a>
+<a class="sourceLine" id="cb341-19" title="19"></a>
+<a class="sourceLine" id="cb341-20" title="20"><span class="co"># Add attribute data to our voronoins</span></a>
+<a class="sourceLine" id="cb341-21" title="21">lonpollution_tv =<span class="st"> </span><span class="kw">st_set_geometry</span>(lonpollution_points, lon_points_voronoi)</a>
+<a class="sourceLine" id="cb341-22" title="22"></a>
+<a class="sourceLine" id="cb341-23" title="23"><span class="co"># Visualise our voronois by the NO2 value</span></a>
+<a class="sourceLine" id="cb341-24" title="24"><span class="kw">tm_shape</span>(lonpollution_tv) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-thiessen-pols-1.png" width="672" /></p>
+<p>We can go ahead tidy this up further by clipping our thiessen polygons to the extent of London.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Clip thiessen polygons to London extent:</li>
+</ol>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" title="1"><span class="co"># Generate London outline through st_union</span></a>
+<a class="sourceLine" id="cb342-2" title="2">london_outline &lt;-<span class="st"> </span>london_ward <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_union</span>()</a>
+<a class="sourceLine" id="cb342-3" title="3"></a>
+<a class="sourceLine" id="cb342-4" title="4"><span class="co"># Clip our thiessen polygons to our london outline</span></a>
+<a class="sourceLine" id="cb342-5" title="5">lonpollution_tv &lt;-<span class="st"> </span><span class="kw">st_intersection</span>(lonpollution_tv, london_outline)</a></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" title="1"><span class="co"># Map the results</span></a>
+<a class="sourceLine" id="cb344-2" title="2"><span class="kw">tm_shape</span>(lonpollution_tv) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-thiessen-pols-map-1.png" width="672" /></p>
+<p>And that’s it! We now have our values “interpolated” using our coarse thiessen polygon approach!</p>
+<p>We could go ahead and make our map look a lot prettier, adding our usual map conventions and a title - and even changing the colour palette.</p>
+<p>However, as you can see, our approach is quite coarse. Whilst we, of course, can see areas of high and low pollution, it really does not offer us as much spatial detail as we’d like, particularly when we know there are better methods out there to use.</p>
+<p>Therefore our time is probably best spent looking at these other methods, than trying to improve the aesthetics of this map!</p>
+</div>
+<div id="inverse-distance-weighting-a-deterministic-approach" class="section level4 unnumbered">
+<h4>Inverse Distance Weighting: A Deterministic Approach</h4>
+<p>A second deterministic method to interpolate point data is <strong>Inverse Distance Weighting</strong> (IDW).</p>
+<p>An IDW is a means of converting point data of numerical values into a continuous surface to visualise how the data may be distributed across space.</p>
+<p>The technique interpolates point data by using a weighted average of a variable from nearby points to predict the value of that variable for each location. The weighting of the points is determined by their inverse distances drawing on <a href="https://en.wikipedia.org/wiki/Tobler%27s_first_law_of_geography#:~:text=The%20First%20Law%20of%20Geography,specifically%20for%20the%20inverse%20distance">Tobler’s first law of geography</a> that “everything is related to everything else, but near things are more related than distant thing”.</p>
+<p>The distance weighting is done by a power function: the larger the power coefficient, the stronger the weight of nearby point. The output is most commonly represented as a raster surface.</p>
+<div id="generating-an-idw-raster" class="section level5 unnumbered">
+<h5>Generating an IDW raster</h5>
+<p>We’ll use the <code>idw()</code> function within the <code>gstat</code> library to conduct an IDW on our <code>lonpollution_points</code> spatial dataframe.</p>
+<p>Before we can run IDW, we must first generate an empty grid within which to store our data. To do so, we can use either the <code>spsample()</code> function from the <code>sp</code> library or the <code>st_make_grid()</code> function from the <code>sf</code> library.</p>
+<p>For this once, we will use the <code>sp</code> library instead as the <code>sf</code> version - whilst trialling these different approaches, I haven’t quite found a way to ensure the <code>sf</code> method works. As a result, it is better to provide you with working code at this point (and an updated <code>sf</code> version at a later stage!).</p>
+<p>We’ll go ahead and create a grid that covers the entirety of our <code>london_outline</code>, which we’ll transform into the <code>sp</code> format using the <code>as()</code> function.</p>
+<p>We then run the <code>gstat</code> <code>idw()</code> function on an <code>sp</code> version of our <code>lonpollution_points</code> dataset, specificying the cell size.</p>
+<div class="codetime">
+<p><strong>Issues with different versions of R</strong><br>
+Some of the following tutorial will unfortunately not work with the most recent versions of the <code>rgdal</code> package.</p>
+<p>This is because the <code>gstat</code> package that both our IDW and Kriging functions are from has not managed to yet accomodate the changes <code>rgdal</code> has made to using <code>gdal 3</code> and <code>proj 6</code>.<br />
+For those of you with more recent version (type: <code>rgdal_extSoftVersion()</code> into your console - and check if your <strong>GDAL</strong> version is 3 or higher / your PROJ.4 is 6 or higher), there is a second section of code using the <code>spatstat</code> library that should hopefully work.</p>
+</div>
+<p>We then specify that our IDW result is a gridded format that we then coerce into a raster!</p>
+<p>Once we have our raster, we can reset its CRS and of course utilise other functions from the <code>raster</code> library to process (e.g. the <code>mask</code> function) and then visualise our dataset within <code>tmap</code>.</p>
+<p>Let’s get going!</p>
+<p>1a. Generate an IDW raster using the <code>gstat</code> library:</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" title="1"><span class="co"># Convert our lonpollution_points into the sp format</span></a>
+<a class="sourceLine" id="cb345-2" title="2">lonpollution_pointsSP &lt;-<span class="st"> </span>lonpollution_points <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as</span>(., <span class="st">&quot;Spatial&quot;</span>)</a>
+<a class="sourceLine" id="cb345-3" title="3"></a>
+<a class="sourceLine" id="cb345-4" title="4"><span class="co"># Convert our london_outline into the sp format</span></a>
+<a class="sourceLine" id="cb345-5" title="5">london_outlineSP &lt;-<span class="st"> </span>london_outline <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as</span>(., <span class="st">&quot;Spatial&quot;</span>)</a>
+<a class="sourceLine" id="cb345-6" title="6"></a>
+<a class="sourceLine" id="cb345-7" title="7"><span class="co"># Create an empty raster grid the size fof our london_outline over which to</span></a>
+<a class="sourceLine" id="cb345-8" title="8"><span class="co"># interpolate the pollution values We set a cell size of 450 to try to match the</span></a>
+<a class="sourceLine" id="cb345-9" title="9"><span class="co"># output from spatstat But normally this should be decided through a literature</span></a>
+<a class="sourceLine" id="cb345-10" title="10"><span class="co"># search</span></a>
+<a class="sourceLine" id="cb345-11" title="11">grid &lt;-<span class="st"> </span><span class="kw">spsample</span>(lonpollution_pointsSP, <span class="dt">type =</span> <span class="st">&quot;regular&quot;</span>, <span class="dt">cellsize =</span> <span class="dv">450</span>, <span class="dt">bb =</span> <span class="kw">bbox</span>(london_outlineSP))</a>
+<a class="sourceLine" id="cb345-12" title="12"></a>
+<a class="sourceLine" id="cb345-13" title="13"><span class="co"># OPTION 1: GSTAT Run an IDW for the NO2 value with a power value of 2</span></a>
+<a class="sourceLine" id="cb345-14" title="14">idw &lt;-<span class="st"> </span>gstat<span class="op">::</span><span class="kw">idw</span>(lonpollution_pointsSP<span class="op">$</span>no2 <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, lonpollution_pointsSP, <span class="dt">newdata =</span> grid, </a>
+<a class="sourceLine" id="cb345-15" title="15">    <span class="dt">idp =</span> <span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [inverse distance weighted interpolation]</code></pre>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1"><span class="co"># Specify idw spatial data as being gridded</span></a>
+<a class="sourceLine" id="cb347-2" title="2"><span class="kw">gridded</span>(idw) &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb347-3" title="3"></a>
+<a class="sourceLine" id="cb347-4" title="4"><span class="co"># Coerce to our gridded idw to the raster format</span></a>
+<a class="sourceLine" id="cb347-5" title="5">lon_poll_raster_idw &lt;-<span class="st"> </span><span class="kw">raster</span>(idw)</a>
+<a class="sourceLine" id="cb347-6" title="6"></a>
+<a class="sourceLine" id="cb347-7" title="7"><span class="co"># Set our raster CRS to BNG</span></a>
+<a class="sourceLine" id="cb347-8" title="8"><span class="kw">crs</span>(lon_poll_raster_idw) &lt;-<span class="st"> &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs &quot;</span></a>
+<a class="sourceLine" id="cb347-9" title="9"></a>
+<a class="sourceLine" id="cb347-10" title="10"><span class="co"># Mask our raster to only the london outline It&#39;s currently a rectangle!</span></a>
+<a class="sourceLine" id="cb347-11" title="11">lon_idw &lt;-<span class="st"> </span><span class="kw">rasterize</span>(london_ward, lon_poll_raster_idw, <span class="dt">mask =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb347-12" title="12"></a>
+<a class="sourceLine" id="cb347-13" title="13"><span class="co"># Plot the resulting raster</span></a>
+<a class="sourceLine" id="cb347-14" title="14"><span class="kw">plot</span>(lon_idw)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-inverse-distance-weights-1.png" width="672" /></p>
+<p>Great - if this code has worked for you and you have generated an IDW raster, you can move onto the next task which is to create a proper map of our resulting IDW.</p>
+<p>You do not need to complete the code below.</p>
+<p><strong>Spatstat Alternative for IDW generation</strong></p>
+<p>For those of you that cannot run the code above, we can look to <code>spatstat</code> as an alternative option - however, it just brings with it its few complications in terms of converting our datasets into our <code>ppp</code> object (and hence our focus on using <code>gstat</code> instead, with only a simple conversion to <code>sp</code>).</p>
+<p>As a result, in this chunk of code, we will first convert our data to the <code>ppp</code> object type and then use this within the <code>idw()</code> function <code>spatstat</code> offers.</p>
+<p>1b. Generate an IDW raster using the <code>spatstat</code> library:</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" title="1"><span class="co"># First, let&#39;s set our window of observation as the entirety of London</span></a>
+<a class="sourceLine" id="cb348-2" title="2">window &lt;-<span class="st"> </span><span class="kw">as.owin</span>(london_outline)</a>
+<a class="sourceLine" id="cb348-3" title="3"></a>
+<a class="sourceLine" id="cb348-4" title="4"><span class="co"># Next, extract the coordinates of our pollution points sdf This stores our</span></a>
+<a class="sourceLine" id="cb348-5" title="5"><span class="co"># coordinates as a matrix</span></a>
+<a class="sourceLine" id="cb348-6" title="6">points_xy &lt;-<span class="st"> </span>lonpollution_points <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_coordinates</span>()</a>
+<a class="sourceLine" id="cb348-7" title="7"></a>
+<a class="sourceLine" id="cb348-8" title="8"><span class="co"># Create a ppp object, setting x and y equal to the respective columns in our</span></a>
+<a class="sourceLine" id="cb348-9" title="9"><span class="co"># matrix Set the window equal to our window variable Set our &#39;marks&#39; equal to the</span></a>
+<a class="sourceLine" id="cb348-10" title="10"><span class="co"># NO2 column in our points</span></a>
+<a class="sourceLine" id="cb348-11" title="11">pollution_ppp &lt;-<span class="st"> </span><span class="kw">ppp</span>(<span class="dt">x =</span> points_xy[, <span class="dv">1</span>], <span class="dt">y =</span> points_xy[, <span class="dv">2</span>], <span class="dt">marks =</span> lonpollution_points<span class="op">$</span>no2, </a>
+<a class="sourceLine" id="cb348-12" title="12">    <span class="dt">window =</span> window)</a>
+<a class="sourceLine" id="cb348-13" title="13"></a>
+<a class="sourceLine" id="cb348-14" title="14"><span class="co"># Run the IDW Note, we do not have as much flexibility to control our output</span></a>
+<a class="sourceLine" id="cb348-15" title="15"><span class="co"># raste settings easily here There is a &#39;as.mask&#39; argument that might allow you</span></a>
+<a class="sourceLine" id="cb348-16" title="16"><span class="co"># to specify cell size, but I could not get it to work</span></a>
+<a class="sourceLine" id="cb348-17" title="17">ss_idw &lt;-<span class="st"> </span>spatstat<span class="op">::</span><span class="kw">idw</span>(pollution_ppp, <span class="dt">power =</span> <span class="dv">2</span>, <span class="dt">at =</span> <span class="st">&quot;pixels&quot;</span>)</a>
+<a class="sourceLine" id="cb348-18" title="18"></a>
+<a class="sourceLine" id="cb348-19" title="19"><span class="co"># Coerce our im output (the outputs from the IDW) directly to raster</span></a>
+<a class="sourceLine" id="cb348-20" title="20">lon_idw &lt;-<span class="st"> </span><span class="kw">raster</span>(ss_idw)</a>
+<a class="sourceLine" id="cb348-21" title="21"></a>
+<a class="sourceLine" id="cb348-22" title="22"><span class="co"># Set the CRS of our raster</span></a>
+<a class="sourceLine" id="cb348-23" title="23"><span class="kw">crs</span>(lon_idw) &lt;-<span class="st"> &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs &quot;</span></a>
+<a class="sourceLine" id="cb348-24" title="24"></a>
+<a class="sourceLine" id="cb348-25" title="25"><span class="co"># Plot our results</span></a>
+<a class="sourceLine" id="cb348-26" title="26"><span class="kw">plot</span>(lon_idw)</a>
+<a class="sourceLine" id="cb348-27" title="27"></a>
+<a class="sourceLine" id="cb348-28" title="28"><span class="co"># Note, as we set London as our window, we do not need to mask our raster by our</span></a>
+<a class="sourceLine" id="cb348-29" title="29"><span class="co"># london outline!</span></a></code></pre></div>
+<p>You should see we actually get a very similar result to the IDW of the <code>gstat</code> library - that is because our cell sizes resolutions are very similar to one another.</p>
+<p>We set our cell resolution as 500m x 500m above - and we can check the cell size of our <code>spatstat</code> idw raster using a very simple command: <code>res(lon_idw)</code>. You’ll see that the IDW <code>spatstat</code> auto-generated has a 456m cell size, so not too far off our provided cell size in <code>gstat</code>.</p>
+</div>
+<div id="mapping-our-final-idw-raster" class="section level5 unnumbered">
+<h5>Mapping our final IDW raster</h5>
+<p>We now have our final predicted raster surface - let’s go ahead</p>
+<p>To do so, we’ll again use the <code>tm_raster()</code> function within our <code>tmap</code> “grammar of graphics” system.</p>
+<p>For our raster, the name of the layer we need to provide is <code>var1.pred</code> for those using the <code>gstat</code> result and simply <code>layer</code> for those using the <code>spatstat</code> result.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Map our IDW result using <code>tmap</code>:</li>
+</ol>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1"><span class="co"># Use the tmap library to map our IDW properly!</span></a>
+<a class="sourceLine" id="cb349-2" title="2"></a>
+<a class="sourceLine" id="cb349-3" title="3"><span class="co"># Plot our gstat IDW raster</span></a>
+<a class="sourceLine" id="cb349-4" title="4"><span class="kw">tm_shape</span>(lon_idw) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;var1.pred&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;quantile&quot;</span>, <span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">palette =</span> <span class="st">&quot;Reds&quot;</span>, </a>
+<a class="sourceLine" id="cb349-5" title="5">    <span class="dt">legend.show =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(london_ward) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">lwd =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb349-6" title="6"></a>
+<a class="sourceLine" id="cb349-7" title="7"><span class="co"># Plot our spatstat IDW raster tm_shape(london_ward) + tm_borders() +</span></a>
+<a class="sourceLine" id="cb349-8" title="8"><span class="co"># tm_shape(lon_idw) + tm_raster(&#39;var1.pred&#39;, style=&#39;quantile&#39;, n=100,</span></a>
+<a class="sourceLine" id="cb349-9" title="9"><span class="co"># palette=&#39;Reds&#39;, legend.show=FALSE) + tm_shape(london_ward) + tm_borders()</span></a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-idw-map-2-1.png" width="672" /></p>
+<p>And that’s it - for those of you able to use the <code>gstat</code> code, it’s highly worth playing around with the cell size to look at how it changes the smoothness of our resulting IDW.</p>
+<p>A smaller cell size will create a smoother IDW output, but it does add uncertainty to these estimates as we do not exactly have a substantial amount of data points to interpolate from!</p>
+<p>To help with minimising this uncertainty, there are two additional “data checking” steps you can take with your IDW output:</p>
+<ol style="list-style-type: decimal">
+<li><p>Testing and fine-tuning the power function you’ve used to ensure it is a valid parameter by using something known as the <em>Leave One Out Cross Validation</em>.</p></li>
+<li><p>Generating a 95% confidence interval map of our interpolation mode using cross-validation methods.</p></li>
+</ol>
+<p>We do not have time to cover these in our workshop today, but Manuel Gimond provides a short tutorial explaning both of these procedures, <a href="https://mgimond.github.io/Spatial/interpolation-in-r.html">available here</a> for your future reference.</p>
+<p>Note, I would not expect you to produce these for your coursework unless you would like to put in that level of effort! I.e. I will accept the IDW on its own, without the CI map - however, for your power function, it would be great to see if you can find a reference behind why you chose a specific value!</p>
+</div>
+</div>
+<div id="kriging-a-geostatistical-approach" class="section level4 unnumbered">
+<h4>Kriging: A Geostatistical Approach</h4>
+<p>An IDW is not the only means of interpolating point data across space to produce a raster sruface. A range of geostatistical techniques have also been devised. One of the most commonly used is <strong>kriging</strong>.</p>
+<p>Whilst an IDW is created by looking at just known values and their linear distances, kriging also considers <strong>spatial autocorrelation</strong> in its interpolation calculations. The approach is therefore more appropriate is there is a known spatial or directional bias in the data.</p>
+<p>Kriging is a geostatistical approach to interpolation, using variograms to calculate the autocorrelation between points and distance. Like an IDW the the values across space are estimated from weighted averages formed by the nearest points and considers the influence of distance.</p>
+<p>In our case with pollution data, our data is likely to have spatial bias due to the location and density of roads in London and their influence on the levels of NO<sub>2</sub>.</p>
+<p>As a result, kriging is likely to be a better approach for interpolating our data.</p>
+<p>Several forms of kriging interpolators exist, including ordinary, universal and simple.</p>
+<p>In our practical today, we will focus on <strong>ordinary kriging (OK)</strong> interpolation.</p>
+<p>This form of kriging usually involves four steps:</p>
+<ol style="list-style-type: decimal">
+<li>Removing any spatial trend in the data (if present).</li>
+<li>Computing the sample experimental variogram and fitting the variogram model.</li>
+<li>Interpolate the surface using the fitted variogram model.</li>
+<li>Add the kriged interpolated surface to the trend interpolated surface to produce the final surface output.</li>
+</ol>
+<p>In addition, a confidence interval map can also be made.</p>
+<p>To conduct these four steps, we’ll be using <code>gstat</code> to conduct our kriging analysis.</p>
+<div class="codetime">
+<p><strong>Issues with different versions of R</strong><br>
+As mentioned above, the <code>gstat</code> library will not run with newer versions of <code>gdal</code> or <code>proj</code>. We currently do not have an alternative tutorial for those of you who this does not work for - but please make sure you read through the code and look at the outputs, in preparation for the library becoming available.</p>
+<p>Alternatively, you may look into the <a href="https://cran.r-project.org/web/packages/kriging/kriging.pdf"><code>kriging</code></a> package and see if you can follow their documentation to recreate the below tutorial.</p>
+</div>
+<div id="step-1-de-trend-the-data" class="section level5 unnumbered">
+<h5>Step 1) De-trend the data</h5>
+<p>To be able to conduct ordinary kriging, a key assumption must be met: the mean and the variation in the entity being studied is constant across the study area.</p>
+<p>In other words, there should be no global trend in the data, i.e. we should not see spatial autocorrelation in our data.</p>
+<p>We know with our data that we have a “trend” to our dataset, with the roads in and around London, of course, influencing pollution levels.</p>
+<p>We therefore need to remove the trend before proceeding with kriging.</p>
+<p>To do so, we will create a trend model, representing a first, second or third order polynomial, which we use to de-detrend our point values.</p>
+<p>Removing the trend will leave us with residuals that we will then use in kriging interpolation, with the modeled trend then added to the kriged surface at the end of the kriging process.</p>
+<p>Whilst normally we should look into which polynomial is best to use for our, as explained further <a href="https://mgimond.github.io/Spatial/spatial-interpolation.html">here</a>, we will compute the trend for the first polynomial within our data.</p>
+<ol style="list-style-type: decimal">
+<li>Define the 1st order polynomial in order to use de-trended data in our variogram computation:</li>
+</ol>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" title="1"><span class="co"># To run the polynomial, we first need to extract our coordinates as individual</span></a>
+<a class="sourceLine" id="cb350-2" title="2"><span class="co"># columns And add these to our lonpollution_points dataframe By adding X and Y to</span></a>
+<a class="sourceLine" id="cb350-3" title="3"><span class="co"># londpollution_points</span></a>
+<a class="sourceLine" id="cb350-4" title="4">lonpollution_points<span class="op">$</span>X &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(lonpollution_points)[, <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb350-5" title="5">lonpollution_points<span class="op">$</span>Y &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(lonpollution_points)[, <span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb350-6" title="6"></a>
+<a class="sourceLine" id="cb350-7" title="7"><span class="co"># Define 1st order polynomial equation, for use in our variogram computation</span></a>
+<a class="sourceLine" id="cb350-8" title="8">poll_detrend &lt;-<span class="st"> </span><span class="kw">as.formula</span>(no2 <span class="op">~</span><span class="st"> </span>X <span class="op">+</span><span class="st"> </span>Y)</a></code></pre></div>
+</div>
+<div id="step-2-compute-the-sample-experimental-variogram-and-fit-the-variogram-model" class="section level5 unnumbered">
+<h5>Step 2) Compute the sample experimental variogram and fit the variogram model</h5>
+<p>Once we have detrended our data, we next need to fit a variogram model to the results of this dataset, i.e. the residuals of our linear model.</p>
+<p>We do this by first creating our variogram plot (using the <code>variogram()</code> function) and checking the results to identify the likely variogram model, nugget and sill that we can fit to our data.</p>
+<p>Here, instead of plotting all calculations of semi-variance in a cloud plot, we “bin” our cloud points into our <strong>lag</strong> intervals and summarise the points within each interval.</p>
+<p>The result is known as the <strong>sample experimental variogram</strong> plot and is what we then use to fit our model.</p>
+<p>To “bin” our data, we provide a <code>width</code> parameter to determine the subsequent intervals into which data points are grouped for the semi-variance estimates. There are many other parameters we can also pass with our <code>variogram()</code> function, but we’ll stick to a simple variogram for our practical.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a semi-variogram of our de-trended pollution points data:</li>
+</ol>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1"><span class="co"># Create a variogram for our lonpollution_points point data</span></a>
+<a class="sourceLine" id="cb351-2" title="2">var_poll &lt;-<span class="st"> </span><span class="kw">variogram</span>(poll_detrend, lonpollution_points, <span class="dt">cloud =</span> <span class="ot">FALSE</span>, <span class="dt">width =</span> <span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb351-3" title="3"></a>
+<a class="sourceLine" id="cb351-4" title="4"><span class="co"># Inspect results to determine model, sill and nugget</span></a>
+<a class="sourceLine" id="cb351-5" title="5"><span class="kw">plot</span>(var_poll)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-lets-krig-it-1-1.png" width="672" /></p>
+<p>The next step is to fit a mathematical model to our sample experimental variogram. Different mathematical models can be used, although their availability is often software dependent. (You can see which models - and their parameter names - are available in R by typing <code>vgm()</code> into your console).</p>
+<p>We can see that our model is a little tricky to identify - looking back at the graphed examples provided in our lecture, there are many models that might suit our data:</p>
+<img src="images/w9/svm.png" width="550pt" style="display: block; margin: auto;" />
+<center>
+<em>A subset of variogram models available in R’s gstat package. Source: Gimond, 2020.</em>
+</center>
+<p><br></p>
+<p>The goal is to apply the model that best fits our sample experimental variogram. This requires picking the proper model, then tweaking the partial sill, range, and nugget parameters (where appropriate).</p>
+<p>In this case, we will try to use the linear model, fitting it to a nugget of 165 and a sill of 175 - in the end, we can see that, although we have a dip in our semi-variance at around 12,500, a linear model may be the best estimator for our detrended data.</p>
+<p>We use the <code>fit.variogram()</code> function to create this fitted variogram model.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Fit a variogram model to our detrended NO<sub>2</sub> data points:</li>
+</ol>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" title="1"><span class="co"># Compute the variogram model</span></a>
+<a class="sourceLine" id="cb352-2" title="2">var_mod &lt;-<span class="st"> </span><span class="kw">fit.variogram</span>(var_poll, <span class="dt">fit.sills =</span> <span class="ot">FALSE</span>, <span class="kw">vgm</span>(<span class="dt">psill =</span> <span class="dv">175</span>, <span class="dt">model =</span> <span class="st">&quot;Lin&quot;</span>, </a>
+<a class="sourceLine" id="cb352-3" title="3">    <span class="dt">nugget =</span> <span class="dv">165</span>))</a>
+<a class="sourceLine" id="cb352-4" title="4"></a>
+<a class="sourceLine" id="cb352-5" title="5"><span class="co"># Inspect our sample vs model variograms by plotting</span></a>
+<a class="sourceLine" id="cb352-6" title="6"><span class="kw">plot</span>(var_poll, var_mod)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-lets-krig-it-2-1.png" width="672" /></p>
+<p>Hmm, what do you think? Like I said, we do have a substantial decrease in our semi-variance that we do not account for using the linear model - but I’m unsure if any other model, such as the wave model, will help us with this.</p>
+<p><em>A linear model is in fact one of the three more popular models using in SV fitting, with the other two being spherical and gaussian models.</em></p>
+<p>You can go ahead and experiment with different sill, nugget and model parameters to see if you can find a better statistical representation - but for brevity in our practical, we’ll keep going with our results above.</p>
+<div class="fyi">
+<p><strong>Independent decision-making in spatial analysis</strong><br>
+As I’ve mentioned many times, there is a lot of “estimation” or “guesswork” that comes with spatial analysis - and you often have to many independent decisions on your analysis methodology and approach!</p>
+<p>My main recommendation is to read through previous literature using the same techniques and/or data as yourself to see what decisions they have made and why - and utilise these as justifications behind your own decisions!</p>
+</div>
+</div>
+<div id="step-3-interpolate-the-surface-using-the-variogram-model" class="section level5 unnumbered">
+<h5>Step 3) Interpolate the surface using the variogram model</h5>
+<p>Now we have our de-trended data (<code>poll_detrend</code>) and our fitted variogram model (<code>var_mod</code>), we can go ahead and create our kriged surface.</p>
+<p>To do so, we use the <code>krige()</code> function, which actually allows us to include the trend model as a parameter in addition to our original <code>lonpollution_points</code> points dataset - this saves us from manually having to combine our kriged trend model (which is a raster in itself) with what would be the main kriged interpolated surface.</p>
+<p>Before we do so, we’ll also need to create a new grid for us to use and store our kriged result.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Create our kriged surface and store it within our newly created grid:</li>
+</ol>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" title="1"><span class="co"># Create empty raster grid over which to interpolate the pollution values Note,</span></a>
+<a class="sourceLine" id="cb353-2" title="2"><span class="co"># we use the SP version of our lonpollution_points again We use the same cellsize</span></a>
+<a class="sourceLine" id="cb353-3" title="3"><span class="co"># as our IDW for comparison</span></a>
+<a class="sourceLine" id="cb353-4" title="4">grid &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">spsample</span>(lonpollution_pointsSP, <span class="dt">type =</span> <span class="st">&quot;regular&quot;</span>, <span class="dt">cellsize =</span> <span class="dv">450</span>, </a>
+<a class="sourceLine" id="cb353-5" title="5">    <span class="dt">bb =</span> <span class="kw">bbox</span>(london_outlineSP)))</a>
+<a class="sourceLine" id="cb353-6" title="6"></a>
+<a class="sourceLine" id="cb353-7" title="7"><span class="co"># We then need to process our grid for use with our raster Set the names of the</span></a>
+<a class="sourceLine" id="cb353-8" title="8"><span class="co"># grid&#39;s columns to X and Y</span></a>
+<a class="sourceLine" id="cb353-9" title="9"><span class="kw">names</span>(grid) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>)</a>
+<a class="sourceLine" id="cb353-10" title="10"></a>
+<a class="sourceLine" id="cb353-11" title="11"><span class="co"># Set the coordinates of the grid to our new X and Y columns</span></a>
+<a class="sourceLine" id="cb353-12" title="12"><span class="kw">coordinates</span>(grid) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>)</a>
+<a class="sourceLine" id="cb353-13" title="13"></a>
+<a class="sourceLine" id="cb353-14" title="14"><span class="co"># Specify our data as being gridded</span></a>
+<a class="sourceLine" id="cb353-15" title="15"><span class="kw">gridded</span>(grid) &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb353-16" title="16"></a>
+<a class="sourceLine" id="cb353-17" title="17"><span class="co"># Make sure our grid is &#39;full&#39;, i.e. complete</span></a>
+<a class="sourceLine" id="cb353-18" title="18"><span class="kw">fullgrid</span>(grid) &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb353-19" title="19"></a>
+<a class="sourceLine" id="cb353-20" title="20"><span class="co"># Set the CRS of our grid to that of our spatial points</span></a>
+<a class="sourceLine" id="cb353-21" title="21"><span class="kw">proj4string</span>(grid) &lt;-<span class="st"> </span><span class="kw">proj4string</span>(lonpollution_pointsSP)</a>
+<a class="sourceLine" id="cb353-22" title="22"></a>
+<a class="sourceLine" id="cb353-23" title="23"><span class="co"># As we&#39;re using a grid in SP, and will therefore parse our points in SP, we need</span></a>
+<a class="sourceLine" id="cb353-24" title="24"><span class="co"># to go ahead and add the X and Y columns to our SP points dataset as we did with</span></a>
+<a class="sourceLine" id="cb353-25" title="25"><span class="co"># our sf version</span></a>
+<a class="sourceLine" id="cb353-26" title="26"></a>
+<a class="sourceLine" id="cb353-27" title="27"><span class="co"># To run the polynomial, we first need to extract our coordinates as individual</span></a>
+<a class="sourceLine" id="cb353-28" title="28"><span class="co"># columns And add these to our lonpollution_pointsSP dataframe Add X and Y to</span></a>
+<a class="sourceLine" id="cb353-29" title="29"><span class="co"># londpollution_pointsSP</span></a>
+<a class="sourceLine" id="cb353-30" title="30">lonpollution_pointsSP<span class="op">$</span>X &lt;-<span class="st"> </span><span class="kw">coordinates</span>(lonpollution_pointsSP)[, <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb353-31" title="31">lonpollution_pointsSP<span class="op">$</span>Y &lt;-<span class="st"> </span><span class="kw">coordinates</span>(lonpollution_pointsSP)[, <span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb353-32" title="32"></a>
+<a class="sourceLine" id="cb353-33" title="33"></a>
+<a class="sourceLine" id="cb353-34" title="34"><span class="co"># We&#39;re now ready to krige our data!</span></a>
+<a class="sourceLine" id="cb353-35" title="35"></a>
+<a class="sourceLine" id="cb353-36" title="36"><span class="co"># Perform the kriged interpolation on our lonpollution_pointsSP, including our</span></a>
+<a class="sourceLine" id="cb353-37" title="37"><span class="co"># trend model Using the detrend data (poll_trend) earlier on and the variogram</span></a>
+<a class="sourceLine" id="cb353-38" title="38"><span class="co"># (var_mod) created just now Store in our new grid</span></a>
+<a class="sourceLine" id="cb353-39" title="39">poll_krige &lt;-<span class="st"> </span><span class="kw">krige</span>(poll_detrend, lonpollution_pointsSP, grid, var_mod)</a></code></pre></div>
+<pre><code>## [using universal kriging]</code></pre>
+<p>The next step within our kriging is to turn our kriging result into a raster.</p>
+<p>Once we’ve done this, we can go ahead and map our result.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Convert kriged result to raster and map using <code>tmap</code>:</li>
+</ol>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" title="1"><span class="co"># Convert our kriged result to a raster</span></a>
+<a class="sourceLine" id="cb355-2" title="2">lonpoll_krige &lt;-<span class="st"> </span><span class="kw">raster</span>(poll_krige)</a>
+<a class="sourceLine" id="cb355-3" title="3"></a>
+<a class="sourceLine" id="cb355-4" title="4"></a>
+<a class="sourceLine" id="cb355-5" title="5"><span class="co"># Mask our kriged raster to London and map</span></a>
+<a class="sourceLine" id="cb355-6" title="6"><span class="kw">tm_shape</span>(<span class="kw">mask</span>(lonpoll_krige, london_outlineSP)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;var1.pred&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;quantile&quot;</span>, </a>
+<a class="sourceLine" id="cb355-7" title="7">    <span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">palette =</span> <span class="st">&quot;Reds&quot;</span>, <span class="dt">legend.show =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(lonpollution_pointsSP) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb355-8" title="8"><span class="st">    </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(london_ward) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-lets-krig-it-4-1.png" width="672" /></p>
+<p>And that’s it - we have our final kridged raster.</p>
+</div>
+<div id="extra-step---variance-and-confidence-interval-maps" class="section level5 unnumbered">
+<h5>Extra Step - Variance and Confidence Interval Maps</h5>
+<p>A valuable by-product of the kriging operation is the <strong>variance map</strong> which can give us a measure of uncertainty in our resulting interpolated values.</p>
+<p>To create a variance map, we can simply use an output from our <code>krige()</code> function as our <code>poll_krige</code> kriged object actually stores not just the interpolated values, but the variance values as well.</p>
+<p>We simply generate a similar raster using these values and look to understand the variance in our interpolated values. Essentially, the smaller the variance, the better - note, that our variance values will be squared units - so the square of ug/m^3.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Create a variance map of our kriged result:</li>
+</ol>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" title="1"><span class="co"># Convert our kriged variances to a raster</span></a>
+<a class="sourceLine" id="cb356-2" title="2">lonpoll_krige_var &lt;-<span class="st"> </span><span class="kw">raster</span>(poll_krige, <span class="dt">layer =</span> <span class="st">&quot;var1.var&quot;</span>)</a>
+<a class="sourceLine" id="cb356-3" title="3"></a>
+<a class="sourceLine" id="cb356-4" title="4"><span class="co"># Mask our variance raster to London and map</span></a>
+<a class="sourceLine" id="cb356-5" title="5"><span class="kw">tm_shape</span>(<span class="kw">mask</span>(lonpoll_krige_var, london_outlineSP)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="dt">n =</span> <span class="dv">7</span>, <span class="dt">palette =</span> <span class="st">&quot;Blues&quot;</span>, </a>
+<a class="sourceLine" id="cb356-6" title="6">    <span class="dt">title =</span> <span class="st">&quot;Variance Map (in ug/m^3 squared&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(lonpollution_pointsSP) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb356-7" title="7"><span class="st">    </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(london_ward) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb356-8" title="8"><span class="st">    </span><span class="kw">tm_legend</span>(<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-var-map-1.png" width="672" /></p>
+<p>Unsuprisingly, we can see our variance increases the further. As we know we have a denser set of points in the centre of London compared to the outskirts, which is likely to explain smaller variance in our central areas versus the outskirts.</p>
+<p>A more easily interpretable map is the <strong>95% confidence interval map</strong> which can be generated from the variance object as follows (the map values should be interpreted as the number of ug/m^3 above and below the estimated pollution amount).</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Create a confidence interval map of our kriged result:</li>
+</ol>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1"><span class="co"># Convert our kriged variances to a raster</span></a>
+<a class="sourceLine" id="cb357-2" title="2">lonpoll_krige_ci &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">raster</span>(poll_krige, <span class="dt">layer =</span> <span class="st">&quot;var1.var&quot;</span>)) <span class="op">*</span><span class="st"> </span><span class="fl">1.96</span></a>
+<a class="sourceLine" id="cb357-3" title="3"></a>
+<a class="sourceLine" id="cb357-4" title="4"><span class="co"># Mask our variance raster to London and map</span></a>
+<a class="sourceLine" id="cb357-5" title="5"><span class="kw">tm_shape</span>(<span class="kw">mask</span>(lonpoll_krige_ci, london_outlineSP)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="dt">n =</span> <span class="dv">7</span>, <span class="dt">palette =</span> <span class="st">&quot;Oranges&quot;</span>, </a>
+<a class="sourceLine" id="cb357-6" title="6">    <span class="dt">title =</span> <span class="st">&quot;Confidence Interval Map (in ug/m^3)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(lonpollution_pointsSP) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb357-7" title="7"><span class="st">    </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(london_ward) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb357-8" title="8"><span class="st">    </span><span class="kw">tm_legend</span>(<span class="dt">legend.outside =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-ci-map-1.png" width="672" /></p>
+<p>We now have a confidence map to help us interpret our kriged result. As we can see, we can be more confident in our values located in the centre of London, whereas, for example, we should be more uncertain when looking at the values (and overall patterns) in the north-east.</p>
+<p>Now you have both an IDW and an ordinary kriging raster that predict the average value of Nitrogen Dioxide (in <span class="math inline">\(\mu\)</span>g/m<sup>3</sup>) in 2019 in London - which method do you think gives a better performance and why?</p>
+<p>You’ll need to make a decision in order to complete this week’s second assignment.</p>
+<div class="assignment">
+<p><strong>Calculating NO<sub>2</sub> change in London between 2019 and 2020: Impact of COVID</strong><br></p>
+<p>Your second (and very optional) assignment for this week is to calculate either an IDW or kriging raster for the same NO<sub>2</sub> dataset in 2020.</p>
+<p>You can then use one of several of the techniques we learnt earlier above in our map algebra section to understand how did NO<sub>2</sub> change in London between 2019 and 2020?</p>
+<p>I’ll collect any final maps in our seminar at the start of Week 10, so no need to submit anything beforehand.</p>
+</div>
+<hr />
+</div>
+</div>
+</div>
+<div id="extension-single-value-rasters-v.-multi-band-imagery" class="section level3 unnumbered">
+<h3>Extension: Single-Value Rasters v. Multi-Band Imagery</h3>
+<p>This week’s extension is not really an extension per se, but a short piece of information on using rasters.</p>
+<p>As you’ll have seen, we’ve used two different approaches in mapping rasters using <code>tmap</code>.</p>
+<p>The first - and our main approach, including today - is using the <code>tm_raster()</code>. We use this function when we either want to apply a fixed colour to our raster or a colour palette to a specific variable.</p>
+<p>As you’ve read earlier, a raster dataset normally only contains <strong>one layer</strong>, i.e. one variable. Hence when we want to map a raster, we use the <code>tm_raster()</code> and provide the layer name for mapping. In our examples, this has been <code>layer</code> and <code>var1.pred</code>, for example.</p>
+<p>However, in some circumstances, such as with satellite imagery and, if you remember last week, our OpenStreetMap basemap raster, we will want to use the <code>tm_rgb()</code>.</p>
+<p>This is because these types of rasters, instead of having a single layer, actually consist of <strong>three</strong> bands: a band with a red value, a band with a green value and a band with a blue value. This is known as “multi-band” imagery.</p>
+<p>To visualise these data correctly, we therefore need to use the <code>tm_rgb()</code> function in order to stack our three bands together to create the appropriate visualisation. We can visualise each band independently of one another, however, if you try it out with your OSM basemap from the previous week, you’ll see that you end up with either a nearly all red, green or blue image!</p>
+<p>We don’t have much time in our module to cover satellite imagery, but if you’d like to learn more about using satellite imagery with R, I recommend checking out this tutorial by a fellow lecturer at CASA on <a href="https://andrewmaclachlan.github.io/CASA0005repo/advanced-raster-analysis.html">calculating the Normalised Difference Vegetation Index</a>.</p>
+<p>Alternatively, you can also check Esri’s help information on <a href="https://desktop.arcgis.com/en/arcmap/10.3/manage-data/raster-and-images/raster-bands.html">Rasters and Raster Bands here</a>.</p>
+<p>Learning how to use satellite imagery can be a really useful skillset, particularly as this type of data is being increasingly used human geography applications - as well as, of course, its more traditional applications in physical and environmental geography.</p>
+<hr />
+</div>
+<div id="recap---rasters-zonal-statistics-and-interpolation" class="section level3 unnumbered">
+<h3>Recap - Rasters, Zonal Statistics and Interpolation</h3>
+<p>This week, we’ve looked at raster datasets and how we use the <code>raster</code> library to manage and process them.</p>
+<p>Specifically, we looked at using <strong>map algebra</strong> to apply mathematical operations to rasters, using local, global, focal and zonal approaches and how we use map algebra on either an individual or combination of rasters.</p>
+<p>We then looked at how we can use different interpolation methods to generate raster data from point data. These techniques are split into two categories, <em>deterministic</em> and <em>geostatistical</em> methods.</p>
+<p>The two approaches have their various advantages over one another - from efficiency in processing to accounting for spatial autocorrelation within our data. Which technique you use will be determined by your application and analysis requirements.</p>
+<p>Understanding how to interpolate data correctly is incredibly important. Whilst in most instances you will be working with vector data, especially where government statistics and administrative boundaries are involved, there are also plenty of use cases in which you will need to generate raster data from point data, as we have done today.</p>
+<p>You now know the basics of working with raster datasets as well as that you can create your own raster datasets by using interpolation and geostatistical methods such as kriging to predict a given phenomenon in unmeasured locations.</p>
+<p>One thing to remember is that when we use <strong>interpolation</strong>, we are looking at a <strong>value</strong> at a given point and predicting values for non-sampled points. When we use <strong>kernel density estimation</strong>, we are looking at the density of the points themselves and estimating likely density of the points themselves for non-sampled locations.</p>
+<p>Make sure you do not use the two techniques interchangeably - as they have very different purposes!</p>
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Use, analyse and visualise raster data in R confidently.</li>
+<li>Utilise map algebra to analyse two or more raster datasets together.</li>
+<li>Utilise vector and raster data together using zonal statistics.</li>
+<li>Explain what interpolation is and the different techniques we can use.</li>
+<li>Implement different geostatistical techniques in R.</li>
+<li>Utilise vector and raster data together using zonal statistics.</li>
+</ul>
+</div>
+<hr />
+<div id="acknowledgements-12" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>This page is adapted from <a href="https://jtvandijk.github.io/GEOG0114/raster-data-and-geostatistics.html">GEOG0114: Principles of Spatial Analysis: Raster data and geostatistics</a> by Dr Joanna Wilkin (this Workbook’s author) and Dr Justin Van Dijk at UCL (the author of the week’s practical within GEOG0114) and <a href="https://mgimond.github.io/Spatial/interpolation-in-r.html">Interpolation in R</a> by Manuel Gimond.</p>
+<p>The datasets used in this workshop (and resulting maps):</p>
+<ul>
+<li>Lloyd, C. D., Bearman, N., Catney, G, Singleton, A. and Williamson, P. (2016) PopChange. Liverpool: Centre for Spatial Demographics Research, University of Liverpool.</li>
+<li>London Air Pollution Data © 2018, Environmental Research Group, Imperial College London.</li>
+<li>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence)</li>
+<li>Contains Ordnance Survey data © Crown copyright and database right [2015]</li>
+</ul>
 
+</div>
+</div>
 </div>
 
 
