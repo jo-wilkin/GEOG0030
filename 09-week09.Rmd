@@ -16,12 +16,12 @@ Within the Extension, we'll take a quick look at satellite imagery and how and w
 
 ### Week 9 in Geocomp {-}
 
-*Welcome video and lecture videos to be updated on Wednesday morning.*
+<center>
 ```{r 09-welcome, warnings=FALSE, message=FALSE, echo=FALSE, cache=TRUE, tidy=TRUE}
 library(vembedr)
 embed_msstream('') %>% use_align('center')
 ```
-<center>[Video on Stream]()</center><br>
+[Video on Stream]()</center><br>
 
 This week's content introduces you to raster data, map algebra and interpolation. 
 
@@ -36,8 +36,8 @@ We have three areas of work to focus on:
 This week's content is split into **4** parts:
 
 1. [Workshop Housekeeping] (10 minutes)
-2. [Raster Data] (40 minutes)
-3. [Interpolation: Theory and Techniques] (40 minutes)
+2. [Raster Data] (60 minutes)
+3. [Interpolation: Theory and Techniques] (45 minutes)
 4. [Interpolation: Application in R] (60 minutes)
 4. [Extension: Single-Value Rasters v. Multi-Band Imagery] (5 minutes)
 
@@ -263,9 +263,9 @@ Our first lecture for this week provides  **raster data** and **map algebra**.
 <center>
 ```{r 09-raster-data-and-map-algebra, warnings=FALSE, message=FALSE, echo=FALSE}
 library(vembedr)
-embed_msstream('') %>% use_align('left')
+embed_msstream('877a1704-777a-4f55-9121-c1a4bdcc9fed') %>% use_align('left')
 ```
-[Lecture slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EVAPqEZC_ANBvl2qaNitW0QBuEd01J-y9r_Q_TBjVyjxPg?e=Ubaaqg) | [Watch on MS stream]()</center><br>
+[Lecture slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EVAPqEZC_ANBvl2qaNitW0QBuEd01J-y9r_Q_TBjVyjxPg?e=Ubaaqg) | [Watch on MS stream](https://web.microsoftstream.com/video/877a1704-777a-4f55-9121-c1a4bdcc9fed)</center><br>
 
 We do not have a huge amount of time this week to look into map algebra fully - including the many applications mentioned above. But for those of you interested in environmental modelling or more complex data science specialising in Bayesian modelling, there are many tutorials and videos out there that can explore these in more detail. 
 
@@ -521,9 +521,9 @@ This week's lecture outlines the difference between the two and explains how the
 <center>
 ```{r 09-interpolation-lecture, warnings=FALSE, message=FALSE, echo=FALSE}
 library(vembedr)
-embed_msstream('') %>% use_align('left')
+embed_msstream('cd612a70-09df-41d0-bdb6-01f90542c78d') %>% use_align('left')
 ```
-[Lecture slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EaZ7nbbTxsVLswROrZPMlvgBCFjZVlJSsk2EFsOPIgABOw?e=z7SHAh) | [Watch on MS stream]()</center><br>
+[Lecture slides](https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EaZ7nbbTxsVLswROrZPMlvgBCFjZVlJSsk2EFsOPIgABOw?e=z7SHAh) | [Watch on MS stream](https://web.microsoftstream.com/video/cd612a70-09df-41d0-bdb6-01f90542c78d)</center><br>
 
 We'll now put these techniques into action by interpolating our air quality point data into a raster surface to understand further how air pollution varies across London.
 
@@ -1058,7 +1058,7 @@ knitr::include_graphics('images/w9/svm.png')
 ```
 <center>*A subset of variogram models available in R’s gstat package. Source: Gimond, 2020.*</center><br>
 
-The goal is to apply the model that best fits our sample experimental variogram. This requires picking the proper model, then tweaking the partial sill, range, and nugget parameters (where appropriate). 
+The goal is to apply the model that best fits our sample experimental variogram. This requires picking the proper model, then tweaking the sill, range, and nugget parameters (where appropriate). 
 
 In this case, we will try to use the linear model, fitting it to a nugget of 165 and a sill of 175 - in the end, we can see that, although we have a dip in our semi-variance at around 12,500, a linear model may be the best estimator for our detrended data.
 
@@ -1210,7 +1210,7 @@ You'll need to make a decision in order to complete this week's second assignmen
 :::assignment
 **Calculating NO~2~ change in London between 2019 and 2020: Impact of COVID**<br>
 
-Your second (and very optional) assignment for this week is to calculate either an IDW or kriging raster for the same NO~2~ dataset in 2020.
+Your second (and very optional) assignment for this week is to calculate either an IDW or kriging raster for the same NO~2~ dataset in 2020. You can find the same csv zipfile - but for 2020 - for download [here](https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/ESxNZV27w85Bmj5iV-twt6gBo2whLET6cSvbGB7no3nQpA?e=DuqR4k).
 
 You can then use one of several of the techniques we learnt earlier above in our map algebra section to understand how did NO~2~ change in London between 2019 and 2020?
 

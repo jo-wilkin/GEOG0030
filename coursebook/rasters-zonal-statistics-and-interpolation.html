@@ -305,13 +305,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Within the Extension, we’ll take a quick look at satellite imagery and how and why we use the <code>tm_rgb()</code> function to map raster datasets that have multiple bands (rather than the <code>tm_raster()</code> function), including the OpenStreetMap basemap from last week.</p>
 <div id="week-9-in-geocomp" class="section level3 unnumbered">
 <h3>Week 9 in Geocomp</h3>
-<em>Welcome video and lecture videos to be updated on Wednesday morning.</em>
+<center>
 <div class="vembedr" align="center">
 <div>
 <iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
 </div>
 </div>
-<center>
 <a href="">Video on Stream</a>
 </center>
 <p><br></p>
@@ -326,8 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This week’s content is split into <strong>4</strong> parts:</p>
 <ol style="list-style-type: decimal">
 <li><a href="rasters-zonal-statistics-and-interpolation.html#workshop-housekeeping-3">Workshop Housekeeping</a> (10 minutes)</li>
-<li><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1">Raster Data</a> (40 minutes)</li>
-<li><a href="rasters-zonal-statistics-and-interpolation.html#interpolation-theory-and-techniques">Interpolation: Theory and Techniques</a> (40 minutes)</li>
+<li><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1">Raster Data</a> (60 minutes)</li>
+<li><a href="rasters-zonal-statistics-and-interpolation.html#interpolation-theory-and-techniques">Interpolation: Theory and Techniques</a> (45 minutes)</li>
 <li><a href="rasters-zonal-statistics-and-interpolation.html#interpolation-application-in-r">Interpolation: Application in R</a> (60 minutes)</li>
 <li><a href="rasters-zonal-statistics-and-interpolation.html#extension-single-value-rasters-v.-multi-band-imagery">Extension: Single-Value Rasters v. Multi-Band Imagery</a> (5 minutes)</li>
 </ol>
@@ -533,10 +532,10 @@ By the end of this week, you should be able to:</p>
 <center>
 <div class="vembedr" align="left">
 <div>
-<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+<iframe src="https://web.microsoftstream.com/embed/video/877a1704-777a-4f55-9121-c1a4bdcc9fed?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
 </div>
 </div>
-<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EVAPqEZC_ANBvl2qaNitW0QBuEd01J-y9r_Q_TBjVyjxPg?e=Ubaaqg">Lecture slides</a> | <a href="">Watch on MS stream</a>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EVAPqEZC_ANBvl2qaNitW0QBuEd01J-y9r_Q_TBjVyjxPg?e=Ubaaqg">Lecture slides</a> | <a href="https://web.microsoftstream.com/video/877a1704-777a-4f55-9121-c1a4bdcc9fed">Watch on MS stream</a>
 </center>
 <p><br></p>
 <p>We do not have a huge amount of time this week to look into map algebra fully - including the many applications mentioned above. But for those of you interested in environmental modelling or more complex data science specialising in Bayesian modelling, there are many tutorials and videos out there that can explore these in more detail.</p>
@@ -715,10 +714,10 @@ By the end of this week, you should be able to:</p>
 <center>
 <div class="vembedr" align="left">
 <div>
-<iframe src="https://web.microsoftstream.com/embed/video/?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+<iframe src="https://web.microsoftstream.com/embed/video/cd612a70-09df-41d0-bdb6-01f90542c78d?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
 </div>
 </div>
-<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EaZ7nbbTxsVLswROrZPMlvgBCFjZVlJSsk2EFsOPIgABOw?e=z7SHAh">Lecture slides</a> | <a href="">Watch on MS stream</a>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EaZ7nbbTxsVLswROrZPMlvgBCFjZVlJSsk2EFsOPIgABOw?e=z7SHAh">Lecture slides</a> | <a href="https://web.microsoftstream.com/video/cd612a70-09df-41d0-bdb6-01f90542c78d">Watch on MS stream</a>
 </center>
 <p><br></p>
 <p>We’ll now put these techniques into action by interpolating our air quality point data into a raster surface to understand further how air pollution varies across London.</p>
@@ -1138,7 +1137,7 @@ As mentioned above, the <code>gstat</code> library will not run with newer versi
 <em>A subset of variogram models available in R’s gstat package. Source: Gimond, 2020.</em>
 </center>
 <p><br></p>
-<p>The goal is to apply the model that best fits our sample experimental variogram. This requires picking the proper model, then tweaking the partial sill, range, and nugget parameters (where appropriate).</p>
+<p>The goal is to apply the model that best fits our sample experimental variogram. This requires picking the proper model, then tweaking the sill, range, and nugget parameters (where appropriate).</p>
 <p>In this case, we will try to use the linear model, fitting it to a nugget of 165 and a sill of 175 - in the end, we can see that, although we have a dip in our semi-variance at around 12,500, a linear model may be the best estimator for our detrended data.</p>
 <p>We use the <code>fit.variogram()</code> function to create this fitted variogram model.</p>
 <ol start="3" style="list-style-type: decimal">
@@ -1260,7 +1259,7 @@ As I’ve mentioned many times, there is a lot of “estimation” or “guesswo
 <p>You’ll need to make a decision in order to complete this week’s second assignment.</p>
 <div class="assignment">
 <p><strong>Calculating NO<sub>2</sub> change in London between 2019 and 2020: Impact of COVID</strong><br></p>
-<p>Your second (and very optional) assignment for this week is to calculate either an IDW or kriging raster for the same NO<sub>2</sub> dataset in 2020.</p>
+<p>Your second (and very optional) assignment for this week is to calculate either an IDW or kriging raster for the same NO<sub>2</sub> dataset in 2020. You can find the same csv zipfile - but for 2020 - for download <a href="https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/ESxNZV27w85Bmj5iV-twt6gBo2whLET6cSvbGB7no3nQpA?e=DuqR4k">here</a>.</p>
 <p>You can then use one of several of the techniques we learnt earlier above in our map algebra section to understand how did NO<sub>2</sub> change in London between 2019 and 2020?</p>
 <p>I’ll collect any final maps in our seminar at the start of Week 10, so no need to submit anything beforehand.</p>
 </div>
