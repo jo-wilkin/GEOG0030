@@ -251,7 +251,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#recap---rasters-zonal-statistics-and-interpolation"><i class="fa fa-check"></i>Recap - Rasters, Zonal Statistics and Interpolation</a></li>
 </ul></li>
 <li class="part"><span><b>III Advanced Spatial Analysis</b></span></li>
-<li class="chapter" data-level="10" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html"><i class="fa fa-check"></i><b>10</b> Geodemographic Classification</a></li>
+<li class="chapter" data-level="10" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html"><i class="fa fa-check"></i><b>10</b> Geodemographic Classification</a><ul>
+<li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#week-10-in-geocomp"><i class="fa fa-check"></i>Week 10 in Geocomp</a></li>
+<li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#workshop-housekeeping-4"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#what-is-geodemographic-classification"><i class="fa fa-check"></i>What is Geodemographic Classification?</a></li>
+<li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#a-typical-geodemographic-classification-workflow"><i class="fa fa-check"></i>A Typical Geodemographic Classification Workflow</a></li>
+<li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#implementing-geodemographic-classification-in-r"><i class="fa fa-check"></i>Implementing Geodemographic Classification in R</a></li>
+<li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#extension-additional-indices-for-use-within-geocomputation"><i class="fa fa-check"></i>Extension: Additional Indices for use within Geocomputation</a></li>
+<li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#recap---geodemographics"><i class="fa fa-check"></i>Recap - Geodemographics</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="spatial-regression-models-optional.html"><a href="spatial-regression-models-optional.html"><i class="fa fa-check"></i><b>11</b> Spatial Regression Models (Optional)</a></li>
 <li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a></li>
 <li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a></li>
@@ -296,8 +304,1018 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="geodemographic-classification" class="section level1">
 <h1><span class="header-section-number">10</span> Geodemographic Classification</h1>
-<p><strong>Content for this week will be released at 10am on the 23rd March 2021.</strong></p>
+<p>Welcome to Week 10 - our final official week - in Geocomputation!</p>
+<p>This week, we’ll be covering <strong>Geodemographic Classification</strong>.</p>
+<p>In previous weeks, we’ve looked at how we can map single variables to specific administrative and analyse their distribution to understand local characteristics of an area.</p>
+<p>Geodemographic classification takes this one step further to create a more complex understanding of these characteristics - we take a selection of variables about our administrative areas and run an algorithm that clusters these areas into people of certain “similarities”. There’s a lot more behind the process, but ultimately our result is a map at the chosen spatial scale with these defined clusters that we give “names” based on their similarities.</p>
+<p>This week, we’ll introduce you to a few of the Geodemographic Classifications that are available to you to use as open data for England as well as look to create our own “GDC” for a different area in England, Cambridgeshire (county) and Peterborough (city), which are located approximately 50 miles north of London.</p>
+<p>Within the Extension, we’ll look at a few additional Indices that you should be aware of moving forwards in Geocomputation, including revisitibg the <strong>Index of Multiple Deprivation</strong> and understand its constituent domains as well as the <strong>Public Transport Accessibility Layer</strong>.</p>
+<div id="week-10-in-geocomp" class="section level3 unnumbered">
+<h3>Week 10 in Geocomp</h3>
+<p>This week’s content introduces you to Geodemographic Classification.</p>
+<p>We have two areas of work to focus on:</p>
+<ol style="list-style-type: decimal">
+<li>Open Geodemographic Classifications</li>
+<li>Geodeomographic Classification Methodology</li>
+<li>Geodemographic Classification in R</li>
+<li>Extension: Understanding Index Construction via IMD</li>
+</ol>
+<p>This week’s content is split into <strong>4</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li><a href="geodemographic-classification.html#workshop-housekeeping-4">Workshop Housekeeping</a> (10 minutes)</li>
+<li>[What is Geodemographic Classification] (30 minutes)</li>
+<li><a href="geodemographic-classification.html#a-typical-geodemographic-classification-workflow">A Typical Geodemographic Classification Workflow</a> (30 minutes)</li>
+<li><a href="geodemographic-classification.html#implementing-geodemographic-classification-in-r">Implementing Geodemographic Classification in R</a> (60 minutes)</li>
+<li><a href="geodemographic-classification.html#extension-additional-indices-for-use-within-geocomputation">Extension: Additional Indices for use within Geocomputation</a> (10 minutes)</li>
+</ol>
+<p>This week, we have <strong>2 short lectures</strong> within this week’s main workshop content - we do not have any assignments this week.</p>
+<div class="puzzle">
+<p><strong>Learning Objectives</strong><br><br>
+By the end of this week, you should be able to:</p>
+<ul>
+<li>Explain what is a Geodemographic Classification (GDC).</li>
+<li>Access and utilise already existing GDCs.</li>
+<li>Describe the typical GDC workflow and its limitations.</li>
+<li>Implement a GDC classification in R.</li>
+<li>Recall several pre-created GDCs and Indices that are available to use in spatial analysis.</li>
+</ul>
+</div>
+<p>We’ll look to create our GDC for our new area of focus: the county of Cambridgeshire and the connected/associated city of Peterborough. (A long story short - Peterborough is in the county of Cambridgeshire, but in 1998, the city became autonomous of Cambridgeshire county council as a unitary authority. It does continues to form part of the county for ceremonial purposes, including administrative data purposes - as a result, we treat the two as a single spatial entity, although recognise Peterborough as autonomous. Who said administrative boundaries were easy?!).</p>
+<p>To complete this analysis, we’ll be using two new datasets:</p>
+<ol style="list-style-type: decimal">
+<li><strong>2011 Census Data for Cambridge and Peterborough</strong>: a csv containings an aggregated representation of each different census variable for each Output Area (pre-prepared for us!).</li>
+<li><strong>Output Area Boundaries</strong>: Output Area (OA) administrative boundaries for Cambridge and Peterborough.</li>
+</ol>
+<p>Due to the complexity in creating a GDC from scratch, we’ll be using already prepared data to conduct our analysis.</p>
+<hr />
+</div>
+<div id="workshop-housekeeping-4" class="section level3 unnumbered">
+<h3>Workshop Housekeeping</h3>
+<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.</p>
+<div id="setting-up-your-script-5" class="section level4 unnumbered">
+<h4>Setting up your script</h4>
+<ol style="list-style-type: decimal">
+<li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>wk10-geodemographic-classification.r</code>.</p></li>
+<li><p>At the top of your script, add the following metdata (substitute accordingly):</p></li>
+</ol>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" title="1"><span class="co"># Creating a Geodemographic Classification of Cambridge and Peterborough Script</span></a>
+<a class="sourceLine" id="cb358-2" title="2"><span class="co"># started March 2021 NAME</span></a></code></pre></div>
+</div>
+<div id="dependencies-aka-libraries-4" class="section level4 unnumbered">
+<h4>Dependencies (aka libraries)</h4>
+<p>Now we’ll install the libraries we need for this week.</p>
+<p>In addition to those libraries you should now be familiar with, we will need to install and use:</p>
+<ul>
+<li><code>Formula</code>: for correlation analysis</li>
+<li><code>Hmisc</code>, preferably version 0.5-2: for more under-the-hood spatial data management</li>
+<li><code>fpc</code>: for visualising cluster assignment (you <em>may</em> have this installed from our use of DB-Scan previously)</li>
+<li><code>plotrix</code>: to create our radial plots</li>
+</ul>
+<p>Remember to use the <code>install.packages("package")</code> command <strong>in your console</strong>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Within your script</strong>, add the following libraries for loading:</li>
+</ol>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb359-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb359-3" title="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb359-4" title="4"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb359-5" title="5"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb359-6" title="6"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb359-7" title="7"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb359-8" title="8"><span class="kw">library</span>(Formula)</a>
+<a class="sourceLine" id="cb359-9" title="9"><span class="kw">library</span>(Hmisc)</a>
+<a class="sourceLine" id="cb359-10" title="10"><span class="kw">library</span>(fpc)</a>
+<a class="sourceLine" id="cb359-11" title="11"><span class="kw">library</span>(plotrix)</a></code></pre></div>
+<p>Remember to select the lines of code you want to run and press <strong>CMD (Mac)/CTRL(Windows) + Enter/Return</strong> - we won’t remind you to run each line of code in the remainder of the practical sessions.</p>
+</div>
+<div id="datasets-for-this-week-4" class="section level4 unnumbered">
+<h4>Datasets for this week</h4>
+<p>This week, in a rarity for Geocomputation, we will be used pre-processed data for our Geodemographic Classification.</p>
+<p>You’ll need to download three datasets:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Dataset</th>
+<th align="left">File Type</th>
+<th align="left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Output Areas for Cambridgeshire and Peterborough</td>
+<td align="left"><code>shp</code></td>
+<td align="left"><a href="https://liveuclac-my.sharepoint.com/:u:/g/personal/ucfailk_ucl_ac_uk/EVRO9OPHmf9Pm8IOI1Ez8l4B436nqoYN11rpBBR_bmVNRA?e=QGgzFG">Download</a></td>
+</tr>
+<tr class="even">
+<td align="left">Prepared Classification Variables for Cambridgeshire and Peterborough</td>
+<td align="left"><code>csv</code></td>
+<td align="left"><a href="https://liveuclac-my.sharepoint.com/:x:/g/personal/ucfailk_ucl_ac_uk/EeEPecZa59NEjFApJbO8K9gBNuylZ2fTabpKpC2JY4VmOQ?e=kSiitk">Download</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Variable Look Up Table</td>
+<td align="left"><code>csv</code></td>
+<td align="left"><a href="https://liveuclac-my.sharepoint.com/:x:/g/personal/ucfailk_ucl_ac_uk/EX8nlPiB5zFLlXLmD2WxvdcB6xnxSsS2Wez90LvxPXdgUA?e=AfPtLQ">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Once downloaded, copy over these files into your <strong>data –&gt; raw –&gt; gdc</strong> folder (i.e. create a new <code>gdc</code> folder!).</p>
+<p>This is all the data we’ll need for this week’s practical.</p>
+</div>
+</div>
+<div id="what-is-geodemographic-classification" class="section level3 unnumbered">
+<h3>What is Geodemographic Classification?</h3>
+<p>Put simply, geodemographics is the ‘analysis of people by where they live’ (Harris et al. 2005) and involves the classification of geographical areas based on the socioeconomic characteristics of their residents (Cockings et al, 2020).</p>
+<p>To summarise the general geodemographic classification “GDC” workflow succintly, a set of variables are selected by the researcher that represent the characteristics by which the neighbourhoods should be classified, whether looking at demographics, including age, ethnicity, and family or household structure, or socio-economic characteristics, such as employment status and occupation, education and qualification levels, income or income proxies.</p>
+<p>These variables are provided at an aggregated spatial scale, representative of the neighbourhoods that will be studied (e.g. Output Areas, Lower Super Output Areas, Workplace Zones). An algorithm is then used to cluster neighbourhoods together that have similarities across these variables.</p>
+<p>The researcher then assigns these groups of neighbourhoods identities by giving them labels (names) and associated “pen profiles” that qualitatively describe the variables seen within the cluster.
+In most cases, the final output of a GDC is a map highlighting these different clusters and their location with one another.</p>
+<p>This output can then be used in further analysis and within other applications.</p>
+<div id="lecture-an-introduction-to-geodemographic-classification" class="section level4 unnumbered">
+<h4>Lecture: An Introduction to Geodemographic Classification</h4>
+<p>This week’s first lecture provides you with a general introduction into GDCs and their history, applications and limitations.</p>
+<center>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/c2922058-c339-4694-9d60-def41820de1f?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/EQRsrMdBzH5DjnfBPJ5arDABjOSdoWzi7bRmxqRM-1xsoA?e=0siGGA">Lecture slides</a> | <a href="https://web.microsoftstream.com/video/c2922058-c339-4694-9d60-def41820de1f">Watch on MS stream</a>
+</center>
+<p><br></p>
+<p>The lecture is further expanded upon below, with examples of the various open GDCs mentioned in the lecture for our area of interest, Cambridgeshire and Peterborough.</p>
+</div>
+<div id="gdcs-and-the-role-of-geography" class="section level4 unnumbered">
+<h4>GDCs and the role of geography</h4>
+<p>A GDC entails representing the individual and collective identities that are manifest in observable neighbourhood structure (Longley 2012).</p>
+<p>As a result, it has traditionally fallen into the nomothetic approach to geographic enquiry - emphasizing the shared social, economic, and demographic characteristics of different types (or classes) of neighborhoods, independent of their locations relative to unique places.</p>
+<p>As such, a type of neighborhood may be widely scattered across a territory or jurisdiction. Geodemographic profiles thus provide summary indicators of the commonalities of social structure that link different locations (Longley, 2017).</p>
+<p>These “spatial” commonalities however do not become evident within the GDC process until the outputs are mapped - and this spatial distribution can then be used to help create the identities (e.g. city elites, rural retirees or inner-city families). Instead, the role of “space” per se within GDCs is part of much of the theory that underlines the success of GDCs to “work” in the first place.</p>
+<p>As we know as geographers and spatailly-enabled thinkers, <em>“everything is related to everything else, but near things are more related than distant things”</em> (Tobler, 1970) - and this often stands true in terms of the formation of communities.</p>
+<p>An underlying concept in sociology is <em>homophily</em>, where there is a tendency of individuals to associate and bond with those who are similar to themselves.</p>
+<p>This, alongside Tobler’s Law, can help us conceptualise why similar people and households and co-locate, forming communities and neighbourhoods that are relatively homogenous.</p>
+<p>Furthermore, once an area is established, it encourages others of similar backgrounds and characteristics to also move to the same area - and benefit from whatever “conditions” attracted the original households, whether it is low house prices, proximity to certain instiutions or even planned housing projects.</p>
+<p>Thus, whilst space will ultimately be a factor in the cluster results, it is not taken into account during the clustering as a variable itself! This is one important thing to remember, particularly after the previous few weeks where we have looked at clustering algorithms that <strong>do</strong> take into account space as a direct varaible, such as DB-Scan.
+#### Applications of GDCs {-}</p>
+<p>GDCs are a useful means on segmenting the population into distinctive groups in order to effectively channel resources.</p>
+<p>Such classifications have been effective deductive tools for marketing, retail and service planning industries due to the assumed association between geodemographics and behaviour.</p>
+<p>For instance, typically a classification at the broadest level may distinguish cosmopolitan neighbourhoods with high proportions of young and newly qualified workers from suburban neighbourhoods with high proportions of settled families.</p>
+<p>Whilst most geodemographic products are built within the commercial sector and sold by vendors, increasingly more open source alternatives are available, particularly for the UK where GDCs are a prominent area of research within Quantitative Geography departments.</p>
+</div>
+<div id="open-gdcs-in-the-uk-and-its-divisions" class="section level4 unnumbered">
+<h4>(Open) GDCs in the UK (and its divisions)</h4>
+<p>The UK is a hotbed of GDC research, with much of it occuring at UCL (and its incredibly productive PhD students within the CDRC, spearheaded by Professor Paul Longley) and also the various other Universities, where many of these former PhD students have moved to and set up their own CDRC partnering research groups.</p>
+<p>Other active GDC institutions include the Office for National Statistics (ONS), who were responsible for (with the University of Leed) the first openly available GDC in 2005, and the University of Southampton, which focuses on the “workplace” version of the more general GDC available for the UK and/or England and Wales (see below).</p>
+<p>Prior to the ONS and their GDC, the majority of GDC research and application in the UK occured “behind closed doors” with commercial firms such as Experian and CACI Limited creating and utilising their own GDCs (MOSAIC and ACORN respectively) for in-house applications.</p>
+<p>Now, particularly with the push for Open Data in the UK since the beginning of the millenium (and all the data portals we’ve seen pop up since data.gov.uk was first online in 2010), we have access to a huge amount of data that is enabling research into new types of GDCs, from the general purpose and original “Output Area Classifcation” to the newly created Internet User Classification, all of which are openly available and free to download and use.</p>
+<p>We utilise this in our workbook today, where I’ve created maps of several of the openly available GDCs for our area of interest today, Cambridgeshire and Peterborough.</p>
+<div id="output-area-classification" class="section level5 unnumbered">
+<h5>Output Area Classification</h5>
+<p>The Output Area Classification (OAC) GDC was the original GDC created by the ONS and the University of Leeds.</p>
+<p>The first OAC was created using 2001 census data at the output scale. Each area was assignment one of seven clusters, based on the socio‐economic attributes of the residents of each area. The classification used cluster analysis to reduce 41 census variables to a single socio‐economic indicator (<a href="https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-985X.2007.00466.x">Vickers and Rees, 2007</a>).</p>
+<p>The OAC was updated for 2011 census data by a team of researchers across several universities and published in 2016. It summarizes the social and physical structure of neighborhoods using data from the 2011 UK Census, with an updated methodology that also included a user engagement exercise. The 2011 OAC comprises 8 Supergroups, 26 Groups, and 76 Subgroups (<a href="https://digitalcommons.library.umaine.edu/cgi/viewcontent.cgi?article=1076&amp;context=josis">Gale et al, 2016</a>).</p>
+<p>The OAC supergroups for Cambridgeshire and Peterborough area are shown here:</p>
+<p><em>Note, there is a specific colour scheme to use with the Output Area Classification (and many of the GDCs!) which is not applied here.</em></p>
+<center>
+<pre><code>## Reading layer `E47000008&#39; from data source `/Users/Jo/Code/GEOG0030/data/raw/gdc/Output_Area_Classification_2011/Combined_Authorities/E47000008/shapefiles/E47000008.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 2540 features and 2 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 501879.2 ymin: 236168.1 xmax: 571833.4 ymax: 318013.3
+## CRS:            27700</code></pre>
+<pre><code>## Warning: The shape opa_shp is invalid. See sf::st_is_valid</code></pre>
+<img src="GEOG0030_files/figure-html/10-opa-map-1.png" width="672" />
+</center>
+<center>
+<em>The data used in the map above is provided by CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015.</em>
+</center>
+<p><br></p>
+<p>In addition to the above general <strong>Output Area Classification</strong> for the entirety of the UK, an additional GDC was created specifically for London and its respective output areas, known as the <strong>London Output Area Classification (LOAC)</strong>.</p>
+<p>You can find the LOAC <a href="https://maps.cdrc.ac.uk/#/geodemographics/loac11/default/BTTTFFT/10/-0.1500/51.5200/">here</a> on the CDRC website (alongisde interactive versions of all the maps displayed in this workbook).</p>
+<p>These classifications were conducted at <strong>Output Area</strong> scale, which usually consists of approximately 100 individuals and 40 households.</p>
+<div class="note">
+<p><strong>Scales of Analysis</strong><br>
+As you should know, normally, I would not advocate running an analysis or aggregation at this scale (with the Lower Super Output Area as my recommended minimum scale), but GDCs are often created on data of this scale of resolution.</p>
+<p>Despite this availability, you should however be cautious and conscientious with your results as, although the data is aggregated and thus anonoymised, this fine resolution can still mean that those living in the OAs you are using can often “identify” themselves within the data and ultimately your resulting categorisation of them.</p>
+<p>I still very much advocate that any analysis directly to do with public health should always occur at least the LSOA scale.</p>
+</div>
+</div>
+<div id="classification-of-workplace-zones" class="section level5 unnumbered">
+<h5>Classification of Workplace Zones</h5>
+<p>A relativley new GDC to enter into the UK’s growing collection is a set of GDCs developed by researchers at the University of Southampton (my PhD alma mater!) and the ONS.</p>
+<p>With their <strong>Classification of Workplace Zones</strong>, (COWZ) the researchers developed a novel classification based on the characteristics of workers and workplaces within local areas at two spatial scales: 1) England and Wales and 2) the UK (i.e. England, Wales, Scotland and Northern Ireland).</p>
+<p>The COWZ-EW is a classification of Workplace Zones for England and Wales.</p>
+<p>The COWZ-UK is a classification of Workplace Zones for the UK.</p>
+<p>The GDCs used data from the 2011 censuses from England and Wales, Scotland and Northern Ireland to create the two GDCs.</p>
+<p>The GDCs are created at a unique spatial scale, known as the Workplace Zones (hence the title, Classification of Workplace Zones). Unlike the different levels of Output Areas, there is no hierarchical structure. There are 60,709 Workplace Zones in the UK.</p>
+<p>The openly available classification provides important new insights into the characteristics of workers and workplaces at the small area level across the UK (or England and Wales), which will be useful for analysts in a range of sectors, including health, local government, transport and commerce (<a href="https://link.springer.com/article/10.1007/s12061-020-09337-4">Cockings et al, 2020</a>).</p>
+<p>The England and Wales Classification of Workplace Zone for Cambridgeshire and Peterborough area is shown here:</p>
+<center>
+<pre><code>## Reading layer `COWZ_EW_2011_BFC&#39; from data source `/Users/Jo/Code/GEOG0030/data/raw/gdc/Classification_of_Workplace_Zones_EnglandWales/Shapefiles/COWZ_EW_2011_BFC.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 53578 features and 6 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 82672 ymin: 5342.699 xmax: 655598.3 ymax: 657534.1
+## CRS:            27700</code></pre>
+<pre><code>## Reading layer `E47000008&#39; from data source `/Users/Jo/Code/GEOG0030/data/raw/gdc/Internet_User_Classification/Combined_Authorities/E47000008/shapefiles/E47000008.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 487 features and 1 field
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 501877.8 ymin: 236172.9 xmax: 571830.7 ymax: 318016.5
+## CRS:            27700</code></pre>
+<img src="GEOG0030_files/figure-html/10-wpa-map-1.png" width="672" />
+</center>
+<center>
+<em>The data used in the map above is provided by the 2011 COWZ-EW Geodata Pack by the University of Southampton; Contains public sector information licensed under the Open Government Licence v2.0. Contains National Statistics and Ordnance Survey data © Crown copyright and database right 2015.</em>
+</center>
+<p>Interestingly enough, we can see much of Cambridgeshire and Peterborough are designated as rural workplace zones, although we can certainly see the two major cities (Cambridge and Peterborough), with it’s suburbs and “top jobs”. Also interesting to identify the manufacturing and distributions areas!</p>
+<p>In addition to the above general <strong>Classification of Workplace Zonesn</strong> for the entirety of the UK, an additional GDC was created specifically for London and its respective output areas, known as the <strong>London Workplace Zone (LWZC)</strong> (<a href="https://www.sciencedirect.com/science/article/pii/S0143622818310713#sec3">Singleton and Longley, 2019</a>).</p>
+<p>You can find the LWZC <a href="https://maps.cdrc.ac.uk/#/geodemographics/lcowz17/default/BTTTFFT/10/-0.1500/51.5200/">here</a> on the CDRC website (alongisde interactive versions of all the maps displayed in this workbook).</p>
+</div>
+<div id="internet-user-classification" class="section level5 unnumbered">
+<h5>Internet User Classification</h5>
+<p>Another new GDC entry is the CDRC Internet User Classification (IUC). The IUC is a bespoke geodemographic classification that describes how people residing in different parts of Great Britain interact with the Internet.</p>
+<p>For every Lower Super Output Area (LSOA) in England and Wales and Data Zone (DZ) (2011 Census Geographies), the IUC provides aggregate population estimates of Internet use (Singleton et al. 2020) and provides insights into the geography of the digital divide in the United Kingdom.</p>
+<p>“Digital inequality is observable where access to online resources and those opportunities that these create are non-egalitarian. As a result of variable rates of access and use of the Internet between social and spatial groups (..), this leads to digital differentiation, which entrenches difference and reciprocates digital inequality over time (Singleton et al. 2020).”</p>
+<p>As you’ll see below, the IUC is created at the Lower Super Ouput Area scale.</p>
+<p>We can look the various IUC categories applied within Cambridgeshire and Peterborough and their respective locations.</p>
+<center>
+<pre><code>## Reading layer `E47000008&#39; from data source `/Users/Jo/Code/GEOG0030/data/raw/gdc/Internet_User_Classification/Combined_Authorities/E47000008/shapefiles/E47000008.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 487 features and 1 field
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 501877.8 ymin: 236172.9 xmax: 571830.7 ymax: 318016.5
+## CRS:            27700</code></pre>
+<img src="GEOG0030_files/figure-html/10-iuc-map-1.png" width="672" />
+</center>
+<center>
+<em>The 2018 Internet User Classification. ESRC CDRC. Contains National Statistics data Crown copyright and database right (2017); Contains Ofcom data (2016). Contains CDRC data from Data Partners (2017).</em>
+</center>
+<p><br></p>
+<p>It seems the city of Cambrige has a wide variety of internet users, with Cultural Creators, Professionals, the Youthful Urban Fringe and Mainstream users prominent within the area - a pattern we’d likely expect.</p>
+</div>
+</div>
+</div>
+<div id="a-typical-geodemographic-classification-workflow" class="section level3 unnumbered">
+<h3>A Typical Geodemographic Classification Workflow</h3>
+<p>Looking through our various GDCs for Cambridgeshire, we can see that there is indeed some really interesting (and if not, common sense!) clustering to our different supergroups and workplace zones.</p>
+<p>GDCs can provide insight to the complex characteristics of local areas through a single measurement - but how do we reduce many variables into a single classification scheme? And how do we determine the labels for the resulting classifications?</p>
+<div id="lecture-geodemographic-classification-methodology" class="section level4 unnumbered">
+<h4>Lecture: Geodemographic Classification Methodology</h4>
+<p>The second of this week’s lecture provides you with an indepth step-by-step workflow on how to create a GDC.</p>
+<center>
+<div class="vembedr" align="left">
+<div>
+<iframe src="https://web.microsoftstream.com/embed/video/8e37815b-27f2-49c4-9e20-93dc88ed237d?autoplay=false&amp;showinfo=true" width="533" height="300" style="border:none;"></iframe>
+</div>
+</div>
+<a href="https://liveuclac-my.sharepoint.com/:b:/g/personal/ucfailk_ucl_ac_uk/Eakc_PSgcB9No8GU7WZyU1cBJxVgA9yMUql3K2GucxeulA?e=i4ttpc">Lecture slides</a> | <a href="https://web.microsoftstream.com/video/8e37815b-27f2-49c4-9e20-93dc88ed237d">Watch on MS stream</a>
+</center>
+<p><br></p>
+<p>The GDC workflow presented in the above lecture is summarised below.</p>
+</div>
+<div id="creating-a-geodemographic-classification" class="section level4 unnumbered">
+<h4>Creating a Geodemographic Classification</h4>
+<p>As you would have heard in our lecture above, there are seven main steps to creating a GDC.</p>
+<div id="choose-elements-factors" class="section level5 unnumbered">
+<h5>1) Choose elements / factors</h5>
+<p>The first step to creating a geodemographic classification is considering what data to include and at what granularity. Finer level data will allow you to capture more intricate variations and reduce any issues of ecological fallacy. However, we also require a good number of useful variables in order to effectively segment neighbourhoods.</p>
+</div>
+<div id="select-associated-quantifiable-variables" class="section level5 unnumbered">
+<h5>2) Select associated quantifiable variables</h5>
+<p>To capture these elements or factors in your GDC, you’ll need to translate them into quantifiable variables that you can find within a specific data source, such as the census, at the scale at which you want to analyse them.</p>
+</div>
+<div id="standardise-variables" class="section level5 unnumbered">
+<h5>3) Standardise variables</h5>
+<p>To reduce the effects of unbalanced base population sizes across each of the small area units (Output Areas) the variables all need to be transformed into percentages. Furthermore, so that erratic values within variables do not inadvertently dominate the clustering process, the input variables need to be standardised so that they each contribute an equal weight. Standardising the data will also make the final outputs much easier to interpret.</p>
+</div>
+<div id="measure-variables-for-association-multi-collinearity" class="section level5 unnumbered">
+<h5>4) Measure variables for association (multi-collinearity)</h5>
+<p>It is useful to test for associations between the final selection of variables. Variables that are collinear would essentially be conveying very similar distributions. This could give a particular phenomena a higher weighting in the final classification. To check for multicollinearity, create a correlation matrix for the dataset and remove one variable from those pairs of variables that are correlated. Try to remove the variables that are correatled with other variables to leave those most unique in your selection.</p>
+</div>
+<div id="choose-clustering-method" class="section level5 unnumbered">
+<h5>5) Choose clustering method</h5>
+<p>There are several clusering algorithms that can be used to cluster variables for a GDC, but generally, most tend to use the <strong>K-Means algorithm</strong>. It is a top-down approach whereby the number of cluster groups is predefined. The algorithm seeks to reduce the sum distance between each data point and their respective cluster centre and works iteratively to produce the final cluster groupings.</p>
+</div>
+<div id="choose-number-of-clusters" class="section level5 unnumbered">
+<h5>6) Choose number of clusters</h5>
+<p>There is no right answer to choosing the correct number of clusters. Even making judgements using some guidance on criteria involves a level of subjectivity. Your task as a researcher is to choose an appropriate number of clusters for your geodemographic classification. You should aim to make sure your clusters are as homogeneous as possible and that each cluster group should be distinct from the other groups. The groups should also be as evenly sized as possible.</p>
+<p>In addition, to each of these, we must also consider the compositions of the cluster groups. It is important that each of the characteristics of each cluster are distinguishable and relatable to real-life neighbourhood types.</p>
+</div>
+<div id="interpret-findings-test-and-finalise-them" class="section level5 unnumbered">
+<h5>7) Interpret findings, test and finalise them</h5>
+<p>Before any efforts are made to visualise the data, it is important you understand what it represents. The cluster centres indicate the coordinates of the centroid for each cluster group once the k-means had reached its optimum solution. It, therefore, is a good indicator of the average characteristics of each group based on the n variables that were included in the original model.</p>
+<p>Having selected the number of clusters for the final model, there are several ways of visualising the results of a k-means clustering to help with labelling our clusters. We can create radial plots or cross-variable tables that depict the average variable score for each cluster type. In addition, we can map the location of our clusters to help understand the spatial aspects of our clusters (alongside our own local knowledge).</p>
+<p>Formulating names for geodemographic groups is not easy and be contentious. Essentially the names are derivative of the researcher’s perceptions of the cluster centres and sometimes also consider their geographic distributions. Names should be informative, short and memorable. They should also not make unnecessary assumptions or be derogatory in any way. Have a look at the names for the GDCs shown above and see what you think - do you think they meet all of these requirements?</p>
+<p><strong>Summarising the GDC workflow</strong></p>
+<p>These seven steps summarise the process of creating a GDC. Whilst it appears relatively straight-forward, behind each step will be significant research and researcher-guided decisions on the various subjective aspects of the methodology (e.g. deciding variables, number of clusters etc.).</p>
+<p>We’ll have a look at the required decisions by putting this all into action in today’s practical, creating a GDC for Cambridgeshire and Peterborough. Whilst this tutorial will take you through all the necessary “technical” steps behind creating a GDC, do remember, we’ve ultimately made the methodological decisions for you at each step (informed by our own research and knowledge), which provides us with a “shortcut” to what ultimatel is a very complex methodology.</p>
+</div>
+</div>
+</div>
+<div id="implementing-geodemographic-classification-in-r" class="section level3 unnumbered">
+<h3>Implementing Geodemographic Classification in R</h3>
+<p>In today’s practical, we will classify areas in Cambridgeshire and Peterborough based on their demographic and socio-economic characteristics, using k-means clustering.</p>
+<p>The clustering will group cases based on their statistical similarity as exerted by the inputted variables.</p>
+<p>As you’ve heard, GDC is a very effective means of reducing large multivariate databases into a singular, but informative, indicator.</p>
+<p>Cases in the same group may be similar in terms of their geodemographic compositions, but they may not be geographically proximal as the technique is aspatial.</p>
+<p>This practical will take you through all the steps necessary to create a classification: from data selection, preparation, clustering and eventually interpretation.</p>
+<p><em>Note, as we’re creating a GDC for a more localised area (i.e. not the whole of England and Wales or the UK), we’ll see some differences between our classification and that of the general 2011 Output Area Classification.</em></p>
+<p>Although this provides you with a pipeline in which to create your own GDC, you will see that the classification builder must make several analytical and subjective decisions in order to produce an optimum classification for a particular purpose (which we’ve done for you). Therefore, if and when creating your own “original” GDC, it must be substantiated thoroughly in research.</p>
+<p>Hence <strong>I would very much encourage you to use an existing GDC in your Gecomputation coursework (and not create your own). Of course, if you’d like to create one during your dissertation, this will be a discussion with your supervisor.</strong></p>
+<div id="choosing-our-elements" class="section level4 unnumbered">
+<h4>1) Choosing Our Elements</h4>
+<p>The first aspect of any GDC is to choose the elements we want to classify. This includes “who” (individuals, adults) we’re classifying (or what, when it comes to households, OAs or postcodes, for examples), for what purpose (general, bespoke) and the scale at which we will represent them (OAs, LSOAs, workplace zones etc).</p>
+<p>In our case, we will build a general purpose classification based on the Output Area Classification referenced above, using 2011 census data of indivduals referenced to the OA scale (instead of the OA) - but in our case, for only the Cambridgeshire and Peterborough area.</p>
+<p>To enable this, we’ll use our 2011 census data for classification and the <strong>2011 Output Area</strong> Administrative Boundaries to map our results.</p>
+<p>Let’s go head and load our administrative boundaries and look at our area under investigation in a little more detail, Cambridgeshire and Peterborough.</p>
+<ol style="list-style-type: decimal">
+<li>Load Cambridgeshire and Peterborough (CAP) OA shapefile into R and plot the LSOAs:</li>
+</ol>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1"><span class="co"># Load Cambridgeshiere and Peterborough LSOA shapefile</span></a>
+<a class="sourceLine" id="cb365-2" title="2">cap_oa &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;data/raw/gdc/cam_and_pet_boundaries.shp&quot;</span>)</a></code></pre></div>
+<pre><code>## Reading layer `cam_and_pet_boundaries&#39; from data source `/Users/Jo/Code/GEOG0030/data/raw/gdc/cam_and_pet_boundaries.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 2541 features and 5 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 501880 ymin: 236169.2 xmax: 571835.3 ymax: 318015.5
+## CRS:            27700</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1"><span class="co"># Plot LSOA file</span></a>
+<a class="sourceLine" id="cb367-2" title="2"><span class="kw">plot</span>(cap_oa<span class="op">$</span>geometry)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/10-load_shp-1.png" width="672" /></p>
+<p>There are 2541 CAP OAs in total, of which we can already see a huge variety in their size. The county has two major cities, Peterborough (in the north) and Cambridge (smaller entity in the South). Beyond these cities, as evident in the structure of the LSOAs, there are smaller towns, but also some OAs that are quite large due to the more rural nature of the county.</p>
+<div id="select-associated-quantifiable-variables-1" class="section level5 unnumbered">
+<h5>2) Select associated quantifiable variables</h5>
+<p>Now we know the elements we’re looking to classify, the next step in our GDC workflow is to select our variables that we want to use in our classification.</p>
+<p>Whilst the 2011 Census collected hundreds of variables, the 2011 Output Area Classification we looked at earlier was actually produced with 67 variables.</p>
+<p>The variables were selected on their informativeness and uniqueness i.e. a variable had to be comprehensive enough to simplify the complexity of the phenomena, but not too comprehensive so that variables are distinguishable.</p>
+<p>To keep things simple for our classification, we will simply use the <strong>same</strong> 59 variables from the 2011 Output Area Classification. These variables are detailed in the ONS’s detailed methodology guide <a href="https://www.ons.gov.uk/methodology/geography/geographicalproducts/areaclassifications/2011areaclassifications/methodologyandvariables">here</a>.</p>
+<p>We already have these variables stacked within our <code>cam_and_pet_oac11_vars.csv</code> - let’s go ahead and load the dataset.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Load the <code>cam_and_pet_oac11_vars.csv</code> in your <code>data/raw/gdc</code> folder:</li>
+</ol>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1"><span class="co"># Load variable table Remove the first column as it only contains ID numbers</span></a>
+<a class="sourceLine" id="cb368-2" title="2">cap_oac_variables &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/gdc/cam_and_pet_oac11_vars.csv&quot;</span>)[, <span class="dv">-1</span>]</a></code></pre></div>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="co"># Get dimensions of resulting df</span></a>
+<a class="sourceLine" id="cb370-2" title="2"><span class="kw">dim</span>(cap_oac_variables)</a></code></pre></div>
+<pre><code>## [1] 2541   71</code></pre>
+<p>You should have 2541 observations with 71 fields.</p>
+<p>Let’s go ahead and look at ourdata.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Display the first five rows of our <code>cap_oac_variables</code> data frame:</li>
+</ol>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1"><span class="co"># Return the first five lines of our data frame</span></a>
+<a class="sourceLine" id="cb372-2" title="2"><span class="kw">head</span>(cap_oac_variables)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 71
+##   OA    Total_Population Total_Households Total_Dwellings Total_Household…
+##   &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
+## 1 E000…              290              119             131              131
+## 2 E000…              287              122             128              128
+## 3 E000…              187               97              99               99
+## 4 E000…              179               78              83               83
+## 5 E000…              278              117             122              122
+## 6 E000…              345              139             145              145
+## # … with 66 more variables: Total_Population_16_and_over &lt;dbl&gt;,
+## #   Total_Population_16_to_74 &lt;dbl&gt;, Total_Pop_No_NI_Students_16_to_74 &lt;dbl&gt;,
+## #   Total_Employment_16_to_74 &lt;dbl&gt;,
+## #   Total_Pop_in_Housesholds_16_and_over &lt;dbl&gt;,
+## #   Total_Population_3_and_over &lt;dbl&gt;, k001 &lt;dbl&gt;, k002 &lt;dbl&gt;, k003 &lt;dbl&gt;,
+## #   k004 &lt;dbl&gt;, k005 &lt;dbl&gt;, k006 &lt;dbl&gt;, k007 &lt;dbl&gt;, k008 &lt;dbl&gt;, k009 &lt;dbl&gt;,
+## #   k010 &lt;dbl&gt;, k011 &lt;dbl&gt;, k012 &lt;dbl&gt;, k013 &lt;dbl&gt;, k014 &lt;dbl&gt;, k015 &lt;dbl&gt;,
+## #   k016 &lt;dbl&gt;, k017 &lt;dbl&gt;, k018 &lt;dbl&gt;, k019 &lt;dbl&gt;, k020 &lt;dbl&gt;, k021 &lt;dbl&gt;,
+## #   k022 &lt;dbl&gt;, k023 &lt;dbl&gt;, k024 &lt;dbl&gt;, k025 &lt;dbl&gt;, k026 &lt;dbl&gt;, k027 &lt;dbl&gt;,
+## #   k028 &lt;dbl&gt;, k029 &lt;dbl&gt;, k030 &lt;dbl&gt;, k031 &lt;dbl&gt;, k032 &lt;dbl&gt;, k033 &lt;dbl&gt;,
+## #   k034 &lt;dbl&gt;, k035 &lt;dbl&gt;, k036 &lt;dbl&gt;, k037 &lt;dbl&gt;, k038 &lt;dbl&gt;, k039 &lt;dbl&gt;,
+## #   k040 &lt;dbl&gt;, k041 &lt;dbl&gt;, k042 &lt;dbl&gt;, k043 &lt;dbl&gt;, k044 &lt;dbl&gt;, k045 &lt;dbl&gt;,
+## #   k046 &lt;dbl&gt;, k047 &lt;dbl&gt;, k048 &lt;dbl&gt;, k049 &lt;dbl&gt;, k050 &lt;dbl&gt;, k051 &lt;dbl&gt;,
+## #   k052 &lt;dbl&gt;, k053 &lt;dbl&gt;, k054 &lt;dbl&gt;, k055 &lt;dbl&gt;, k056 &lt;dbl&gt;, k057 &lt;dbl&gt;,
+## #   k058 &lt;dbl&gt;, k059 &lt;dbl&gt;, k060 &lt;dbl&gt;</code></pre>
+<p>We can see that the first few fields contain information about different population sizes (total population, households, dwellings etc) - these are the values we’ll use to standardise our variables as per the GDC workflow.</p>
+<p>After these fields, we then have our variable fields, denoted as <code>k0XX</code>.</p>
+<p>These codes are not incredibly useful for us as first-time GDC creators - but they are used due to the fact that some of the variables have long names and asa result, it is much easier to refer to them by their codes.</p>
+<p>To get an understanding of what these variables related to, we can use our look-up table to see what these codes represent.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Load our look-up table:</li>
+</ol>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="co"># Load variable lookup table</span></a>
+<a class="sourceLine" id="cb374-2" title="2">var_lookup &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/gdc/2011_OAC_Raw_kVariables_Lookup.csv&quot;</span>)</a></code></pre></div>
+<p>Let’s take a look at what our variables represent.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Print the contents of the <code>VariableName</code> field:</li>
+</ol>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1"><span class="co"># Print VariableName from lookup table</span></a>
+<a class="sourceLine" id="cb375-2" title="2">var_lookup<span class="op">$</span>VariableName</a></code></pre></div>
+<pre><code>##  [1] &quot;Total Population&quot;                                                                                                                                     
+##  [2] &quot;Total Number of Households&quot;                                                                                                                           
+##  [3] &quot;Total Dwellings&quot;                                                                                                                                      
+##  [4] &quot;Total Household Spaces&quot;                                                                                                                               
+##  [5] &quot;Total Population aged 16 and over&quot;                                                                                                                    
+##  [6] &quot;Total Population aged 16 to 74&quot;                                                                                                                       
+##  [7] &quot;Total Population aged 16 to 74 who are not students in Northern Ireland&quot;                                                                              
+##  [8] &quot;Total Persons Employed aged 16 to 74&quot;                                                                                                                 
+##  [9] &quot;Total Population living in Households aged 16 and over&quot;                                                                                               
+## [10] &quot;Total Population aged 3 and over&quot;                                                                                                                     
+## [11] &quot;Persons aged 0 to 4&quot;                                                                                                                                  
+## [12] &quot;Persons aged 5 to 14&quot;                                                                                                                                 
+## [13] &quot;Persons aged 25 to 44&quot;                                                                                                                                
+## [14] &quot;Persons aged 45 to 64&quot;                                                                                                                                
+## [15] &quot;Persons aged 65 to 89&quot;                                                                                                                                
+## [16] &quot;Persons aged 90 and over&quot;                                                                                                                             
+## [17] &quot;Number of persons per hectare&quot;                                                                                                                        
+## [18] &quot;Persons living in a communal establishment&quot;                                                                                                           
+## [19] &quot;Persons aged over 16 who are single&quot;                                                                                                                  
+## [20] &quot;Persons aged over 16 who are married or in a registered same-sex civil partnership&quot;                                                                   
+## [21] &quot;Persons aged over 16 who are divorced or separated&quot;                                                                                                   
+## [22] &quot;Persons who are white&quot;                                                                                                                                
+## [23] &quot;Persons who have mixed ethnicity or are from multiple ethnic groups&quot;                                                                                  
+## [24] &quot;Persons who are Asian/Asian British: Indian&quot;                                                                                                          
+## [25] &quot;Persons who are Asian/Asian British: Pakistani&quot;                                                                                                       
+## [26] &quot;Persons who are Asian/Asian British: Bangladeshi&quot;                                                                                                     
+## [27] &quot;Persons who are Asian/Asian British: Chinese and Other&quot;                                                                                               
+## [28] &quot;Persons who are Black/African/Caribbean/Black British&quot;                                                                                                
+## [29] &quot;Persons who are Arab or from other ethnic groups&quot;                                                                                                     
+## [30] &quot;Persons whose country of birth is the United Kingdom or Ireland&quot;                                                                                      
+## [31] &quot;Persons whose country of birth is in the old EU (pre 2004 accession countries)&quot;                                                                       
+## [32] &quot;Persons whose country of birth is in the new EU (post 2004 accession countries)&quot;                                                                      
+## [33] &quot;Main language is not English and cannot speak English well or at all&quot;                                                                                 
+## [34] &quot;Households with no children&quot;                                                                                                                          
+## [35] &quot;Households with non-dependant children&quot;                                                                                                               
+## [36] &quot;Households with full-time students&quot;                                                                                                                   
+## [37] &quot;Households who live in a detached house or bungalow&quot;                                                                                                  
+## [38] &quot;Households who live in a semi-detached house or bungalow&quot;                                                                                             
+## [39] &quot;Households who live in a terrace or end-terrace house&quot;                                                                                                
+## [40] &quot;Households who live in a flat&quot;                                                                                                                        
+## [41] &quot;Households who own or have shared ownership of property&quot;                                                                                              
+## [42] &quot;Households who are social renting&quot;                                                                                                                    
+## [43] &quot;Households who are private renting&quot;                                                                                                                   
+## [44] &quot;Occupancy room rating -1 or less&quot;                                                                                                                     
+## [45] &quot;Individuals day-to-day activities limited a lot or a little (Standardised Illness Ratio)&quot;                                                             
+## [46] &quot;Persons providing unpaid care&quot;                                                                                                                        
+## [47] &quot;Persons aged over 16 whose highest level of qualification is Level 1, Level 2 or Apprenticeship&quot;                                                      
+## [48] &quot;Persons aged over 16 whose highest level of qualification is Level 3 qualifications&quot;                                                                  
+## [49] &quot;Persons aged over 16 whose highest level of qualification is Level 4 qualifications and above&quot;                                                        
+## [50] &quot;Persons aged over 16 who are schoolchildren or full-time students&quot;                                                                                    
+## [51] &quot;Households with two or more cars or vans&quot;                                                                                                             
+## [52] &quot;Persons aged between 16 and 74 who use public transport to get to work&quot;                                                                               
+## [53] &quot;Persons aged between 16 and 74 who use private transport to get to work&quot;                                                                              
+## [54] &quot;Persons aged between 16 and 74 who walk, cycle or use an alternative method to get to work&quot;                                                           
+## [55] &quot;Persons aged between 16 and 74 who are unemployed&quot;                                                                                                    
+## [56] &quot;Employed persons aged between 16 and 74 who work part-time&quot;                                                                                           
+## [57] &quot;Employed persons aged between 16 and 74 who work full-time&quot;                                                                                           
+## [58] &quot;Employed persons aged between 16 and 74 who work in the agriculture, forestry or fishing industries&quot;                                                  
+## [59] &quot;Employed persons aged between 16 and 74 who work in the mining, quarrying or construction industries&quot;                                                 
+## [60] &quot;Employed persons aged between 16 and 74 who work in the manufacturing industry&quot;                                                                       
+## [61] &quot;Employed persons aged between 16 and 74 who work in the energy, water or air conditioning supply industries&quot;                                          
+## [62] &quot;Employed persons aged between 16 and 74 who work in the wholesale and retail trade; repair of motor vehicles and motor cycles industries&quot;             
+## [63] &quot;Employed persons aged between 16 and 74 who work in the transport or storage industries&quot;                                                              
+## [64] &quot;Employed persons aged between 16 and 74 who work in the accommodation or food service activities industries&quot;                                          
+## [65] &quot;Employed persons aged between 16 and 74 who work in the information and communication or professional, scientific and technical activities industries&quot;
+## [66] &quot;Employed persons aged between 16 and 74 who work in the financial, insurance or real estate industries&quot;                                               
+## [67] &quot;Employed persons aged between 16 and 74 who work in the administrative or support service activities industries&quot;                                      
+## [68] &quot;Employed persons aged between 16 and 74 who work in the in public administration or defence; compulsory social security industries&quot;                   
+## [69] &quot;Employed persons aged between 16 and 74 who work in the education sector&quot;                                                                             
+## [70] &quot;Employed persons aged between 16 and 74 who work in the human health and social work activities industries&quot;</code></pre>
+<p>There are a couple of things to note here.</p>
+<p>As you can see, it does make sense to manipulate the variables by their codes (their names can be quite long!).</p>
+<p>Even more importantly, the variables have different statistical units in which they were measured.</p>
+<p>Whereas some variables regard to the entire population within OA, some of them refer to households or just a part of the population (e.g. those over 16 years of age).</p>
+<p>This information is important as we need to take the population size into account; analysing raw statistics without taking population size into account would distort the results.</p>
+<p>For this reason, each variable needs to be standardized with the correct population group, to ensure consistency across the areas.</p>
+<p>Standardising our variables, in terms of area and measurement scale, are our next steps in our GDC workflow.</p>
+<p>Before we standarise our variables, we’ll extract just the three columns that we’ll need from our lookup table - the variable code, respective name and also the statistical unit at which the variable is collected.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Refine variable look-up table:</li>
+</ol>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1"><span class="co"># Extract required three columns</span></a>
+<a class="sourceLine" id="cb377-2" title="2">var_lookup &lt;-<span class="st"> </span>var_lookup <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(VariableCode, VariableStatisticalUnit, </a>
+<a class="sourceLine" id="cb377-3" title="3">    VariableName)</a></code></pre></div>
+</div>
+<div id="standardise-variables-1" class="section level5 unnumbered">
+<h5>3) Standardise variables</h5>
+<p>Before we proceed with our GDC analysis, we first need to standardize the variables between areas.</p>
+<p>To do this, each variable needs to be divided by the appropriate population for a given area.</p>
+<p>Before converting raw numbers into proportions, let’s take a look on the frequency of each statistical unit.</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Count the different types of statistical units within our variables:</li>
+</ol>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1"><span class="co"># Tally the different types of statistical units of our variables</span></a>
+<a class="sourceLine" id="cb378-2" title="2"><span class="kw">count</span>(var_lookup, VariableStatisticalUnit)</a></code></pre></div>
+<pre><code>## # A tibble: 12 x 2
+##    VariableStatisticalUnit     n
+##    &lt;chr&gt;                   &lt;int&gt;
+##  1 Density                     1
+##  2 Dwelling                    1
+##  3 Employment_16_to_74        16
+##  4 Household                   9
+##  5 Household_Spaces            5
+##  6 Not_Students_16_to_74       4
+##  7 Person                     20
+##  8 Person_16_Over              8
+##  9 Person_16_to_74             2
+## 10 Person_3_Over               2
+## 11 Pop_Household_16_Over       1
+## 12 SIR                         1</code></pre>
+<p>We have two variables that we do not need to convert into percentages or proportions because they are already ratios and not raw counts. Firstly, we have a <strong>density</strong>, in terms of the proportion of persons per hectare. Secondly, there is the <strong>Standardized Illness Ratio (SIR)</strong>, which, as its name suggests, is a ratio.</p>
+<p>We will still need to go ahead and transform the remaining variables to standardise them by area - luckily our approach will essentially leave these values alone and only normalise those that have a suitable denominator.</p>
+<p>To do this, we will use a ‘double-loop’ (a loop within a loop) that takes each variable in our <code>cap_oac_variables_std</code> data frame and then standardises it by its appropriate denominator.</p>
+<p>To faciliate this, we first change the field names of the “potential” demoninators within the <code>cap_oac_variables_std</code> data frame to match the <strong>same spelling</strong> as those within the <code>var_lookup</code> data frame.</p>
+<p>This will enable us to use the lookup table within our loop to look up the right denominator to be used with each variable - and then standardise each variable by its respective denominator within the <code>cap_oac_variables_std</code> data frame.</p>
+<p>In other words, our loop will:</p>
+<ul>
+<li>Take a variable field within our <code>cap_oac_variables_std</code> data frame</li>
+<li>Use the variable field name, i.e. the variable code, to look up that specific variable in our <code>var_lookup</code> data frame</li>
+<li>From the <code>var_lookup</code> data frame, retrieve the statistical unit associated with the data frame</li>
+<li>Return to our <code>cap_oac_variables_std</code> data frame and divide the variable field by the values held in the respective statistical unit field contained (within the <code>cap_oac_variables_std</code> data frame) for each observation (i.e. OA) in our dataset.</li>
+</ul>
+<p>This loop therefore makes sure each variable is standaridsed by the appropriate denominator.</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Standardise our variables by the appropriate denominator.</li>
+</ol>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1"><span class="co"># Duplicate our cap_oac_variables for data standardisation</span></a>
+<a class="sourceLine" id="cb380-2" title="2">cap_oac_variables_std &lt;-<span class="st"> </span>cap_oac_variables</a>
+<a class="sourceLine" id="cb380-3" title="3"></a>
+<a class="sourceLine" id="cb380-4" title="4"><span class="co"># Change the names of the &#39;potential&#39; denominators within our</span></a>
+<a class="sourceLine" id="cb380-5" title="5"><span class="co"># cap_oac_Variables_std to match up with the ones used in the lookup table These</span></a>
+<a class="sourceLine" id="cb380-6" title="6"><span class="co"># columns are the 9-11 columns in the cap_oac_variables data frame</span></a>
+<a class="sourceLine" id="cb380-7" title="7"><span class="kw">colnames</span>(cap_oac_variables_std)[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Person&quot;</span>, <span class="st">&quot;Household&quot;</span>, <span class="st">&quot;Dwellings&quot;</span>, <span class="st">&quot;Household_Spaces&quot;</span>, </a>
+<a class="sourceLine" id="cb380-8" title="8">    <span class="st">&quot;Person_16_Over&quot;</span>, <span class="st">&quot;Person_16_to_74&quot;</span>, <span class="st">&quot;Not_Students_16_to_74&quot;</span>, <span class="st">&quot;Employment_16_to_74&quot;</span>, </a>
+<a class="sourceLine" id="cb380-9" title="9">    <span class="st">&quot;Households_16_and_over&quot;</span>, <span class="st">&quot;Person_3_Over&quot;</span>)</a>
+<a class="sourceLine" id="cb380-10" title="10"></a>
+<a class="sourceLine" id="cb380-11" title="11"><span class="co"># For each denominator in our cap_oac_variables_std data frame</span></a>
+<a class="sourceLine" id="cb380-12" title="12"><span class="cf">for</span> (denom <span class="cf">in</span> <span class="kw">colnames</span>(cap_oac_variables_std)[<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>]) {</a>
+<a class="sourceLine" id="cb380-13" title="13">    <span class="co"># Create a list of associated variables for that given statistical unit (j)</span></a>
+<a class="sourceLine" id="cb380-14" title="14">    stat_unit_var_list &lt;-<span class="st"> </span>var_lookup[<span class="dv">11</span><span class="op">:</span><span class="dv">70</span>, ] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(VariableStatisticalUnit <span class="op">==</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb380-15" title="15"><span class="st">        </span>denom) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(VariableCode)</a>
+<a class="sourceLine" id="cb380-16" title="16">    </a>
+<a class="sourceLine" id="cb380-17" title="17">    <span class="co"># For each (oac) variable in our statistical unit list We call it oacvar simply</span></a>
+<a class="sourceLine" id="cb380-18" title="18">    <span class="co"># because we cannot use simply var or variabe in our code These are &#39;reserved&#39;</span></a>
+<a class="sourceLine" id="cb380-19" title="19">    <span class="co"># variable names used by R, and not &#39;temporary&#39; variable names we can use</span></a>
+<a class="sourceLine" id="cb380-20" title="20">    <span class="cf">for</span> (oacvar <span class="cf">in</span> stat_unit_var_list<span class="op">$</span>VariableCode) {</a>
+<a class="sourceLine" id="cb380-21" title="21">        </a>
+<a class="sourceLine" id="cb380-22" title="22">        <span class="co"># Take this variable from the list (oacvar) and divide it by the required</span></a>
+<a class="sourceLine" id="cb380-23" title="23">        <span class="co"># statistical unit (denom) Store this result and overwrite preexisting values for</span></a>
+<a class="sourceLine" id="cb380-24" title="24">        <span class="co"># that variable</span></a>
+<a class="sourceLine" id="cb380-25" title="25">        cap_oac_variables_std[, oacvar] &lt;-<span class="st"> </span>cap_oac_variables_std[, oacvar]<span class="op">/</span>cap_oac_variables_std[, </a>
+<a class="sourceLine" id="cb380-26" title="26">            denom]</a>
+<a class="sourceLine" id="cb380-27" title="27">        </a>
+<a class="sourceLine" id="cb380-28" title="28">    }  <span class="co"># End 2nd loop</span></a>
+<a class="sourceLine" id="cb380-29" title="29">}  <span class="co"># End 1st loop</span></a></code></pre></div>
+<p>If you check your resulting <code>cap_oac_variables_std</code> data frame, you should see that we have much smaller numbers in our variable values - we’ve successfully normalise our variables by area.</p>
+<p>We can go ahead and remove the denominator fields from our <code>cap_oac_variables_std</code> data frame as we no longer need them.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>Remove the denominator fields from our <code>cap_oac_variables_std</code> data frame:</li>
+</ol>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" title="1"><span class="co"># Remove denominators from the data frame, as we no longer need them</span></a>
+<a class="sourceLine" id="cb381-2" title="2">cap_oac_variables_std &lt;-<span class="st"> </span>cap_oac_variables_std[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">11</span>)]</a></code></pre></div>
+<p>We’ve now standardised our variables by area - but we also need to <strong>standardise them by “themselves”</strong> to place them on the same measurement scale.</p>
+<p>Before we do this, we want to transform our data to account for outliers in each variable’s distribution; specifically, some variables are subject to presence of very high value outliers (e.g. k008, k022, k034).</p>
+<p>To reduce the impact of these outliers, we will employ <strong>Inverse Hyperbolic Sine Transformation (IHS)</strong>.</p>
+<p>We’ll use this transformation approach as it was found the most effective for creating OAC2011. There are other transformations that could be employed; for instance, the original OAC2001 utilized simple logarithmic transformation.</p>
+<p>The formula for IHS is as follows:</p>
+<p><span class="math display">\[ 
+\log(x_{i} + (x_{i}^2 + 1)^{1/2})
+\]</span></p>
+<p>We’ll go ahead and transform our data to reduce the impact of outliers.</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Transform variables using the IHS:</li>
+</ol>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1"><span class="co"># Transform variables using IHS for every variable (bar the OA code!)</span></a>
+<a class="sourceLine" id="cb382-2" title="2">cap_oac_variables_std[, <span class="dv">-1</span>] &lt;-<span class="st"> </span><span class="kw">log</span>(cap_oac_variables_std[, <span class="dv">-1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(cap_oac_variables_std[, </a>
+<a class="sourceLine" id="cb382-3" title="3">    <span class="dv">-1</span>]<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
+<p>Finally, before undertaking cluster analysis, we will standardize the variables into the same “measurement scale”.</p>
+<p>While standardization between areas ensures that population size is taken into account, standardization between variables allows for an easier comparison of variables with one another and an easier interpretation of results.</p>
+<p>The method that we will use is <strong>range standardization</strong>, which compresses the values into a range of 0 to 1.</p>
+<ol start="11" style="list-style-type: decimal">
+<li>Standardise our variables using the range standardization approach:</li>
+</ol>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1"><span class="co"># First create a function for calculating range</span></a>
+<a class="sourceLine" id="cb383-2" title="2">range_function &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb383-3" title="3">    (x <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(x))<span class="op">/</span>(<span class="kw">max</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(x))</a>
+<a class="sourceLine" id="cb383-4" title="4">}</a>
+<a class="sourceLine" id="cb383-5" title="5"></a>
+<a class="sourceLine" id="cb383-6" title="6"><span class="co"># X =&gt; apply function (FUN) on the entire data frame but the first column MARGIN</span></a>
+<a class="sourceLine" id="cb383-7" title="7"><span class="co"># =&gt; function will be applied over columns (1 indicated rows) FUN =&gt; function to</span></a>
+<a class="sourceLine" id="cb383-8" title="8"><span class="co"># be applied over the data</span></a>
+<a class="sourceLine" id="cb383-9" title="9">cap_oac_variables_std[, <span class="dv">-1</span>] &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> cap_oac_variables_std[, <span class="dv">-1</span>], <span class="dt">MARGIN =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb383-10" title="10">    <span class="dt">FUN =</span> range_function)</a></code></pre></div>
+<p>Great - we now have our variables ready for analysis.</p>
+</div>
+<div id="measure-variables-for-association-multi-collinearity-1" class="section level5 unnumbered">
+<h5>4) Measure variables for association (multi-collinearity)</h5>
+<p>Before we go ahead and run our cluster analysis, we first need to check whether any of our variables are strongly correlated with one another or not.</p>
+<p>Whilst the purpose of the classification is to deal with the multidimensionality of the input data, the more variables we use, the harder it is to obtain efficient clusters.</p>
+<p>As a result, including variables that are similar to one another adds additional complexity without improving our understanding and/or explanation of the resulting clusters.</p>
+<p>We therefore should test our variables for multicollinearity and determine which should or should not be included within our final cluster analysis.</p>
+<p>To test for multi-collinearity, we can create a correlation matrix to test for association; within R, we can use the <code>rcorr()</code> function within the <code>Hmisc</code> package you installed earlier.</p>
+<ol start="12" style="list-style-type: decimal">
+<li>Create a correlation matrix of our variables:</li>
+</ol>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1"><span class="co"># Create a correlation matrix using the rcorr function Only include the variables</span></a>
+<a class="sourceLine" id="cb384-2" title="2"><span class="co"># in our matrix!</span></a>
+<a class="sourceLine" id="cb384-3" title="3">cor &lt;-<span class="st"> </span><span class="kw">rcorr</span>(<span class="kw">as.matrix</span>(cap_oac_variables_std[<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(cap_oac_variables_std)]))</a></code></pre></div>
+<p>We could print out the correlation matrix, but as it’s quite big (60 columns x 60 rows x 2 dimensions [correlation coefficient and p-value]), we’ll utilise a different approach.</p>
+<p>We will filter the matrix based on the correlation coefficient values. Before that, we will apply a <code>flattenCorrMatrix()</code> function found on <a href="http://www.sthda.com/english/wiki/correlation-matrix-a-quick-start-guide-to-analyze-format-and-visualize-a-correlation-matrix-using-r-software">STHDA</a> that will transform the matrix to a long format that will ease our processing of the resulting matrix.</p>
+<ol start="13" style="list-style-type: decimal">
+<li>Flatten our correlation matrix:</li>
+</ol>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1"><span class="co"># Flatten our correlation matrix</span></a>
+<a class="sourceLine" id="cb385-2" title="2">flattenCorrMatrix &lt;-<span class="st"> </span><span class="cf">function</span>(cormat, pmat) {</a>
+<a class="sourceLine" id="cb385-3" title="3">    ut &lt;-<span class="st"> </span><span class="kw">upper.tri</span>(cormat)</a>
+<a class="sourceLine" id="cb385-4" title="4">    <span class="kw">data.frame</span>(<span class="dt">row =</span> <span class="kw">rownames</span>(cormat)[<span class="kw">row</span>(cormat)[ut]], <span class="dt">column =</span> <span class="kw">rownames</span>(cormat)[<span class="kw">col</span>(cormat)[ut]], </a>
+<a class="sourceLine" id="cb385-5" title="5">        <span class="dt">cor =</span> (cormat)[ut], <span class="dt">p =</span> pmat[ut])</a>
+<a class="sourceLine" id="cb385-6" title="6">}</a>
+<a class="sourceLine" id="cb385-7" title="7"></a>
+<a class="sourceLine" id="cb385-8" title="8"><span class="co"># Apply the function and present only rows that have the correlation coefficient</span></a>
+<a class="sourceLine" id="cb385-9" title="9"><span class="co"># higher than 0.7 and arrange it by the coefficient values=</span></a>
+<a class="sourceLine" id="cb385-10" title="10"><span class="kw">flattenCorrMatrix</span>(cor<span class="op">$</span>r, cor<span class="op">$</span>P) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cor <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.7</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(cor))</a></code></pre></div>
+<pre><code>##     row column       cor p
+## 1  k039   k055 0.8596370 0
+## 2  k022   k023 0.8561901 0
+## 3  k012   k020 0.8065253 0
+## 4  k010   k041 0.7734631 0
+## 5  k027   k041 0.7731676 0
+## 6  k010   k031 0.7659194 0
+## 7  k010   k027 0.7353053 0
+## 8  k015   k023 0.7308312 0
+## 9  k031   k041 0.7263128 0
+## 10 k030   k034 0.7127536 0
+## 11 k027   k031 0.7052124 0
+## 12 k039   k059 0.7023037 0</code></pre>
+<p>As a rule of thumb, variables for which correlation coefficient is greater than 0.8 are considered to be highly correlated. In our case, we have 3 cases of highly correlated variables:</p>
+<ul>
+<li><strong>k012</strong> (% of people who are white) and <strong>k020</strong> (% of people born in the UK or Ireland)</li>
+<li><strong>k039</strong> (% of people aged over 16 whose highest level of qualification is Level 4 qualifications and above) and <strong>k055</strong> (% of employed people between 16 and 74 who work in the information and communication or professional, scientific and technical activities industries)</li>
+<li><strong>k031</strong> (% of households who own or have shared ownership of property) and <strong>k041</strong> (% of households with two or more cars or van)</li>
+</ul>
+<p>Moreover, 2 variables that have a correlation higher than 0.7 with at least 2 other variables:</p>
+<ul>
+<li><strong>k004</strong> (Persons aged 45 to 64)</li>
+<li><strong>k023</strong> (% of people whose main language is not English and cannot speak English well or at all)</li>
+</ul>
+<p>With this in mind, and checking the remaining correlations for “uniqueness”, we’ll exclude the following 5 variables: k020, k039, k041, k004 and k023.</p>
+<ol start="14" style="list-style-type: decimal">
+<li>Remove those variables that are not unique from our final cluster data frame:</li>
+</ol>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1"><span class="co"># Remove 5 variables from our final data for cluster analysis</span></a>
+<a class="sourceLine" id="cb387-2" title="2">cap_oac_cluster_data &lt;-<span class="st"> </span>cap_oac_variables_std <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(k020, k039, k041, </a>
+<a class="sourceLine" id="cb387-3" title="3">    k004, k023))</a></code></pre></div>
+<p>We now <strong>finally</strong> have our data ready for analysis.</p>
+</div>
+<div id="choose-clustering-method-1" class="section level5 unnumbered">
+<h5>5) Choose clustering method</h5>
+<p>Once we have our list of variables ready, we can proceed with cluster analysis.</p>
+<p>Importantly, the segmentation will depend on both clustering method and number of clusters.</p>
+<p>We’ll go ahead and use our <strong>K-Means</strong> clustering algorithm to segment our data.</p>
+<p>As you will have heard in the lecture, the method partitions objects into a pre-defined number of ‘seeds’ (<span class="math inline">\(k\)</span>) that are randomly placed in multidimensional space in a way that a point is assigned to the nearest seed.</p>
+<p>Once every object is allocated to a cluster seed, the means of clusters are calculated and observations are re-assigned again to the nearest mean (Petersen et al., 2011).</p>
+<p>The process continues until the convergence is met, where data points do not change their cluster allocation, indicating minimised within-cluster heterogeneity.</p>
+<p>Here’s how this process looks:</p>
+<img src="images/w10/kmeans.png" width="70%" style="display: block; margin: auto;" />
+<center>
+<em>How the K-Means Algorithm works</em>
+</center>
+<p><br></p>
+<p>To run cluster analysis, we will use <code>kmeans()</code> function from the <code>stats</code> library.</p>
+<p>To run the algorithm, we provide the function with all the data bar the OA codes and also stipulate the number of clusters we’d like the algorithm to find.</p>
+<ol start="15" style="list-style-type: decimal">
+<li>Run the k-means clustering algorithm on our final data frame of variables:</li>
+</ol>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" title="1"><span class="co"># Exclude OA variable</span></a>
+<a class="sourceLine" id="cb388-2" title="2">kmeans_data &lt;-<span class="st"> </span>cap_oac_cluster_data[, <span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb388-3" title="3"></a>
+<a class="sourceLine" id="cb388-4" title="4"><span class="co"># Select number of clusters, we&#39;ll choose 9</span></a>
+<a class="sourceLine" id="cb388-5" title="5">No_clusters =<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb388-6" title="6"></a>
+<a class="sourceLine" id="cb388-7" title="7"><span class="co"># Ensure the consistency of the results Because each run of the k-means function</span></a>
+<a class="sourceLine" id="cb388-8" title="8"><span class="co"># divides the observations into slightly different clusters, we want to make sure</span></a>
+<a class="sourceLine" id="cb388-9" title="9"><span class="co"># that ours will be the same every time we run it</span></a>
+<a class="sourceLine" id="cb388-10" title="10"><span class="kw">set.seed</span>(<span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb388-11" title="11"></a>
+<a class="sourceLine" id="cb388-12" title="12"><span class="co"># Run k-means clustering</span></a>
+<a class="sourceLine" id="cb388-13" title="13">Km &lt;-<span class="st"> </span><span class="kw">kmeans</span>(kmeans_data, No_clusters, <span class="dt">nstart =</span> <span class="dv">25</span>, <span class="dt">iter.max =</span> <span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb388-14" title="14"></a>
+<a class="sourceLine" id="cb388-15" title="15"><span class="co"># Extract results as a vector with cluster scores for each OA</span></a>
+<a class="sourceLine" id="cb388-16" title="16">KmClusters &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(Km<span class="op">$</span>cluster)</a>
+<a class="sourceLine" id="cb388-17" title="17">KmClusters &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(KmClusters)</a>
+<a class="sourceLine" id="cb388-18" title="18"></a>
+<a class="sourceLine" id="cb388-19" title="19"><span class="co"># Create a table of the cluster allocation</span></a>
+<a class="sourceLine" id="cb388-20" title="20"><span class="kw">table</span>(KmClusters)</a></code></pre></div>
+<pre><code>## KmClusters
+##   1   2   3   4   5   6   7   8   9 
+## 282 471 199  79 447 233 159 522 149</code></pre>
+<p>We can already see we have some disparities in cluster size - with cluster 4 being significantly smaller than the other 8 clusters.</p>
+<p>Before we go ahead and map these allocations, we should assess the fit of the clustering and whether 9 was an appropriate cluster number amount.</p>
+</div>
+<div id="choose-number-of-clusters-1" class="section level5 unnumbered">
+<h5>6) Choose number of clusters</h5>
+<p>We grouped our observations into 9 clusters.</p>
+<p>Why 9, and not 8 (like in 2011 OAC) or even 10?</p>
+<p>There is really no right number of clusters. We can make some judgements on the appropriateness of each number of clusters, but the final number of clusters with your classification is ultimately still subject to your own decision.</p>
+<p>Nevertheless, generally speaking we want our clustering to achieve:</p>
+<ul>
+<li>Distinctiveness of each cluster group</li>
+<li>Relatively high homogeneity (as high as possible) of cluster groups</li>
+<li>Even distribution of cluster groups</li>
+</ul>
+<p>Moreover, the size of the cluster should have enough cases to be meaningful, although not too many so that its homogeneity is poor. As a rule of thumb, we aim for each cluster to have between 4% and 20% of total number of observations.</p>
+<p>Let’s find out how the cluster allocation looks in our case.</p>
+<p>First, we’ll look at how many OAs each of our clusters represent as a percetnage.</p>
+<ol start="16" style="list-style-type: decimal">
+<li>Extract the percentage of OAs each cluster represents:</li>
+</ol>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1"><span class="co"># Extract OA percentage of each cluster</span></a>
+<a class="sourceLine" id="cb390-2" title="2"><span class="kw">prop.table</span>(<span class="kw">table</span>(KmClusters))</a></code></pre></div>
+<pre><code>## KmClusters
+##          1          2          3          4          5          6          7 
+## 0.11097993 0.18536009 0.07831562 0.03109012 0.17591499 0.09169618 0.06257379 
+##          8          9 
+## 0.20543093 0.05863833</code></pre>
+<p>As you can see, there is one cluster which consists of less than 4% observations, but the other clusters look alright.</p>
+<p>Now, let’s check how homogeneous the clusters are in terms of their variation from .</p>
+<p>To assess their homogeneity, we look at the <strong>Within Cluster Sum of Squares (WCSS)</strong> is a measure of the variability of the observations within each cluster. In general, a cluster that has a small sum of squares is more compact than a cluster that has a large sum of squares. Clusters that have higher values exhibit greater variability of the observations within the cluster.</p>
+<p>We therefore want to have clusters that demonstrate lower WCSS and we can use this analysis to helps us determine the appropriate number of clusters. Essentially we can do a trial and error approach and calculate this WCSS value for multiple cluster numbers.</p>
+<p>The idea is to use the ‘elbow’ approach where you look for a characteristic bend in the statistic - such bend implies that the additional group does not significantly minimise the WCSS.</p>
+<ol start="17" style="list-style-type: decimal">
+<li>Calculate and plot the WCSS of our current cluster results:</li>
+</ol>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1"><span class="co"># Calculate WCSS of our cluster data</span></a>
+<a class="sourceLine" id="cb392-2" title="2">wcss &lt;-<span class="st"> </span>(<span class="kw">nrow</span>(kmeans_data) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">apply</span>(kmeans_data, <span class="dv">2</span>, var))</a>
+<a class="sourceLine" id="cb392-3" title="3"></a>
+<a class="sourceLine" id="cb392-4" title="4"><span class="co"># Perform a cluster analysis with a subsequent number of clusters (from 2 to 15)</span></a>
+<a class="sourceLine" id="cb392-5" title="5"><span class="co"># and retrieve the WCSS value for each</span></a>
+<a class="sourceLine" id="cb392-6" title="6"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">15</span>) {</a>
+<a class="sourceLine" id="cb392-7" title="7">    wcss[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">kmeans</span>(kmeans_data, <span class="dt">centers =</span> i)<span class="op">$</span>withinss, <span class="dt">maxiter =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb392-8" title="8">}</a>
+<a class="sourceLine" id="cb392-9" title="9"></a>
+<a class="sourceLine" id="cb392-10" title="10"><span class="co"># Plot the results to these analysis to determine if there is an elbow</span></a>
+<a class="sourceLine" id="cb392-11" title="11"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, wcss, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Number of Clusters&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Within groups sum of squares&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/10-cal-wsss-1.png" width="672" /></p>
+<p>To choose a number of clusters, we use the ‘elbow’ approach, in which we’re looking for a number of clusters where an additional group does not minimise the WSS by a significant amount.</p>
+<p>It seems that between 8 or 9 clustesr our WCSS value starts to level off - as a result, we’ll continue with our original choice of 9 clusters.</p>
+<p><em>You can of course choose a different value if you’d like for classifying our data.</em></p>
+<p>To visually assess the fit of the clustering, we can go ahead and use the <code>plotcluster()</code> function from the <code>fpc</code> library, which plots the one-dimensional data for each of our clusters.</p>
+<ol start="18" style="list-style-type: decimal">
+<li>Plot our clusters by the one-dimension “location” of our data:</li>
+</ol>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1"><span class="co"># Plot our clusters in one-dimension</span></a>
+<a class="sourceLine" id="cb393-2" title="2"><span class="kw">plotcluster</span>(kmeans_data, Km<span class="op">$</span>cluster)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/10-plot-clusters-1.png" width="672" /></p>
+<p>From our plot, we can see why Cluster 4 is one of our smallest clusters - the data is not exactly “compact” - and might reveal some outliers in our classification that we may need to consider. This could flag that our chosen variables are not as useful as we’d hoped they would be.</p>
+<p>The only real approach to understanding this is to finally map our clusters in their geographic locations.</p>
+</div>
+<div id="interpret-findings-test-and-finalise-them-1" class="section level5 unnumbered">
+<h5>7) Interpret findings, test and finalise them</h5>
+<p>As we have examined the fit of the clusters, it is now time to plot the cluster assignment over the area of interest.</p>
+<p>Firstly, let’s add the clusters allocation to the final datasets and merge the dataset with the spatial data.</p>
+<ol start="19" style="list-style-type: decimal">
+<li>Add cluster allocation to our final cluster data (i.e. with OA codes!), rename our cluster field and then join to our OA administrative boundaries:</li>
+</ol>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1"><span class="co"># add the cluster group to the dataset (treat it as a factor, rather than</span></a>
+<a class="sourceLine" id="cb394-2" title="2"><span class="co"># intiger)</span></a>
+<a class="sourceLine" id="cb394-3" title="3">cap_oac &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(cap_oac_cluster_data, <span class="kw">as.factor</span>(Km<span class="op">$</span>cluster)))</a>
+<a class="sourceLine" id="cb394-4" title="4"></a>
+<a class="sourceLine" id="cb394-5" title="5"><span class="co"># change name of the variable</span></a>
+<a class="sourceLine" id="cb394-6" title="6"><span class="kw">names</span>(cap_oac)[<span class="kw">ncol</span>(cap_oac)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;class&quot;</span>)</a>
+<a class="sourceLine" id="cb394-7" title="7"></a>
+<a class="sourceLine" id="cb394-8" title="8"><span class="co"># merge with boundary data</span></a>
+<a class="sourceLine" id="cb394-9" title="9">cap_oac_shp &lt;-<span class="st"> </span><span class="kw">left_join</span>(cap_oa, cap_oac, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">oa11cd =</span> <span class="st">&quot;OA&quot;</span>))</a></code></pre></div>
+<p>We can now go ahead and plott our final classification - to help with our interpretation, we’ll specify the colour palette we want <code>tmap</code> to use, as we have done in other practicals.</p>
+<ol start="20" style="list-style-type: decimal">
+<li>Specify our colour palette and map our GDC:</li>
+</ol>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="co"># Specify our palette for our clusters</span></a>
+<a class="sourceLine" id="cb395-2" title="2">MyPalette &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#8dd3c7&quot;</span>, <span class="st">&quot;#ffffb3&quot;</span>, <span class="st">&quot;#bebada&quot;</span>, <span class="st">&quot;#fb8072&quot;</span>, <span class="st">&quot;#80b1d3&quot;</span>, <span class="st">&quot;#fdb462&quot;</span>, </a>
+<a class="sourceLine" id="cb395-3" title="3">    <span class="st">&quot;#b3de69&quot;</span>, <span class="st">&quot;#fccde5&quot;</span>, <span class="st">&quot;#d9d9d9&quot;</span>)</a>
+<a class="sourceLine" id="cb395-4" title="4"></a>
+<a class="sourceLine" id="cb395-5" title="5"><span class="co"># Map our cluster classifications</span></a>
+<a class="sourceLine" id="cb395-6" title="6"><span class="kw">tm_shape</span>(cap_oac_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&quot;class&quot;</span>, <span class="dt">palette =</span> MyPalette) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## Warning: The shape cap_oac_shp is invalid. See sf::st_is_valid</code></pre>
+<p><img src="GEOG0030_files/figure-html/10-map-gdc-1.png" width="672" /></p>
+<p>As you can see, the majority of space is taken up by our second cluster.</p>
+<p>Interestingly, it is not the most numerous cluster in the classification (refer back to the cluster allocation table) - but, due to the size of the OAs, it seems to dominiate our classificatin visually. It’s highly likely that cluster 2 has something to do with those living in rural areas!</p>
+<p>Whilst the rural areas within the county is relatively homogenous, you can certainly notice that there is greater variability across the clusters within the more urban areas of Cambridge and Peterborough.</p>
+<p>Let’s go ahead and focus on Cambridge to analyse its classification further,</p>
+<ol start="21" style="list-style-type: decimal">
+<li>Filter our spatial data frame before mapping to map only those OAs in the city of Cambridge:</li>
+</ol>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="co"># Map only Cambridge OAs</span></a>
+<a class="sourceLine" id="cb397-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a>
+<a class="sourceLine" id="cb397-3" title="3"><span class="kw">tm_shape</span>(cap_oac_shp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(lad11cd <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;E07000008&quot;</span>))) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&quot;class&quot;</span>, </a>
+<a class="sourceLine" id="cb397-4" title="4">    <span class="dt">palette =</span> MyPalette) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/10-map-cam-1.png" width="672" /></p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1"><span class="co"># See the cluster allocation for Cambridge</span></a>
+<a class="sourceLine" id="cb398-2" title="2"><span class="kw">summary</span>(cap_oac_shp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(lad11cd <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;E07000008&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(class))</a></code></pre></div>
+<pre><code>##      class              geometry  
+##  9      :141   MULTIPOLYGON :372  
+##  3      :138   epsg:27700   :  0  
+##  7      : 62   +proj=tmer...:  0  
+##  6      : 21                      
+##  2      :  6                      
+##  8      :  4                      
+##  (Other):  0</code></pre>
+<p>For those of you unfamiliar with the city of Cambridge, it is obviously quite a diverse city - and we can tell this just from looking at our GDC.</p>
+<p>As you can imagine, the University tends to dominate the city in terms of its city centre population, which is likely to be our cluster 4, located in the north-west of the city. We then have more industrial areas, such as cluster 6, where the airport is located near Teversham.</p>
+<p>In comparison to the rest of the county, we also have no (potentially rural!) OAs within our clusters - not too much of a surprise there!</p>
+<p>I’d highly recommend using the interactive version of <code>tmap</code> and setting the <code>alpha</code> of our polygons to a semi-transparent to investigate our GDC further.</p>
+<p>In comparison, we can map the city of Peterborough and compare the clusters within and near the city.</p>
+<ol start="22" style="list-style-type: decimal">
+<li>Filter our spatial data frame before mapping to map only those OAs in the city of Peterborough:</li>
+</ol>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1"><span class="co"># Map only Peterborough OAs</span></a>
+<a class="sourceLine" id="cb400-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</a>
+<a class="sourceLine" id="cb400-3" title="3"><span class="kw">tm_shape</span>(cap_oac_shp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(lad11cd <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;E06000031&quot;</span>))) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="st">&quot;class&quot;</span>, </a>
+<a class="sourceLine" id="cb400-4" title="4">    <span class="dt">palette =</span> MyPalette) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">frame =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/10-map-pet-1.png" width="672" /></p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="co"># See the cluster allocation for Peterborough</span></a>
+<a class="sourceLine" id="cb401-2" title="2"><span class="kw">summary</span>(cap_oac_shp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(lad11cd <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;E06000031&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(class), </a>
+<a class="sourceLine" id="cb401-3" title="3">    <span class="dt">maxsum =</span> <span class="dv">9</span>)</a></code></pre></div>
+<pre><code>##  class            geometry  
+##  1:100   MULTIPOLYGON :604  
+##  2:112   epsg:27700   :  0  
+##  3:  1   +proj=tmer...:  0  
+##  4: 74                      
+##  5: 29                      
+##  6:130                      
+##  7: 39                      
+##  8:117                      
+##  9:  2</code></pre>
+<p>You can see that Peterborough is even more diverse than Cambridge - it has nearly all of our cluster groups present within our classification (except cluster 4!), including what is likely to be rural areas.</p>
+<p>Moreover, it seems that they are more evenly spread, with 4 of them having around 100-120 observations.</p>
+<p>Interestingly, the least numerous groups here are the ones that are most numerous in Cambridge. This simply means that Peterborough and Cambridge are quite different from each other.</p>
+<p><strong>Giving Identities to Our Clusters</strong></p>
+<p>Whilst spatial distribution can help us understand certain characteristics about our clusters (e.g. urban, rural, suburbs), we can also look at the variables that constitute our various clusters to help identify a common cluster identity.</p>
+<p>To do this, we can utilise the cluster centres, as they indicate the coordinates of the centroid for each cluster group once the k-means had reached its optimum solution.</p>
+<p>They are, therefore, a good indicator of the average characteristics of each group based on the <span class="math inline">\(n\)</span> variables that were included in the original model.</p>
+<p>To understand our cluster centres and their relation to the overall dataset, we need to calculate the difference between them and the global mean of the dataset.</p>
+<p>Once we calculate this difference, we will be able to understand quantitatively how unique each group is relative to the whole sample.</p>
+<ol start="23" style="list-style-type: decimal">
+<li>Calculate the difference between our cluster means and the global mean of our whole dataset:</li>
+</ol>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="co"># Extract the cluster centres from our K-Means output Store asa dataframe</span></a>
+<a class="sourceLine" id="cb403-2" title="2">KmCenters &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">as.matrix</span>(Km<span class="op">$</span>centers))</a>
+<a class="sourceLine" id="cb403-3" title="3"></a>
+<a class="sourceLine" id="cb403-4" title="4"><span class="co"># Calculate the global mean for each variable Store as a data frame</span></a>
+<a class="sourceLine" id="cb403-5" title="5">global_mean &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">lapply</span>(KmCenters, mean))</a>
+<a class="sourceLine" id="cb403-6" title="6"></a>
+<a class="sourceLine" id="cb403-7" title="7"><span class="co"># Creates empty data frame that has variables&#39; names as row names And will store</span></a>
+<a class="sourceLine" id="cb403-8" title="8"><span class="co"># the clusters as fields</span></a>
+<a class="sourceLine" id="cb403-9" title="9">clusters_mean &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">row.names =</span> <span class="kw">colnames</span>(cap_oac)[<span class="dv">2</span><span class="op">:</span>(<span class="kw">ncol</span>(cap_oac) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)])</a>
+<a class="sourceLine" id="cb403-10" title="10"></a>
+<a class="sourceLine" id="cb403-11" title="11"><span class="co"># For each cluster in our total number of clusters</span></a>
+<a class="sourceLine" id="cb403-12" title="12"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>No_clusters) {</a>
+<a class="sourceLine" id="cb403-13" title="13">    <span class="co"># Retrieve the cluster&#39;s center characteristics</span></a>
+<a class="sourceLine" id="cb403-14" title="14">    class_means &lt;-<span class="st"> </span>KmCenters[i, ]</a>
+<a class="sourceLine" id="cb403-15" title="15">    </a>
+<a class="sourceLine" id="cb403-16" title="16">    <span class="co"># And calculate difference from the mean for each of our varalbes</span></a>
+<a class="sourceLine" id="cb403-17" title="17">    diff_from_global_mean &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">t</span>(global_mean <span class="op">-</span><span class="st"> </span>class_means))</a>
+<a class="sourceLine" id="cb403-18" title="18">    <span class="kw">colnames</span>(diff_from_global_mean) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">paste</span>(<span class="st">&quot;Cluster_&quot;</span>, i, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))</a>
+<a class="sourceLine" id="cb403-19" title="19">    </a>
+<a class="sourceLine" id="cb403-20" title="20">    <span class="co"># Store the results for each cluster group</span></a>
+<a class="sourceLine" id="cb403-21" title="21">    clusters_mean &lt;-<span class="st"> </span><span class="kw">cbind</span>(clusters_mean, diff_from_global_mean)</a>
+<a class="sourceLine" id="cb403-22" title="22">}</a>
+<a class="sourceLine" id="cb403-23" title="23"><span class="co"># Create global mean line</span></a>
+<a class="sourceLine" id="cb403-24" title="24">clusters_mean<span class="op">$</span>mean_zero &lt;-<span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<p>You can go ahead and open the <code>clusters_mean</code> variable using the <code>View(clusters_mean)</code> command in your console - you’ll see it is a large table that is likely going to take some time to analyse for our 55 variables and it is not immediately clear what our groups represent.</p>
+<p>One approach to make this interpretation easier is to create charts to visualise the characteristics of each cluster group.</p>
+<p>In the example below we will create radial plots, using the first group as our example.</p>
+<ol start="24" style="list-style-type: decimal">
+<li>Plot the radial plot of our first cluster group:</li>
+</ol>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" title="1"><span class="co"># Creats a polygon(p) radial plot for cluster 1</span></a>
+<a class="sourceLine" id="cb404-2" title="2"><span class="kw">radial.plot</span>(clusters_mean[, <span class="dv">1</span>], <span class="dt">labels =</span> <span class="kw">row.names</span>(clusters_mean), <span class="dt">boxed.radial =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb404-3" title="3">    <span class="dt">show.radial.grid =</span> <span class="ot">TRUE</span>, <span class="dt">line.col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">radlab =</span> <span class="ot">TRUE</span>, <span class="dt">rp.type =</span> <span class="st">&quot;p&quot;</span>)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/10-rad-plot-1.png" width="672" /></p>
+<p>This certainly is a little easier to understand than our table, as we can quite quickly see the differences in our variables across our cluster.</p>
+<p>We can also add our cluster mean zero line to our radial plots to make their interpretation easier.</p>
+<ol start="25" style="list-style-type: decimal">
+<li>Add the zero mean line to our radial plot:</li>
+</ol>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="co"># Reduce the size of grid and axis labels in upcoming plots</span></a>
+<a class="sourceLine" id="cb405-2" title="2"><span class="kw">par</span>(<span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">cex.lab =</span> <span class="fl">0.8</span>)</a>
+<a class="sourceLine" id="cb405-3" title="3"></a>
+<a class="sourceLine" id="cb405-4" title="4"><span class="co"># create a radial plot for the mean zero line</span></a>
+<a class="sourceLine" id="cb405-5" title="5"><span class="kw">radial.plot</span>(clusters_mean<span class="op">$</span>mean_zero, <span class="co"># plot global mean for each variable</span></a>
+<a class="sourceLine" id="cb405-6" title="6">            <span class="dt">labels=</span><span class="kw">rownames</span>(clusters_mean), <span class="co"># variables names as labels</span></a>
+<a class="sourceLine" id="cb405-7" title="7">            <span class="dt">start=</span><span class="dv">0</span>,<span class="dt">clockwise=</span><span class="ot">TRUE</span>, <span class="co"># start from 3 o&#39;clock and go clockwise</span></a>
+<a class="sourceLine" id="cb405-8" title="8">            <span class="dt">rp.type=</span><span class="st">&quot;p&quot;</span>, <span class="co"># just line</span></a>
+<a class="sourceLine" id="cb405-9" title="9">            <span class="co">#these defines the aesthetics</span></a>
+<a class="sourceLine" id="cb405-10" title="10">            <span class="dt">line.col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">show.grid=</span><span class="ot">TRUE</span>, <span class="dt">point.symbols=</span><span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb405-11" title="11">            <span class="dt">point.col=</span><span class="st">&quot;black&quot;</span>,<span class="dt">grid.col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">show.centroid=</span><span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb405-12" title="12">            <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">0</span>),  <span class="co">#specify margins of the plot</span></a>
+<a class="sourceLine" id="cb405-13" title="13">            <span class="dt">radial.lim=</span><span class="kw">range</span>(<span class="op">-</span><span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># define limits of the grid</span></a>
+<a class="sourceLine" id="cb405-14" title="14"></a>
+<a class="sourceLine" id="cb405-15" title="15"><span class="co"># Creats a polygon(p) radial plot for cluster 1</span></a>
+<a class="sourceLine" id="cb405-16" title="16"><span class="co"># moves the grid labels to position 3 (centre to top) </span></a>
+<a class="sourceLine" id="cb405-17" title="17"><span class="kw">radial.plot</span>(clusters_mean[,<span class="dv">1</span>], <span class="dt">labels=</span><span class="kw">row.names</span>(clusters_mean), <span class="dt">start=</span><span class="dv">0</span>, <span class="dt">clockwise=</span><span class="ot">TRUE</span>, <span class="dt">boxed.radial =</span> <span class="ot">FALSE</span>, <span class="dt">show.radial.grid =</span> <span class="ot">TRUE</span>, <span class="dt">line.col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">radlab =</span> <span class="ot">TRUE</span>, <span class="dt">rp.type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">add=</span>T)</a></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/10-rad-plot-zero-1.png" width="672" /></p>
+<p>That helps a lot with identifying the most “unique” variables for our cluster.</p>
+<p>Obviously it would help to have our variables listed as their name rather than their code to help with their interpretation, but for each cluster, we can look directly at the varaibles that seem to make each cluster unique.</p>
+<p>In this case, k027 (Households who live in a detached house or bungalow) and k010 (Persons aged over 16 who are married or in a registered same-sex civil partnership) are substantially below the mean, whilst k029 (Households who live in a terrace or end-terrace house), k030 (Households who live in a flat) and k009 (Persons aged over 16 who are single). Just by looking at these five variables, we can start to build a identity of those living in these clusters.</p>
+<p>I’m pretty sure if you repeated the plots for cluster 4, you’d see our density variable coming into play within that cluster and its classification!</p>
+<p>If you would like, you can repeat these radial plots for each of your clusters and save them into variables. You can then create a facet map showing the 9 different clusters stacked together.</p>
+<p><strong>Naming our clusters and their identity</strong></p>
+<p>Once you begin to build a picture of the identity for each cluster through this variable analysis, the next step is to formulate a name that separates that cluster from the others within your classification.</p>
+<p>Formulating names for geodemographic groups is not easy and can be contentious.</p>
+<p>Essentially the names are derivative of the researcher’s perceptions of the cluster centres and sometimes also consider their geographic distributions.</p>
+<p>Names should be informative, short and memorable. They should also not make unnecessary assumptions or be derogatory in any way.</p>
+<p>Look at the radial plot for our cluster above - could you think of a name for this cluster quite easily?</p>
+<p>At this stage, I would certainly think not! But, once you’ve spent time with your classification and looking within and between your clusters, you will begin to identify what makes each cluster unique.</p>
+<p>However, one thing to note, is that it is also not uncommon for one of your cluster groups to represent the typical traits of the entire dataset. A group like this would demonstrate variable mean differences that are close to 0.</p>
+<p>To get an idea of the names and descriptions (pen portraits) that are used in geodemographic classification, scroll back to the examples given earlier - or head online and read some of the papers from the various authors who created these examples!</p>
+<div class="assignment">
+<p><strong>The Geodemographics Classification Quiz</strong>
+<br>
+Before you panic, no this is not an assignment, but rather an optional quiz that you can read through or (maybe!) even submit answers to in order to test your comprehension on this week’s topic of Geodemographics.</p>
+<p>You can access the quiz <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=_oivH5ipW0yTySEKEdmlwrFgXiSd9pNOh1CPqE7-T55UODhFTUZOSDQ1S0tYWVhWUTdSOUNIRzJRSy4u">here</a>.</p>
+<p>The quiz is quite long, so don’t feel like you need to answer the questions fully (it’s not marked, but I’m happy to give you feedback on your answers - just ask me to look at your specific quiz!).</p>
+<p>You can again just read through the questions and if you feel like you wouldn’t be able to answer them, it might be worth going back through the workshop’s material and revising the content presented.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="extension-additional-indices-for-use-within-geocomputation" class="section level3 unnumbered">
+<h3>Extension: Additional Indices for use within Geocomputation</h3>
+<p>We have utilised Index of Multiple Deprivation (IMD) on a few occasions - but have you yet consider what the Index is?</p>
+<p>According to those behind the Index, aka the Department for Communities and Local Government, the Index of Multiple Deprivation is the official measure of relative deprivation for small areas1 (or neighbourhoods) in England.</p>
+<p>The IMD ranks every small area in England from 1 (most deprived area) to 32,844 (least deprived area). To help with its interpretation, deprivation ‘deciles’ are published alongside ranks. Deciles are calculated by ranking the 32,844 small areas in England from most deprived to least deprived and dividing them into 10 equal groups. These range from the most deprived 10 per cent of small areas nationally to the least deprived 10 per cent of small areas nationally.</p>
+<p>It is common to describe how relatively deprived a small area is by saying whether it falls among the most deprived 10 per cent, 20 per cent or 30 per cent of small areas in England (although there is no definitive cut-off at which an area is described as ‘deprived’).</p>
+<p>The IMD is a <strong>relative measure</strong> as a result can only be used to describe the relative level of deprivation in an area.</p>
+<p>It brings together variables across seven domains, including: Income; Employment; Education; Skills and Training; Health and Disability; Crime; Barriers to Housing Services; Living Environment, which are assigned a different weighting.</p>
+<p>It can be used for:</p>
+<ul>
+<li>Comparing small areas acorss England (i.e. compare ranks)</li>
+<li>Identifying the most deprived areas (using the deciles or percent approach)</li>
+<li>Explore the different domains or types of deprivation that constitute the measure</li>
+<li>Compare relative change between versions</li>
+</ul>
+<p>It can’t be used to “quantify” how deprived a small area is - this means it can tell you if one area is more deprived than another but not by how much. Nor can you identify deprived people (i.e. encountering ecological fallacy issues), conversely look at how affluent an area is (it is a holistic measure of deprivation, not just wealth) or compare to other small areas in other UK countries (as they use different methodologies).</p>
+<p>All of the information above was extracted from this really useful <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/464430/English_Index_of_Multiple_Deprivation_2015_-_Guidance.pdf">guide</a> on the IMD by the DCLG.</p>
+<p>There are also supplementary indices concerned with income deprivation among children (IDACI) and older people (IDAOPI).</p>
+<p>I would highly advise taking some time to read into the IMD as a good example of how to construct an Index.</p>
+<p>In addition to the Index of Mulitple, there are several other indices that you might be interested in looking at, for example, for your coursework.</p>
+<p>We’ve already come across the <strong>Public Transport Accessibility Levels (PTAL)</strong>, developed by Transport for London (TFL). The PTALS are a detailed and accurate measure of the accessibility of a point to the public transport network, taking into account walk access time and service availability. The method is essentially a way of measuring the density of the public transport network at any location within Greater London.</p>
+<p>You can find out more about the index and download it directly for London <a href="https://s3-eu-west-1.amazonaws.com/londondatastore-upload/PTAL-methodology.pdf">here</a> and <a href="https://data.london.gov.uk/dataset/public-transport-accessibility-levels?resource=86bbffe1-8af1-49ba-ac9b-b3eacaf68137">here</a> respectively - and interestingly enough, for those of you looking at something like this for your dissertation, it outlines a few of the limitations the index faces in measuring accessibility.</p>
+<p>A final index to be aware of is the recently created <strong>Access to Healthy Assets and Hazards (AHAH)</strong> by The Geographic Data Science Lab at the University of Liverpool.</p>
+<p>According to the CDRC website, the AHAH is a multi-dimensional index for Great Britain measuring how “healthy” neighbourhoods are derived from data on:</p>
+<ul>
+<li>Access to retail outlets (fast food outlets, pubs, off-licences, tobacconists, gambling outlets)</li>
+<li>Access to health services (GPs, hospitals, pharmacies, dentists, leisure services)</li>
+<li>Air quality (green space, air pollution)</li>
+<li>Access to natural environment (green spaces including parks and recreational spaces, blue space including rivers, canals and lakes).</li>
+</ul>
+<p>The aim of the index is to enable researchers and policy makers to understand which areas have poor environments for health and helps to move away from treating features of the environment in isolation to provide a comprehensive measure of neighbourhood quality.</p>
+<p>You can read more about the development of this index by Daras et al (2019) <a href="https://www.nature.com/articles/s41597-019-0114-6">here</a> and on the CDRC website <a href="https://www.cdrc.ac.uk/new-update-access-to-healthy-assets-and-hazards-ahah-data-resource/">here</a>.</p>
+<p><img src="GEOG0030_files/figure-html/10-ahah-map-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="recap---geodemographics" class="section level3 unnumbered">
+<h3>Recap - Geodemographics</h3>
+<p>This week, we’ve looked at geodemographics, which is the ‘analysis of people by where they live’ (Harris et al. 2005).</p>
+<p>As we’ve heard - and put into practice - a GDC involves the classification of geographical areas based on the socioeconomic characteristics of their residents (Cockings et al, 2020).</p>
+<p>To summarise the general geodemographic classification “GDC” workflow succintly, a set of variables are selected by the researcher that represent the characteristics by which the neighbourhoods should be classified. An algorithm is then used to cluster neighbourhoods together that have similarities across these variables.</p>
+<p>We, as researchers, assigns these result clusters identities by giving them labels (names) and associated “pen profiles” that will qualitatively describe the variables seen within the cluster.</p>
+<p>In most cases, the final output of a GDC is a map highlighting these different clusters and their location with one another.</p>
+<p>In almost every case, geodemographic groups should display some spatial pattern, particularly within urban areas; this is because of the tendency for social groups to cluster.</p>
+<p>From our practical, we looked at how we can create a geodemographic classification with a set number of distinctive groups for a specific local area - in our case, the county of Cambridgeshire and Peterborough.</p>
+<p>At each of the steps, we had to make analytical methodological decisions on how to proceed within the GDC workflow. In this practical, we used a “best guess” approach that followed previous literature to create our GDC, in order to demonstrate the techniques for you.</p>
+<p>In “proper” academic research, each step should be very carefully thought through in order to produce the optimum classification to be used for a particular purpose.</p>
+<p>For instance, the inclusion of a single additional variable may influence which cluster a particular case is assigned to, whilst we may see, as in our case with Cambridge, there are local processes at play that will ultimately shape the outputs of our clusters (e.g. our small cluster 4).</p>
+<p>If you are interested in GDC as a technique for your dissertation, I highly recommend further reading on the theory and statistics behind techniques used in geodemographic clustering.</p>
+<div class="sds">
+<p><strong>Learning Objectives</strong><br><br>
+You should now hopefully be able to:</p>
+<ul>
+<li>Explain what is a Geodemographic Classification (GDC).</li>
+<li>Access and utilise already existing GDCs.</li>
+<li>Describe the typical GDC workflow and its limitations.</li>
+<li>Implement a GDC classification in R.</li>
+<li>Recall several pre-created GDCs and Indices that are available to use in spatial analysis.</li>
+</ul>
+</div>
+<hr />
+<div id="acknowledgements-13" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>The practical for this week was created by <a href="https://www.geog.ucl.ac.uk/people/research-students/jakub-wyszomierski">Jakub (Kuba) Wyszomierski</a>, a PhD candidate at UCL and Geocomputation PGTA, and can be found <a href="https://github.com/jakubwyszomierski/Geocomp20_21">here</a>. The practical has been expanded upon as and where necessary, thank you Kuba for this week’s work!</p>
+<p>The content of this page is also adapted from <a href="https://jtvandijk.github.io/GEOG0114/geodemographics.html">GEOG0114: Principles of Spatial Analysis: Geodemographics</a> by Dr Joanna Wilkin (this Workbook’s author) and Dr Justin Van Dijk at UCL (the author of the week’s practical within GEOG0114) and <a href="https://data.cdrc.ac.uk/dataset/creating-geodemographic-classification-using-k-means-clustering-r">Creating a Geodemographic Classification Using K-means Clustering in R</a> by Dr Guy Lansley and Professor James Cheshire for the CDRC.</p>
+<p>The datasets used in this workshop (and resulting maps):</p>
+<ul>
+<li>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence)</li>
+<li>Contains Ordnance Survey data © Crown copyright and database right [2015] (Open Government Licence)</li>
+</ul>
+<p>Plus of course, the additional GDCs shown earlier on in the workbook and as first attributed in their relevant section.</p>
+<ul>
+<li><p><strong>Output Area Classification</strong>: CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015.</p></li>
+<li><p><strong>England &amp; Wales Workplace Zone Classification</strong>: 2011 COWZ-EW Geodata Pack by the University of Southampton; Contains public sector information licensed under the Open Government Licence v2.0. Contains National Statistics and Ordnance Survey data © Crown copyright and database right 2015.</p></li>
+<li><p><strong>Internet User Classification</strong>: Alexiou, A. and Singleton, A. (2018). The 2018 Internet User Classification. ESRC CDRC. Contains National Statistics data Crown copyright and database right (2017); Contains Ofcom data (2016). Contains CDRC data from Data Partners (2017).</p></li>
+</ul>
 
+</div>
+</div>
 </div>
             </section>
 
