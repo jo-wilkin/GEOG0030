@@ -18,7 +18,7 @@ Within the Extension, we'll look at a few additional Indices that you should be 
 
 This week's content introduces you to Geodemographic Classification. 
 
-We have two areas of work to focus on:
+We have four areas of work to focus on:
 
 1. Open Geodemographic Classifications
 2. Geodeomographic Classification Methodology
@@ -80,7 +80,7 @@ Now we'll install the libraries we need for this week.
 In addition to those libraries you should now be familiar with, we will need to install and use:
 
 * `Formula`: for correlation analysis
-* `Hmisc`, preferably version 0.5-2: for more under-the-hood spatial data management
+* `Hmisc`: for data analysis
 * `fpc`: for visualising cluster assignment (you *may* have this installed from our use of DB-Scan previously)
 * `plotrix`: to create our radial plots
 
@@ -456,7 +456,7 @@ dim(cap_oac_variables)
 
 You should have 2541 observations with 71 fields.
 
-Let's go ahead and look at ourdata.
+Let's go ahead and look at our data.
 
 3. Display the first five rows of our `cap_oac_variables` data frame:
 
