@@ -35,3 +35,13 @@ boot
 CircStats
 adehabitatLT
 adehabitatHR
+rgdal
+rgeos
+gstat
+openair
+Formula
+lattice
+survival
+Hmisc
+fpc
+plotrix
