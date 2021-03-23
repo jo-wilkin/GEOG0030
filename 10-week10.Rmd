@@ -28,7 +28,7 @@ We have two areas of work to focus on:
 This week's content is split into **4** parts:
 
 1. [Workshop Housekeeping] (10 minutes)
-2. [What is Geodemographic Classification] (30 minutes)
+2. [What is Geodemographic Classification?] (30 minutes)
 3. [A Typical Geodemographic Classification Workflow] (30 minutes)
 4. [Implementing Geodemographic Classification in R] (60 minutes)
 4. [Extension: Additional Indices for use within Geocomputation] (10 minutes)
