@@ -294,7 +294,7 @@ Instead, we will:
 
 ```{r 08-spatstat-ppp-object, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # First, let's set our window of observation as the entirety of London
-window <- as.owin(london_ward_shp)
+window <- as.owin(london_ward_shp$geometry)
 
 # Next, extract the coordinates of our bike_theft_2019 sdf
 # This stores our coordinates as a matrix

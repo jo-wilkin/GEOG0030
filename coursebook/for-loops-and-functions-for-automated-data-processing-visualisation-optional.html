@@ -261,8 +261,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#recap---geodemographics"><i class="fa fa-check"></i>Recap - Geodemographics</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-regression-models-optional.html"><a href="spatial-regression-models-optional.html"><i class="fa fa-check"></i><b>11</b> Spatial Regression Models (Optional)</a></li>
-<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a></li>
-<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a></li>
+<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a><ul>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#road-network-analysis-in-r"><i class="fa fa-check"></i>(Road) Network Analysis in R</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#optional-practical-calculating-distance-based-measurements-in-r"><i class="fa fa-check"></i>Optional Practical: Calculating Distance-Based Measurements in R</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#workshop-housekeeping-5"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#try-it-yourself-analysing-accessibility-of-fast-food-outlets-from-schools-in-portsmouth"><i class="fa fa-check"></i>Try It Yourself: Analysing accessibility of fast-food outlets from schools in Portsmouth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a><ul>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#automating-the-ingestion-and-mapping-of-crime-data-across-years-and-crime-type"><i class="fa fa-check"></i>Automating the ingestion and mapping of crime data across years and crime type</a></li>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#optional-practical-3-incorporating-loops-and-functions-in-spatial-analysis"><i class="fa fa-check"></i>Optional Practical 3: Incorporating Loops and Functions in Spatial Analysis</a></li>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#try-it-yourself-incorporating-our-for-loop-into-our-function"><i class="fa fa-check"></i>Try It Yourself: Incorporating our for loop into our function</a></li>
+</ul></li>
 <li class="part"><span><b>Assessment</b></span></li>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
@@ -304,8 +313,920 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="for-loops-and-functions-for-automated-data-processing-visualisation-optional" class="section level1">
 <h1><span class="header-section-number">13</span> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</h1>
-<p><strong>This content is optional - we will aim to release this within two weeks at the end of term for use in your coursework and dissertation.</strong></p>
+<p><em>This optional tutorial builds on the analysis conducted in Week 5’s <a href="programming-for-giscience-and-spatial-analysis.html#programming-for-giscience-and-spatial-analysis">Programming for GIScience and Spatial Analysis</a>, however all code in this tutorial can be run as a standalone script.</em></p>
+<p>In many analytical scenarios, we often want to repeat the same processing and analysis for different versions of the same datasets (e.g. multiple months, years) and/or variables (e.g. different types of crime).</p>
+<p>To achieve this, your current approach might be to copy and paste your code, edit your file path or variable names.</p>
+<p>This approach is very inefficient, resulting in long scripts and can lead to quite a few bugs in your code, or, even worse, mistakes in your analysis that you don’t “see”!</p>
+<p>In programming for data analysis (whether in R, Python or other programming languages), there are two main approaches that you can use to improve the efficiency (and guarantee more accuracy!) of your code when you are looking to repeat your workflow.</p>
+<p>Firstly, we have <strong>loops</strong>, which we have briefly come across in our practicals in the previous few weeks. There are three types of loops we can use in programming: <code>for</code>, <code>do</code> and <code>while</code>. We tend to use these loops to repeat a specific set of processing given a condition or statement, e.g. we often use <code>if</code> statements with our <code>for</code> loops.</p>
+<p>We will focus on <code>for</code> loops today as they form the basic building blocks to understanding how loops work; however, we highly recommend afterwards that you read into the purpose and applications of the other two loop types.</p>
+<p>Secondly, we have the use of a function, which is a block of organized, reusable code that is used to perform a single, related action. We’ve come across functions throughout our module by calling them using the function name, e.g. <code>print()</code>, and providing the function with its required parameters, e.g. a dataset, a query or measure.</p>
+<p>But, what you might not have realised is that we can create our own function to perform a specific action that we want to repeat many times. To create a function, we need to define it; this means writing the block of code that stipulates what our function does, as well as detailing the various parameters our function will take. We’ve actually done this several times in our previous practicals, but we haven’t fully explained what we were doing or how it works!</p>
+<p>By using <strong>loops</strong> and <strong>functions</strong> in our scripts, we can tell R to repeat the same steps through, for instance, all the rows of a dataframe.</p>
+<p>Writing our code in functions also allows us (or whoever the intended users of our function are) to easily change the parameters of the inputs and processes contained within the function for a different output.</p>
+<p>In this Optional Practical, we’ll see how we can use these two structures within our code to process an extensive amount of data that we’ve used within a previous practical: crime data from 2020 <em>(used in Practicals 4 and 5)</em>.</p>
+<p>Instead of focusing solely on theft as our crime type and mapping only a month at a time, we’ll look to build a function (with <code>for</code> loops inside!) that enables us to automate all processing and even mapping for any crime type within the dataset for each month. We’ll simply only need to provide our function with the crime type we want to map (and of course, the dataset)!</p>
+<div id="automating-the-ingestion-and-mapping-of-crime-data-across-years-and-crime-type" class="section level3 unnumbered">
+<h3>Automating the ingestion and mapping of crime data across years and crime type</h3>
+<p>In Week 5, we had our first introduction into how we can use programming for spatial analysis.</p>
+<p>To refresh your memory, we looked at how we could wrangle our previously created <code>all_theft_df</code> (see Week 4!) that contained all theft for London in 2020 to create a crime count per month for each ward.</p>
+<p>We then joined this resulting dataframe to our ward shapefile (which also contained our ward population data) and produced a crime rate for each ward for each month.</p>
+<p>We then created a map for January 2020 as part of our learning of the <code>tmap</code> library. For your assignments that week, I also asked for you to produce an additional map for another month in the year.</p>
+<p>The thing is the original dataset we used - crime in London - offers so much more opportunity for analysis beyond just looking at theft in terms of crime type (we already had a look at bike theft in Week 7 for example!) <strong>and</strong> we also have access to many more months and years worth of data - and even Areas Of Interest!</p>
+<p>There is simply so much analysis that could be done with this data and we barely touched the surface! However, much of the analysis we want to do is the <strong>same</strong> process that we went through in Week 5 - <strong>so how can programming help us with this analysis?</strong></p>
+<p>Essentially, we will write a function which allows us to automate this process for any type of crime in the police dataset (i.e. the crime type becomes a parameter in the function) and within this function, there is a <code>for</code> loop that generates a map for each month, which is then also turned into a GIF.</p>
+<p>All of this is explained in further detail below!</p>
+</div>
+<div id="optional-practical-3-incorporating-loops-and-functions-in-spatial-analysis" class="section level3 unnumbered">
+<h3>Optional Practical 3: Incorporating Loops and Functions in Spatial Analysis</h3>
+<p>For this optional practical, we will utilise the London crime data that we used in Weeks 4 and 5 of the module.</p>
+<p>As a detailed methodology recap, in those weeks, in terms of data processing, we:</p>
+<ul>
+<li>Obtained crime data of every kind that was available in the wards of London by month of the year in 2020;</li>
+<li>Combined these individual datasets into a single one which showed over 1,000,000 crimes committed and recorded throughout 2020;</li>
+<li>Filtered the dataset to keep counts of only crimes under the class ‘Theft from the person’;</li>
+<li>Created a summary dataset which showed the counts of ‘Thefts from the person’ by month;</li>
+<li>Created a summary dataset which tallied the counts of ‘Thefts from the person’ by month for each ward;</li>
+<li>Normalised this dataset by the 2019 mid-year population to create a <strong>theft crime rate</strong>;</li>
+<li>Created a map for the distribution of theft crime rate in January 2020.</li>
+</ul>
+<p>You can imagine that the process would very time-consuming if it had to be repeated manually across all months and types of crime - an objective which might be very real if you wanted a wider scope of analysis.</p>
+<p>In this week, we are going to see how we utilise automation in our code to repeat what are largely identical steps with numerous minor tweaks each time (e.g. the month or crime type).</p>
+<p>Overall, our output from today will be to create a function that automates the creation of an animated <strong>GIF</strong> map that shows the distribution of a particular crime type in London across the months of 2020.</p>
+<p>The steps will be similar to what we had already achieved in Weeks 4 and 5, but with some tweaks so that the code is reusable across the different months and crime types, rather than being specific to thefts occurring only in January 2020.</p>
+<p>The resulting function can be further built on, if you so wish, to enable the ingestion of datasets from different years and/or police services.</p>
+<div id="defining-a-function-the-basics" class="section level4 unnumbered">
+<h4>Defining a function: the basics</h4>
+<p>To define a function in R, we follow a very specific syntax (each programming language has its own syntax to how to define a function).</p>
+<p>Specifically, our syntax for defining a function in R is:</p>
+<pre><code>name_of_function &lt;- function(argument1, argument2) { 
+  diff.12 &lt;- argument1 - argument2
+  print(&quot;diff.12&quot;) 
+}</code></pre>
+<p>where:</p>
+<ul>
+<li><code>function()</code> is the keyword that tells R we want to define a function</li>
+<li>The commands that the function should run when called are enclosed in the ‘{}’ brackets.</li>
+<li>Within the parantheses of <code>function()</code> you can place as many arguments as you wish, or as you see necessary. The more arguments, the higher degree of customisation the user of the function enjoys, but it may also seem more confusing if these users are not familiar with the use cases of the function.</li>
+<li>A function can be defined without any mandatory argument input from the user, but it will still have to be called with parantheses, i.e. the user has to type (either into the console or the script) <code>name_of_function()</code>.</li>
+</ul>
+<p>As part of this definition, a function has to have parameters defined by its creator that users can then input according to their needs (as we have done in our previous practicals).</p>
+<p>We will be defining a function called <code>plot_crime()</code> which, when called by a user, takes the form of:</p>
+<p><code>plot_crime(all_crime_dataset, type_of_crime)</code></p>
+<p>As you can see, the function has <strong>two parameters</strong>, where <code>all_crime_dataset</code> refers to the dataset of all the months of crime that will be used, and <code>type_of_crime</code> is the type of crime that the user wants to map and study.</p>
+<p>The structure of today’s practical is such that we will start off by creating a very basic function, and then go through steps that you will already be familiar with, while adding components into our function to make it richer in functionality as we go by.</p>
+<p>Essentially we will <strong>build</strong> our function as we go so make sure you update your code rather than repeat previous code you’ve already entered.</p>
+<p>The workflow in our function will be:</p>
+<ol style="list-style-type: decimal">
+<li><p>Load/parse the <code>all_crime_dataset</code>, which is the merged dataset of crimes in London across all months within a given timespan. We previously called this dataset <code>all_crime_df</code>.</p></li>
+<li><p>Filter the <code>all_crime_dataset</code> dataframe by the <code>type_of_crime</code> of the user’s choice (this can only be from a range of arguments as per how <code>crime_type</code> is defined by the data.police.uk data)</p></li>
+<li>Do <strong>ALL</strong> the data cleaning outlined in the tutorial in Week 5 so we end up with a dataframe that details that crime type by ward by month:</li>
+</ol>
+<ul>
+<li>Take our <code>all_crime_dataset</code> and wrangle it to produce a dataframe with a <strong>ward per row</strong> with a <strong>crime count for each month in our fields</strong>.</li>
+<li>Join this dataframe to our <code>ward_population_2019</code> shapefile (in your <code>working</code> folder) and then produce a <strong>crime rate</strong> for each <strong>month, for each ward</strong>.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Use a ‘for’ loop and the <code>tmap</code> library to produce a crime map for each month individually, and export these maps.</p></li>
+<li><p>Read in the files exported from step 4 to create an animated GIF compilation of crime maps.</p></li>
+</ol>
+<p>Let’s get started!</p>
+</div>
+<div id="setting-up-your-script-7" class="section level4 unnumbered">
+<h4>Setting up your script</h4>
+<ol style="list-style-type: decimal">
+<li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>OP3-crime-GIF-function.r</code>.</p></li>
+<li><p>At the top of your script, add the following metdata (substitute accordinlgy):</p></li>
+</ol>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1"><span class="co"># Creating a function to create animated GIFs of crime maps</span></a>
+<a class="sourceLine" id="cb427-2" title="2"><span class="co"># Script started April 2021</span></a>
+<a class="sourceLine" id="cb427-3" title="3"><span class="co"># NAME</span></a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Now let’s add <strong>all</strong> of the libraries we’ll be using today:</li>
+</ol>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb428-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb428-3" title="3"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb428-4" title="4"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb428-5" title="5"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb428-6" title="6"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb428-7" title="7"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb428-8" title="8"><span class="kw">library</span>(magick)</a></code></pre></div>
+<p>As another reminder, we’ll be using <code>sf</code> to read and load our <strong>spatial data</strong>, use the <code>tidyverse</code> libraries to complete our data wrangling and then use the <code>tmap</code> library to visualise our final maps.</p>
+<p><code>magick</code> is a library that we will use at the very end to string together our PNG files (static images) into an animated GIF.</p>
+</div>
+<div id="loading-our-datasets-1" class="section level4 unnumbered">
+<h4>Loading our datasets</h4>
+<p>We’re going to load the three the datasets we need today straight away:</p>
+<ol style="list-style-type: decimal">
+<li>The <code>all_crime_2020.csv</code> that we exported in Weeks 4/5;</li>
+<li>The <code>ward_population_2019.shp</code> we created in Week 3;</li>
+<li>The look-up table we downloaded from the ONS website which allows us to find the corresponding <strong>wards</strong> that a crime took place in, given their <strong>LSOA code</strong>.</li>
+</ol>
+<p>First, let’s load our <code>all_crime_2020.csv</code> into a dataframe called <code>all_crime_df</code>.</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1"><span class="co"># Read in our all_crime_2020 csv from our raw crime data folder</span></a>
+<a class="sourceLine" id="cb429-2" title="2">all_crime_df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/crime/all_crime_2020.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">clean_names</span>()</a></code></pre></div>
+<p>You should see these rows display in your console.</p>
+<p>Great, the dataset looks as we remember, with the different fields, including, <strong>importantly</strong> for this week, the <strong>LSOA_code</strong> which we’ll use to process and join our data together (you’ll see this in a second!).</p>
+<p>Next, let’s load our first ever spatial dataset into R-Studio - our <code>ward_population_2019.shp</code>.</p>
+<p>We’ll store this as a variable called <code>ward_population</code> and use the <code>sf</code> library to load the data:</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="co"># Read in our ward_population_2019 shp from our working data folder</span></a>
+<a class="sourceLine" id="cb430-2" title="2">ward_population &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;data/working/ward_population_2019.shp&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## Reading layer `ward_population_2019&#39; from data source `/Users/Jo/Code/GEOG0030/data/working/ward_population_2019.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 657 features and 7 fields
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
+## CRS:           27700</code></pre>
+<p>By typing in <code>st_crs(ward_population)</code>, again in the console, we can see that the shapefile uses the coordinate reference system (CRS) of <strong>British National Grid</strong>. This is important because our datasets should always use the same CRS.</p>
+<p>Finally, we will load in the <code>lsoa_ward_lookup.csv</code> file, which should be in your <strong>data -&gt; raw -&gt; boundaries</strong> subfolder.</p>
+<p>If you do not still have this file downloaded from a previous week, you can still find a file on the ONS website <a href="https://geoportal.statistics.gov.uk/datasets/8c05b84af48f4d25a2be35f1d984b883_0">here</a>.
+**Note that this file has been updated since the tutorial from Weeks 4 and 5 were written, so if you download the dataset a new, the columns have changed from a 2018 reference to 2020, e.g. from <code>WD18CD</code> to <code>WD20CD</code>.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1"><span class="co"># Read in our lsoa_ward_lookup csv from our raw boundaries data folder</span></a>
+<a class="sourceLine" id="cb432-2" title="2">lsoa_ward_lookup &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/boundaries/lsoa_ward_lookup.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: 1909 parsing failures.
+##   row     col           expected                  actual                                       file
+## 32801 WD18NMW 1/0/T/F/TRUE/FALSE Yr Wyddgrug - Broncoed  &#39;data/raw/boundaries/lsoa_ward_lookup.csv&#39;
+## 32802 WD18NMW 1/0/T/F/TRUE/FALSE Yr Wyddgrug - Dwyrain   &#39;data/raw/boundaries/lsoa_ward_lookup.csv&#39;
+## 32803 WD18NMW 1/0/T/F/TRUE/FALSE Yr Wyddgrug - De        &#39;data/raw/boundaries/lsoa_ward_lookup.csv&#39;
+## 32804 WD18NMW 1/0/T/F/TRUE/FALSE Yr Wyddgrug - De        &#39;data/raw/boundaries/lsoa_ward_lookup.csv&#39;
+## 32805 WD18NMW 1/0/T/F/TRUE/FALSE Yr Wyddgrug - Gorllewin &#39;data/raw/boundaries/lsoa_ward_lookup.csv&#39;
+## ..... ....... .................. ....................... ..........................................
+## See problems(...) for more details.</code></pre>
+</div>
+<div id="filter-the-merged-dataframe-by-the-type_of_crime-of-the-users-choice" class="section level4 unnumbered">
+<h4>Filter the merged dataframe by the <code>type_of_crime</code> of the user’s choice</h4>
+<p>Here, we will start to define our function, incrementally adding in features into it such that, eventually, it is able to process everything from data wrangling to the final output that is the GIF animation of a specific type of crime in London across 2020.</p>
+<p>As stated above, the basic syntax of a function in R look something like this:</p>
+<pre><code>name_of_function &lt;- function(argument1, argument2) { 
+  diff.12 &lt;- argument1 - argument2
+  print(&quot;diff.12&quot;) 
+}</code></pre>
+<p>Our function <code>plot_crime()</code> will take two arguments - the input dataset of all crimes, and the crime type we want to filter our overall dataset by.</p>
+<p>We therefore want to include these as parameters as we initially define our function.</p>
+<p>We also want to include what action the function should <strong>do</strong>.</p>
+<p>In this case, we’ll keep what our function <strong>does</strong> to something very simple:
+* We’ll filter our dataset by the supplied crime type and then count the total number of records of that crime in London.
+* We’ll then print this value with an output statement.</p>
+<p>This is what our function will <strong>return</strong> to us when called.</p>
+<p>To use our function, defined below, you’ll need to execute all of the code. You shuold see the <code>plot_crime</code> function added to your list of functions in your Environment pane.</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb435-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb435-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb435-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime)</a>
+<a class="sourceLine" id="cb435-5" title="5">  <span class="co">#prints the number of crimes in London of that type</span></a>
+<a class="sourceLine" id="cb435-6" title="6">  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;In 2020, there were &quot;</span>, <span class="kw">nrow</span>(filtered_crime_df), <span class="st">&quot; instances of crimes related to &quot;</span>, type_of_crime, <span class="st">&quot; in London.&quot;</span>))</a>
+<a class="sourceLine" id="cb435-7" title="7">}</a></code></pre></div>
+<p>In the function above, note that, because of the way we wrote the function, each argument will have to take a specific object format in R.</p>
+<p>The <code>all_crime_dataset</code> has to be a <strong>dataframe</strong> and <code>type_of_crime</code> has to be a <strong>string</strong> (i.e. alphanumeric characters enclosed in inverted commas). If, in future use, a user supplies the wrong object format, the function will simply not work.</p>
+<p>Note also how, in functions, the variables we are including in the processing done by the code take on specific names that exist only within the context of the function: in this instance, <code>all_crime_dataset</code> and <code>type_of_crime</code>. Although the dataset we are going to use as the input for the function exists in the R environment and is called <code>all_crime_df</code>, we still have to write the code in the function with reference to <code>all_crime_dataset</code> and later on <code>filtered_crime_df</code> throughout the function.</p>
+<p>These types of variables are <strong>local</strong> to that function, and so are often known as <strong>local variables</strong>.</p>
+<p>Variables that exist outside of functions (i.e. that are accessible/usable for any processing/analysis within our script) are often known as <strong>global variables</strong>.</p>
+<p>Beyond our <code>print</code> statement, functions usually do return some type of object to the wider R environment, for instance a wrangled dataset or visual output. However, since we don’t have that yet, we’ve simply included our <code>print</code> statement as a placeholder that essentially is a notification message to show our code has run.</p>
+<p>Using <code>print</code> statements to this effect is very common when building functions (and loops) - they do not need to be as complicated as the statement we’ve used today, but can be inserted after specific lines of code to try to identify where a bug is occuring if your code does not run or produces the wrong output.</p>
+<p>That’s a lot of new programming concepts and techniques to understand, so for now let’s go ahead and try running the very basic function.</p>
+<div class="codetime">
+<p><strong>How to write your code in this practical</strong><br></p>
+<p>You’ve just written out the first iteration of our function, and now, below it, you’ll write out the line of code below.</p>
+<p>This line, just like every line you’ve written involving a function, will call our function we’ve just written above.</p>
+<p>Within our function, we provide our parameters, our dataset and our crime type.</p>
+<p>We’ll be updating our function code as we progress in the practical and, in some iterations, you’ll need to update the code below as we also move forward. You’ll see each time we run the function, we might utilise other functions (such as <code>str()</code> or <code>head()</code>) to double-check our function output.</p>
+<p>We also start <strong>storing</strong> the output of our function in some cases, so we have a dataframe we can access and use.</p>
+<p>Within your script, ultimately you’ll only want to have one version of our function code and one line of code that calls our function (unless you want to call our function on other crime types!). Plus then any other code that we need for these two lines to work (e.g. our libraries we’ve loaded above).</p>
+</div>
+<p>Call our function using the line of code below:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1"><span class="co"># Call our function on our dataset</span></a>
+<a class="sourceLine" id="cb436-2" title="2"><span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb436-3" title="3"><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;In 2020, there were 52265 instances of crimes related to Drugs in London.&quot;</code></pre>
+<p>The <code>all_crime_df</code> used here includes data from December 2020, so your numbers will look different if you used the file that you created based on just data from January till November 2020.</p>
+<p>For this data, we counted <strong>52,265 drug-related crimes</strong> in 2020.</p>
+</div>
+<div id="matching-the-spatial-units-in-our-datasets" class="section level4 unnumbered">
+<h4>Matching the spatial units in our datasets</h4>
+<p>Once we’ve filtered our dataset to only those records with the selected crime type, the next step in our process is to match each record to the correct ward.</p>
+<p>To do so, we’ll use the look-up table to join the relevant ward code to each observation based on the LSOA in which each record of crime is reported to have occured.</p>
+<p><em>To refresh your memory on this process, we recommend revisiting the</em> <a href="programming-for-giscience-and-spatial-analysis.html#processing-our-crime-data-to-create-our-required-output-data-frame">Processing our crime data to create our required output data frame</a> <em>section within Week 5’s practical.</em></p>
+<p>In summary, we use the <code>left_join()</code> function from the <code>dplyr</code> libraryto join matching rows from our <code>lsoa_ward_lookup</code> dataframe to our <code>all_crime_df</code> dataframe but make sure to keep all rows in the latter.</p>
+<p>We need to add this step to our function.</p>
+<p>We’ll also use the pipe function, <code>%&gt;%</code>, to pipe the output from the previous step of our function into the next.</p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb438-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb438-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb438-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb438-5" title="5"><span class="st">    </span><span class="co"># Join lsoa_ward_lookup rows to the all_crime_df on our two lsoa code fields</span></a>
+<a class="sourceLine" id="cb438-6" title="6"><span class="st">    </span><span class="kw">left_join</span>(lsoa_ward_lookup, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;lsoa_code&quot;</span> =<span class="st"> &quot;LSOA11CD&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb438-7" title="7"><span class="st">    </span><span class="co"># Reduce our dataframe to only required columns using the select function</span></a>
+<a class="sourceLine" id="cb438-8" title="8"><span class="st">    </span><span class="co"># Note, if you are using the updated lookup table, change WD18CD and WD18NM to WD20CD and WD20NM respectively</span></a>
+<a class="sourceLine" id="cb438-9" title="9"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</a>
+<a class="sourceLine" id="cb438-10" title="10">  <span class="co"># Placeholder - returns the dimensions, i.e. rows x columns of the wrangled dataset</span></a>
+<a class="sourceLine" id="cb438-11" title="11">  <span class="kw">dim</span>(filtered_crime_df)</a>
+<a class="sourceLine" id="cb438-12" title="12">}</a></code></pre></div>
+<p>Once again, we use a placeholder to check if our function is running - and, in this case, producing the expected output.</p>
+<p>If you’ve forgotten, the <code>dim()</code> function returns the dimensions of the resulting dataset that is created by the function - the two numbers returned are the number of rows and columns (fields), respectively.</p>
+<p>Let’s call our function again and check the output:</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1"><span class="co"># Call our function on our dataset</span></a>
+<a class="sourceLine" id="cb439-2" title="2"><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] 52265     9</code></pre>
+<p>Because we listed above 9 arguments i.e. fields to remain in the filtered dataframe (through <code>select()</code>), you should have 9 as the second number in the output for <code>dim(filtered_crime_df)</code>.</p>
+</div>
+<div id="aggregating-data-by-ward-and-month" class="section level4 unnumbered">
+<h4>Aggregating data by ward and month</h4>
+<p>We now have our dataset readyfor the next bit of data wrangling: aggregating our crime by ward for each month in 2020.</p>
+<p>Firstly, we will take our filtered <code>all_crime_dataset</code> and wrangle it to produce a dataframe with a <strong>ward per row</strong> with a <strong>crime count for each month in our fields</strong>.</p>
+<p>**Note, again, in the code below, we are using the 2018 look-up table. If you have downloaded the 2020 version, remember to update the relevant field names to reflect the 20 year (not 18).</p>
+<p>*Note, we add a line of white space into our function below to make it easier to read. You do not need to keep this line in, but you MUST ensure that for our new line of code, the indent is at the level shown below (i.e. it is at the same level as the filtered_crime_df line).</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb441-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb441-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb441-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb441-5" title="5"><span class="st">    </span><span class="co"># Join lsoa_ward_lookup rows to the all_crime_df on our two lsoa code fields</span></a>
+<a class="sourceLine" id="cb441-6" title="6"><span class="st">    </span><span class="kw">left_join</span>(lsoa_ward_lookup, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;lsoa_code&quot;</span> =<span class="st"> &quot;LSOA11CD&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb441-7" title="7"><span class="st">    </span><span class="co"># Reduce our dataframe to only required columns using the select function</span></a>
+<a class="sourceLine" id="cb441-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</a>
+<a class="sourceLine" id="cb441-9" title="9">  </a>
+<a class="sourceLine" id="cb441-10" title="10">  <span class="co"># Group our crimes by ward, then count the number of thefts occuring in each month</span></a>
+<a class="sourceLine" id="cb441-11" title="11">  crime_count_month_ward &lt;-<span class="st"> </span><span class="kw">group_by</span>(filtered_crime_df, WD18CD) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(month)</a>
+<a class="sourceLine" id="cb441-12" title="12">  <span class="co"># returns (to the RStudio environment) the aggregated dataset, by ward and by month</span></a>
+<a class="sourceLine" id="cb441-13" title="13">  <span class="kw">return</span>(crime_count_month_ward)</a>
+<a class="sourceLine" id="cb441-14" title="14">}</a></code></pre></div>
+<p>In the two new lines of code above, we create a new, aggregated dataframe, <code>crime_count_month_ward</code> which we then <code>return()</code> to the R environment as an output of the function.</p>
+<p>This is important because, when working in functions, the variables that we define and create usually stay in the <strong>local</strong> environment but get lost if we do not explicitly return them to the <strong>global</strong> environment (i.e. outside the function) using the <code>return()</code> function.</p>
+<p>With the addition of the <code>return()</code> function, take a look at how we can use the function to assign its output to an object that is then stored in the global environment.</p>
+<p>Update your “call” code - store the output to a variable and then check the variable.</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" title="1"><span class="co"># Store the returned dataframe to a global variable called drugs_month_ward_df</span></a>
+<a class="sourceLine" id="cb442-2" title="2">drugs_month_ward_df &lt;-<span class="st"> </span><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a>
+<a class="sourceLine" id="cb442-3" title="3"></a>
+<a class="sourceLine" id="cb442-4" title="4"><span class="co"># Print the number of unique values of wards and months</span></a>
+<a class="sourceLine" id="cb442-5" title="5"><span class="kw">length</span>(<span class="kw">unique</span>(drugs_month_ward_df<span class="op">$</span>WD18CD))</a></code></pre></div>
+<pre><code>## [1] 735</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1"><span class="kw">length</span>(<span class="kw">unique</span>(drugs_month_ward_df<span class="op">$</span>month))</a></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<p>You’ll see from the output above (once again based on Jan-Dec 2020 data) that we have data for <strong>735</strong> unique wards across <strong>12</strong> months, and a count of the number of drug-related cases for each combination of these two variables.</p>
+<p>You should also see that our <strong>global variable</strong> is the <code>drugs_month_ward_df</code> variable; the <strong>local variable</strong>, <code>crime_count_month_ward</code>, stays within our function and is not present within our global environment.</p>
+</div>
+<div id="pivoting-and-re-formatting-our-data" class="section level4 unnumbered">
+<h4>Pivoting and re-formatting our data</h4>
+<p>In order to join our monthly crime dataset by ward to our ward shapefile, we need to change the format of our data.</p>
+<p>Currently, it is ‘long’ in the sense that there are many rows but few columns. Each row contains the counts of drug-related crimes in every ward for each month.</p>
+<p>However, we want to make it ‘wider’, so that each row represents a single ward, each field/column represents a month in 2020, and the cells therefore contains the crime counts for the respective ward for the respective month.</p>
+<p>To transform our data from long to wide, we will use the <code>pivot_wider()</code> function from the <code>tidyr</code> package (as we did in Week 5 - remember, you can always head back to this practical for a refresher on our methods).</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb446-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb446-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb446-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb446-5" title="5"><span class="st">    </span><span class="co"># Join lsoa_ward_lookup rows to the all_crime_df on our two lsoa code fields</span></a>
+<a class="sourceLine" id="cb446-6" title="6"><span class="st">    </span><span class="kw">left_join</span>(lsoa_ward_lookup, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;lsoa_code&quot;</span> =<span class="st"> &quot;LSOA11CD&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb446-7" title="7"><span class="st">    </span><span class="co"># Reduce our dataframe to only required columns using the select function</span></a>
+<a class="sourceLine" id="cb446-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</a>
+<a class="sourceLine" id="cb446-9" title="9">  </a>
+<a class="sourceLine" id="cb446-10" title="10">  <span class="co"># Group our crimes by ward, then count the number of thefts occuring in each month</span></a>
+<a class="sourceLine" id="cb446-11" title="11">  crime_count_month_ward &lt;-<span class="st"> </span><span class="kw">group_by</span>(filtered_crime_df, WD18CD) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(month) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb446-12" title="12"><span class="st">  </span></a>
+<a class="sourceLine" id="cb446-13" title="13"><span class="st">   </span><span class="co">#re-structure dataframe from &#39;long&#39; to &#39;wide&#39;; the month variable will be the names of the fields (columns)</span></a>
+<a class="sourceLine" id="cb446-14" title="14"><span class="st">    </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> month, <span class="dt">values_from =</span> n)</a>
+<a class="sourceLine" id="cb446-15" title="15">  </a>
+<a class="sourceLine" id="cb446-16" title="16">  <span class="co"># returns, to the global environment, the aggregated dataset by ward and by month</span></a>
+<a class="sourceLine" id="cb446-17" title="17">  <span class="kw">return</span>(crime_count_month_ward)</a>
+<a class="sourceLine" id="cb446-18" title="18">    </a>
+<a class="sourceLine" id="cb446-19" title="19">}</a></code></pre></div>
+<p>Testing the function below, we see that instead of 3 fields like before, we now have <strong>13</strong> - 1 for the ward code and 12 for each month of 2020.</p>
+<p>Update and run the call code:</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" title="1"><span class="co"># Call our function on our dataset and store as a variable</span></a>
+<a class="sourceLine" id="cb447-2" title="2">drugs_month_ward_df &lt;-<span class="st"> </span><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a>
+<a class="sourceLine" id="cb447-3" title="3"></a>
+<a class="sourceLine" id="cb447-4" title="4"><span class="co"># Check dimensions of our resulting data frame</span></a>
+<a class="sourceLine" id="cb447-5" title="5"><span class="kw">dim</span>(drugs_month_ward_df)</a></code></pre></div>
+<pre><code>## [1] 735  13</code></pre>
+<p>One final thing we want to do is clean up the names of our fields to mean a little more to us.</p>
+<p>Let’s transform our numeric dates to text dates and change also the field <code>WD18CD</code> (or <code>WD20CD</code>) in the process.</p>
+<p><strong>Note, you will have to remove</strong> <code>'dec_2020'</code> <strong>from the list of strings we assign to</strong> <code>names(crime_count_month_ward)</code> <strong>if you are not using a dataset that includes December data.</strong></p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb449-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb449-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb449-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb449-5" title="5"><span class="st">    </span><span class="co"># Join lsoa_ward_lookup rows to the all_crime_df on our two lsoa code fields</span></a>
+<a class="sourceLine" id="cb449-6" title="6"><span class="st">    </span><span class="kw">left_join</span>(lsoa_ward_lookup, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;lsoa_code&quot;</span> =<span class="st"> &quot;LSOA11CD&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb449-7" title="7"><span class="st">    </span><span class="co"># Reduce our dataframe to only required columns using the select function</span></a>
+<a class="sourceLine" id="cb449-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</a>
+<a class="sourceLine" id="cb449-9" title="9">  </a>
+<a class="sourceLine" id="cb449-10" title="10">  <span class="co"># Group our crimes by ward, then count the number of thefts occuring in each month</span></a>
+<a class="sourceLine" id="cb449-11" title="11">  crime_count_month_ward &lt;-<span class="st"> </span><span class="kw">group_by</span>(filtered_crime_df, WD18CD) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(month) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb449-12" title="12"><span class="st">    </span><span class="co">#re-structure dataframe from &#39;long&#39; to &#39;wide&#39;; the month variable will be the names of the fields (columns)</span></a>
+<a class="sourceLine" id="cb449-13" title="13"><span class="st">   </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> month, <span class="dt">values_from =</span> n)</a>
+<a class="sourceLine" id="cb449-14" title="14">    </a>
+<a class="sourceLine" id="cb449-15" title="15">  <span class="co"># Rename our fields in our data frame</span></a>
+<a class="sourceLine" id="cb449-16" title="16">  <span class="kw">names</span>(crime_count_month_ward) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ward_code&#39;</span>, <span class="st">&#39;jan_2020&#39;</span>, <span class="st">&#39;feb_2020&#39;</span>, <span class="st">&#39;mar_2020&#39;</span>, <span class="st">&#39;apr_2020&#39;</span>, <span class="st">&#39;may_2020&#39;</span>, <span class="st">&#39;jun_2020&#39;</span>, <span class="st">&#39;jul_2020&#39;</span>, <span class="st">&#39;aug_2020&#39;</span>, <span class="st">&#39;sept_2020&#39;</span>, <span class="st">&#39;oct_2020&#39;</span>, <span class="st">&#39;nov_2020&#39;</span>, <span class="st">&#39;dec_2020&#39;</span>)</a>
+<a class="sourceLine" id="cb449-17" title="17">  </a>
+<a class="sourceLine" id="cb449-18" title="18">  <span class="co"># returns, to the global environment, the aggregated dataset by ward and by month</span></a>
+<a class="sourceLine" id="cb449-19" title="19">  <span class="kw">return</span>(crime_count_month_ward)</a>
+<a class="sourceLine" id="cb449-20" title="20">  </a>
+<a class="sourceLine" id="cb449-21" title="21">}</a></code></pre></div>
+<p>We check the outcome of this field renaming below.</p>
+<p>Update and run the call code:</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" title="1"><span class="co"># Call our function on our dataset</span></a>
+<a class="sourceLine" id="cb450-2" title="2">drugs_month_ward_df &lt;-<span class="st"> </span><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a>
+<a class="sourceLine" id="cb450-3" title="3"></a>
+<a class="sourceLine" id="cb450-4" title="4"><span class="co"># Checks the new column names of our output dataframe</span></a>
+<a class="sourceLine" id="cb450-5" title="5"><span class="kw">names</span>(drugs_month_ward_df)</a></code></pre></div>
+<pre><code>##  [1] &quot;ward_code&quot; &quot;jan_2020&quot;  &quot;feb_2020&quot;  &quot;mar_2020&quot;  &quot;apr_2020&quot;  &quot;may_2020&quot; 
+##  [7] &quot;jun_2020&quot;  &quot;jul_2020&quot;  &quot;aug_2020&quot;  &quot;sept_2020&quot; &quot;oct_2020&quot;  &quot;nov_2020&quot; 
+## [13] &quot;dec_2020&quot;</code></pre>
+<p>And we’re now done! We have our final dataframe to join to our <code>ward_population</code> spatial dataframe.</p>
+<p>Excellent!</p>
+</div>
+<div id="joining-our-spatial-and-non-spatial-data-and-final-cleaning-of-data" class="section level4 unnumbered">
+<h4>Joining our spatial and non-spatial data and final cleaning of data</h4>
+<p>The final step to our data processing is to join the dataframe that our function thus far produces to our <code>ward_population_2019</code> shapefile (in your <code>working</code> folder) in order to produce a <strong>crime rate</strong> (per number of residents) for each <strong>month, for each ward</strong>.</p>
+<p>We’ll then also be able to map the crime rate!</p>
+<p>As another reminder, the join approach we used earlier between our <code>all_crime_df</code> and our <code>lsoa_ward_lookup</code> is the exact same approach we need for this, even when dealing with spatial data.
+Let’s go ahead and use the same <code>left_join</code> function to join our two dataframes together - in this case, we want to keep all rows in our <code>ward_population</code> spatial dataframe, so this will be our <code>x</code> dataframe, whilst the <code>crime_count_month_ward</code> will be our <code>y</code>.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb452-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb452-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb452-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb452-5" title="5"><span class="st">    </span><span class="co"># Join lsoa_ward_lookup rows to the all_crime_df on our two lsoa code fields</span></a>
+<a class="sourceLine" id="cb452-6" title="6"><span class="st">    </span><span class="kw">left_join</span>(lsoa_ward_lookup, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;lsoa_code&quot;</span> =<span class="st"> &quot;LSOA11CD&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb452-7" title="7"><span class="st">    </span><span class="co"># Reduce our dataframe to only required columns using the select function</span></a>
+<a class="sourceLine" id="cb452-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</a>
+<a class="sourceLine" id="cb452-9" title="9">  </a>
+<a class="sourceLine" id="cb452-10" title="10">  <span class="co"># Group our crimes by ward, then count the number of thefts occuring in each month</span></a>
+<a class="sourceLine" id="cb452-11" title="11">  crime_count_month_ward &lt;-<span class="st"> </span><span class="kw">group_by</span>(filtered_crime_df, WD18CD) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(month) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb452-12" title="12"><span class="st">    </span><span class="co">#re-structure dataframe from &#39;long&#39; to &#39;wide&#39;; the month variable will be the names of the fields (columns)</span></a>
+<a class="sourceLine" id="cb452-13" title="13"><span class="st">   </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> month, <span class="dt">values_from =</span> n)</a>
+<a class="sourceLine" id="cb452-14" title="14">    </a>
+<a class="sourceLine" id="cb452-15" title="15">  <span class="co"># Rename our fields in our data frame</span></a>
+<a class="sourceLine" id="cb452-16" title="16">  <span class="kw">names</span>(crime_count_month_ward) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ward_code&#39;</span>, <span class="st">&#39;jan_2020&#39;</span>, <span class="st">&#39;feb_2020&#39;</span>, <span class="st">&#39;mar_2020&#39;</span>, <span class="st">&#39;apr_2020&#39;</span>, <span class="st">&#39;may_2020&#39;</span>, <span class="st">&#39;jun_2020&#39;</span>, <span class="st">&#39;jul_2020&#39;</span>, <span class="st">&#39;aug_2020&#39;</span>, <span class="st">&#39;sept_2020&#39;</span>, <span class="st">&#39;oct_2020&#39;</span>, <span class="st">&#39;nov_2020&#39;</span>, <span class="st">&#39;dec_2020&#39;</span>)</a>
+<a class="sourceLine" id="cb452-17" title="17"></a>
+<a class="sourceLine" id="cb452-18" title="18">  <span class="co"># Join theft by month to the correct wards in our ward_population dataframe</span></a>
+<a class="sourceLine" id="cb452-19" title="19">  filter_crime_ward_sdf &lt;-<span class="st"> </span><span class="kw">left_join</span>(ward_population, crime_count_month_ward, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;GSS_CODE&quot;</span> =<span class="st"> &quot;ward_code&quot;</span>))</a>
+<a class="sourceLine" id="cb452-20" title="20">  </a>
+<a class="sourceLine" id="cb452-21" title="21">  <span class="co"># returns, to the global environment, the new sdf</span></a>
+<a class="sourceLine" id="cb452-22" title="22">  <span class="kw">return</span>(filter_crime_ward_sdf)</a>
+<a class="sourceLine" id="cb452-23" title="23">  </a>
+<a class="sourceLine" id="cb452-24" title="24">}</a></code></pre></div>
+<p>Update and run the call code:</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1"><span class="co"># Call our function on our dataset</span></a>
+<a class="sourceLine" id="cb453-2" title="2">drugs_ward_sdf &lt;-<span class="st"> </span><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a>
+<a class="sourceLine" id="cb453-3" title="3"></a>
+<a class="sourceLine" id="cb453-4" title="4"><span class="co"># Check the structure of our newly merged spatial dataframe</span></a>
+<a class="sourceLine" id="cb453-5" title="5"><span class="kw">str</span>(drugs_ward_sdf)</a></code></pre></div>
+<pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   657 obs. of  20 variables:
+##  $ NAME      : chr  &quot;Chessington South&quot; &quot;Tolworth and Hook Rise&quot; &quot;Berrylands&quot; &quot;Alexandra&quot; ...
+##  $ GSS_CODE  : chr  &quot;E05000405&quot; &quot;E05000414&quot; &quot;E05000401&quot; &quot;E05000400&quot; ...
+##  $ DISTRICT  : chr  &quot;Kingston upon Thames&quot; &quot;Kingston upon Thames&quot; &quot;Kingston upon Thames&quot; &quot;Kingston upon Thames&quot; ...
+##  $ LAGSSCODE : chr  &quot;E09000021&quot; &quot;E09000021&quot; &quot;E09000021&quot; &quot;E09000021&quot; ...
+##  $ HECTARES  : num  755 259 145 269 188 ...
+##  $ NONLD_AREA: num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ POP2019   : num  10409 10522 9830 9899 11177 ...
+##  $ jan_2020  : int  1 3 4 1 6 11 NA 1 NA 3 ...
+##  $ feb_2020  : int  3 NA 1 3 9 5 1 1 2 NA ...
+##  $ mar_2020  : int  3 1 1 1 2 9 NA NA 1 4 ...
+##  $ apr_2020  : int  7 2 5 9 7 5 2 7 2 6 ...
+##  $ may_2020  : int  3 8 10 3 9 18 5 11 6 6 ...
+##  $ jun_2020  : int  5 3 1 6 3 1 4 1 3 3 ...
+##  $ jul_2020  : int  2 5 3 3 3 8 4 2 2 3 ...
+##  $ aug_2020  : int  3 1 4 2 1 8 2 1 2 4 ...
+##  $ sept_2020 : int  2 2 1 1 3 6 NA 6 4 5 ...
+##  $ oct_2020  : int  1 2 2 4 2 5 NA 6 3 5 ...
+##  $ nov_2020  : int  3 3 4 4 5 5 1 2 3 9 ...
+##  $ dec_2020  : int  NA 2 2 2 4 3 NA 2 5 3 ...
+##  $ geometry  :sfc_POLYGON of length 657; first list element: List of 1
+##   ..$ : num [1:406, 1:2] 516402 516407 516413 516420 516428 ...
+##   ..- attr(*, &quot;class&quot;)= chr  &quot;XY&quot; &quot;POLYGON&quot; &quot;sfg&quot;
+##  - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
+##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;names&quot;)= chr  &quot;NAME&quot; &quot;GSS_CODE&quot; &quot;DISTRICT&quot; &quot;LAGSSCODE&quot; ...</code></pre>
+<p>In the next set of additions of code to our function, we do some “quality assurance” - we’re going to check that each of our wards has <strong>at least one</strong> occurrence of crime over the eleven months. We do this by computing a new column that totals the number of thefts over the 12 month period. From some weeks ago, you may remember that only those wards in the City of London (that are to be omitted from the analysis) should have a total of zero.</p>
+<p>We can compute a new column by using the <code>mutate()</code> function from the <strong>dplyr</strong> library. We use the <code>rowsums()</code> function from the base library to compute the sum of rows, which we use the <code>across()</code> function from the <code>dplyr</code> library to parse. Then, to make sure our data is as correct as possible prior to visualisation, we will remove our City of London wards that do not have any data (crime or population), and then convert the NAs in our theft counts to 0.</p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb455-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb455-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb455-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb455-5" title="5"><span class="st">    </span><span class="co"># Join lsoa_ward_lookup rows to the all_crime_df on our two lsoa code fields</span></a>
+<a class="sourceLine" id="cb455-6" title="6"><span class="st">    </span><span class="kw">left_join</span>(lsoa_ward_lookup, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;lsoa_code&quot;</span> =<span class="st"> &quot;LSOA11CD&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb455-7" title="7"><span class="st">    </span><span class="co"># Reduce our dataframe to only required columns using the select function</span></a>
+<a class="sourceLine" id="cb455-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</a>
+<a class="sourceLine" id="cb455-9" title="9">  </a>
+<a class="sourceLine" id="cb455-10" title="10">  <span class="co"># Group our crimes by ward, then count the number of thefts occuring in each month</span></a>
+<a class="sourceLine" id="cb455-11" title="11">  crime_count_month_ward &lt;-<span class="st"> </span><span class="kw">group_by</span>(filtered_crime_df, WD18CD) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(month) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb455-12" title="12"><span class="st">    </span><span class="co">#re-structure dataframe from &#39;long&#39; to &#39;wide&#39;; the month variable will be the names of the fields (columns)</span></a>
+<a class="sourceLine" id="cb455-13" title="13"><span class="st">   </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> month, <span class="dt">values_from =</span> n)</a>
+<a class="sourceLine" id="cb455-14" title="14">    </a>
+<a class="sourceLine" id="cb455-15" title="15">  <span class="co"># Rename our fields in our data frame</span></a>
+<a class="sourceLine" id="cb455-16" title="16">  <span class="kw">names</span>(crime_count_month_ward) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ward_code&#39;</span>, <span class="st">&#39;jan_2020&#39;</span>, <span class="st">&#39;feb_2020&#39;</span>, <span class="st">&#39;mar_2020&#39;</span>, <span class="st">&#39;apr_2020&#39;</span>, <span class="st">&#39;may_2020&#39;</span>, <span class="st">&#39;jun_2020&#39;</span>, <span class="st">&#39;jul_2020&#39;</span>, <span class="st">&#39;aug_2020&#39;</span>, <span class="st">&#39;sept_2020&#39;</span>, <span class="st">&#39;oct_2020&#39;</span>, <span class="st">&#39;nov_2020&#39;</span>, <span class="st">&#39;dec_2020&#39;</span>)</a>
+<a class="sourceLine" id="cb455-17" title="17"></a>
+<a class="sourceLine" id="cb455-18" title="18">  <span class="co"># Join theft by month to the correct wards in our ward_population dataframe</span></a>
+<a class="sourceLine" id="cb455-19" title="19">  filter_crime_ward_sdf &lt;-<span class="st"> </span><span class="kw">left_join</span>(ward_population, crime_count_month_ward, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;GSS_CODE&quot;</span> =<span class="st"> &quot;ward_code&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb455-20" title="20"><span class="st">    </span></a>
+<a class="sourceLine" id="cb455-21" title="21"><span class="st">    </span><span class="co"># Creates a new column, ward_crime_total, which calculates the total incidence of selected crime in a ward</span></a>
+<a class="sourceLine" id="cb455-22" title="22"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ward_crime_total =</span> <span class="kw">rowSums</span>(<span class="kw">across</span>(<span class="dv">8</span><span class="op">:</span><span class="dv">19</span>), <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb455-23" title="23"><span class="st">    </span></a>
+<a class="sourceLine" id="cb455-24" title="24"><span class="st">    </span><span class="co"># Filter out City of London wards with a crime count of 0 or a population of 0</span></a>
+<a class="sourceLine" id="cb455-25" title="25"><span class="st">    </span><span class="co"># Note the logic is a little complicated here to achieve the above filter</span></a>
+<a class="sourceLine" id="cb455-26" title="26"><span class="st">    </span><span class="kw">filter</span>(ward_crime_total <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>DISTRICT <span class="op">!=</span><span class="st"> &quot;City and County of the City of London&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb455-27" title="27"><span class="st">    </span></a>
+<a class="sourceLine" id="cb455-28" title="28"><span class="st">    </span><span class="co"># We&#39;re also going to remove the ward of Vintry, which whilst it has a positive crime count, it does not contain a population</span></a>
+<a class="sourceLine" id="cb455-29" title="29"><span class="st">    </span><span class="kw">filter</span>(NAME <span class="op">!=</span><span class="st"> &quot;Vintry&quot;</span>)</a>
+<a class="sourceLine" id="cb455-30" title="30">  </a>
+<a class="sourceLine" id="cb455-31" title="31">  <span class="co"># Replace all NAs in our dataframe with 0</span></a>
+<a class="sourceLine" id="cb455-32" title="32">  filter_crime_ward_sdf[<span class="kw">is.na</span>(filter_crime_ward_sdf)] =<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb455-33" title="33">  </a>
+<a class="sourceLine" id="cb455-34" title="34">  <span class="kw">return</span>(filter_crime_ward_sdf)</a>
+<a class="sourceLine" id="cb455-35" title="35">}</a></code></pre></div>
+<p>Run the updated function on our dataset and check the results - you should see the new column at the end of our table.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" title="1"><span class="co"># Call our function on our dataset</span></a>
+<a class="sourceLine" id="cb456-2" title="2">drugs_ward_sdf &lt;-<span class="st"> </span><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a>
+<a class="sourceLine" id="cb456-3" title="3"></a>
+<a class="sourceLine" id="cb456-4" title="4"><span class="co"># View the first five lines of our resulting dataset</span></a>
+<a class="sourceLine" id="cb456-5" title="5"><span class="kw">View</span>(<span class="kw">head</span>(drugs_ward_sdf))</a></code></pre></div>
+<p>The final thing we need to do before we can map our theft data is, of course, compute a crime rate per month for our <code>all_theft_ward_sdf</code> dataframe.</p>
+<p>We have our <code>POP2019</code> column within our <code>all_theft_ward_sdf</code> dataframe - we just need to figure out the code that allows us to apply our calculation that we’ve used in our previous practicals (i.e. using the Attribute/Field Calculator in Q-GIS: value/POP2019 * 10000) to each of our monthly crime counts.</p>
+<p>Once again, after a bit of searching online for some suggestions, we can find out that the <code>mutate()</code> function comes in handy - and we can follow a specific approach in our code that allows us to apply the above equation to all of our columns within our dataframe that contain a crime count.</p>
+<p>We’re going to create a <strong>new dataframe</strong> to store our crime rate as when we apply our calculation to our current dataframe, we are actually <strong>transforming</strong> the original values for each month and not creating a new column per se for each month.</p>
+<p>This is a good approach to reducing the size of our dataframes and ensuring the data within each is specific - having both the crime count and crime rate within the same dataframe would result in 24 columns!</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="co"># Define our plot_crime() function</span></a>
+<a class="sourceLine" id="cb457-2" title="2">plot_crime &lt;-<span class="st"> </span><span class="cf">function</span>(all_crime_dataset, type_of_crime) {</a>
+<a class="sourceLine" id="cb457-3" title="3">  <span class="co"># Function filters the dataframe containing all crimes based on the type of crime chosen</span></a>
+<a class="sourceLine" id="cb457-4" title="4">  filtered_crime_df &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(all_crime_dataset, crime_type <span class="op">==</span><span class="st"> </span>type_of_crime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb457-5" title="5"><span class="st">    </span><span class="co"># Join lsoa_ward_lookup rows to the all_crime_df on our two lsoa code fields</span></a>
+<a class="sourceLine" id="cb457-6" title="6"><span class="st">    </span><span class="kw">left_join</span>(lsoa_ward_lookup, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;lsoa_code&quot;</span> =<span class="st"> &quot;LSOA11CD&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb457-7" title="7"><span class="st">    </span><span class="co"># Reduce our dataframe to only required columns using the select function</span></a>
+<a class="sourceLine" id="cb457-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</a>
+<a class="sourceLine" id="cb457-9" title="9">  </a>
+<a class="sourceLine" id="cb457-10" title="10">  <span class="co"># Group our crimes by ward, then count the number of thefts occuring in each month</span></a>
+<a class="sourceLine" id="cb457-11" title="11">  crime_count_month_ward &lt;-<span class="st"> </span><span class="kw">group_by</span>(filtered_crime_df, WD18CD) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(month) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb457-12" title="12"><span class="st">    </span><span class="co">#re-structure dataframe from &#39;long&#39; to &#39;wide&#39;; the month variable will be the names of the fields (columns)</span></a>
+<a class="sourceLine" id="cb457-13" title="13"><span class="st">   </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> month, <span class="dt">values_from =</span> n)</a>
+<a class="sourceLine" id="cb457-14" title="14">    </a>
+<a class="sourceLine" id="cb457-15" title="15">  <span class="co"># Rename our fields in our data frame</span></a>
+<a class="sourceLine" id="cb457-16" title="16">  <span class="kw">names</span>(crime_count_month_ward) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ward_code&#39;</span>, <span class="st">&#39;jan_2020&#39;</span>, <span class="st">&#39;feb_2020&#39;</span>, <span class="st">&#39;mar_2020&#39;</span>, <span class="st">&#39;apr_2020&#39;</span>, <span class="st">&#39;may_2020&#39;</span>, <span class="st">&#39;jun_2020&#39;</span>, <span class="st">&#39;jul_2020&#39;</span>, <span class="st">&#39;aug_2020&#39;</span>, <span class="st">&#39;sept_2020&#39;</span>, <span class="st">&#39;oct_2020&#39;</span>, <span class="st">&#39;nov_2020&#39;</span>, <span class="st">&#39;dec_2020&#39;</span>)</a>
+<a class="sourceLine" id="cb457-17" title="17"></a>
+<a class="sourceLine" id="cb457-18" title="18">  <span class="co"># Join theft by month to the correct wards in our ward_population dataframe</span></a>
+<a class="sourceLine" id="cb457-19" title="19">  filter_crime_ward_sdf &lt;-<span class="st"> </span><span class="kw">left_join</span>(ward_population, crime_count_month_ward, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;GSS_CODE&quot;</span> =<span class="st"> &quot;ward_code&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb457-20" title="20"><span class="st">    </span></a>
+<a class="sourceLine" id="cb457-21" title="21"><span class="st">    </span><span class="co"># Creates a new column, ward_crime_total_2020, which calculates the total incidence of selected crime in a ward</span></a>
+<a class="sourceLine" id="cb457-22" title="22"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ward_crime_total_2020 =</span> <span class="kw">rowSums</span>(<span class="kw">across</span>(<span class="dv">8</span><span class="op">:</span><span class="dv">19</span>), <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb457-23" title="23"><span class="st">    </span></a>
+<a class="sourceLine" id="cb457-24" title="24"><span class="st">    </span><span class="co"># Filter out City of London wards with a crime count of 0 or a population of 0</span></a>
+<a class="sourceLine" id="cb457-25" title="25"><span class="st">    </span><span class="co"># Note the logic is a little complicated here to achieve the above filter</span></a>
+<a class="sourceLine" id="cb457-26" title="26"><span class="st">    </span><span class="kw">filter</span>(ward_crime_total_<span class="dv">2020</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>DISTRICT <span class="op">!=</span><span class="st"> &quot;City and County of the City of London&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb457-27" title="27"><span class="st">    </span></a>
+<a class="sourceLine" id="cb457-28" title="28"><span class="st">    </span><span class="co"># We&#39;re also going to remove the ward of Vintry, which whilst it has a positive crime count, it does not contain a population</span></a>
+<a class="sourceLine" id="cb457-29" title="29"><span class="st">    </span><span class="kw">filter</span>(NAME <span class="op">!=</span><span class="st"> &quot;Vintry&quot;</span>)</a>
+<a class="sourceLine" id="cb457-30" title="30">  </a>
+<a class="sourceLine" id="cb457-31" title="31">  <span class="co"># Replace all NAs in our dataframe with 0</span></a>
+<a class="sourceLine" id="cb457-32" title="32">  filter_crime_ward_sdf[<span class="kw">is.na</span>(filter_crime_ward_sdf)] =<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb457-33" title="33">  </a>
+<a class="sourceLine" id="cb457-34" title="34">  <span class="co"># Create a new function (within a function), which takes an argument, x, and the following calculation</span></a>
+<a class="sourceLine" id="cb457-35" title="35">  <span class="co"># The calculation to pass x through is equal to ( x / POP2019) * 10 000)</span></a>
+<a class="sourceLine" id="cb457-36" title="36">  calc_crime_rate =<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>) ((x<span class="op">/</span>filter_crime_ward_sdf<span class="op">$</span>POP2019)<span class="op">*</span><span class="dv">10000</span>)</a>
+<a class="sourceLine" id="cb457-37" title="37">  </a>
+<a class="sourceLine" id="cb457-38" title="38">  <span class="co"># Apply this calculation to all columns between 8 and total number of cols within the filter_crime_ward_sdf and transform the values </span></a>
+<a class="sourceLine" id="cb457-39" title="39">  rate_of_crime_sdf &lt;-<span class="st"> </span>filter_crime_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">ends_with</span>(<span class="st">&quot;2020&quot;</span>)), calc_crime_rate)</a>
+<a class="sourceLine" id="cb457-40" title="40">  </a>
+<a class="sourceLine" id="cb457-41" title="41">  <span class="kw">return</span>(rate_of_crime_sdf)</a>
+<a class="sourceLine" id="cb457-42" title="42">}</a></code></pre></div>
+<p>Let’s run the updated function again on our dataset.</p>
+<p>Update and run the call code:</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1">drugs_crime_rate_sdf &lt;-<span class="st"> </span><span class="kw">plot_crime</span>(all_crime_df, <span class="st">&quot;Drugs&quot;</span>)</a>
+<a class="sourceLine" id="cb458-2" title="2"><span class="kw">View</span>(<span class="kw">head</span>(drugs_crime_rate_sdf))</a></code></pre></div>
+<p>Have a look at your new <code>drugs_crime_rate_sdf</code> spatial dataframe - does it look as you would expect?</p>
+<p>When we check to see the results of our function thus far below, we should see that the figures in the fields that hold monthly counts of our chosen crime (Drugs in this instance) are now mostly decimals rather than integers. This shows that our counts have been divided and we’ve created our crime rate for each month.</p>
+<p>Now we have our <strong>final</strong> dataframe, we can go ahead and make our maps.</p>
+</div>
+<div id="making-crime-maps-for-our-dataframe-automatically" class="section level4 unnumbered">
+<h4>Making crime maps for our dataframe automatically</h4>
+<p>The culmination of all the work that we have put into building this week’s function is for us to generate multiple maps, one for each of the months in 2020 for the crime that the function user chose (in this case for ‘Drugs’).</p>
+<p>Remember that in the <code>tmap</code> package we are about to use, there is the more basic <code>qtm()</code> mapping function without much customisability and the slightly more complicated, but more widely used <code>tm_shape()</code> function which builds on using the ‘layered grammar of graphics’ approach.</p>
+<p>To ease you back into the syntax of <code>tm_shape()</code>, we will start by generating a map for the crime rates in January 2020.</p>
+<p>In addition to mapping the crime rate, we will:</p>
+<ul>
+<li><p>Add a new tm_shape(), equal to our <code>ward_population</code> spatial dataframe and draw as grey polygons. This is to show our map readers that we have no data for the City of London wards.</p></li>
+<li><p>Add styling aspects into our map, including a title, define the colour palette of our map, change the position of the legend, add a north arrow and a scale bar and format the font.</p></li>
+</ul>
+<p>Remember the <strong>key functions</strong> to be aware of for styling maps in relation to <code>tm_shape()</code> are:</p>
+<ul>
+<li><code>tm_layout()</code>: Contains parameters to style titles, fonts, the legend etc</li>
+<li><code>tm_compass()</code>: Contains parameters to create and style a North arrow or compass</li>
+<li><code>tm_scale_bar()</code>: Contains parameters to create and style a scale bar</li>
+</ul>
+<p>And remember that you should be <strong>free to change</strong> these according to what you feel are appropriate design choices for the data you are plotting and the purpose of the map you are marking!</p>
+<p>Let’s go ahead and make a map for January.</p>
+<pre><code>## Reading layer `2020_CR_sdf&#39; from data source `/Users/Jo/Code/GEOG0030/data/working/2020_CR_sdf.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 636 features and 20 fields
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
+## CRS:           27700</code></pre>
+<p>Below your function call code, add:</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" title="1"><span class="co"># Plot underlying grey polygons to show COL wards with no data</span></a>
+<a class="sourceLine" id="cb460-2" title="2"><span class="kw">tm_shape</span>(ward_population) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb460-3" title="3"><span class="st">  </span><span class="co"># Next map the crime rate data</span></a>
+<a class="sourceLine" id="cb460-4" title="4"><span class="st">  </span><span class="kw">tm_shape</span>(drugs_crime_rate_sdf) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb460-5" title="5"><span class="st">    </span><span class="co"># plots the spatial information (wards) as polygons, with the values in &#39;jan_2020&#39; as the </span></a>
+<a class="sourceLine" id="cb460-6" title="6"><span class="st">    </span><span class="co"># basis for the choropleth plotted + other customisations</span></a>
+<a class="sourceLine" id="cb460-7" title="7"><span class="st">    </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;jan_2020&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">style =</span> <span class="st">&quot;fixed&quot;</span>, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">100</span>), </a>
+<a class="sourceLine" id="cb460-8" title="8">               <span class="dt">title=</span><span class="st">&quot;Drug Crime Rate per</span><span class="ch">\n</span><span class="st">10,000 people&quot;</span>, <span class="dt">style=</span><span class="st">&quot;fixed&quot;</span>, </a>
+<a class="sourceLine" id="cb460-9" title="9">               <span class="dt">palette=</span><span class="st">&quot;Blues&quot;</span>, <span class="dt">border.col=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb460-10" title="10"><span class="st">    </span><span class="co">#positioning and font size for the title and legend</span></a>
+<a class="sourceLine" id="cb460-11" title="11"><span class="st">    </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span><span class="st">&#39;January 2020&#39;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>,</a>
+<a class="sourceLine" id="cb460-12" title="12">              <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb460-13" title="13">              <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb460-14" title="14"><span class="st">    </span><span class="co">#position of the North arrow compass</span></a>
+<a class="sourceLine" id="cb460-15" title="15"><span class="st">    </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb460-16" title="16"><span class="st">    </span><span class="co">#position and design of the scale bar</span></a>
+<a class="sourceLine" id="cb460-17" title="17"><span class="st">    </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<pre><code>## Warning: Values have found that are higher than the highest break</code></pre>
+<p><img src="GEOG0030_files/figure-html/OP3-plot-using-tmap-1.png" width="672" /></p>
+<p>Great - we have a map produced for January that looks pretty good (and very similar to the map we produced back in Week 5!).</p>
+<p>But how do we go about automating the creation of our maps?</p>
+<p>Well, we have <strong>two</strong> options:</p>
+<ol style="list-style-type: decimal">
+<li><p>Using a <code>for</code> loop to iterate over each column and create our map, when the code is run independently.</p></li>
+<li><p>Integrate the same <code>for</code> loop (with a few changes) into our function to create our maps when our function is called.</p></li>
+</ol>
+<p>We’ll start with looking at how to create and use the <code>for</code> loop first.</p>
+<div class="codetime">
+<p><strong><code>for</code> loops: structure and syntax</strong><br></p>
+<p>Understanding how a <code>for</code> loop works is no easy feat, but once you’ve got a basic know-how, you’ll be amazed about what you can do with them and how easy it is to automate a lot of processing.</p>
+<p>Once again, each programming language has its own specific syntax to use when constructing a <code>for</code> loop - but, in general, the structure to constructing <code>for</code> loops are very similar, requiring a <code>for</code> and an <code>in</code> to “kick off” the <code>for</code> loop.</p>
+<p><code>For</code> loops are used to iterate over a sequence and for every ‘item’ in your sequence, perform the code included within the <code>for</code> loop.</p>
+<p>For example:</p>
+<p><code>for item in our_sequence:</code>
+<code>Do_this_code_for_this_item_in_our_list</code></p>
+<p>Determining how to define your sequence and what the resulting ‘item’ will be is the critical aspect to get a <code>for</code> loop correct.</p>
+<p>A sequence can be a string, a list or, in many of our future scenarios, a range (of numbers).</p>
+<p>This is because the number of items in your sequence will determine how many times your for loop will run and often we want our loop to iterate over a specific number of datasets, or columns, or rows.</p>
+<p>As a result, we often need to find out the what is the length of our “sequence” is in order for our <code>for</code> loop to run.</p>
+<p>We’ll see this in action as we create our <code>for</code> loop below.</p>
+<p>The other aspect of a <code>for</code> loop that we need to understand is the use of the <code>item</code>, which is essentially a “placeholder” variable within our <code>for</code> loop, that changes according to each iteration of the <code>for</code> loop.</p>
+<p>We’ll again take a look at this as well create our <code>for</code> loop below.</p>
+<p>In R, to create a <code>for</code> loop, we need to utilise the following syntax:</p>
+<pre><code>for (i in 1:100) {
+  x &lt;- i * 2
+  print(x)
+}</code></pre>
+<p>This loop takes each number in our range from 1 to 100, times it by 2, stores the result as the <code>x</code> variable and then prints the result.</p>
+<p>The <code>i</code> acts as this placeholder variable that is “replaced” by each number in the code within the loop. Recognising how this works is essential to making sure your <code>for</code> loop a) works and b) works well!</p>
+<p>We’ll explain this further as we implement a <code>for</code> loop in our code.</p>
+</div>
+<div id="creating-a-for-loop-to-automate-our-maps" class="section level5 unnumbered">
+<h5>Creating a for loop to automate our maps</h5>
+<p>Learning how to create a <code>for</code> loop is much easier when it is applied - so we’re going to go straight ahead and look at how we can construct our <code>for</code> loop.</p>
+<p>In our case, we want to iterate over each column within our dataframe and produce a map for each month.</p>
+<p>If we look back to our previous map-making code, we should be able to identify <strong>two</strong> locations where our month “comes into play”: i) <code>tm_polygons(col = "jan_2020"</code> and ii) <code>tm_layout(main.title='January 2020'</code>.</p>
+<p>In both scenarios, we will need to replace the <code>jan</code> and <code>January</code> with each relevant month’s entry (e.g. “march_2020” and “March”). Knowing that this is what we need to substitute will guide how we construct in our <code>for</code> loop.</p>
+<p>We need to ask our <code>for</code> loop to, for every month in our dataset, substitute the <code>col=</code> code with the relevant month and then do the same again for the <code>main.title=</code> code. By doing so, we’ll create a map for each map with the correct title.</p>
+<p>So how do we do this</p>
+<p>Well, essentially, we just need to write some code that can extract these precise “strings” and then utlise these as variables within our loop.</p>
+<p><strong>Sounds simple, right?!</strong></p>
+<p>Again, understanding how <code>for</code> loops work is not easy - but requires a bit of time and patience with their implementation.</p>
+<p>Let’s break this down into very simple steps.</p>
+<p>To achieve this, we first need to create our sequence.</p>
+<p>We want our <code>for</code> loop to iterate over every monthly column crime rate in our column - therefore, we want our <code>for</code> loop to iterate <em>n</em> number of times according to the number of columns that contain our crime rates.</p>
+<p>Luckily there’s a function to tell us just how many columns are within our dataframe: <code>ncol()</code>!</p>
+<p>We can get started creating our <code>for</code> loop.</p>
+<p>We will ask, for each column, in our sequence that is 1 to the total number of columns in our <code>drugs_crime_rate_sdf</code>, to print whatever is stored in the <code>column</code> placeholder variable.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" title="1"><span class="co"># Initiate for loop, for each column in the total number of columns in our sdf</span></a>
+<a class="sourceLine" id="cb463-2" title="2"><span class="cf">for</span> (column <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(drugs_crime_rate_sdf)) {</a>
+<a class="sourceLine" id="cb463-3" title="3"><span class="co"># Print what the column variable represents</span></a>
+<a class="sourceLine" id="cb463-4" title="4"><span class="kw">print</span>(column)</a>
+<a class="sourceLine" id="cb463-5" title="5">}</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+## [1] 11
+## [1] 12
+## [1] 13
+## [1] 14
+## [1] 15
+## [1] 16
+## [1] 17
+## [1] 18
+## [1] 19
+## [1] 20
+## [1] 21</code></pre>
+<p>We should find that our <code>for</code> loop prints the numbers 1-21 as we have 21 columns in total in our dataset.</p>
+<p>This also means, in each iteration of our <code>for</code>loop, our ‘placeholder’ variable is storing these numbers. Our variable does not actually represent the column itself, but, in this specific case, the <strong>indexed</strong> position of the column within our dataframe.</p>
+<p>Understanding what the ‘placeholder’ variable represents in your <code>for</code> loop is a fundamental step in constructing a <code>for</code> loop - and I highly recommend using a <code>print()</code> statement in the first instance, as we have done here, so that you are clear in terms of what your variable shows.</p>
+<p>Once we know what our ‘placeholder’ variable stores, the next step is that we need to figure out how can we use this variable to access specific monthly columns - or rather, the <strong>names</strong> of each monthly column (after all, this is what we need to provide our <code>col=</code> code).</p>
+<p>The most straight-forward way we can use this variable to access our columns (and their names) is to use indexing and selection:</p>
+<p>Within our <code>for</code> loop code, we can call the <code>names()</code> function on our dataframe, store the results (i.e. the list of names) as a list within our loop and then use the number stored within the <code>item</code> placeholder variable to access each of the respective monthly names to parse into our mapping code.
+Again, we only need the name of each column in our code and <strong>not</strong> the entire column, hence why we can focus on extracting the name here, rather than each column.</p>
+<p>Let’s take a look - we’ll also use a <code>print()</code> statement in our <code>for</code> loop to check that our code is working.</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" title="1"><span class="co"># Initiate for loop, for each column in the total number of columns in our sdf</span></a>
+<a class="sourceLine" id="cb465-2" title="2"><span class="cf">for</span> (column <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(drugs_crime_rate_sdf)) {</a>
+<a class="sourceLine" id="cb465-3" title="3">  <span class="co"># Store the column names in a variable called col_names</span></a>
+<a class="sourceLine" id="cb465-4" title="4">  col_names &lt;-<span class="st"> </span><span class="kw">names</span>(drugs_crime_rate_sdf)</a>
+<a class="sourceLine" id="cb465-5" title="5">  <span class="co"># Print the name of the column at the index number represented by the column variable</span></a>
+<a class="sourceLine" id="cb465-6" title="6">  <span class="kw">print</span>(col_names[column])</a>
+<a class="sourceLine" id="cb465-7" title="7">}</a></code></pre></div>
+<pre><code>## [1] &quot;NAME&quot;
+## [1] &quot;GSS_COD&quot;
+## [1] &quot;DISTRIC&quot;
+## [1] &quot;LAGSSCO&quot;
+## [1] &quot;HECTARE&quot;
+## [1] &quot;NONLD_A&quot;
+## [1] &quot;POP2019&quot;
+## [1] &quot;jan_2020&quot;
+## [1] &quot;fb_2020&quot;
+## [1] &quot;mr_2020&quot;
+## [1] &quot;ap_2020&quot;
+## [1] &quot;my_2020&quot;
+## [1] &quot;jun_2020&quot;
+## [1] &quot;jl_2020&quot;
+## [1] &quot;ag_2020&quot;
+## [1] &quot;sp_2020&quot;
+## [1] &quot;oc_2020&quot;
+## [1] &quot;nv_2020&quot;
+## [1] &quot;dc_2020&quot;
+## [1] &quot;w___202&quot;
+## [1] &quot;geometry&quot;</code></pre>
+<p>So as you can see, by storing the names of our SDF and then accessing these names via indexing and selection, we get our <code>for</code> loop to print out the string of each column name.</p>
+<p>We can add a quick <code>print()</code> statement into our code to explain this further <em>(note, you do not need to copy over this block of code, it is purely for demonstrating purposes)</em>:</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" title="1"><span class="co"># Initiate for loop, for each column in the total number of columns in our sdf</span></a>
+<a class="sourceLine" id="cb467-2" title="2"><span class="cf">for</span> (column <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(drugs_crime_rate_sdf)) {</a>
+<a class="sourceLine" id="cb467-3" title="3">  <span class="co"># Store the column names in a variable called col_names</span></a>
+<a class="sourceLine" id="cb467-4" title="4">  col_names &lt;-<span class="st"> </span><span class="kw">names</span>(drugs_crime_rate_sdf)</a>
+<a class="sourceLine" id="cb467-5" title="5">  <span class="co"># Print the name of the column at the index number represented by the column variable</span></a>
+<a class="sourceLine" id="cb467-6" title="6">  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;This is column for &quot;</span>, col_names[column],<span class="st">&quot; and it is located at the index of &quot;</span>, column, <span class="st">&quot; within our dataframe. We are on loop number &quot;</span>, column, <span class="st">&quot; of our for loop.&quot;</span>))</a>
+<a class="sourceLine" id="cb467-7" title="7">}</a></code></pre></div>
+<pre><code>## [1] &quot;This is column for NAME and it is located at the index of 1 within our dataframe. We are on loop number 1 of our for loop.&quot;
+## [1] &quot;This is column for GSS_COD and it is located at the index of 2 within our dataframe. We are on loop number 2 of our for loop.&quot;
+## [1] &quot;This is column for DISTRIC and it is located at the index of 3 within our dataframe. We are on loop number 3 of our for loop.&quot;
+## [1] &quot;This is column for LAGSSCO and it is located at the index of 4 within our dataframe. We are on loop number 4 of our for loop.&quot;
+## [1] &quot;This is column for HECTARE and it is located at the index of 5 within our dataframe. We are on loop number 5 of our for loop.&quot;
+## [1] &quot;This is column for NONLD_A and it is located at the index of 6 within our dataframe. We are on loop number 6 of our for loop.&quot;
+## [1] &quot;This is column for POP2019 and it is located at the index of 7 within our dataframe. We are on loop number 7 of our for loop.&quot;
+## [1] &quot;This is column for jan_2020 and it is located at the index of 8 within our dataframe. We are on loop number 8 of our for loop.&quot;
+## [1] &quot;This is column for fb_2020 and it is located at the index of 9 within our dataframe. We are on loop number 9 of our for loop.&quot;
+## [1] &quot;This is column for mr_2020 and it is located at the index of 10 within our dataframe. We are on loop number 10 of our for loop.&quot;
+## [1] &quot;This is column for ap_2020 and it is located at the index of 11 within our dataframe. We are on loop number 11 of our for loop.&quot;
+## [1] &quot;This is column for my_2020 and it is located at the index of 12 within our dataframe. We are on loop number 12 of our for loop.&quot;
+## [1] &quot;This is column for jun_2020 and it is located at the index of 13 within our dataframe. We are on loop number 13 of our for loop.&quot;
+## [1] &quot;This is column for jl_2020 and it is located at the index of 14 within our dataframe. We are on loop number 14 of our for loop.&quot;
+## [1] &quot;This is column for ag_2020 and it is located at the index of 15 within our dataframe. We are on loop number 15 of our for loop.&quot;
+## [1] &quot;This is column for sp_2020 and it is located at the index of 16 within our dataframe. We are on loop number 16 of our for loop.&quot;
+## [1] &quot;This is column for oc_2020 and it is located at the index of 17 within our dataframe. We are on loop number 17 of our for loop.&quot;
+## [1] &quot;This is column for nv_2020 and it is located at the index of 18 within our dataframe. We are on loop number 18 of our for loop.&quot;
+## [1] &quot;This is column for dc_2020 and it is located at the index of 19 within our dataframe. We are on loop number 19 of our for loop.&quot;
+## [1] &quot;This is column for w___202 and it is located at the index of 20 within our dataframe. We are on loop number 20 of our for loop.&quot;
+## [1] &quot;This is column for geometry and it is located at the index of 21 within our dataframe. We are on loop number 21 of our for loop.&quot;</code></pre>
+<p>You can see through our demontration code that at each loop, we substitute the <code>column</code> variable for the relevant number and then use this number to access the name of the column within our name list.</p>
+<p>And this is exactly the “code” we need to fit into our <code>tm_polygons(col = "jan_2020"</code> mapping code … we just want to be able to submit the <code>"jan_2020"</code> with the next field name as the <code>for</code> loop iterates throughout the dataframe.</p>
+<p>But whilst this is looking good, as evident in what is printed, we are iterating over columns that we’d not want to (or be able to) create crime rate maps first (e.g. <code>GSS_CODE</code>, <code>DISTRICT</code>).</p>
+<p>As a result, we’ll need to add some additional requirements to our code to ensure we only use the columns that contain crime rate data.</p>
+<p>To do this, we’ll make sure that we only use columns which names end with <code>_2020</code> within our sequence by selecting these columns before we implementing our <code>for</code> loop.</p>
+<p>Then, instead of iterating over the whole dataframe, we’ll only iterate over this list and find the columns that match this list within our dataframe.</p>
+<p>Let’s take a look - we’ll again use a <code>print()</code> statement in our <code>for</code> loop to check that our code is working.</p>
+<p><em>Using</em> <code>print()</code> <em>statements are a really effective way of tracking your code in terms of a) is it working, b) isi t producing the outputs you’re expecting and c) what do these outputs look like! I can highly recommend using them as you build your functions and loops - and you can remove them as you build them!</em></p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" title="1"><span class="co"># Select only those columns that end in _2020</span></a>
+<a class="sourceLine" id="cb469-2" title="2"><span class="co"># Store these as a sequence to iterate over in our for loop</span></a>
+<a class="sourceLine" id="cb469-3" title="3">cr_columns &lt;-<span class="st"> </span><span class="kw">names</span>(dplyr<span class="op">::</span><span class="kw">select</span>(drugs_crime_rate_sdf, <span class="kw">ends_with</span>(<span class="st">&quot;_2020&quot;</span>)))</a>
+<a class="sourceLine" id="cb469-4" title="4"></a>
+<a class="sourceLine" id="cb469-5" title="5"><span class="co"># Initiate for loop, for each column in the total number of cr_columns list</span></a>
+<a class="sourceLine" id="cb469-6" title="6"><span class="co"># Note how we use length in this case as cr_columns is a list and not a dataframe</span></a>
+<a class="sourceLine" id="cb469-7" title="7"><span class="cf">for</span> (column <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cr_columns)) {</a>
+<a class="sourceLine" id="cb469-8" title="8">  <span class="co"># Print the name of the column at the index number represented by the column variable</span></a>
+<a class="sourceLine" id="cb469-9" title="9">  <span class="kw">print</span>(cr_columns[column])</a>
+<a class="sourceLine" id="cb469-10" title="10">}</a></code></pre></div>
+<pre><code>## [1] &quot;jan_2020&quot;
+## [1] &quot;fb_2020&quot;
+## [1] &quot;mr_2020&quot;
+## [1] &quot;ap_2020&quot;
+## [1] &quot;my_2020&quot;
+## [1] &quot;jun_2020&quot;
+## [1] &quot;jl_2020&quot;
+## [1] &quot;ag_2020&quot;
+## [1] &quot;sp_2020&quot;
+## [1] &quot;oc_2020&quot;
+## [1] &quot;nv_2020&quot;
+## [1] &quot;dc_2020&quot;
+## [1] &quot;geometry&quot;</code></pre>
+<p>Great - you should now just have each of the monthly crime columns printed to your screen! What’s great about this approach is that we can easily adapt our <code>ends_with()</code> statement if we start to use data from other years or we could think about renaming our crime rate columns to contain “CR” at the start to make this our identifier moving forward - there are lots of ways to increasingly improve the efficiency (and the reduce the “specificity”) of our code.</p>
+<p>Our next step therefore is to produce a map for each of our months - and to do this is very simple (for this first part that is!).</p>
+<p>To create a map for each month, all we need to do is provide the <code>col_names[column]</code> code to our
+<code>tm_polygons(col = "jan_2020"</code> code, i.e. <code>tm_polygons(col = col_names[column]</code>.</p>
+<p>If we want to format the titles from the second part of our mapping code, i.e. the <code>tm_layout(main.title='January 2020'</code>, correctly, it requires us to get a little more inventive with our <code>for</code> loop. (Yes, we could simply utilise the field name for this and have our titles formatted how our field names are formatted…but where’s the fun in that!).</p>
+<p>To create our much prettier titles, we will create a new list of our titles (i.e. each month spelt out as “January 2020”). We will then use the <code>column</code> placeholder variable to select the correct title for each month using the same indexing approach.</p>
+<p><em>As these legend titles are very specific to our map, it is a little harder to automate their creation. There may be much better ways to do this, but for now, as we only have 12 months to deal with, writing out their names as such works well for us! Sometimes it really is not worth overcomplicating your code to achieve a simple process!</em></p>
+<p>We will also do two additional processing steps in this code so you can see that it has worked.</p>
+<ul>
+<li>First, we will export our images to a PNG within your map folder using the <code>tmap_save()</code> function.
+<ul>
+<li><strong>You’ll need to create a new folder <code>OP3</code> to host your new maps</strong></li>
+</ul></li>
+<li>Second, we will add a print statement to tell us that each of our maps have been exported.</li>
+</ul>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" title="1"><span class="co"># Select only those columns that end in _2020</span></a>
+<a class="sourceLine" id="cb471-2" title="2"><span class="co"># Store these as a sequence to iterate over</span></a>
+<a class="sourceLine" id="cb471-3" title="3">cr_columns &lt;-<span class="st"> </span><span class="kw">names</span>(dplyr<span class="op">::</span><span class="kw">select</span>(drugs_crime_rate_sdf, <span class="kw">ends_with</span>(<span class="st">&quot;_2020&quot;</span>)))</a>
+<a class="sourceLine" id="cb471-4" title="4"></a>
+<a class="sourceLine" id="cb471-5" title="5"><span class="co"># Create a list of titles for our maps that match the same order as our columns  </span></a>
+<a class="sourceLine" id="cb471-6" title="6">legend_titles &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;January 2020&quot;</span>, <span class="st">&quot;February 2020&quot;</span>, <span class="st">&quot;March 2020&quot;</span>, <span class="st">&quot;April 2020&quot;</span>, <span class="st">&quot;May 2020&quot;</span>, <span class="st">&quot;June 2020&quot;</span>, <span class="st">&quot;July 2020&quot;</span>, <span class="st">&quot;August 2020&quot;</span>, <span class="st">&quot;September 2020&quot;</span>, <span class="st">&quot;October 2020&quot;</span>, <span class="st">&quot;November 2020&quot;</span>, <span class="st">&quot;December 2020&quot;</span>)</a>
+<a class="sourceLine" id="cb471-7" title="7"></a>
+<a class="sourceLine" id="cb471-8" title="8"><span class="co"># Initiate for loop, for each column in the total number of cr_columns list</span></a>
+<a class="sourceLine" id="cb471-9" title="9"><span class="co"># Note how we use length in this case as cr_columns is a list and not a dataframe</span></a>
+<a class="sourceLine" id="cb471-10" title="10"><span class="cf">for</span> (column <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cr_columns)) {</a>
+<a class="sourceLine" id="cb471-11" title="11">  month_map &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(ward_population) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb471-12" title="12"><span class="st">  </span><span class="co"># Next map the crime rate data</span></a>
+<a class="sourceLine" id="cb471-13" title="13"><span class="st">  </span><span class="kw">tm_shape</span>(drugs_crime_rate_sdf) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb471-14" title="14"><span class="st">    </span><span class="co"># plots the spatial information (wards) as polygons, with the values in &#39;jan_2020&#39; as the </span></a>
+<a class="sourceLine" id="cb471-15" title="15"><span class="st">    </span><span class="co"># basis for the choropleth plotted + other customisations</span></a>
+<a class="sourceLine" id="cb471-16" title="16"><span class="st">    </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> cr_columns[column], <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">style =</span> <span class="st">&quot;fixed&quot;</span>, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">100</span>), <span class="dt">title=</span><span class="st">&quot;Drug Crime Rate per</span><span class="ch">\n</span><span class="st">10,000 people&quot;</span>, <span class="dt">style=</span><span class="st">&quot;fixed&quot;</span>, <span class="dt">palette=</span><span class="st">&quot;Blues&quot;</span>, <span class="dt">border.col=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb471-17" title="17"><span class="st">    </span><span class="co">#positioning and font size for the title and legend</span></a>
+<a class="sourceLine" id="cb471-18" title="18"><span class="st">    </span><span class="co"># note how we substitue the main.title with our legend_titles[column] indexing approach</span></a>
+<a class="sourceLine" id="cb471-19" title="19"><span class="st">    </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span>legend_titles[column], <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>,</a>
+<a class="sourceLine" id="cb471-20" title="20">              <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb471-21" title="21">              <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb471-22" title="22"><span class="st">    </span><span class="co">#position of the North arrow compass</span></a>
+<a class="sourceLine" id="cb471-23" title="23"><span class="st">    </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb471-24" title="24"><span class="st">    </span><span class="co">#position and design of the scale bar</span></a>
+<a class="sourceLine" id="cb471-25" title="25"><span class="st">    </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a>
+<a class="sourceLine" id="cb471-26" title="26">  </a>
+<a class="sourceLine" id="cb471-27" title="27">  <span class="co"># Change the output of the function to a PNG map that will be exported</span></a>
+<a class="sourceLine" id="cb471-28" title="28">  <span class="kw">tmap_save</span>(month_map, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">&quot;maps/OP3/&quot;</span>, cr_columns[column], <span class="st">&quot;_drugs_map.png&quot;</span>))</a>
+<a class="sourceLine" id="cb471-29" title="29">  </a>
+<a class="sourceLine" id="cb471-30" title="30">  <span class="co">#prints a notification message if this is done and the function reaches this last step successfully</span></a>
+<a class="sourceLine" id="cb471-31" title="31">  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;The map for&quot;</span>, legend_titles[column], <span class="st">&quot;has been exported as a PNG successfully.&quot;</span>))</a>
+<a class="sourceLine" id="cb471-32" title="32"></a>
+<a class="sourceLine" id="cb471-33" title="33">  </a>
+<a class="sourceLine" id="cb471-34" title="34">  }</a></code></pre></div>
+<p>You should now see that you have 12 new maps in your <code>maps/OP3</code> folder - navigate to your folder and check that they look how you expect, e.g. colour, titles and positioning of features.</p>
+<div class="codetime">
+<p><strong>Pasting together strings</strong><br>
+Something useful to incorporate in loops is the function <code>paste0</code>, which allows us to <strong>concatenate</strong>, or join different strings into one.</p>
+<p>This is useful when we want to generate names for exporting files or printing notification messages for yourself (or the function users) when executing these codes in a loop.</p>
+<p>An example is shown in the code chunk, but for your easy reference, the following code:</p>
+<p><code>print(paste0("This is a disjointed ", " string of text"))</code></p>
+<p>would print: <code>"This is a disjointed string of text"</code>.</p>
+<p>We have used this approach throughout our <code>for</code> loop - and even used it to join together the (string) outputs of our variables and/or functions of our variables.</p>
+</div>
+<p>One final improvement we should make to our maps is to ensure not only our breaks are consistent but they do account for the highest crime rate across our columns (we currently are using breaks based on the January data).</p>
+<p>To calculate the most appropriate breaks, we’ll look to the find the max for each column as use this to guide our max breaks.</p>
+<p>An additional step we would want to implement if we were to look to publish our work is to create histograms of each month and study their distributions carefully to decide the precise breaks.</p>
+<p>For now, we’ll focus on simply using the maximum value to guide our breaks - we can find this out by using the <code>summary()</code> function on our sdf:</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" title="1"><span class="co"># Calculate the max crime rate for each of our months</span></a>
+<a class="sourceLine" id="cb472-2" title="2"><span class="kw">summary</span>(drugs_crime_rate_sdf)</a></code></pre></div>
+<pre><code>##         NAME          GSS_COD          DISTRIC         LAGSSCO   
+##  Abbey    :  2   E05000026:  1   Croydon   : 28   E09000008: 28  
+##  Alexandra:  2   E05000027:  1   Ealing    : 23   E09000009: 23  
+##  Barnhill :  2   E05000028:  1   Southwark : 23   E09000028: 23  
+##  Belmont  :  2   E05000029:  1   Bromley   : 22   E09000006: 22  
+##  Edgware  :  2   E05000030:  1   Hillingdon: 22   E09000017: 22  
+##  Fairfield:  2   E05000031:  1   Redbridge : 22   E09000026: 22  
+##  (Other)  :624   (Other)  :630   (Other)   :496   (Other)  :496  
+##     HECTARE            NONLD_A           POP2019         jan_2020      
+##  Min.   :   6.288   Min.   :  0.000   Min.   :  392   Min.   :  0.000  
+##  1st Qu.: 119.061   1st Qu.:  0.000   1st Qu.:11722   1st Qu.:  1.756  
+##  Median : 182.210   Median :  0.000   Median :14159   Median :  3.328  
+##  Mean   : 250.327   Mean   :  3.293   Mean   :14087   Mean   :  4.797  
+##  3rd Qu.: 287.745   3rd Qu.:  0.000   3rd Qu.:16100   3rd Qu.:  5.766  
+##  Max.   :2903.960   Max.   :154.284   Max.   :36666   Max.   :102.041  
+##                                                                        
+##     fb_2020          mr_2020           ap_2020           my_2020       
+##  Min.   : 0.000   Min.   :  0.000   Min.   :  0.000   Min.   :  0.000  
+##  1st Qu.: 1.531   1st Qu.:  1.593   1st Qu.:  2.538   1st Qu.:  3.024  
+##  Median : 2.795   Median :  3.062   Median :  4.453   Median :  5.936  
+##  Mean   : 4.225   Mean   :  4.118   Mean   :  5.590   Mean   :  7.122  
+##  3rd Qu.: 5.116   3rd Qu.:  5.286   3rd Qu.:  7.240   3rd Qu.:  8.942  
+##  Max.   :76.531   Max.   :102.041   Max.   :127.551   Max.   :102.041  
+##                                                                        
+##     jun_2020         jl_2020          ag_2020          sp_2020       
+##  Min.   : 0.000   Min.   : 0.000   Min.   : 0.000   Min.   :  0.000  
+##  1st Qu.: 2.181   1st Qu.: 2.013   1st Qu.: 1.461   1st Qu.:  1.367  
+##  Median : 4.008   Median : 3.816   Median : 2.662   Median :  2.755  
+##  Mean   : 5.188   Mean   : 5.016   Mean   : 3.852   Mean   :  4.000  
+##  3rd Qu.: 6.643   3rd Qu.: 6.403   3rd Qu.: 5.125   3rd Qu.:  4.860  
+##  Max.   :76.531   Max.   :61.428   Max.   :54.496   Max.   :102.041  
+##                                                                      
+##     oc_2020           nv_2020           dc_2020          w___202       
+##  Min.   :  0.000   Min.   :  0.000   Min.   : 0.000   Min.   :  7.214  
+##  1st Qu.:  1.841   1st Qu.:  2.177   1st Qu.: 1.774   1st Qu.: 28.945  
+##  Median :  3.576   Median :  3.754   Median : 3.056   Median : 45.431  
+##  Mean   :  4.658   Mean   :  4.993   Mean   : 3.998   Mean   : 57.557  
+##  3rd Qu.:  5.690   3rd Qu.:  6.173   3rd Qu.: 5.025   3rd Qu.: 67.078  
+##  Max.   :102.041   Max.   :102.041   Max.   :42.373   Max.   :943.878  
+##                                                                        
+##           geometry  
+##  POLYGON      :636  
+##  epsg:27700   :  0  
+##  +proj=tmer...:  0  
+##                     
+##                     
+##                     
+## </code></pre>
+<p>As we can see, our maximum crime rate acorss our 12 months was 102.41 - as a result, we should update our breaks to ensure that we incorporate these higher values.</p>
+<p>In addition, using the <code>summary()</code> function, we can see the remaining distribution of our data, including the averages as well as the first and third quantile.</p>
+<p>Looking at these values across our dataset, we can see that our data is skewed towards the lower end of our distribution and as a result, we should keep our current breaks to reflect this distribution.</p>
+<p>As a result, we’ll only make one small change, with our upper break changing from 100 to 103:</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" title="1"> <span class="co"># Select only those columns that end in _2020</span></a>
+<a class="sourceLine" id="cb474-2" title="2"><span class="co"># Store these as a sequence to iterate over</span></a>
+<a class="sourceLine" id="cb474-3" title="3">cr_columns &lt;-<span class="st"> </span><span class="kw">names</span>(dplyr<span class="op">::</span><span class="kw">select</span>(drugs_crime_rate_sdf, <span class="kw">ends_with</span>(<span class="st">&quot;_2020&quot;</span>)))</a>
+<a class="sourceLine" id="cb474-4" title="4"></a>
+<a class="sourceLine" id="cb474-5" title="5"><span class="co"># Create a list of titles for our maps that match the same order as our columns  </span></a>
+<a class="sourceLine" id="cb474-6" title="6">legend_titles &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;January 2020&quot;</span>, <span class="st">&quot;February 2020&quot;</span>, <span class="st">&quot;March 2020&quot;</span>, <span class="st">&quot;April 2020&quot;</span>, <span class="st">&quot;May 2020&quot;</span>, <span class="st">&quot;June 2020&quot;</span>, <span class="st">&quot;July 2020&quot;</span>, <span class="st">&quot;August 2020&quot;</span>, <span class="st">&quot;September 2020&quot;</span>, <span class="st">&quot;October 2020&quot;</span>, <span class="st">&quot;November 2020&quot;</span>, <span class="st">&quot;December 2020&quot;</span>)</a>
+<a class="sourceLine" id="cb474-7" title="7"></a>
+<a class="sourceLine" id="cb474-8" title="8"><span class="co"># Initiate for loop, for each column in the total number of cr_columns list</span></a>
+<a class="sourceLine" id="cb474-9" title="9"><span class="co"># Note how we use length in this case as cr_columns is a list and not a dataframe</span></a>
+<a class="sourceLine" id="cb474-10" title="10"><span class="cf">for</span> (column <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cr_columns)) {</a>
+<a class="sourceLine" id="cb474-11" title="11">  month_map &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(ward_population) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb474-12" title="12"><span class="st">  </span><span class="co"># Next map the crime rate data</span></a>
+<a class="sourceLine" id="cb474-13" title="13"><span class="st">  </span><span class="kw">tm_shape</span>(drugs_crime_rate_sdf) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb474-14" title="14"><span class="st">    </span><span class="co"># plots the spatial information (wards) as polygons, with the values in &#39;jan_2020&#39; as the </span></a>
+<a class="sourceLine" id="cb474-15" title="15"><span class="st">    </span><span class="co"># basis for the choropleth plotted + other customisations</span></a>
+<a class="sourceLine" id="cb474-16" title="16"><span class="st">    </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> cr_columns[column], <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">style =</span> <span class="st">&quot;fixed&quot;</span>, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">103</span>), <span class="dt">title=</span><span class="st">&quot;Drug Crime Rate per</span><span class="ch">\n</span><span class="st">10,000 people&quot;</span>, <span class="dt">style=</span><span class="st">&quot;fixed&quot;</span>, <span class="dt">palette=</span><span class="st">&quot;Blues&quot;</span>, <span class="dt">border.col=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb474-17" title="17"><span class="st">    </span><span class="co">#positioning and font size for the title and legend</span></a>
+<a class="sourceLine" id="cb474-18" title="18"><span class="st">    </span><span class="co"># note how we substitue the main.title with our legend_titles[column] indexing approach</span></a>
+<a class="sourceLine" id="cb474-19" title="19"><span class="st">    </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span>legend_titles[column], <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>,</a>
+<a class="sourceLine" id="cb474-20" title="20">              <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb474-21" title="21">              <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb474-22" title="22"><span class="st">    </span><span class="co">#position of the North arrow compass</span></a>
+<a class="sourceLine" id="cb474-23" title="23"><span class="st">    </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb474-24" title="24"><span class="st">    </span><span class="co">#position and design of the scale bar</span></a>
+<a class="sourceLine" id="cb474-25" title="25"><span class="st">    </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a>
+<a class="sourceLine" id="cb474-26" title="26">  </a>
+<a class="sourceLine" id="cb474-27" title="27">  <span class="co"># Change the output of the function to a PNG map that will be exported</span></a>
+<a class="sourceLine" id="cb474-28" title="28">  <span class="kw">tmap_save</span>(month_map, <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">&quot;maps/OP3/&quot;</span>, cr_columns[column], <span class="st">&quot;_drugs_map.png&quot;</span>))</a>
+<a class="sourceLine" id="cb474-29" title="29">  </a>
+<a class="sourceLine" id="cb474-30" title="30">  <span class="co">#prints a notification message if this is done and the function reaches this last step successfully</span></a>
+<a class="sourceLine" id="cb474-31" title="31">  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;The map for&quot;</span>, legend_titles[column], <span class="st">&quot; has been exported as a PNG successfully.&quot;</span>))</a>
+<a class="sourceLine" id="cb474-32" title="32"></a>
+<a class="sourceLine" id="cb474-33" title="33">  }</a></code></pre></div>
+<p>Great, we now have our maps complete and can go ahead and create our final GIF!</p>
+</div>
+</div>
+<div id="creating-our-gif" class="section level4 unnumbered">
+<h4>Creating our GIF</h4>
+<p>The final step to our workflow for this Optional Practical is to create a GIF that iterates through our changing crime rate.</p>
+<p>To do so, we will read in our exported PNGs back into R using the <code>list.files()</code> function.</p>
+<p>We’ve come across the <code>list.files()</code> function previously in our practicals (Week 4) but have not spent too much time understanding it.</p>
+<p>Essentially the function will list every single file (or rather their names) that is contained within the folder you provide it and store this as a vector.</p>
+<p>The function has several parameters that you can use which can help in this listing, from filtering to only specific file types using <code>pattern()</code> as we will do today, or, using the <code>recursive()</code> argument to iterate through folders within a folder.</p>
+<p>Once we create a list of files, it becomes relatively easy to then read the files in!</p>
+<p>In most programming languages, this is where a <code>for</code> loop could then come in handy - we utilise the list we’ve created and then iterate through this list and read each file in as such:</p>
+<p><code>for (filename in list_of_files) {   read_file(filename) }</code></p>
+<p>For us using R, one specific function makes this even easier for us, the <code>lapply()</code> function.</p>
+<p>The <code>lapply()</code> function is essentially a function representation of a <code>for</code> loop when it comes to lists or vectors. It simply applies a function over a list or vector that you supply it with - just like a <code>for</code> loop.</p>
+<p>As a result, instead of using a <code>for</code> loop, we can use the <code>lapply()</code> function to read in our files, as such:</p>
+<p><code>lapply(list_of_files, read_file)</code></p>
+<p>You should remember seeing this code all the way back in Week 4, as we used this code to read in our original set of crime csv files.</p>
+<p>In this instance, we are reading in PNGs and to do so, we will use the <code>magick</code> library and its functions.</p>
+<p>To read in our images, we use the <code>read_image()</code> function. Once our images are read in, we then use the <code>image_join()</code> function to stack the images and thne finally, the <code>image_animate()</code> function to create our GIF.</p>
+<p>We export our final GIF using the <code>image_write()</code> function.</p>
+<p>Let’s take a look:</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" title="1"><span class="co"># Prints notification message to update the viewer on the progress of the function</span></a>
+<a class="sourceLine" id="cb475-2" title="2"><span class="kw">print</span>(<span class="st">&quot;Now commencing the creation of the GIF animated map...&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Now commencing the creation of the GIF animated map...&quot;</code></pre>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" title="1"><span class="co"># List all files in the directory that are a png</span></a>
+<a class="sourceLine" id="cb477-2" title="2">ls_png_files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;maps/OP3/&quot;</span>, <span class="dt">pattern=</span><span class="st">&quot;png&quot;</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb477-3" title="3"></a>
+<a class="sourceLine" id="cb477-4" title="4"><span class="co"># And read all of them in using &#39;lapply()&#39;</span></a>
+<a class="sourceLine" id="cb477-5" title="5">ls_png_imports &lt;-<span class="st"> </span><span class="kw">lapply</span>(ls_png_files, image_read)</a>
+<a class="sourceLine" id="cb477-6" title="6"></a>
+<a class="sourceLine" id="cb477-7" title="7"><span class="co"># Joins the images together and animates them at a certain speed (frames per second)</span></a>
+<a class="sourceLine" id="cb477-8" title="8">png_joined &lt;-<span class="st"> </span><span class="kw">image_join</span>(ls_png_imports)</a>
+<a class="sourceLine" id="cb477-9" title="9">png_animated &lt;-<span class="st"> </span><span class="kw">image_animate</span>(png_joined, <span class="dt">fps =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb477-10" title="10"></a>
+<a class="sourceLine" id="cb477-11" title="11"><span class="co"># Exports animated GIF file to an export folder, with naming based on type of crime chosen</span></a>
+<a class="sourceLine" id="cb477-12" title="12"><span class="kw">image_write</span>(<span class="dt">image =</span> png_animated, <span class="dt">path =</span> <span class="st">&quot;maps/OP3/drug_crime_rate_2020.gif&quot;</span>)</a>
+<a class="sourceLine" id="cb477-13" title="13"></a>
+<a class="sourceLine" id="cb477-14" title="14"><span class="co"># Prints a final notification message</span></a>
+<a class="sourceLine" id="cb477-15" title="15"><span class="kw">print</span>(<span class="st">&quot;The GIF image that you have requested has been exported successfully in the destination folder.&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;The GIF image that you have requested has been exported successfully in the destination folder.&quot;</code></pre>
+<p>You should now see that you have a GIF of our drugs crime rate for 2020 within your <code>OP3</code> maps folder!</p>
+<p>Awesome, we’ve completed our aim for today! Well done for getting through this Optional Practical!</p>
+</div>
+</div>
+<div id="try-it-yourself-incorporating-our-for-loop-into-our-function" class="section level3 unnumbered">
+<h3>Try It Yourself: Incorporating our for loop into our function</h3>
+<p>This Optional Practical has shown you how you can repeat, iterate and automate the management, processing and analysis and visualisation of data using two key programming techniques: functions and <code>for</code> loops.</p>
+<p>As you’ve seen they make our programming incredibly efficient and, ultimately, can enable flexibility in applying the same processing to more data of the same data types.</p>
+<p>As suggested above, the next step to our workflow would be to <strong>integrate our for loop into our function</strong> to create a function that takes our stacked crime csv and our crime type and ultimately produces our maps and GIF in one single line of code!</p>
+<p>And this is what we’d like you to do for the Try It Yourself part of this practical!</p>
+<p>Adding our <code>for</code> loop is relatively simple, but it does require attention to detail in replacing certain variables and well as ensuring your indenting is correct. We’d recommend having a go by yourself, but if you do struggle, we have provided an R script which you can download <a href="">here</a> which guides you briefly through the process.</p>
+<p>What is pretty cool about the work we’ve done today is that this function could be the start of a new library/package that could help others automate the same management, processing and visualisation of the crime data. We could build a few additional functions, package them up and release them on the main R library server (CRAN) as well as host this on our GitHub for others to use - and that would be a neat thing to share with the world…. so watch this space!</p>
+<div id="acknowledgements-15" class="section level4 unnumbered">
+<h4>Acknowledgements</h4>
+<p>This page is entirely original to GEOG0030.</p>
+<p>The practical was created by <a href="https://www.geog.ucl.ac.uk/people/research-students/nikki-tanu">Nikki Tanu</a>, a PhD candidate at UCL and Geocomputation PGTA, based upon a previous Python practical written by Dr Jo Wilkin for the University of Southampton in her previous PGTA days! Thank you Nikki for translating my awful python code into usable R code!</p>
+<p>The datasets used in this workshop (and resulting maps):</p>
+<ul>
+<li>Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence)</li>
+<li>Contains Ordnance Survey data © Crown copyright and database right [2015]</li>
+<li>Crime data obtained from data.police.uk (Open Government Licence).</li>
+</ul>
 
+</div>
+</div>
 </div>
 
 

@@ -299,6 +299,7 @@ You should now see a new `csv` within your raw crime data folder (**data -> raw 
 # Libraries used in this script:
 library(tidyverse)
 library(here)
+library(janitor)
 library(magrittr)
 library(sf)
 library(tmap)
@@ -306,7 +307,7 @@ library(tmap)
 
 As you'll have heard in our lecture, we'll be using `sf` to read and load our **spatial data**, use the `tidyverse` libraries to complete our data wrangling and then use the `tmap` library to visualise our final maps.
 
-The `here` library enables easy reference to our , whilst `magrittr` allows us to use the **pipe** function (`%>%`) which we'll explain in a bit more detail below.
+The `here` library enables easy reference to our working drive, `janitor` cleans the names of our data frame, whilst `magrittr` allows us to use the **pipe** function (`%>%`) which we'll explain in a bit more detail below.
 
 #### Loading our datasets {-}
 
@@ -317,7 +318,7 @@ We're going to load both of the datasets we need today straight away: 1) the `al
 
 ```{r 05-load-csv, warnings=FALSE, message=FALSE, cache=TRUE}
 # Read in our all_theft_2020 csv from our raw crime data folder
-all_theft_df <- read_csv("data/raw/crime/all_crime_2020.csv")
+all_theft_df <- read_csv("data/raw/crime/all_crime_2020.csv") %>% clean_names()
 ``` 
 
 We can double-check what our csv looks like by either viewing our data or simply calling the `head()` function on our dataframe.
@@ -1027,7 +1028,7 @@ One final thing we want to do is clean up the names of our fields to mean a litt
 
 ```{r 05-rename-fields-df, warnings=FALSE, message=FALSE, cache=TRUE}
 # Read in our lsoa_ward_lookup csv from our raw boundaries data folder
-names(theft_by_ward_month_df) <- c('ward_code', 'jan_2020', 'feb_2020', 'mar_2020', 'apr_2020', 'may_2020', 'jun_2020', 'jul_2020', 'aug_2020', 'sept_2020', 'oct_2020', 'nov_2020')
+names(theft_by_ward_month_df) <- c('ward_code', 'jan_2020', 'feb_2020', 'mar_2020', 'apr_2020', 'may_2020', 'jun_2020', 'jul_2020', 'aug_2020', 'sept_2020', 'oct_2020', 'nov_2020','dec_2020')
 ```
 
 And we're now done! We have our final data frame to join to our `ward_population` spatial data frame. Excellent!
@@ -1080,7 +1081,7 @@ You can find the original post where I found this code on [Stack Overflow](https
 
 ```{r 05-total-theft-column, warnings=FALSE, message=FALSE, cache=TRUE}
 # Total number of thefts for each ward, create new column
-all_theft_ward_sdf <- all_theft_ward_sdf %>% mutate(theft_total = rowSums(across(8:18), na.rm = T))
+all_theft_ward_sdf <- all_theft_ward_sdf %>% mutate(theft_total = rowSums(across(8:19), na.rm = T))
 ``` 
 
 You can now `View()` our updated `all_theft_ward_sdf` spatial data frame - and sort out columns to see those with a `theft_total` of 0. 
@@ -1489,7 +1490,7 @@ What I'd like you to do is check this folder to see what months are already cove
 
 To help, when you export your map, make sure to use the name of the month at the start of your title (i.e. as prescribed above!). 
 
-You'll of course see that January 2020 is already taken - by me! But it'd be great to get maps for every single month of the year (until November, or December if the data is now available) within each seminar folder.
+You'll of course see that January 2020 is already taken - by me! But it'd be great to get maps for every single month of the year within each seminar folder.
 
 **But what if all the months are now done?**
 

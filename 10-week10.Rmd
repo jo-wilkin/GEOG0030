@@ -976,7 +976,7 @@ We can also add our cluster mean zero line to our radial plots to make their int
 
 25. Add the zero mean line to our radial plot:
 
-```{r 10-rad-plot-zero, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 10-rad-plot-zero, warnings=FALSE, message=FALSE, cache=TRUE}
 # Reduce the size of grid and axis labels in upcoming plots
 par(cex.axis = 0.8, cex.lab = 0.8)
 

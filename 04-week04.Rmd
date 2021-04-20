@@ -1769,7 +1769,7 @@ The basic code to generate a bar chart is provide here:
 
 ```{r 04-bar-plot, warnings=FALSE, message=FALSE}
 # Read in a single csv from our crime data
-barplot(theft_month_df$crime_totals, main="Crime distribution in London by month in 2020", names.arg = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"))
+barplot(theft_month_df$crime_totals, main="Crime distribution in London by month in 2020", names.arg = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
 ```
 
 As you'll see, we have added a **Title** to our graph (`main=` argument), whilst used the `names.arg` parameter to add the months of the year in along the x-axis.

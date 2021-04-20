@@ -261,8 +261,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#recap---geodemographics"><i class="fa fa-check"></i>Recap - Geodemographics</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-regression-models-optional.html"><a href="spatial-regression-models-optional.html"><i class="fa fa-check"></i><b>11</b> Spatial Regression Models (Optional)</a></li>
-<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a></li>
-<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a></li>
+<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a><ul>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#road-network-analysis-in-r"><i class="fa fa-check"></i>(Road) Network Analysis in R</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#optional-practical-calculating-distance-based-measurements-in-r"><i class="fa fa-check"></i>Optional Practical: Calculating Distance-Based Measurements in R</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#workshop-housekeeping-5"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#try-it-yourself-analysing-accessibility-of-fast-food-outlets-from-schools-in-portsmouth"><i class="fa fa-check"></i>Try It Yourself: Analysing accessibility of fast-food outlets from schools in Portsmouth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a><ul>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#automating-the-ingestion-and-mapping-of-crime-data-across-years-and-crime-type"><i class="fa fa-check"></i>Automating the ingestion and mapping of crime data across years and crime type</a></li>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#optional-practical-3-incorporating-loops-and-functions-in-spatial-analysis"><i class="fa fa-check"></i>Optional Practical 3: Incorporating Loops and Functions in Spatial Analysis</a></li>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#try-it-yourself-incorporating-our-for-loop-into-our-function"><i class="fa fa-check"></i>Try It Yourself: Incorporating our for loop into our function</a></li>
+</ul></li>
 <li class="part"><span><b>Assessment</b></span></li>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
@@ -331,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>This week’s content is split into <strong>4</strong> parts:</p>
 <ol style="list-style-type: decimal">
-<li><a href="geodemographic-classification.html#workshop-housekeeping-4">Workshop Housekeeping</a> (30 minutes)</li>
+<li><a href="accessibility-network-analysis-optional.html#workshop-housekeeping-5">Workshop Housekeeping</a> (30 minutes)</li>
 <li><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-spatial-patterns">Analysing Spatial Patterns</a> (10 minutes)</li>
 <li><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-distributions">Analysing Distributions</a> (90 minutes)</li>
 <li><a href="analysing-spatial-patterns-i-spatial-auto-correlation-regression.html#analysing-relationships">Analysing Relationships</a> (25 minutes)</li>
@@ -363,9 +372,7 @@ By the end of this week, you should be able to:</p>
 <li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>wk6-obesity-spatial-analysis.r</code>.</p></li>
 <li><p>At the top of your script, add the following metdata (substitute accordingly):</p></li>
 </ol>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="co"># Analysing childhood obesity and its factors</span></a>
-<a class="sourceLine" id="cb162-2" title="2"><span class="co"># Script started February 2021</span></a>
-<a class="sourceLine" id="cb162-3" title="3"><span class="co"># NAME</span></a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1"><span class="co"># Analysing childhood obesity and its factors Script started February 2021 NAME</span></a></code></pre></div>
 </div>
 <div id="dependencies-aka-libraries" class="section level4 unnumbered">
 <h4>Dependencies (aka libraries)</h4>
@@ -375,15 +382,15 @@ By the end of this week, you should be able to:</p>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Within your script</strong>, add the following libraries for loading:</li>
 </ol>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1"><span class="co"># Libraries used in this script:</span></a>
-<a class="sourceLine" id="cb163-2" title="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb163-3" title="3"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb163-4" title="4"><span class="kw">library</span>(magrittr)</a>
-<a class="sourceLine" id="cb163-5" title="5"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb163-6" title="6"><span class="kw">library</span>(tmap)</a>
-<a class="sourceLine" id="cb163-7" title="7"><span class="kw">library</span>(janitor)</a>
-<a class="sourceLine" id="cb163-8" title="8"><span class="kw">library</span>(spdep)</a>
-<a class="sourceLine" id="cb163-9" title="9"><span class="kw">library</span>(RColorBrewer)</a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb168-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb168-3" title="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb168-4" title="4"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb168-5" title="5"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb168-6" title="6"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb168-7" title="7"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb168-8" title="8"><span class="kw">library</span>(spdep)</a>
+<a class="sourceLine" id="cb168-9" title="9"><span class="kw">library</span>(RColorBrewer)</a></code></pre></div>
 <p>Remember to select the lines of code you want to run and press <strong>CMD (Mac)/CTRL(Windows) + Enter/Return</strong> - we won’t remind you to run each line of code in the remainder of the practical sessions.</p>
 </div>
 <div id="datasets-for-this-week" class="section level4 unnumbered">
@@ -443,16 +450,16 @@ By the end of this week, you should be able to:</p>
 <ol style="list-style-type: decimal">
 <li>Load the 2011 London Ward boundaries.</li>
 </ol>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="co"># Read in our London Ward boundaries</span></a>
-<a class="sourceLine" id="cb164-2" title="2">london_ward_shp &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2011/London_Ward_CityMerged.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" title="1"><span class="co"># Read in our London Ward boundaries</span></a>
+<a class="sourceLine" id="cb169-2" title="2">london_ward_shp &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2011/London_Ward_CityMerged.shp&quot;</span>)</a></code></pre></div>
 <p>We can both <code>View()</code> and <code>plot()</code> the data in our <strong>console</strong> to check what our data looks like.</p>
 <p>We’re happy with the dataframe (its field names) and what’s its looking like as a shapefile, so we do not need to do any cleaning on this dataset.</p>
 <p>We can now turn to our <strong>London Ward Atlas</strong> dataset and load the dataset into R.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Load the Ward Atlas Data csv.</li>
 </ol>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="co"># Read in our ward atlas data csv from our raw data folder</span></a>
-<a class="sourceLine" id="cb165-2" title="2">all_ward_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/ward-atlas-data.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="co"># Read in our ward atlas data csv from our raw data folder</span></a>
+<a class="sourceLine" id="cb170-2" title="2">all_ward_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/ward-atlas-data.csv&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1], &#39;X2&#39; [2], &#39;X3&#39; [3], &#39;X4&#39; [4]</code></pre>
 <p><em>Don’t worry if you get a few parsing errors, the dataset is not structured in a “tidy” way yet!</em></p>
 <p>If you go ahead and view the data, you’ll see we have <strong>a lot</strong> of information about our Wards in the dataset - we have a total of <strong>946 variables</strong> four our 629 wards.</p>
@@ -530,8 +537,9 @@ By the end of this week, you should be able to:</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Select our 10 fields from our <code>all_ward_data</code> dataframe for use in analysis.</li>
 </ol>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1"><span class="co"># Select our 10 fields for analysis using their index number</span></a>
-<a class="sourceLine" id="cb167-2" title="2">obesity_ward_data &lt;-<span class="st"> </span><span class="kw">select</span>(all_ward_data, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">838</span>, <span class="dv">900</span>, <span class="dv">248</span>, <span class="dv">353</span>, <span class="dv">373</span>, <span class="dv">377</span>, <span class="dv">859</span>, <span class="dv">865</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1"><span class="co"># Select our 10 fields for analysis using their index number</span></a>
+<a class="sourceLine" id="cb172-2" title="2">obesity_ward_data &lt;-<span class="st"> </span><span class="kw">select</span>(all_ward_data, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">838</span>, <span class="dv">900</span>, <span class="dv">248</span>, <span class="dv">353</span>, <span class="dv">373</span>, <span class="dv">377</span>, <span class="dv">859</span>, </a>
+<a class="sourceLine" id="cb172-3" title="3">    <span class="dv">865</span>)</a></code></pre></div>
 <p>You should now have a new dataframe with our 10 variables. We’ve still got a bit of cleaning to do, before we’re happy.</p>
 <p>One issue with our original csv is that is contained two rows worth of field names - hence if you look at the first row of our dataframe, it doesn’t make sense. We therefore want to remove this row.</p>
 <p>In addition, it would be good to clean up our names for use - here we’re going to use the <code>janitor</code> library that I mentionned last week, which cleans our names by removing white space, special characters, capitals etc.</p>
@@ -539,16 +547,20 @@ By the end of this week, you should be able to:</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Remove the first line of our dataframe and clean our field names.</li>
 </ol>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="co"># Remove our first row, clean the names of our fields</span></a>
-<a class="sourceLine" id="cb168-2" title="2">obesity_ward_data &lt;-<span class="st"> </span>obesity_ward_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">clean_names</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1"><span class="co"># Remove our first row, clean the names of our fields</span></a>
+<a class="sourceLine" id="cb173-2" title="2">obesity_ward_data &lt;-<span class="st"> </span>obesity_ward_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb173-3" title="3"><span class="st">    </span><span class="kw">slice</span>(<span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb173-4" title="4"><span class="st">    </span><span class="kw">clean_names</span>()</a></code></pre></div>
 <p>This dataframe is already looking much better! We can now see our dataframe as the “tidy data” format.</p>
 <p>The final thing we can do with this dataset before we need to join it to our London Wards spatial dataframe is just tidy up our column names - X2 and X4 does not exactly mean much to us and it gives us a chance to shorten the names of the other variables (we could leave them as is now they’ve been cleaned, but it’ll be easier for reference later if they’re shorter!).</p>
 <p><em>Note, I decided to keep the information on the year of the dataset to help with our analysis later.</em></p>
 <ol start="5" style="list-style-type: decimal">
 <li>Rename our columns to shorter field names.</li>
 </ol>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" title="1"><span class="co"># Rename field names of ward data to something more useful</span></a>
-<a class="sourceLine" id="cb169-2" title="2"><span class="kw">names</span>(obesity_ward_data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ward_code&quot;</span>, <span class="st">&quot;ward_name&quot;</span>, <span class="st">&quot;y6_obesity_2014&quot;</span>, <span class="st">&quot;IDACI_2010&quot;</span>, <span class="st">&quot;med_house_price_2014&quot;</span>, <span class="st">&quot;mean_hh_income_2013&quot;</span>, <span class="st">&quot;per_no_adult_employ_2011&quot;</span>, <span class="st">&quot;per_no_qual_2011&quot;</span>, <span class="st">&quot;per_deficiency_greenspace_2012&quot;</span>, <span class="st">&quot;PTAL_2014&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1"><span class="co"># Rename field names of ward data to something more useful</span></a>
+<a class="sourceLine" id="cb174-2" title="2"><span class="kw">names</span>(obesity_ward_data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ward_code&quot;</span>, <span class="st">&quot;ward_name&quot;</span>, <span class="st">&quot;y6_obesity_2014&quot;</span>, <span class="st">&quot;IDACI_2010&quot;</span>, </a>
+<a class="sourceLine" id="cb174-3" title="3">    <span class="st">&quot;med_house_price_2014&quot;</span>, <span class="st">&quot;mean_hh_income_2013&quot;</span>, <span class="st">&quot;per_no_adult_employ_2011&quot;</span>, <span class="st">&quot;per_no_qual_2011&quot;</span>, </a>
+<a class="sourceLine" id="cb174-4" title="4">    <span class="st">&quot;per_deficiency_greenspace_2012&quot;</span>, <span class="st">&quot;PTAL_2014&quot;</span>)</a></code></pre></div>
 <p>Now we have the data we want to map, we need to do a final spot of checking - one of the main issues faced with loading data directly from a csv in R without cleaning it first in a spreadsheet program as we’ve done before, is that we can’t guarantee that the data will be loaded correctly.</p>
 <p>Unfortunately with our current dataframe we can see that this is the case - if you look at your global environment and find our <code>obesity_ward_data</code> variable and click on the arrow button to display its variables, you’ll see that several of our variables are of the type <code>char</code>.</p>
 <p>This means that these variables have been interpreted by R to be characters rather than numerics. This might be because there is some missing data or in some cases, the decimal point can interfere with the data being read as a numeric.</p>
@@ -561,27 +573,20 @@ By the end of this week, you should be able to:</p>
 <ol start="6" style="list-style-type: decimal">
 <li>Change the data type of our variable columns to numeric.</li>
 </ol>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="co"># Rename field names of ward data to something more useful</span></a>
-<a class="sourceLine" id="cb170-2" title="2">obesity_ward_data &lt;-<span class="st"> </span><span class="kw">mutate_at</span>(obesity_ward_data, <span class="kw">vars</span>(y6_obesity_<span class="dv">2014</span>, mean_hh_income_<span class="dv">2013</span>, per_no_adult_employ_<span class="dv">2011</span>, per_no_qual_<span class="dv">2011</span>, per_deficiency_greenspace_<span class="dv">2012</span>, PTAL_<span class="dv">2014</span>), <span class="cf">function</span>(x) <span class="kw">as.numeric</span>(<span class="kw">as.character</span>(x)))</a></code></pre></div>
-<pre><code>## Warning: Problem with `mutate()` input `y6_obesity_2014`.
-## ℹ NAs introduced by coercion
-## ℹ Input `y6_obesity_2014` is `(function (x) ...`.</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="co"># Rename field names of ward data to something more useful</span></a>
+<a class="sourceLine" id="cb175-2" title="2">obesity_ward_data &lt;-<span class="st"> </span><span class="kw">mutate_at</span>(obesity_ward_data, <span class="kw">vars</span>(y6_obesity_<span class="dv">2014</span>, mean_hh_income_<span class="dv">2013</span>, </a>
+<a class="sourceLine" id="cb175-3" title="3">    per_no_adult_employ_<span class="dv">2011</span>, per_no_qual_<span class="dv">2011</span>, per_deficiency_greenspace_<span class="dv">2012</span>, PTAL_<span class="dv">2014</span>), </a>
+<a class="sourceLine" id="cb175-4" title="4">    <span class="cf">function</span>(x) <span class="kw">as.numeric</span>(<span class="kw">as.character</span>(x)))</a></code></pre></div>
 <pre><code>## Warning in (function (x) : NAs introduced by coercion</code></pre>
-<pre><code>## Warning: Problem with `mutate()` input `per_deficiency_greenspace_2012`.
-## ℹ NAs introduced by coercion
-## ℹ Input `per_deficiency_greenspace_2012` is `(function (x) ...`.</code></pre>
 <pre><code>## Warning in (function (x) : NAs introduced by coercion</code></pre>
-<pre><code>## Warning: Problem with `mutate()` input `PTAL_2014`.
-## ℹ NAs introduced by coercion
-## ℹ Input `PTAL_2014` is `(function (x) ...`.</code></pre>
 <pre><code>## Warning in (function (x) : NAs introduced by coercion</code></pre>
 <p>You will see warnings that NAs have been introduced by this coercion in three of our variables: <code>y6_obesity_2014</code>, <code>per_deficiency_greenspace_2012</code> and <code>PTAL_2014</code> - this is something we’ll need to be aware of later in our analysis, but will not look at right now.</p>
 <p>Now our final step is to join our final <code>obesity_ward_data</code> dataframe to our <code>london_wards_shp</code> spatial dataframe so we can complete both statistical and spatial analysis.</p>
 <ol start="7" style="list-style-type: decimal">
 <li>Join our <code>obesity_ward_data</code> dataframe to our <code>london_wards_shp</code> spatial dataframe - store as a new variable.</li>
 </ol>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="co"># Join obesity df to ward sdf for analysis</span></a>
-<a class="sourceLine" id="cb177-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span><span class="kw">left_join</span>(london_ward_shp, obesity_ward_data,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;GSS_CODE&quot;</span> =<span class="st"> &quot;ward_code&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="co"># Join obesity df to ward sdf for analysis</span></a>
+<a class="sourceLine" id="cb179-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span><span class="kw">left_join</span>(london_ward_shp, obesity_ward_data, <span class="dt">by =</span> <span class="kw">c</span>(<span class="dt">GSS_CODE =</span> <span class="st">&quot;ward_code&quot;</span>))</a></code></pre></div>
 <p><em>I told you we’d be doing a lot of these attribute joins!</em></p>
 <p>Have a look at your newly created spatial dataframe - for a quick look at the data, you can run the <code>plot()</code> command in <strong>your console</strong>. We’ll explain more about the different measures we’ve extracted during the rest of the workshop.</p>
 <p>If you’d like, you can also write out the final csv using the <code>write.csv</code> function to save a raw copy in your data folder.</p>
@@ -644,8 +649,9 @@ By the end of this week, you should be able to:</p>
 <ol style="list-style-type: decimal">
 <li>In your script, below your joining of our dataframes, summarise our <code>y6_obesity_2014</code> distribution.</li>
 </ol>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="co"># Summarise our obesity_ward_sdf data column. Remember we use the $ to access the specific column we want to assess</span></a>
-<a class="sourceLine" id="cb178-2" title="2"><span class="kw">summary</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="co"># Summarise our obesity_ward_sdf data column. Remember we use the $ to access the</span></a>
+<a class="sourceLine" id="cb180-2" title="2"><span class="co"># specific column we want to assess</span></a>
+<a class="sourceLine" id="cb180-3" title="3"><span class="kw">summary</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##   5.929  18.569  22.670  21.752  25.325  35.000      12</code></pre>
 <p><em>You can save the output of your function to a variable if you’d like - or else, just take a look at the numbers printed in the console.</em></p>
@@ -655,8 +661,9 @@ By the end of this week, you should be able to:</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Plot the histogram of our <code>y6_obesity_2014</code> distribution.</li>
 </ol>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="co"># Plot the histogram of our y6_obesity_2014 data. Remember we use the $ to access the specific column we want to assess</span></a>
-<a class="sourceLine" id="cb180-2" title="2"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="co"># Plot the histogram of our y6_obesity_2014 data. Remember we use the $ to access</span></a>
+<a class="sourceLine" id="cb182-2" title="2"><span class="co"># the specific column we want to assess</span></a>
+<a class="sourceLine" id="cb182-3" title="3"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-hist-1.png" width="672" /></p>
 <p>We can actually see our data has a slight negative skew - which would make sense given that our median is higher than our mean.</p>
 <img src="images/w6/distributions.png" width="650pt" style="display: block; margin: auto;" />
@@ -668,8 +675,10 @@ By the end of this week, you should be able to:</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Change the colour of our hisogram and change the labelling of our histogram.</li>
 </ol>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="co"># Plot a fancy histogram of our y6_obesity_2014 data. Remember we use the $ to access the specific column we want to assess</span></a>
-<a class="sourceLine" id="cb181-2" title="2"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Obesity in Year 6 children within London Wards in 2014&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="co"># Plot a fancy histogram of our y6_obesity_2014 data. Remember we use the $ to</span></a>
+<a class="sourceLine" id="cb183-2" title="2"><span class="co"># access the specific column we want to assess</span></a>
+<a class="sourceLine" id="cb183-3" title="3"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Distribution of Obesity in Year 6 children within London Wards in 2014&quot;</span>, </a>
+<a class="sourceLine" id="cb183-4" title="4">    <span class="dt">xlab =</span> <span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-hist-2-1.png" width="672" /></p>
 <p>We can also, as per our maps last week, export this histogram and save it as a PNG by a) storing the histogram code to a variable and b) saving this variable to a file.</p>
 <p>The code to do so is a little different - we essentially “open up” a file, called what we want to name our plot. We then run the code to plot our data, which will place the output “within” the file and then "close’ the file down.</p>
@@ -677,14 +686,15 @@ By the end of this week, you should be able to:</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Export our plot to an image in our graphs folder.</li>
 </ol>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="co"># Open a PNG, give it the filename we want</span></a>
-<a class="sourceLine" id="cb182-2" title="2"><span class="kw">png</span>(<span class="st">&quot;graphs/Y6_obesity_distribution.png&quot;</span>)</a>
-<a class="sourceLine" id="cb182-3" title="3"></a>
-<a class="sourceLine" id="cb182-4" title="4"><span class="co"># Run the same plot code to save our output into this opened png</span></a>
-<a class="sourceLine" id="cb182-5" title="5"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">breaks=</span><span class="dv">10</span>, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Distribution of Obesity in Year 6 children within London Wards in 2014&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</a>
-<a class="sourceLine" id="cb182-6" title="6"></a>
-<a class="sourceLine" id="cb182-7" title="7"><span class="co"># Close the PNG</span></a>
-<a class="sourceLine" id="cb182-8" title="8"><span class="kw">dev.off</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="co"># Open a PNG, give it the filename we want</span></a>
+<a class="sourceLine" id="cb184-2" title="2"><span class="kw">png</span>(<span class="st">&quot;graphs/Y6_obesity_distribution.png&quot;</span>)</a>
+<a class="sourceLine" id="cb184-3" title="3"></a>
+<a class="sourceLine" id="cb184-4" title="4"><span class="co"># Run the same plot code to save our output into this opened png</span></a>
+<a class="sourceLine" id="cb184-5" title="5"><span class="kw">hist</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">breaks =</span> <span class="dv">10</span>, <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Distribution of Obesity in Year 6 children within London Wards in 2014&quot;</span>, </a>
+<a class="sourceLine" id="cb184-6" title="6">    <span class="dt">xlab =</span> <span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</a>
+<a class="sourceLine" id="cb184-7" title="7"></a>
+<a class="sourceLine" id="cb184-8" title="8"><span class="co"># Close the PNG</span></a>
+<a class="sourceLine" id="cb184-9" title="9"><span class="kw">dev.off</span>()</a></code></pre></div>
 <p>You should now see the image appear in your graphs folder.</p>
 <p>Another type of chart we can create just using the base R library is a <strong>boxplot</strong>.</p>
 <p><img src="images/w6/boxplot.png" width="650pt" style="display: block; margin: auto;" />
@@ -693,8 +703,9 @@ By the end of this week, you should be able to:</p>
 <ol start="5" style="list-style-type: decimal">
 <li>Plot the boxplot of our <code>y6_obesity_2014</code> variable.</li>
 </ol>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="co"># Plot the boxplot of our y6_obesity_2014 data. Remember we use the $ to access the specific column we want to assess</span></a>
-<a class="sourceLine" id="cb183-2" title="2"><span class="kw">boxplot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="co"># Plot the boxplot of our y6_obesity_2014 data. Remember we use the $ to access</span></a>
+<a class="sourceLine" id="cb185-2" title="2"><span class="co"># the specific column we want to assess</span></a>
+<a class="sourceLine" id="cb185-3" title="3"><span class="kw">boxplot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-boxplot-1.png" width="672" /></p>
 <p>It’s not exactly the most exciting graph now is it!</p>
 <p>There is actually a lot more we can do in terms of visualising our data’s distribution - and the best way forward would be to become more familiar with the <code>ggplot2</code> library, which is the main visualisation for both statistical and, increasingly, spatial graphs, charts and maps.</p>
@@ -731,8 +742,14 @@ By the end of this week, you should be able to:</p>
 <center>
 <em>Note, you do not need to copy this code over into your script - but provided as a reference to see how this map was made.</em>
 </center>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="co"># Creating a map template for us to use, legend outside</span></a>
-<a class="sourceLine" id="cb184-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>, <span class="dt">border.col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;y6_obesity_2014&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>, <span class="dt">title=</span><span class="st">&quot;Percentage of children &quot;</span>, <span class="dt">palette=</span><span class="st">&quot;Purples&quot;</span>, <span class="dt">border.col=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span><span class="st">&#39;Obesity of Year 6 children in London Wards in 2014&#39;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="co"># Creating a map template for us to use, legend outside</span></a>
+<a class="sourceLine" id="cb186-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>, <span class="dt">border.col =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb186-3" title="3"><span class="st">    </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;y6_obesity_2014&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">style =</span> <span class="st">&quot;jenks&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Percentage of children &quot;</span>, </a>
+<a class="sourceLine" id="cb186-4" title="4">        <span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>, <span class="dt">border.col =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Obesity of Year 6 children in London Wards in 2014&quot;</span>, </a>
+<a class="sourceLine" id="cb186-5" title="5">    <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, </a>
+<a class="sourceLine" id="cb186-6" title="6">    <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, </a>
+<a class="sourceLine" id="cb186-7" title="7">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </a>
+<a class="sourceLine" id="cb186-8" title="8">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-obesity-map-1.png" width="672" /></p>
 <p>The thing with spatial distributions is that we can quickly pick up on spatial patterns present within our data just by looking at the data (although we will also miss some others!) - and we can even provide a description of the patterns we see.</p>
 <p>For example, in our obesity example, we can see there are clusters of high levels of obesity in East London, whilst there are clusters of low levels of obesity in the south east and south west areas of London.</p>
@@ -748,8 +765,9 @@ Every time I write a tutorial for the class, a little pesky data issue always ha
 <ol style="list-style-type: decimal">
 <li>Remove the wards in our <code>obesity_ward_sdf</code> that do not contain any obesity information.</li>
 </ol>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="co"># Remove NAs using the filter function from dplyr and the ! (not) NA function</span></a>
-<a class="sourceLine" id="cb185-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(y6_obesity_<span class="dv">2014</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1"><span class="co"># Remove NAs using the filter function from dplyr and the ! (not) NA function</span></a>
+<a class="sourceLine" id="cb187-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb187-3" title="3"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(y6_obesity_<span class="dv">2014</span>))</a></code></pre></div>
 </div>
 </div>
 <div id="spatial-autocorrelation-and-clustering-analysis" class="section level3 unnumbered">
@@ -944,15 +962,18 @@ Every time I write a tutorial for the class, a little pesky data issue always ha
 <li>Fixed Distance (at 3000m / 3km</li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="co"># Create a neighbours list based on the Queen neighbour definition</span></a>
-<a class="sourceLine" id="cb186-2" title="2">ward_neighbours_queen &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">poly2nb</span>(., <span class="dt">queen=</span>T)</a>
-<a class="sourceLine" id="cb186-3" title="3"></a>
-<a class="sourceLine" id="cb186-4" title="4"><span class="co"># Create a neighbours list based on the Rook neighbour definition</span></a>
-<a class="sourceLine" id="cb186-5" title="5"><span class="co"># Note, we just need to assign the queen parameter to FALSE</span></a>
-<a class="sourceLine" id="cb186-6" title="6">ward_neighbours_rook &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">poly2nb</span>(., <span class="dt">queen=</span>F)</a>
-<a class="sourceLine" id="cb186-7" title="7"></a>
-<a class="sourceLine" id="cb186-8" title="8"><span class="co"># Creates centroid and joins neighbours within 0 and 3000 &#39;units&#39; of the CRS, i.e. metres</span></a>
-<a class="sourceLine" id="cb186-9" title="9">ward_neighbours_fd &lt;-<span class="st"> </span><span class="kw">dnearneigh</span>(<span class="kw">st_geometry</span>(<span class="kw">st_centroid</span>(obesity_ward_sdf)),<span class="dv">0</span>, <span class="dv">3000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="co"># Create a neighbours list based on the Queen neighbour definition</span></a>
+<a class="sourceLine" id="cb188-2" title="2">ward_neighbours_queen &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb188-3" title="3"><span class="st">    </span><span class="kw">poly2nb</span>(., <span class="dt">queen =</span> T)</a>
+<a class="sourceLine" id="cb188-4" title="4"></a>
+<a class="sourceLine" id="cb188-5" title="5"><span class="co"># Create a neighbours list based on the Rook neighbour definition Note, we just</span></a>
+<a class="sourceLine" id="cb188-6" title="6"><span class="co"># need to assign the queen parameter to FALSE</span></a>
+<a class="sourceLine" id="cb188-7" title="7">ward_neighbours_rook &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb188-8" title="8"><span class="st">    </span><span class="kw">poly2nb</span>(., <span class="dt">queen =</span> F)</a>
+<a class="sourceLine" id="cb188-9" title="9"></a>
+<a class="sourceLine" id="cb188-10" title="10"><span class="co"># Creates centroid and joins neighbours within 0 and 3000 &#39;units&#39; of the CRS,</span></a>
+<a class="sourceLine" id="cb188-11" title="11"><span class="co"># i.e. metres</span></a>
+<a class="sourceLine" id="cb188-12" title="12">ward_neighbours_fd &lt;-<span class="st"> </span><span class="kw">dnearneigh</span>(<span class="kw">st_geometry</span>(<span class="kw">st_centroid</span>(obesity_ward_sdf)), <span class="dv">0</span>, <span class="dv">3000</span>)</a></code></pre></div>
 <pre><code>## Warning in st_centroid.sf(obesity_ward_sdf): st_centroid assumes attributes are
 ## constant over geometries of x</code></pre>
 <p><strong>Visualising the differences in neighbours</strong></p>
@@ -969,8 +990,10 @@ We have not come across the concept of a centroid yet in our analysis but we can
 <ol style="list-style-type: decimal">
 <li>Calculate the centroid of our Wards:</li>
 </ol>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="co"># Calculate the centroids of all of the Wards in London, extract only the geometry (we do not need the other data/variables in our dataframe)</span></a>
-<a class="sourceLine" id="cb188-2" title="2">ward_centroid &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_centroid</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="co"># Calculate the centroids of all of the Wards in London, extract only the</span></a>
+<a class="sourceLine" id="cb190-2" title="2"><span class="co"># geometry (we do not need the other data/variables in our dataframe)</span></a>
+<a class="sourceLine" id="cb190-3" title="3">ward_centroid &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb190-4" title="4"><span class="st">    </span><span class="kw">st_centroid</span>()</a></code></pre></div>
 <pre><code>## Warning in st_centroid.sf(.): st_centroid assumes attributes are constant over
 ## geometries of x</code></pre>
 <p>You can <code>plot()</code> the <code>ward_centroid</code> using the console if you’d like to see what they look like as spatial data.</p>
@@ -980,11 +1003,11 @@ We have not come across the concept of a centroid yet in our analysis but we can
 <ol start="2" style="list-style-type: decimal">
 <li>Plot our different neighbour definitions and their connections between centroids for visualisation:</li>
 </ol>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="co"># We can plot these neighbours alongisde our centroids and polygon </span></a>
-<a class="sourceLine" id="cb190-2" title="2"><span class="kw">plot</span>(ward_neighbours_queen, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb190-3" title="3"><span class="kw">plot</span>(ward_neighbours_rook, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">add=</span>T)</a>
-<a class="sourceLine" id="cb190-4" title="4"><span class="kw">plot</span>(ward_neighbours_fd, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">add=</span>T)</a>
-<a class="sourceLine" id="cb190-5" title="5"><span class="kw">plot</span> (obesity_ward_sdf<span class="op">$</span>geometry, <span class="dt">add=</span>T)</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="co"># We can plot these neighbours alongisde our centroids and polygon</span></a>
+<a class="sourceLine" id="cb192-2" title="2"><span class="kw">plot</span>(ward_neighbours_queen, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb192-3" title="3"><span class="kw">plot</span>(ward_neighbours_rook, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">add =</span> T)</a>
+<a class="sourceLine" id="cb192-4" title="4"><span class="kw">plot</span>(ward_neighbours_fd, <span class="kw">st_geometry</span>(ward_centroid), <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">add =</span> T)</a>
+<a class="sourceLine" id="cb192-5" title="5"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>geometry, <span class="dt">add =</span> T)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-plotting-neighbours-1.png" width="672" /></p>
 <p>Ahah! We can see that there is definitely a difference in the number of neighbours when we use our different approaches.</p>
 <p>It seems our fixed distance neighbour conceptualisation has much connections in the center of London versus areas on the outskirts.</p>
@@ -1001,10 +1024,12 @@ We have not come across the concept of a centroid yet in our analysis but we can
 <ol start="3" style="list-style-type: decimal">
 <li>Convert our lists of neighbours for our two definitions (Queen and Fixed Distance) into neighbour objects using the <code>nb2listw()</code> function:</li>
 </ol>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="co"># Create a neighbours list</span></a>
-<a class="sourceLine" id="cb191-2" title="2">ward_spatial_weights_queen &lt;-<span class="st"> </span>ward_neighbours_queen <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nb2listw</span>(., <span class="dt">style=</span><span class="st">&quot;C&quot;</span>)</a>
-<a class="sourceLine" id="cb191-3" title="3"><span class="co"># Creates a neighbours list based on the Fixed Distance neighbour definition</span></a>
-<a class="sourceLine" id="cb191-4" title="4">ward_spatial_weights_fd &lt;-<span class="st"> </span>ward_neighbours_fd <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nb2listw</span>(., <span class="dt">style =</span> <span class="st">&#39;B&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="co"># Create a neighbours list</span></a>
+<a class="sourceLine" id="cb193-2" title="2">ward_spatial_weights_queen &lt;-<span class="st"> </span>ward_neighbours_queen <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb193-3" title="3"><span class="st">    </span><span class="kw">nb2listw</span>(., <span class="dt">style =</span> <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb193-4" title="4"><span class="co"># Creates a neighbours list based on the Fixed Distance neighbour definition</span></a>
+<a class="sourceLine" id="cb193-5" title="5">ward_spatial_weights_fd &lt;-<span class="st"> </span>ward_neighbours_fd <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb193-6" title="6"><span class="st">    </span><span class="kw">nb2listw</span>(., <span class="dt">style =</span> <span class="st">&quot;B&quot;</span>)</a></code></pre></div>
 <p>We’ll be using the Queen definition for the majority of our tests, but use the Fixed Distance for Getis-Ord.</p>
 <p>You can have a look at the differences between our neighbours lists and the neighbours objects by looking at the variables in your Environment - you should see that for our <code>ward_spatial_weights_X</code> object, we now have a column that defines the respective weights for each of our neighbour lists.</p>
 <p>We’re now ready to run our spatial autocorrelation tests!</p>
@@ -1038,17 +1063,20 @@ We have not come across the concept of a centroid yet in our analysis but we can
 <ol style="list-style-type: decimal">
 <li>Create a Moran’s I scatterplot of our <code>y6_obesity_2014</code> variable and the lagged <code>y6_obesity_2014</code> variable:</li>
 </ol>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1">obesity_MI_sp &lt;-<span class="st"> </span><span class="kw">moran.plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">listw =</span> ward_spatial_weights_queen)</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">obesity_MI_sp &lt;-<span class="st"> </span><span class="kw">moran.plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="dt">listw =</span> ward_spatial_weights_queen)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-scatter-plot-MI-1.png" width="672" /></p>
 <p>We can see that there is a positive relationship between our <code>y6_obesity_2014</code> variable and the lagged <code>y6_obesity_2014</code> variable, therefore we are expecting our global Moran’s I test to produce a statistic reflective of the slope visible in our scatter plot.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Run the global Moran’s I spatial autocorrelation test and print the result:</li>
 </ol>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="co"># Run the global Moran&#39;s I test on our y6_obesity_2014 data</span></a>
-<a class="sourceLine" id="cb193-2" title="2">obesity_GMI &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">moran.test</span>(., ward_spatial_weights_queen)</a>
-<a class="sourceLine" id="cb193-3" title="3"></a>
-<a class="sourceLine" id="cb193-4" title="4"><span class="co"># Print global Moran&#39;s I result</span></a>
-<a class="sourceLine" id="cb193-5" title="5">obesity_GMI</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="co"># Run the global Moran&#39;s I test on our y6_obesity_2014 data</span></a>
+<a class="sourceLine" id="cb195-2" title="2">obesity_GMI &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb195-3" title="3"><span class="st">    </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb195-4" title="4"><span class="st">    </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb195-5" title="5"><span class="st">    </span><span class="kw">moran.test</span>(., ward_spatial_weights_queen)</a>
+<a class="sourceLine" id="cb195-6" title="6"></a>
+<a class="sourceLine" id="cb195-7" title="7"><span class="co"># Print global Moran&#39;s I result</span></a>
+<a class="sourceLine" id="cb195-8" title="8">obesity_GMI</a></code></pre></div>
 <pre><code>## 
 ##  Moran I test under randomisation
 ## 
@@ -1071,11 +1099,14 @@ We have not come across the concept of a centroid yet in our analysis but we can
 <ol start="3" style="list-style-type: decimal">
 <li>Run the Geary C’s spatial autocorrelation test and print the result:</li>
 </ol>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="co"># Run the Geary C&#39;s I test on our y6_obesity_2014 data</span></a>
-<a class="sourceLine" id="cb195-2" title="2">obesity_GC &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">geary.test</span>(., ward_spatial_weights_queen)</a>
-<a class="sourceLine" id="cb195-3" title="3"></a>
-<a class="sourceLine" id="cb195-4" title="4"><span class="co"># Print Geary C&#39;s statistic</span></a>
-<a class="sourceLine" id="cb195-5" title="5">obesity_GC</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="co"># Run the Geary C&#39;s I test on our y6_obesity_2014 data</span></a>
+<a class="sourceLine" id="cb197-2" title="2">obesity_GC &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb197-3" title="3"><span class="st">    </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb197-4" title="4"><span class="st">    </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb197-5" title="5"><span class="st">    </span><span class="kw">geary.test</span>(., ward_spatial_weights_queen)</a>
+<a class="sourceLine" id="cb197-6" title="6"></a>
+<a class="sourceLine" id="cb197-7" title="7"><span class="co"># Print Geary C&#39;s statistic</span></a>
+<a class="sourceLine" id="cb197-8" title="8">obesity_GC</a></code></pre></div>
 <pre><code>## 
 ##  Geary C test under randomisation
 ## 
@@ -1098,11 +1129,15 @@ We have not come across the concept of a centroid yet in our analysis but we can
 <ol start="4" style="list-style-type: decimal">
 <li>Run the Getis-Ord’s spatial autocorrelation test and print the result:</li>
 </ol>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="co"># Run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial weights to fd</span></a>
-<a class="sourceLine" id="cb197-2" title="2">obesity_GO &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">globalG.test</span>(., ward_spatial_weights_fd)</a>
-<a class="sourceLine" id="cb197-3" title="3"></a>
-<a class="sourceLine" id="cb197-4" title="4"><span class="co"># Print global G statistic</span></a>
-<a class="sourceLine" id="cb197-5" title="5">obesity_GO</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="co"># Run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial</span></a>
+<a class="sourceLine" id="cb199-2" title="2"><span class="co"># weights to fd</span></a>
+<a class="sourceLine" id="cb199-3" title="3">obesity_GO &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-4" title="4"><span class="st">    </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-5" title="5"><span class="st">    </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb199-6" title="6"><span class="st">    </span><span class="kw">globalG.test</span>(., ward_spatial_weights_fd)</a>
+<a class="sourceLine" id="cb199-7" title="7"></a>
+<a class="sourceLine" id="cb199-8" title="8"><span class="co"># Print global G statistic</span></a>
+<a class="sourceLine" id="cb199-9" title="9">obesity_GO</a></code></pre></div>
 <pre><code>## 
 ##  Getis-Ord global G statistic
 ## 
@@ -1138,12 +1173,15 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="5" style="list-style-type: decimal">
 <li>Run the local Moran’s I spatial autocorrelation test and print the result:</li>
 </ol>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="co"># Run the local Moran&#39;s I test on our y6_obesity_2014 data</span></a>
-<a class="sourceLine" id="cb199-2" title="2">obesity_LMI &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">localmoran</span>(., ward_spatial_weights_queen)</a>
-<a class="sourceLine" id="cb199-3" title="3"></a>
-<a class="sourceLine" id="cb199-4" title="4"><span class="co"># Print local Moran&#39;s I statistic output</span></a>
-<a class="sourceLine" id="cb199-5" title="5"><span class="co"># Here, we will only print the first 5 lines...</span></a>
-<a class="sourceLine" id="cb199-6" title="6"><span class="kw">head</span>(obesity_LMI)</a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="co"># Run the local Moran&#39;s I test on our y6_obesity_2014 data</span></a>
+<a class="sourceLine" id="cb201-2" title="2">obesity_LMI &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-3" title="3"><span class="st">    </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-4" title="4"><span class="st">    </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb201-5" title="5"><span class="st">    </span><span class="kw">localmoran</span>(., ward_spatial_weights_queen)</a>
+<a class="sourceLine" id="cb201-6" title="6"></a>
+<a class="sourceLine" id="cb201-7" title="7"><span class="co"># Print local Moran&#39;s I statistic output Here, we will only print the first 5</span></a>
+<a class="sourceLine" id="cb201-8" title="8"><span class="co"># lines...</span></a>
+<a class="sourceLine" id="cb201-9" title="9"><span class="kw">head</span>(obesity_LMI)</a></code></pre></div>
 <pre><code>##           Ii          E.Ii     Var.Ii      Z.Ii    Pr(z &gt; 0)
 ## 1 0.03833697 -0.0002813579 0.02955797 0.2246240 4.111359e-01
 ## 2 0.47282190 -0.0008440736 0.08838455 1.5932503 5.555202e-02
@@ -1190,21 +1228,27 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="6" style="list-style-type: decimal">
 <li>Coerce local Moran’s output into a dataframe, then join to our <code>obesity_ward_sdf</code> spatial dataframe:</li>
 </ol>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="co"># Coerce obesity_LMI into dataframe</span></a>
-<a class="sourceLine" id="cb201-2" title="2">obesity_LMI &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(obesity_LMI)</a>
-<a class="sourceLine" id="cb201-3" title="3"></a>
-<a class="sourceLine" id="cb201-4" title="4"><span class="co"># Update the names for bette reference</span></a>
-<a class="sourceLine" id="cb201-5" title="5"><span class="kw">names</span>(obesity_LMI) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="st">&quot;LMI_eIi&quot;</span>, <span class="st">&quot;LMI_varIi&quot;</span>, <span class="st">&quot;LMI_zIi&quot;</span>, <span class="st">&quot;LMI_sigP&quot;</span>)</a>
-<a class="sourceLine" id="cb201-6" title="6"></a>
-<a class="sourceLine" id="cb201-7" title="7"><span class="co"># Join to obesity_ward_sdf</span></a>
-<a class="sourceLine" id="cb201-8" title="8">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(obesity_LMI)</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="co"># Coerce obesity_LMI into dataframe</span></a>
+<a class="sourceLine" id="cb203-2" title="2">obesity_LMI &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(obesity_LMI)</a>
+<a class="sourceLine" id="cb203-3" title="3"></a>
+<a class="sourceLine" id="cb203-4" title="4"><span class="co"># Update the names for bette reference</span></a>
+<a class="sourceLine" id="cb203-5" title="5"><span class="kw">names</span>(obesity_LMI) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="st">&quot;LMI_eIi&quot;</span>, <span class="st">&quot;LMI_varIi&quot;</span>, <span class="st">&quot;LMI_zIi&quot;</span>, <span class="st">&quot;LMI_sigP&quot;</span>)</a>
+<a class="sourceLine" id="cb203-6" title="6"></a>
+<a class="sourceLine" id="cb203-7" title="7"><span class="co"># Join to obesity_ward_sdf</span></a>
+<a class="sourceLine" id="cb203-8" title="8">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb203-9" title="9"><span class="st">    </span><span class="kw">mutate</span>(obesity_LMI)</a></code></pre></div>
 <p>We now have the data we need to plot our local spatial autocorrelation maps.</p>
 <p>We’ll first plot the most simplest maps to do with our local Moran’s I test: the local Moran’s I statistic and the <span class="math inline">\(p\)</span>-value of local Moran’s I statistic.</p>
 <ol start="7" style="list-style-type: decimal">
 <li>Map the local Moran’s I statistic:</li>
 </ol>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="co"># Map our local Moran&#39;s I statistic using tmap</span></a>
-<a class="sourceLine" id="cb202-2" title="2"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="dt">style=</span><span class="st">&quot;pretty&quot;</span>, <span class="dt">midpoint=</span><span class="dv">0</span>, <span class="dt">title=</span><span class="st">&quot;Local Moran&#39;s I statistic&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="co"># Map our local Moran&#39;s I statistic using tmap</span></a>
+<a class="sourceLine" id="cb204-2" title="2"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;pretty&quot;</span>, <span class="dt">midpoint =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb204-3" title="3">    <span class="dt">title =</span> <span class="st">&quot;Local Moran&#39;s I statistic&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>, </a>
+<a class="sourceLine" id="cb204-4" title="4">    <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, </a>
+<a class="sourceLine" id="cb204-5" title="5">    <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, </a>
+<a class="sourceLine" id="cb204-6" title="6">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </a>
+<a class="sourceLine" id="cb204-7" title="7">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-map-LMI-1.png" width="672" /></p>
 <p>From the map, it is possible to observe the variations in autocorrelation across space.</p>
 <p>We can interpret that there seems to be a geographic pattern to the autocorrelation. However, it is not possible to understand if these are clusters of high or low values.</p>
@@ -1212,14 +1256,19 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="8" style="list-style-type: decimal">
 <li>Map the <span class="math inline">\(p\)</span>-value of local Moran’s I statistic:</li>
 </ol>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="co"># Significance breaks</span></a>
-<a class="sourceLine" id="cb203-2" title="2">breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb203-3" title="3"></a>
-<a class="sourceLine" id="cb203-4" title="4"><span class="co"># colours for our local Moran&#39;s I statistic</span></a>
-<a class="sourceLine" id="cb203-5" title="5">colours &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;white&#39;</span>, <span class="st">&quot;#a6bddb&quot;</span>, <span class="st">&quot;#2b8cbe&quot;</span> )</a>
-<a class="sourceLine" id="cb203-6" title="6"></a>
-<a class="sourceLine" id="cb203-7" title="7"><span class="co"># Map our local Moran&#39;s I statistic using tmap</span></a>
-<a class="sourceLine" id="cb203-8" title="8"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;LMI_sigP&quot;</span>, <span class="dt">style=</span><span class="st">&quot;fixed&quot;</span>, <span class="dt">breaks =</span> breaks, <span class="dt">palette=</span> <span class="kw">rev</span>(colours), <span class="dt">title=</span><span class="st">&quot;p-value of Local Moran&#39;s I stat&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="co"># Significance breaks</span></a>
+<a class="sourceLine" id="cb205-2" title="2">breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb205-3" title="3"></a>
+<a class="sourceLine" id="cb205-4" title="4"><span class="co"># colours for our local Moran&#39;s I statistic</span></a>
+<a class="sourceLine" id="cb205-5" title="5">colours &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;#a6bddb&quot;</span>, <span class="st">&quot;#2b8cbe&quot;</span>)</a>
+<a class="sourceLine" id="cb205-6" title="6"></a>
+<a class="sourceLine" id="cb205-7" title="7"><span class="co"># Map our local Moran&#39;s I statistic using tmap</span></a>
+<a class="sourceLine" id="cb205-8" title="8"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;LMI_sigP&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;fixed&quot;</span>, <span class="dt">breaks =</span> breaks, </a>
+<a class="sourceLine" id="cb205-9" title="9">    <span class="dt">palette =</span> <span class="kw">rev</span>(colours), <span class="dt">title =</span> <span class="st">&quot;p-value of Local Moran&#39;s I stat&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>, </a>
+<a class="sourceLine" id="cb205-10" title="10">    <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, </a>
+<a class="sourceLine" id="cb205-11" title="11">    <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, </a>
+<a class="sourceLine" id="cb205-12" title="12">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </a>
+<a class="sourceLine" id="cb205-13" title="13">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-map-LMI-p-1.png" width="672" /></p>
 <p>Using our significance map, we can interpret the above clusters present in our local Moran’s I statistic more confidently.</p>
 <p>As evident, we do have several clusters that are statistically significant to the <span class="math inline">\(p\)</span>-value &lt; 0.05.</p>
@@ -1257,16 +1306,25 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="9" style="list-style-type: decimal">
 <li>Determine the cluster type of each ward by comparing observed and LMI values against their respective means - and the significance value:</li>
 </ol>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="co"># Calculate the means of our two columns, observed and LMI_Ii, and store as new columns within our obesity_ward_sdf</span></a>
-<a class="sourceLine" id="cb204-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obs_diff =</span> (obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span> <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>))) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">LMI_diff =</span> (obesity_LMI<span class="op">$</span>LMI_Ii <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_LMI<span class="op">$</span>LMI_Ii))) </a>
-<a class="sourceLine" id="cb204-3" title="3"></a>
-<a class="sourceLine" id="cb204-4" title="4"><span class="co"># Set a significance threshold - note, you can alter this according to the signficance value you want to account for</span></a>
-<a class="sourceLine" id="cb204-5" title="5">signif &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
-<a class="sourceLine" id="cb204-6" title="6"></a>
-<a class="sourceLine" id="cb204-7" title="7"><span class="co"># Generate column with cluster type, using values above</span></a>
-<a class="sourceLine" id="cb204-8" title="8"><span class="co"># Note our first the use of the case_when function &amp; more boolean logic statements</span></a>
-<a class="sourceLine" id="cb204-9" title="9"><span class="co"># See the case_when documentation for furher info on it!</span></a>
-<a class="sourceLine" id="cb204-10" title="10">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">cluster_type =</span> <span class="kw">case_when</span>(obs_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;High-High&quot;</span>, obs_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>  <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;Low-Low&quot;</span>, obs_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;Low-High&quot;</span>, obs_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;High-Low&quot;</span>, LMI_sigP <span class="op">&gt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;No Significance&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="co"># Calculate the means of our two columns, observed and LMI_Ii, and store as new</span></a>
+<a class="sourceLine" id="cb206-2" title="2"><span class="co"># columns within our obesity_ward_sdf</span></a>
+<a class="sourceLine" id="cb206-3" title="3">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-4" title="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">obs_diff =</span> (obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span> <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-5" title="5"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">LMI_diff =</span> (obesity_LMI<span class="op">$</span>LMI_Ii <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(obesity_LMI<span class="op">$</span>LMI_Ii)))</a>
+<a class="sourceLine" id="cb206-6" title="6"></a>
+<a class="sourceLine" id="cb206-7" title="7"><span class="co"># Set a significance threshold - note, you can alter this according to the</span></a>
+<a class="sourceLine" id="cb206-8" title="8"><span class="co"># signficance value you want to account for</span></a>
+<a class="sourceLine" id="cb206-9" title="9">signif &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
+<a class="sourceLine" id="cb206-10" title="10"></a>
+<a class="sourceLine" id="cb206-11" title="11"><span class="co"># Generate column with cluster type, using values above Note our first the use of</span></a>
+<a class="sourceLine" id="cb206-12" title="12"><span class="co"># the case_when function &amp; more boolean logic statements See the case_when</span></a>
+<a class="sourceLine" id="cb206-13" title="13"><span class="co"># documentation for furher info on it!</span></a>
+<a class="sourceLine" id="cb206-14" title="14">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-15" title="15"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">cluster_type =</span> <span class="kw">case_when</span>(obs_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb206-16" title="16"><span class="st">        &quot;High-High&quot;</span>, obs_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;Low-Low&quot;</span>, </a>
+<a class="sourceLine" id="cb206-17" title="17">        obs_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;Low-High&quot;</span>, obs_diff <span class="op">&gt;</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb206-18" title="18"><span class="st">            </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_diff <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>LMI_sigP <span class="op">&lt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> &quot;High-Low&quot;</span>, LMI_sigP <span class="op">&gt;</span><span class="st"> </span>signif <span class="op">~</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb206-19" title="19"><span class="st">            &quot;No Significance&quot;</span>))</a></code></pre></div>
 <p>Now we have a column detailing our cluster types, we can create a cluster map that details our four cluster types as well as those that are not significant.</p>
 <p>Creating a cateogrical map in R and using <code>tmap</code> is a little tricky - and we’ll need to do some preparing of our colour palettes to ensure our data is mapped correctly.</p>
 <p>Essentially, we’ll need to map the number and type of colours to the variables present in our dataset manually (yes, manually, in code!) in order to create a good visualisation. Unfortunately, this is where <code>tmap</code> and mapping by code does let us down a little.</p>
@@ -1275,13 +1333,13 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="11" style="list-style-type: decimal">
 <li>In your console, check the values in our <code>cluster_type</code> field:</li>
 </ol>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="co"># Count the different values within our `cluster_type` variable </span></a>
-<a class="sourceLine" id="cb205-2" title="2"><span class="kw">count</span>(obesity_ward_sdf, cluster_type)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1"><span class="co"># Count the different values within our `cluster_type` variable</span></a>
+<a class="sourceLine" id="cb207-2" title="2"><span class="kw">count</span>(obesity_ward_sdf, cluster_type)</a></code></pre></div>
 <pre><code>## Simple feature collection with 3 features and 2 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
-## CRS:            27700
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
+## CRS:           27700
 ## # A tibble: 3 x 3
 ##   cluster_type       n                                                  geometry
 ## * &lt;chr&gt;          &lt;int&gt;                                        &lt;MULTIPOLYGON [m]&gt;
@@ -1294,16 +1352,24 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="10" style="list-style-type: decimal">
 <li>Create our cluster map using the tmap library and our pre-designated colours:</li>
 </ol>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1"><span class="co"># Set colours to be used: White (No Significance), Light Blue (Low-High) and Dark Red (High-High)</span></a>
-<a class="sourceLine" id="cb207-2" title="2"><span class="co"># Set this to pal</span></a>
-<a class="sourceLine" id="cb207-3" title="3">pal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#F5F5F5&quot;</span>, <span class="st">&#39;#91bfdb&#39;</span>, <span class="st">&#39;#67001f&#39;</span>)</a>
-<a class="sourceLine" id="cb207-4" title="4"></a>
-<a class="sourceLine" id="cb207-5" title="5"><span class="co"># In the future, if you have more clusters, you would add in additional colours accordingly</span></a>
-<a class="sourceLine" id="cb207-6" title="6"></a>
-<a class="sourceLine" id="cb207-7" title="7"><span class="co"># Plot the cluster type of our obesity LMI Ii statistic</span></a>
-<a class="sourceLine" id="cb207-8" title="8"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;cluster_type&quot;</span>, <span class="dt">palette =</span> <span class="kw">rev</span>(pal), <span class="dt">title=</span><span class="st">&quot;Cluster Type&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span><span class="st">&#39;Cluster Map of Childhood Obesity in London in 2014&#39;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="co"># Set colours to be used: White (No Significance), Light Blue (Low-High) and Dark</span></a>
+<a class="sourceLine" id="cb209-2" title="2"><span class="co"># Red (High-High) Set this to pal</span></a>
+<a class="sourceLine" id="cb209-3" title="3">pal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#F5F5F5&quot;</span>, <span class="st">&quot;#91bfdb&quot;</span>, <span class="st">&quot;#67001f&quot;</span>)</a>
+<a class="sourceLine" id="cb209-4" title="4"></a>
+<a class="sourceLine" id="cb209-5" title="5"><span class="co"># In the future, if you have more clusters, you would add in additional colours</span></a>
+<a class="sourceLine" id="cb209-6" title="6"><span class="co"># accordingly</span></a>
+<a class="sourceLine" id="cb209-7" title="7"></a>
+<a class="sourceLine" id="cb209-8" title="8"><span class="co"># Plot the cluster type of our obesity LMI Ii statistic</span></a>
+<a class="sourceLine" id="cb209-9" title="9"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">col =</span> <span class="st">&quot;cluster_type&quot;</span>, <span class="dt">palette =</span> <span class="kw">rev</span>(pal), </a>
+<a class="sourceLine" id="cb209-10" title="10">    <span class="dt">title =</span> <span class="st">&quot;Cluster Type&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Cluster Map of Childhood Obesity in London in 2014&quot;</span>, </a>
+<a class="sourceLine" id="cb209-11" title="11">    <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, </a>
+<a class="sourceLine" id="cb209-12" title="12">    <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, </a>
+<a class="sourceLine" id="cb209-13" title="13">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </a>
+<a class="sourceLine" id="cb209-14" title="14">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-plot-LMI-hscs-1.png" width="672" /></p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="co"># Note, we &quot;reversed&quot; our colour palette as when the map was drawn we saw that our colours were assigned to the wrong values and this was the quickest solution!</span></a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="co"># Note, we &#39;reversed&#39; our colour palette as when the map was drawn we saw that</span></a>
+<a class="sourceLine" id="cb210-2" title="2"><span class="co"># our colours were assigned to the wrong values and this was the quickest</span></a>
+<a class="sourceLine" id="cb210-3" title="3"><span class="co"># solution!</span></a></code></pre></div>
 <p>And there we have it - within one map, we can visualise both the relationship of our Wards to their respective neighbourhoods and the significance of this relationship from our local Moran’s I test.</p>
 <p>This type of map is called a LISA map - and is a great way of showing how a variable is actually clustering.</p>
 <p>It took us a little bit of effort, but now we have the code written, we’ll able to add to and re-use both our clustering code and our colour palette in future tests.</p>
@@ -1317,11 +1383,15 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="11" style="list-style-type: decimal">
 <li>Run the local Gi* statistic spatial autocorrelation test and print the result:</li>
 </ol>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="co"># Run the local Gi* test on our y6_obesity_2014 data, note we again use the fd weights</span></a>
-<a class="sourceLine" id="cb209-2" title="2">obesity_LGO &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">localG</span>(., ward_spatial_weights_fd)</a>
-<a class="sourceLine" id="cb209-3" title="3"></a>
-<a class="sourceLine" id="cb209-4" title="4"><span class="co"># Print the local Gi* statistic</span></a>
-<a class="sourceLine" id="cb209-5" title="5"><span class="kw">head</span>(obesity_LGO)</a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="co"># Run the local Gi* test on our y6_obesity_2014 data, note we again use the fd</span></a>
+<a class="sourceLine" id="cb211-2" title="2"><span class="co"># weights</span></a>
+<a class="sourceLine" id="cb211-3" title="3">obesity_LGO &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb211-4" title="4"><span class="st">    </span><span class="kw">pull</span>(y6_obesity_<span class="dv">2014</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb211-5" title="5"><span class="st">    </span><span class="kw">as.vector</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb211-6" title="6"><span class="st">    </span><span class="kw">localG</span>(., ward_spatial_weights_fd)</a>
+<a class="sourceLine" id="cb211-7" title="7"></a>
+<a class="sourceLine" id="cb211-8" title="8"><span class="co"># Print the local Gi* statistic</span></a>
+<a class="sourceLine" id="cb211-9" title="9"><span class="kw">head</span>(obesity_LGO)</a></code></pre></div>
 <pre><code>## [1]  0.4009978 -3.4036923 -4.3086510 -4.5931460 -3.8301451 -4.3015237</code></pre>
 <p>By printing the results of our test, we can see that the local Getis-Ord test is a bit different from a local Moran’s I test as it only contains just a single value - the z-score.</p>
 <p>The z-score is a standardised value relating to whether high values or low values are clustering together, which we call the Gi* statistic.</p>
@@ -1329,15 +1399,22 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <ol start="12" style="list-style-type: decimal">
 <li>Map the the local Gi* statistic:</li>
 </ol>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="co"># Join the local Gi* statistic to `obesity_ward_sdf` spatial dataframe</span></a>
-<a class="sourceLine" id="cb211-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">obesity_LGO_G =</span> <span class="kw">as.numeric</span>(obesity_LGO))</a>
-<a class="sourceLine" id="cb211-3" title="3"></a>
-<a class="sourceLine" id="cb211-4" title="4"><span class="co"># Map our results using tmap</span></a>
-<a class="sourceLine" id="cb211-5" title="5"></a>
-<a class="sourceLine" id="cb211-6" title="6"><span class="co"># Again, well use a customised colour scheme - this time from the colorbrewer pacakge</span></a>
-<a class="sourceLine" id="cb211-7" title="7">GIColours&lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;RdBu&quot;</span>))</a>
-<a class="sourceLine" id="cb211-8" title="8"></a>
-<a class="sourceLine" id="cb211-9" title="9"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;obesity_LGO_G&quot;</span>, <span class="dt">style=</span><span class="st">&quot;pretty&quot;</span>, <span class="dt">palette=</span>GIColours, <span class="dt">midpoint=</span><span class="dv">0</span>, <span class="dt">title=</span><span class="st">&quot;Local Gi* statistic&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title=</span><span class="st">&#39;Hot/Cold Spot Map of Childhood Obesity in London in 2014&#39;</span>, <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="co"># Join the local Gi* statistic to `obesity_ward_sdf` spatial dataframe</span></a>
+<a class="sourceLine" id="cb213-2" title="2">obesity_ward_sdf &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb213-3" title="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">obesity_LGO_G =</span> <span class="kw">as.numeric</span>(obesity_LGO))</a>
+<a class="sourceLine" id="cb213-4" title="4"></a>
+<a class="sourceLine" id="cb213-5" title="5"><span class="co"># Map our results using tmap</span></a>
+<a class="sourceLine" id="cb213-6" title="6"></a>
+<a class="sourceLine" id="cb213-7" title="7"><span class="co"># Again, well use a customised colour scheme - this time from the colorbrewer</span></a>
+<a class="sourceLine" id="cb213-8" title="8"><span class="co"># pacakge</span></a>
+<a class="sourceLine" id="cb213-9" title="9">GIColours &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;RdBu&quot;</span>))</a>
+<a class="sourceLine" id="cb213-10" title="10"></a>
+<a class="sourceLine" id="cb213-11" title="11"><span class="kw">tm_shape</span>(obesity_ward_sdf) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="st">&quot;obesity_LGO_G&quot;</span>, <span class="dt">style =</span> <span class="st">&quot;pretty&quot;</span>, <span class="dt">palette =</span> GIColours, </a>
+<a class="sourceLine" id="cb213-12" title="12">    <span class="dt">midpoint =</span> <span class="dv">0</span>, <span class="dt">title =</span> <span class="st">&quot;Local Gi* statistic&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_layout</span>(<span class="dt">main.title =</span> <span class="st">&quot;Hot/Cold Spot Map of Childhood Obesity in London in 2014&quot;</span>, </a>
+<a class="sourceLine" id="cb213-13" title="13">    <span class="dt">main.title.fontface =</span> <span class="dv">2</span>, <span class="dt">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>, <span class="dt">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, </a>
+<a class="sourceLine" id="cb213-14" title="14">    <span class="dt">legend.title.size =</span> <span class="dv">1</span>, <span class="dt">legend.title.fontface =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, </a>
+<a class="sourceLine" id="cb213-15" title="15">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </a>
+<a class="sourceLine" id="cb213-16" title="16">    <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-join-local-GO-1.png" width="672" /></p>
 <p>Our map shows quite clearly hot and cold spots of obesity across London - how does this compare with our local Moran’s I? Do we see the same clusters?</p>
 <div id="using-cluster-analysis-for-distribution-analysis" class="section level5 unnumbered">
@@ -1382,8 +1459,8 @@ For this week’s assignment, I’d like you to find out whether our <code>IDACI
 <ol style="list-style-type: decimal">
 <li>Create a simple scatter plot to look at the relationship between our two variables, <code>y6_obesity_2014</code> and <code>IDACI_2010</code>:</li>
 </ol>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
-<a class="sourceLine" id="cb212-2" title="2"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, obesity_ward_sdf<span class="op">$</span>IDACI_<span class="dv">2010</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
+<a class="sourceLine" id="cb214-2" title="2"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, obesity_ward_sdf<span class="op">$</span>IDACI_<span class="dv">2010</span>)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-scatter-plot-1.png" width="672" /></p>
 <p>As you can see, it looks like there is a relationship between the two - but instead of a linear relationship, we’re almost looking at something logarithmic.</p>
 <p>This is because, if you have completed <strong>Assignment 1</strong>, you would know that the distribution of <code>IDACI_2010</code> is positively skewed - as a result, we need to transform the values into something more normally distributed.</p>
@@ -1391,19 +1468,20 @@ For this week’s assignment, I’d like you to find out whether our <code>IDACI
 <ol start="2" style="list-style-type: decimal">
 <li>Create a simple scatter plot to look at the relationship between our two variables, <code>y6_obesity_2014</code> and the square root of <code>IDACI_2010</code>:</li>
 </ol>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
-<a class="sourceLine" id="cb213-2" title="2"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="kw">sqrt</span>(obesity_ward_sdf<span class="op">$</span>IDACI_<span class="dv">2010</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
+<a class="sourceLine" id="cb215-2" title="2"><span class="kw">plot</span>(obesity_ward_sdf<span class="op">$</span>y6_obesity_<span class="dv">2014</span>, <span class="kw">sqrt</span>(obesity_ward_sdf<span class="op">$</span>IDACI_<span class="dv">2010</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/06-scatter-plot-2-1.png" width="672" /></p>
 <p>Woohoo! That’s better - now it looks like we’ve got a linear relationship between our two variables.</p>
 <p>For this relationship, we could now model the linear relationship between the two using a linear regression model.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Run a linear regression across our two variables, using the <code>lm()</code> function:</li>
 </ol>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
-<a class="sourceLine" id="cb214-2" title="2">lm_model &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> y6_obesity_<span class="dv">2014</span> <span class="op">~</span><span class="st"> </span><span class="kw">sqrt</span>(IDACI_<span class="dv">2010</span>))</a>
-<a class="sourceLine" id="cb214-3" title="3"></a>
-<a class="sourceLine" id="cb214-4" title="4"><span class="co"># Print summary of model</span></a>
-<a class="sourceLine" id="cb214-5" title="5"><span class="kw">summary</span>(lm_model)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="co"># Plot our obesity variable v. our deprivation variable</span></a>
+<a class="sourceLine" id="cb216-2" title="2">lm_model &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb216-3" title="3"><span class="st">    </span><span class="kw">lm</span>(<span class="dt">formula =</span> y6_obesity_<span class="dv">2014</span> <span class="op">~</span><span class="st"> </span><span class="kw">sqrt</span>(IDACI_<span class="dv">2010</span>))</a>
+<a class="sourceLine" id="cb216-4" title="4"></a>
+<a class="sourceLine" id="cb216-5" title="5"><span class="co"># Print summary of model</span></a>
+<a class="sourceLine" id="cb216-6" title="6"><span class="kw">summary</span>(lm_model)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y6_obesity_2014 ~ sqrt(IDACI_2010), data = .)
@@ -1431,11 +1509,14 @@ For this week’s assignment, I’d like you to find out whether our <code>IDACI
 <ol start="4" style="list-style-type: decimal">
 <li>Run a multivariate linear regression model across ALL of our variables, using the <code>lm()</code> function:</li>
 </ol>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="co"># Plot our obesity variable v. our explanatory variables</span></a>
-<a class="sourceLine" id="cb216-2" title="2">lm_Mmodel &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> y6_obesity_<span class="dv">2014</span> <span class="op">~</span><span class="st"> </span><span class="kw">sqrt</span>(IDACI_<span class="dv">2010</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(med_house_price_<span class="dv">2014</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(mean_hh_income_<span class="dv">2013</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(per_no_adult_employ_<span class="dv">2011</span>) <span class="op">+</span><span class="st"> </span>per_no_qual_<span class="dv">2011</span> <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(per_deficiency_greenspace_<span class="dv">2012</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(PTAL_<span class="dv">2014</span>))</a>
-<a class="sourceLine" id="cb216-3" title="3"></a>
-<a class="sourceLine" id="cb216-4" title="4"><span class="co"># Print summary of model</span></a>
-<a class="sourceLine" id="cb216-5" title="5"><span class="kw">summary</span>(lm_Mmodel)</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="co"># Plot our obesity variable v. our explanatory variables</span></a>
+<a class="sourceLine" id="cb218-2" title="2">lm_Mmodel &lt;-<span class="st"> </span>obesity_ward_sdf <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb218-3" title="3"><span class="st">    </span><span class="kw">lm</span>(<span class="dt">formula =</span> y6_obesity_<span class="dv">2014</span> <span class="op">~</span><span class="st"> </span><span class="kw">sqrt</span>(IDACI_<span class="dv">2010</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(med_house_price_<span class="dv">2014</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb218-4" title="4"><span class="st">        </span><span class="kw">sqrt</span>(mean_hh_income_<span class="dv">2013</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(per_no_adult_employ_<span class="dv">2011</span>) <span class="op">+</span><span class="st"> </span>per_no_qual_<span class="dv">2011</span> <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb218-5" title="5"><span class="st">        </span><span class="kw">sqrt</span>(per_deficiency_greenspace_<span class="dv">2012</span>) <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(PTAL_<span class="dv">2014</span>))</a>
+<a class="sourceLine" id="cb218-6" title="6"></a>
+<a class="sourceLine" id="cb218-7" title="7"><span class="co"># Print summary of model</span></a>
+<a class="sourceLine" id="cb218-8" title="8"><span class="kw">summary</span>(lm_Mmodel)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y6_obesity_2014 ~ sqrt(IDACI_2010) + sqrt(med_house_price_2014) + 

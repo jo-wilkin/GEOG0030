@@ -661,11 +661,11 @@ As we also provided our bounding box in WGS84 coordinates, we also should know t
 ```{r 07-osm-stations, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # Extract only the points data from our osmdata object & fields we want to keep
 # Note, I checked the points object in the osmdata object to identify the fields to keep
-london_stations_osm <- london_stations_osm$osm_points[, c("osm_id", "name", "network", "operator", "public_transport", "railway")] %>%
+london_stations_osm <- london_stations_osm$osm_points %>% st_set_crs(4326) %>%
   # Reproject our dataset to BNG for future use
   st_transform(27700) %>%  
   # And clip our osm data to our london outline shapefile  
-  st_intersection(london_outline)
+  st_intersection(london_outline) %>% select(c("osm_id", "name", "network", "operator", "public_transport", "railway"))
 ```
  
 You should now see the our `london_stations_osm` variable in our Environment now stores a points spatial dataframe containing **all** train and tube stations within London - my query has retrieved 1573 features, with the 7 fields selected.

@@ -1,4 +1,463 @@
 # Accessibility & Network Analysis (Optional)
 
-**This content is optional - we will aim to release this within two weeks at the end of term for use in your coursework and dissertation.**
+For this Optional Practical, we will focus on how we can use road network analysis to calculate distance-based measurements between a set of Origin and Destination points.
+
+In simple terms, a distance-based measurement will calculate how far is our destination (or set of destinations) from our origin (or set of origins) - this measure can be provided in a conventional distance unit (e.g. metres, kilometres) or can be transformed into a time-based measure instead.
+
+These distance-based measurements are incredibly useful for calculating accessibility metrics that can be used in public health, environment and infrastructure applications, such as identifying areas with potential food deserts or with low health or greenspace provision.
+
+For example, we can answer questions such as: how many parks are within a 10 minute walk of each household within a city? What is the "service area" of each hospital within a city - and how many people (and who) does not live within one? What is the shortest distance between a school and a convenience store?
+
+These questions can be used to study accessbility and inequality issues highlighted above (and many more)!
+
+In this Optional Practical, we study the accessibility of school children to fast-food outlets within a city to determine if there is a spatial pattern in schools that have a high (and therefore unsuitable) level of access to fast-food. 
+
+The metrics we calculate today could go on to be used to compare to socio-economic information of the schools, as it has been found within many studies in the [UK](https://www.gov.uk/government/publications/fast-food-outlets-density-by-local-authority-in-england), [New Zealand](https://pubmed.ncbi.nlm.nih.gov/17478262/) and the [USA](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0217341) that there is a strong association between local deprivation and/or ethnicity and the density of as well as geographic access to fast food outlets (Pearce et al, 2007; Public Health England, 2018; Elbel et al, 2019), which may also help with understanding of potential environmental causes of obesity ([Davis and Carpenter, 2009](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2661452/)).
+
+### (Road) Network Analysis in R {-}
+
+Until recently, calculating these distance-based measurements in R would have been incredibly complex - and you would likely have to resort to ArcGIS (or QGIS), where these Origin-Destination calculations or Drive-Time buffers are relatively easily to implement and have served Esri particularly well as part of their own commerical business selling to logistic firms! 
+
+Whilst (graph-based) network analysis has proven an incredibly popular data science technique and has been integrated into R through packages such as `igraph`, `ggraph` and `tidygraph`, the same can't be said for network analysis within geographic space! However, with more and more spatial data scientists invovled in R and package development, the last year or so has seen new packages emerge that contain functions that enable the spatial analysis of networks!
+
+The three key packages/libraries to be aware of are:
+
+-`stplanr` from Robin Lovelace and Richard Ellison. `stplanr` facilitates common transport planning tasks including: downloading and cleaning transport datasets; creating geographic ‘desire lines from origin-destination (OD) data; route assignment, via the `SpatialLinesNetwork` class and interfaces to routing services such as CycleStreets.net; calculation of route segment attributes such as bearing and aggregate flow; and `travel watershed’ analysis. You can read more about the library [here](https://cran.r-project.org/web/packages/stplanr/vignettes/stplanr-paper.html).
+
+-`sfnetworks` from Lucas van der Meer, Lorena Abad, Andrea Gilardi and Robin Lovelace. Whilst the [package](https://luukvdmeer.github.io/sfnetworks/index.html) is still in a beta format, the aim of the package is to provide a type of spatial network that can be used with both `sf` and `tidygraph`.
+
+-`dodgr` from Mark Padgham and Andreas Petutschnig (plus contributors). `dodgr`  is an R [package](https://atfutures.github.io/dodgr/index.html) for calculating Distances On Directed Graphs. The package may be used to calculate a matrix of distances between a given set of geographic coordinates.
+
+In addition, a recent slide put together by [Dr Malcom Morgan](https://environment.leeds.ac.uk/transport/staff/964/dr-malcolm-morgan) from the Institute for Transport Studies at the University of Leeds details a few additional liraries that you might be interested in if transport planning is your thing!
+
+```{r figure-name-1, echo=FALSE, fig.align="center", out.width = '70%'}
+knitr::include_graphics("images/OPs/mm_slide.png")
+```
+
+As you might be able to tell from these brief descriptions above, for our practical today - and our aim to calculate distance-based measurements- we will be using the `dodgr` library! 
+
+However, there is a short practical available to demonstrate `stplanr` for potential routing applications within the *Geocomputation with R* book, available online [here](https://geocompr.robinlovelace.net/transport.html). 
+
+In addition, you might look into `OpenTripPlanner` or `hereR` if you're looking to create isochrones, which are essentially (road) network-based buffers and look like this:
+
+```{r fig-name, echo=FALSE, fig.align="center", out.width = '70%'}
+knitr::include_graphics("images/OPs/isochrone.png")
+```
+*Example Isochrone: A public transport isochrone map for the London Bank station showing 15, 30 and 45-minute catchment areas. Map: Eric van Rees / GISLounge *
+
+These buffers could be used to calculate the number of crimes within 10 minutes walk or drive of a specific geographic feature, e.g. they could be used to potentially improve our previous bike theft analysis methodologies by looking at all bike thefts within a minute's walk or 80 metres (which is apparently the average distance a person may walk in a minute!). 
+They are also a really useful visualisation tool, communicating effectively specific distances away from a feature, as you can see above.
+
+:::sugreading
+**More information on Isochrones**<br>
+If the map above has got you interested, you can read more about isochrones at GISLounge, which has a short but informative article on their use within public transport, accessible [here](https://www.gislounge.com/how-to-create-public-transport-isochrones-in-arcgis-pro/).
+:::
+
+Whilst you might not have time to look at either of these at the moment, you might just want to make a note of these practicals for future reference, e.g. for your dissertations. 
+
+For this Optional Practical, we'll stick with producing one type of a distance-based measurement that you could use for further analysis, for example, if you are looking at the accessibility of a specific resource to a population.
+
+### Optional Practical: Calculating Distance-Based Measurements in R {-}
+
+From a computational and analytical perspective, this practical takes you through a simple approach to measuring either distances or time between two points on a road network - for multiple points. 
+
+You will construct a road network from OpenStreetMap, and utilise this network along with the `dodgr` library to calculate your chosen metrics between two coordinate datasets (otherwise known as an Origin-Destination matrix).
+
+#### Our analysis case study {-}
+
+For this practical, we'll be using Portsmouth in the U.K. as our area of interest for our analysis (woohoo, a change from London!). 
+
+The city is located on the south coast of the U.K., and is actually the only city in the U.K whose population density exceeds that of London (in 2011)! 
+
+One of the reasons is that the city primarily occupies an outcrop of land on the south-coast (an island called Portsea Island), and extends only slightly into the north, past the M27. 
+
+There are lots of geographical issues and challenges within the city that you could investigate, including weaknesses in Portsmouth's current road provision - there are only three main roads in and out of the island! 
+
+One prominent topic within the city is the issue of public health and childhood obesity. According to figures released in March 2020 by Public Health Engalnd, more than one in three school pupils are overweight or obese by the time they finish primary school within the city - higher than the national average of one in four. One potential contributor to the health crisis is the ease and availability of fast-food in the city. 
+
+From the local newspaper in the city, the Portsmouth News, Healthwatch Portsmouth Chairman Roger Batterbury was quoted: *‘For people in areas of deprivation, every penny counts and when it comes to buying food, the cheapest option is important but that is rarely the healthy choice.'* See the original article [here](https://www.portsmouth.co.uk/health/one-three-portsmouth-pupils-are-overweight-or-obese-time-they-finish-primary-school-2063613).
+
+The City Council itself has aimed to address the issue by banning new fast-food takeaways within a 400m range of schools – it started with a pilot at Arundel Court Primary Academy in Landport in September 2019. Since the pilot, no new hot food takeaways will be able to open within a 400m radius of the school.
+
+To assess the likely impact of this policy, we will investigate the accessibility of fast-food outlets for school children - we want to know if there is a geography to accessibility that could be used within future analysis to understand whether certain socio-economic demographics are more exposed to fast-food then others. We will measure accessibility by understanding how many fast-food outlets are within specific walking distances of each school, starting at 400m, then 800m and finally a 1km walking distance. We'll then aggregate these counts at the Lower Super Output Area (LSOA) and compare across the city.
+
+To get this data ready for our spatial and socio-economic analyses, we'll need to first calculate the distances between our schools and fast-food outlets. 
+
+This involves **calculating the shortest distance a child would walk between a school and a fast-food outlet, using roads or streets**. 
+
+This means we need to conduct a road network analysis between each school and fast-food outlet - just what this practical is designed to do!
+
+Let's get started!
+
+### Workshop Housekeeping {-}
+
+Let's get ourselves ready to start our practical by first adding our relevant libraries, downloading the relevant data and loading this within our script.
+
+#### Setting up your script {-}
+
+1. Open a new script (preferably within your GEOG0030 project) and save this script as `OP-OD-fastfood-analysis.r`.
+
+2. At the top of your script, add the following metdata (substitute accordingly):
+
+```{r 0P-scr-title, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Analysing distance between schools and fast-food outlets in Portsmouth
+# Script started April 2021
+# NAME
+```
+
+#### Dependencies (aka libraries) {-}
+
+Now we'll install the libraries we need for this practical.
+
+For our network analysis, we will be using the very recent (as of August 2020!) `dodgr` library.
+
+Prior to the creation of `dodgr`, this analysis would have been incredibly complex to do. Whilst `R` has had many *network analysis* libraries, the majority of these focus on utilising networks in graphical spaces, rather than geographical. 
+
+Creating measures of distance or time therefore would be more complex as you would need to transform your graph distances into geographical ones - but thanks to `dodgr` not anymore!
+
+*One thing to note, in terms of* `dodgr`*'s limitations is that all calculations currently need to be run in WGS84/4236. As a result, our calculations will not be as accurate as if we could run the same code in British National Grid. This is why we do not transform the CRS of our data in this practical.*
+
+We'll also be loading several other libraries to help with our analysis, including:
+
+-`here`: to direct to our working directory
+
+-`magrittr`: to allow us to use the pipe function (`%>%`) within our work, to enable efficient programming.
+
+-`osmdata`: to download OSM data from the OSM API server. 
+
+*NB: `dodgr` also has an in-built function to enable you to create a network download directly for use within their libraries (without any of the formatting you'll see us use), but this function (currently) does not provide the flexibility of determining what type of network you want to construct. In our case, we want to omit any motorways from our network to ensure our network represents where people will walk. Hence we'll use the `osmdata` library to create our pedestrian-friendly network!*
+
+-`sf`: the Simple Features library, used to encode spatial data.
+
+-`expss`: this library provides many functions that are usually seen in Excel or SPSS. Here we use the `count_if` function in our code (you'll see why later on). This functionality probably can be replaced by base libraries in R and a few additional lines of code, but this was a simple and quick solution to what we needed to make this practical work!
+
+- `tmap`: to map our resulting datasets.
+
+Make sure to install any new libraries/packages using the R console first, e.g.:
+<br>
+`install.packages(c('osmdata', 'dodgr', 'expss'))`
+<br>
+
+Let's first load our libraries.
+
+3. **Within your script**, add the following libraries for loading:
+
+```{r OP-libraries, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Load our libraries
+library(here)
+library(magrittr)
+library(osmdata)
+library(dodgr)
+library(sf)
+library(expss)
+library(tmap)
+```
+
+Remember to select the lines of code you want to run and press **CMD (Mac)/CTRL(Windows) + Enter/Return** - we won't remind you to run each line of code in the remainder of the practical sessions.
+
+#### Datasets for this week {-}
+
+Once we've loaded our libraries and set our directory, the next step in our practical is to download the data for this week.
+
+As the majority of this practical actually involves downloading and processing OpenStreetMap data for both our network and Origin-Destination datasets ready for our analysis, we will cover this in a separate section.
+
+For now, you only need to download one dataset that will help with the visualisation of our results: boundary data that contains an outline of Portsmouth. 
+
+To obtain this outline, **you'll need to download the Major Towns and Cities Boundaries dataset**, available [here](https://data.gov.uk/dataset/7879ab82-2863-401e-8a29-a56e264d2182/major-towns-and-cities-december-2015-boundaries).
+
+Make sure you download the shapefile and store it within your boundaries folder. I've renamed the unzipped subfolder to `city_outlines` as you can see below in our data path.
+
+We then need to load it into our script and filter the full dataset to only contain the city of Portsmouth - to achieve this we'll use the `filter` function from the `dplyr` library.
+
+4. Load Major Towns and Cities Boundaries dataset into R and extract Portsmouth City outline:
+
+```{r load-ports, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Load Towns and Cities boundary dataset and subset to Portsmouth
+portsmouth_city <- st_read("data/raw/boundaries/city_outlines/Major_Towns_and_Cities__December_2015__Boundaries.shp", stringsAsFactors=FALSE) %>% dplyr::filter(tcity15nm == "Portsmouth")
+```
+
+#### Downloading our road network from OpenStreetMap {-}
+
+To create our network and OD datasets, we will need to first download data directly from OpenStreetMap using a set of specific queries. Once our data is downloaded, we will then need to extract the data from our query results - as shown in the next section.
+
+We'll go ahead and focus on downloading then extracting our road network data.
+
+First, to **download the data**, we'll use `osmdata` library and the `add_osm_feature` function. You can find out more about this and how to construct your queries [here](https://cran.r-project.org/web/packages/osmdata/vignettes/osmdata.html).
+
+To use the function, we need to provided it with either a *bounding box* of our area of interest (AOI) or a set of points, from which the function will create its own bounding box.
+
+We'll use the former approach, and a very useful tool for extracting your bounding box can be found [here](https://boundingbox.klokantech.com). You simply navigate to your AOI and then use the rectangle + arrow button to access a tool that will draw you a bounding box you can then edit. 
+
+Alternatively, you can use the pentagon button to create your own polygon. At the bottom of the webpage you'll see options to copy and paste your box. Choose *CSV*, ready to copy and paste your coordinates into the code below.
+
+To download our road network dataset, we first define a variable to store our bounding box coordinates, `p_bbox`. 
+
+We then use this within our osm query to extract specific types of highways within that bounding box - the results of our query are then stored in an `osmdata` object (this one is for sf). You can find out more info about the `osmdata` object in Section 3 of the `osmdata` vignette practical linked above.
+
+5. Create bounding box and download road network from OpenStreetMap:
+
+```{r download_osm, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Define our bbox coordinates, here our coordinates relate to Portsmouth
+p_bbox <- c(-1.113197,50.775781,-1.026508,50.859941)
+
+# Pass our bounding box coordinates into the OverPassQuery (opq) function
+osmdata <- opq(bbox = p_bbox ) %>%
+  # Pipe this into the add_osm_feature data query function to extract our highways
+  # Note here, we specify the values we are interested in, omitting motorways
+  add_osm_feature(key = 'highway', value = c('primary', 'secondary', 'tertiary', 'residential','path','footway', 'unclassified','living_street', 'pedestrian')) %>% 
+  # And then pipe this into our osmdata_sf object
+  osmdata_sf()
+```
+
+You should now see an `osmdata` variable appear in your environment window - as explained in the linked practical, the `osmdata` object contains the bounding box of your query, a time-stamp of the query, and then the spatial data as `osm_points`, `osm_lines`, `osm_multilines` and `osm_polgyons` (which are listed with their respective fields also detailed). Some of the spatial features maybe empty, depending on what you asked your query to return.
+
+What is important to know is that **the actual spatial data contained in an** `osmdata` **object can be extracted - and will be in the** `sf` **format, when using the** `osmdata_sf()` **function (as we did) or in the** `sp` **format if you use the** `osmdata_sp()` **function instead.**
+
+#### Extracting our road network from our OSM download {-}
+
+Our next step therefore is to extract our spatial data from our `osmdata` object to create our road network dataset. This is in fact incredibly easy, using the traditional `$` R approach to access these spatial features from our object. 
+
+Deciding what to extract is probably the more complicated aspect of this - mainly as you need to understand how to represent your road network, and this will usually be determined by the library/functions you'll be using it within. 
+
+Lucikly, I've done all the pre-reading for you and we want to pass in preference what is known as **edges** of the network, i.e. the lines that represent the roads, rather than the **nodes** of the network, i.e. the points that represent the locations at which the roads intersect. 
+
+The latter can be used by the `dodgr` library, but edges are used in preference due to the unintended data errors than can occur if you delete nodes, versus deleting edges from a network. I won't explain this in any further detail, but in preference, choose your edges!
+
+Despite this, here we will extract both the points/**nodes** and the lines/our road **edges** within our network - as we might want to use the former for visualisation later on in our analysis. During extraction, we'll also reduce the amount of fields the spatial data contains. 
+
+For our points, we'll just keep the `osm_id`, just in case we need to refer to this later. 
+
+For our lines, we'll keep a little more information that we might want to use either within our road network or analysis, including the type of highway, what the maximum speed is on the road, and whether the road is one-way or not. 
+
+Remember, OpenStreetMap is an *open-source* of spatial data, therefore these fields may be not complete for each road, and the accuracy and currency of these fields cannot be guaranteed.
+
+6. Extract our road network from the `osmdata` object:
+
+```{r roadnetwork, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Extract our spatial data into variables of their own
+
+# Extract the points, with their osm_id.
+ports_roads_nodes <- osmdata$osm_points[, "osm_id"]
+
+# Extract the lines, with their osm_id, name, type of highway, max speed and oneway attributes 
+ports_roads_edges <- osmdata$osm_lines[ , c("osm_id", "name", "highway","maxspeed", "oneway")]
+```
+
+We should now have two additional variables in our Environment, snd we're ready to create our road network dataset - or in network terms, *our graph*.
+
+To check our dataset, we can quickly plot the edges of our road network using the `plot()` function.
+
+7. Plot our road network data, `ports_roads_edges`:
+
+```{r networkplot, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+plot(ports_roads_edges)
+```
+
+This looks like Portsmouth to me! And our main plot for the dataset (**osm_id**) looks pretty complete. 
+
+Our other plots are also interesting to look at, including where there are one way streets in Portsmouth - as well as the predictable similarities between the *highway* type and *maxspeed* variables.
+
+#### Downloading and extracting our Origin-Destination point datasets for analysis {-}
+
+Before we construct our graph, we need to also create our **ORIGIN** and **DESTINATION** points, i.e. the datasets we wish to calculate the distances between. 
+
+As we will use the `dodgr_dists` function to calculate these distances, according to the `dodgr` documentation, these points need to be in either a vector or matrix format, containing the two coordinates for each point for the origins and for the destintions.
+
+For our Portsmouth scenario, we are interested in calculating the shortest distances between schools and fast-food outlets, therefore we need to download these datasets ready for our use - and we'll use OpenStreetMap and the same process as above to do this. 
+
+*Note, if you are using this practical to help guide your own analysis and already have your OD datasets ready, you can skip this step!*
+
+Following a similar structure to our query above, we'll use our knowledge of OpenStreetMap *keys* and *values* to extract the points of origins (schools) and destinations (fast-food outlets) we are interested in,
+
+8. Download our Origin (schools) and Destination (fast-food outlets) data from OpenStreetMap:
+
+```{r schools_ff_osm, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Download our schools from OSM, store in school variable
+# We utilise the same bounding box coordinates stored as a variable in our session's memory.
+schools <- opq(bbox = p_bbox) %>%
+  add_osm_feature(key = 'amenity', value = 'school') %>% 
+  osmdata_sf()
+
+# And our fast-food outlets (could add convenience stores - separate query)
+ff_outlets <- opq(bbox = p_bbox) %>%
+  add_osm_feature(key = 'amenity', value = 'fast_food') %>%
+  osmdata_sf()
+```
+
+We also need to then follow a similar extraction of our two datasets from the `osmdata` object as we did for our road dataset.
+
+9. Extract the spatial data from the resulting `osmdata` objects generated by our above queries:
+
+```{r schools_ff_points, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Extract our school points
+ports_schools <- schools$osm_points[ , c("osm_id", "name")]
+
+# Extract our fast-food outlet points
+ports_ff <- ff_outlets$osm_points[ , c("osm_id", "name")]
+```
+
+We now have our road network data and our OD points - we're now ready to construct our network graph and run our network analysis!
+
+:::note
+**Quality of OpenStreetMap data**<br>
+In this analysis, we are highly reliant on the use of OpenStreetMap to provide data for both our Origins and Destinations.
+
+Whilst in the UK OSM provides substantial coverage, it's quality is not always guaranteed. 
+
+As a result, to improve on our current methodology in future analysis, we should investigate into a more official school dataset or at least validate the number of schools against City Council records and apply this as well to our fast-food outlets.
+:::
+
+#### Running our network analysis and calculating distances {-}
+
+With any network analysis, the main data structure is a **graph**, constructed by our nodes and edges. To create a graph for use within `dodgr`, we pass our `ports_roads_edges` into the `weight_streetnet` function. 
+
+The `dodgr` library also contains weighting profiles, that you can customise, for use within your network analysis. These weighting profiles contain weights based on the type of highway, determined by the type of transportation the profile aims to model. Here we will use the weighting profile **foot**, as we're looking to model walking accessibility.
+
+Let's create our graph!
+
+10. Create our network graph from our `ports_roads_edges` road network dataset:
+
+```{r network_graph, warnings=FALSE, message=FALSE, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Create network graph using are edge data, with the foot weighting profile
+graph <- weight_streetnet(ports_roads_edges, wt_profile = "foot")
+```
+
+Once we have our graph, we can then use this to calculate our network distances between our OD points. 
+
+Here we will use the `dodgr_distances` function, which you can find out more about in the its documentation. 
+
+In this function, we first pass our `graph`, then our Origin points (schools), in the `from` argument, and then our Destination points (fast-food outlets), in the `to` argument. There are several other arguments the function takes, which, again, you can read about in the documentation.
+
+One thing to note is our addition of the `st_coordinates` function as we pass our two point datasets within the `from` and `to` functions. 
+
+In their current format, our point data is as an `sf` data frame, which the function cannot pass - we need to instead provide it with a vector or matrix. We can achieve this simply by using the `st_coordinates` function, which retrieves the coordinates of any (spatial) data frame in matrix form.
+
+11. Calculate distances between schools and fast-food outlets along our network, passing them as coordinates:
+
+```{r distance_calc, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Calculate distances between schools to fast-food stores
+sch_to_ff_calc <- dodgr_distances(graph, from=st_coordinates(ports_schools), to= st_coordinates(ports_ff), shortest = TRUE, pairwise = FALSE, quiet=FALSE)
+```
+
+For our dataset, the query runs very quickly - a total of 876 x 294 calculations in a few seconds.
+
+Let's check our output.
+
+12. Print the first five rows of our calculation:
+
+```{r data_check, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+head(sch_to_ff_calc)
+```
+
+Our output shows the calculations for the first school - and the distances between the school and every fast-food outlet. 
+
+We do have several NAs - this is likely because our network and nodes do not connect with each other and so warrants further investigation. We would want to check the reasons for this and see how we can fix it.
+
+We won't do this today, but it does highlight that all analysis is fallible to errors and mistakes. 
+
+To investigate this further, I'd recommend looking at the OD points and the network within GIS software (or an interactive map within R), where you can zoom in to check the OD points versus the network.
+
+#### Calculating an accessibility measurement for each school {-}
+
+The next step of processing all depends on what you're trying to assess - here we want to understand which schools have a higher exposure or accessibility to fast-food outlets compared to others, quantified by how many outlets are within walking distance of specific distances.
+
+We will therefore look to count how many outlets are with X walking distance from each school and store this as a new column within our ports_school data frame. 
+
+To do this, we'll use the `count_row_if` function from the `expss` library, which will count the number of observations for each row that meet a certain condition. Here we use the `lt` function, which means less than (there's also `gt`, which means greater than). We simply need to add in the distance we're looking to use - and store the output of all of this as a new variable, which will be a new column (remember this is denoted through `$`) within our data frame.
+
+This query could be re-written using the `dplyr` library and several of its functions - you could set yourself the task of trying to write a query using `dplyr` that achieves the same output as this `count_if` function.
+
+We can repeat this for all three distances, simply exchanging the values of our distance and renaming our variable/fieldname.
+
+13. Count the number of fast-food outlets within specific distances of each school:
+
+```{r count_aggregation, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Add column to ports_schools, counting number of ff within 400m walking distance from them
+ports_schools$ff_within_400m <- count_row_if(lt(401),sch_to_ff_calc)
+
+# Add column to ports_schools, counting number of ff within 800m walking distance from them
+ports_schools$ff_within_800m <- count_row_if(lt(801),sch_to_ff_calc)
+
+# Add column to ports_schools, counting number of ff within 1000m walking distance from them
+ports_schools$ff_within_1km <- count_row_if(lt(1001),sch_to_ff_calc)
+```
+
+We can then look at our outputs quickly again using the `plot` function.
+
+14. Quickly plot our resulting dataset to compare the three distances:
+
+```{r schools_plot, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Set CRS for Porst school directly
+ports_schools <- st_set_crs(ports_schools, 4326)
+
+# Plot results
+plot(ports_schools)
+```
+
+Just from this simple plot, we can see across our distances some clear geographical patterns in accessibility of fast-food outlets for schools. 
+
+#### Mapping accessibility of schools to fast-food outlets in Portsmouth {-}
+
+We can improve this plot by making a proportional symbols map that show the different counts of fast-food outlets for each school in Portsmouth.
+
+Make sure you've created the Portsmouth City outline in the earlier step in this practical!
+
+15. Create a proportional symbols map showing counts of fast-food outlets per school at a distance of 400m:
+
+```{r OP-bubble-maps, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Ensure tmap is in the plot mode
+tmap_mode("plot")
+
+# Plot portsmouth city boundary
+tm_shape(portsmouth_city) + tm_fill(palette="grey") +
+# Plot our ports_schools as bubbles, using the ff_within_400m to determine size
+  tm_shape(ports_schools) + tm_bubbles(size="ff_within_400m", col = "skyblue4", style = "pretty", scale =1, border.col = "white", title.size= "Total Count") +
+  tm_layout(legend.position = c("left", "top"), legend.text.size = 1, main.title= "Fast-food outlets within 400m of the school", main.title.size = 1) +
+  # Add a north arrow
+  tm_compass(type="arrow", position = c("right", "top")) + 
+  # Add a scale bar
+  tm_scale_bar(position = c("left", "bottom")) +
+  # Add our OSM contributors statement
+  tm_credits("© OpenStreetMap contributors") 
+```
+
+Areas with greater access/exposure to fast-food outlets (denoted by the larger symbols) appear to be within the city centre and in the south, whereas those schools in the north have less exposure.
+
+However, if we head back to the interactive map at the start of this practical, you will be able to see that these two areas correlate quite well with the more commercial areas within Portsmouth, the high street and an area known as Gunwharf Quays.
+
+This suggests there are complexities in understanding accessiblity as well as trying to apply specific policies such as banning new fast-food takeaways within a 400m range of school, particularly if these schools are in commerical areas.
+
+A quick task would be to map the two other distances and compare your outputs to see how accessibility changes with greater distanced accounted for.
+
+### Try It Yourself: Analysing accessibility of fast-food outlets from schools in Portsmouth {-}
+
+Now you have the number of fast-food outlets within specific distances from each school, the Try It Yourself part of our practical is for you to think of a way to aggregate and visualise accessibility at the LSOA or MSOA scale. 
+
+By aggregating these distance calculations at the LSOA scale, you'd be able to then compare accessibility to other variables, such as the [2015 Index of Multiple Deprivation](https://data.gov.uk/dataset/8f601edb-6974-417e-9c9d-85832dd2bbf2/english-indices-of-deprivation-2015-lsoa-level), another variable you may have calculated or even a geodemographic classification, such as that provided by the [CDRC](https://data.cdrc.ac.uk/dataset/output-area-classification-2011). 
+
+To get started, you'll first need to download and extract the LSOA or MSOA boundaries for Portsmouth. 
+
+You the need to decide on a measurement that you'd want to aggregate. 
+
+For example, you could look at:
+
+1) The average number of fast-food restaurants within X distance of a school within each LSOA
+2) The average distance a fast-food restaurant is from a school within each LSOA
+3) The (average) shortest distance a fast-food restaurant is from a school within each LSOA
+
+Essentially, the possibilities are endless and there is no real right or wrong answer - it just depends on how you want to answer our original question. 
+
+If you are looking to do a similar analysis for your dissertation or other coursework (whether it is to do with fast-food, greenspace or even doctor surgeries or hospitals, I'd recommend reading through the methodologies (and their chosen variables) of the papers related to your analysis and assess the approaches they have used.
+
+You can then use these approaches to help inform your own variable choices - as well as potentially develop your own Accessibility Index such as the Public Transport Accessibility Levels ([PTALs](https://data.london.gov.uk/dataset/public-transport-accessibility-levels)) by Transport for London.
+
+#### Acknowledgements {-}
+
+This page is based on previous practicals written by Dr Jo Wilkin, and used across her GEOG0114 and now GEOG0030 module.
+
+The datasets used in this workshop (and resulting maps): 
+
+* Contains National Statistics data © Crown copyright and database right [2015] (Open Government Licence) 
+* Contains Ordnance Survey data © Crown copyright and database right [2015] 
+* © OpenStreetMap contributors
 

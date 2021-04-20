@@ -261,8 +261,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="geodemographic-classification.html"><a href="geodemographic-classification.html#recap---geodemographics"><i class="fa fa-check"></i>Recap - Geodemographics</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="spatial-regression-models-optional.html"><a href="spatial-regression-models-optional.html"><i class="fa fa-check"></i><b>11</b> Spatial Regression Models (Optional)</a></li>
-<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a></li>
-<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a></li>
+<li class="chapter" data-level="12" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html"><i class="fa fa-check"></i><b>12</b> Accessibility &amp; Network Analysis (Optional)</a><ul>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#road-network-analysis-in-r"><i class="fa fa-check"></i>(Road) Network Analysis in R</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#optional-practical-calculating-distance-based-measurements-in-r"><i class="fa fa-check"></i>Optional Practical: Calculating Distance-Based Measurements in R</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#workshop-housekeeping-5"><i class="fa fa-check"></i>Workshop Housekeeping</a></li>
+<li class="chapter" data-level="" data-path="accessibility-network-analysis-optional.html"><a href="accessibility-network-analysis-optional.html#try-it-yourself-analysing-accessibility-of-fast-food-outlets-from-schools-in-portsmouth"><i class="fa fa-check"></i>Try It Yourself: Analysing accessibility of fast-food outlets from schools in Portsmouth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><i class="fa fa-check"></i><b>13</b> For Loops and Functions for Automated Data Processing &amp; Visualisation (Optional)</a><ul>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#automating-the-ingestion-and-mapping-of-crime-data-across-years-and-crime-type"><i class="fa fa-check"></i>Automating the ingestion and mapping of crime data across years and crime type</a></li>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#optional-practical-3-incorporating-loops-and-functions-in-spatial-analysis"><i class="fa fa-check"></i>Optional Practical 3: Incorporating Loops and Functions in Spatial Analysis</a></li>
+<li class="chapter" data-level="" data-path="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html"><a href="for-loops-and-functions-for-automated-data-processing-visualisation-optional.html#try-it-yourself-incorporating-our-for-loop-into-our-function"><i class="fa fa-check"></i>Try It Yourself: Incorporating our for loop into our function</a></li>
+</ul></li>
 <li class="part"><span><b>Assessment</b></span></li>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html"><i class="fa fa-check"></i>Assessment Information</a><ul>
 <li class="chapter" data-level="" data-path="assessment-information.html"><a href="assessment-information.html#useful-additional-resources"><i class="fa fa-check"></i>Useful additional resources</a></li>
@@ -330,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>This week’s content is split into <strong>4</strong> parts:</p>
 <ol style="list-style-type: decimal">
-<li><a href="geodemographic-classification.html#workshop-housekeeping-4">Workshop Housekeeping</a> (20 minutes)</li>
+<li><a href="accessibility-network-analysis-optional.html#workshop-housekeeping-5">Workshop Housekeeping</a> (20 minutes)</li>
 <li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis">Point Pattern Analysis</a> (30 minutes)</li>
 <li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis-in-r-with-spatstat">Point Pattern Analysis in R with <code>spatstat</code></a> (90 minutes)</li>
 <li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#extension-point-pattern-analysis-in-r-with-dbscan">Extension: Point Pattern Analysis in R with <code>dbscan</code></a> (45 minutes)</li>
@@ -369,8 +378,8 @@ By the end of this week, you should be able to:</p>
 <li><p>Open a new script within your GEOG0030 project (Shift + Ctl/Cmd + N) and save this script as <code>wk8-bike-theft-PPA.r</code>.</p></li>
 <li><p>At the top of your script, add the following metdata (substitute accordingly):</p></li>
 </ol>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1"><span class="co"># Analysing bike theft and its relation to stations using point pattern analysis</span></a>
-<a class="sourceLine" id="cb272-2" title="2"><span class="co"># Script started March 2021 NAME</span></a></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="co"># Analysing bike theft and its relation to stations using point pattern analysis</span></a>
+<a class="sourceLine" id="cb275-2" title="2"><span class="co"># Script started March 2021 NAME</span></a></code></pre></div>
 </div>
 <div id="dependencies-aka-libraries-2" class="section level4 unnumbered">
 <h4>Dependencies (aka libraries)</h4>
@@ -384,19 +393,19 @@ By the end of this week, you should be able to:</p>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Within your script</strong>, add the following libraries for loading:</li>
 </ol>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1"><span class="co"># Libraries used in this script:</span></a>
-<a class="sourceLine" id="cb273-2" title="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb273-3" title="3"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb273-4" title="4"><span class="kw">library</span>(magrittr)</a>
-<a class="sourceLine" id="cb273-5" title="5"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb273-6" title="6"><span class="kw">library</span>(tmap)</a>
-<a class="sourceLine" id="cb273-7" title="7"><span class="kw">library</span>(janitor)</a>
-<a class="sourceLine" id="cb273-8" title="8"><span class="kw">library</span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb273-9" title="9"><span class="kw">library</span>(spatstat)</a>
-<a class="sourceLine" id="cb273-10" title="10"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb273-11" title="11"><span class="kw">library</span>(rosm)</a>
-<a class="sourceLine" id="cb273-12" title="12"><span class="kw">library</span>(dbscan)</a>
-<a class="sourceLine" id="cb273-13" title="13"><span class="kw">library</span>(leaflet)</a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1"><span class="co"># Libraries used in this script:</span></a>
+<a class="sourceLine" id="cb276-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb276-3" title="3"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb276-4" title="4"><span class="kw">library</span>(magrittr)</a>
+<a class="sourceLine" id="cb276-5" title="5"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb276-6" title="6"><span class="kw">library</span>(tmap)</a>
+<a class="sourceLine" id="cb276-7" title="7"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb276-8" title="8"><span class="kw">library</span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb276-9" title="9"><span class="kw">library</span>(spatstat)</a>
+<a class="sourceLine" id="cb276-10" title="10"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb276-11" title="11"><span class="kw">library</span>(rosm)</a>
+<a class="sourceLine" id="cb276-12" title="12"><span class="kw">library</span>(dbscan)</a>
+<a class="sourceLine" id="cb276-13" title="13"><span class="kw">library</span>(leaflet)</a></code></pre></div>
 <p>Remember to select the lines of code you want to run and press <strong>CMD (Mac)/CTRL(Windows) + Enter/Return</strong> - we won’t remind you to run each line of code in the remainder of the practical sessions.</p>
 </div>
 <div id="datasets-for-this-week-2" class="section level4 unnumbered">
@@ -418,8 +427,8 @@ By the end of this week, you should be able to:</p>
 <li>Filters your OSM download to stations only</li>
 </ul>
 <p>Once you’ve run this code, you can write out your OSM station data to your <strong>raw -&gt; transport</strong> folder using the following code in your console:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1"><span class="co"># Write out london_stations_osm to a shapefile</span></a>
-<a class="sourceLine" id="cb274-2" title="2"><span class="kw">st_write</span>(london_stations_osm, <span class="st">&quot;data/raw/transport/osm_stations.shp&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1"><span class="co"># Write out london_stations_osm to a shapefile</span></a>
+<a class="sourceLine" id="cb277-2" title="2"><span class="kw">st_write</span>(london_stations_osm, <span class="st">&quot;data/raw/transport/osm_stations.shp&quot;</span>)</a></code></pre></div>
 <p><em>For those of you with your variable saved from last week and already in your Environment, I would still recommend writing out our <code>london_stations_osm</code> variable to a shapefile anyway and then follow the next instructions to reload it back in. This ensures that in the future, this script will work as a standalone script and is not reliant on Week 7’s output.</em></p>
 <p>We can now load all three datasets into R.</p>
 <p><strong>Loading our data</strong></p>
@@ -427,38 +436,43 @@ By the end of this week, you should be able to:</p>
 <ol style="list-style-type: decimal">
 <li>Load all three datasets and conduct necessary pre-processing:</li>
 </ol>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="co"># Load all three datasets</span></a>
-<a class="sourceLine" id="cb275-2" title="2"></a>
-<a class="sourceLine" id="cb275-3" title="3"><span class="co"># Read in our 2018 London Ward boundaries Already in BNG - we checked last week</span></a>
-<a class="sourceLine" id="cb275-4" title="4">london_ward_shp &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</a>
-<a class="sourceLine" id="cb275-5" title="5"></a>
-<a class="sourceLine" id="cb275-6" title="6"><span class="co"># Read in our OSM tube and train stations data Already converted into BNG last</span></a>
-<a class="sourceLine" id="cb275-7" title="7"><span class="co"># week</span></a>
-<a class="sourceLine" id="cb275-8" title="8">london_stations_osm &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/transport/osm_stations.shp&quot;</span>)</a>
-<a class="sourceLine" id="cb275-9" title="9"></a>
-<a class="sourceLine" id="cb275-10" title="10"><span class="co"># Read in our crime data csv from our raw data folder</span></a>
-<a class="sourceLine" id="cb275-11" title="11">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/crime/all_crime_2019.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># clean names</span></a>
-<a class="sourceLine" id="cb275-12" title="12"><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter according to crime type and ensure we have no NAs in our dataset</span></a>
-<a class="sourceLine" id="cb275-13" title="13"><span class="kw">filter</span>(crime_type <span class="op">==</span><span class="st"> &quot;Bicycle theft&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(longitude) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(latitude)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb275-14" title="14"><span class="st">    </span><span class="co"># select just the longitude and latitude columns</span></a>
-<a class="sourceLine" id="cb275-15" title="15">dplyr<span class="op">::</span><span class="kw">select</span>(longitude, latitude) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># transform into a point spatial dataframe note providing the columns as the</span></a>
-<a class="sourceLine" id="cb275-16" title="16"><span class="co"># coordinates to use plus the CRS, which as our columns are long/lat is</span></a>
-<a class="sourceLine" id="cb275-17" title="17"><span class="co"># WGS84/4236</span></a>
-<a class="sourceLine" id="cb275-18" title="18"><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="dt">crs =</span> <span class="dv">4236</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># convert into BNG</span></a>
-<a class="sourceLine" id="cb275-19" title="19"><span class="kw">st_transform</span>(<span class="dv">27700</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># clip to London</span></a>
-<a class="sourceLine" id="cb275-20" title="20"><span class="kw">st_intersection</span>(london_ward_shp)</a></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1"><span class="co"># Load all three datasets</span></a>
+<a class="sourceLine" id="cb278-2" title="2"></a>
+<a class="sourceLine" id="cb278-3" title="3"><span class="co"># Read in our 2018 London Ward boundaries Already in BNG - we checked last week</span></a>
+<a class="sourceLine" id="cb278-4" title="4">london_ward_shp &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</a>
+<a class="sourceLine" id="cb278-5" title="5"></a>
+<a class="sourceLine" id="cb278-6" title="6"><span class="co"># Read in our OSM tube and train stations data Already converted into BNG last</span></a>
+<a class="sourceLine" id="cb278-7" title="7"><span class="co"># week</span></a>
+<a class="sourceLine" id="cb278-8" title="8">london_stations_osm &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/raw/transport/osm_stations.shp&quot;</span>)</a>
+<a class="sourceLine" id="cb278-9" title="9"></a>
+<a class="sourceLine" id="cb278-10" title="10"><span class="co"># Read in our crime data csv from our raw data folder</span></a>
+<a class="sourceLine" id="cb278-11" title="11">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/raw/crime/all_crime_2019.csv&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-12" title="12"><span class="st">    </span><span class="co"># clean names</span></a>
+<a class="sourceLine" id="cb278-13" title="13"><span class="kw">clean_names</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-14" title="14"><span class="st">    </span><span class="co"># filter according to crime type and ensure we have no NAs in our dataset</span></a>
+<a class="sourceLine" id="cb278-15" title="15"><span class="kw">filter</span>(crime_type <span class="op">==</span><span class="st"> &quot;Bicycle theft&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(longitude) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(latitude)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-16" title="16"><span class="st">    </span><span class="co"># select just the longitude and latitude columns</span></a>
+<a class="sourceLine" id="cb278-17" title="17">dplyr<span class="op">::</span><span class="kw">select</span>(longitude, latitude) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-18" title="18"><span class="st">    </span><span class="co"># transform into a point spatial dataframe note providing the columns as the</span></a>
+<a class="sourceLine" id="cb278-19" title="19"><span class="co"># coordinates to use plus the CRS, which as our columns are long/lat is</span></a>
+<a class="sourceLine" id="cb278-20" title="20"><span class="co"># WGS84/4236</span></a>
+<a class="sourceLine" id="cb278-21" title="21"><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>), <span class="dt">crs =</span> <span class="dv">4236</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-22" title="22"><span class="st">    </span><span class="co"># convert into BNG</span></a>
+<a class="sourceLine" id="cb278-23" title="23"><span class="kw">st_transform</span>(<span class="dv">27700</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-24" title="24"><span class="st">    </span><span class="co"># clip to London</span></a>
+<a class="sourceLine" id="cb278-25" title="25"><span class="kw">st_intersection</span>(london_ward_shp)</a></code></pre></div>
 <pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
 <pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
 ## geometries</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Let’s create a quick map of our data to check it loaded correctly:</li>
 </ol>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1"><span class="co"># Plot our London Wards first</span></a>
-<a class="sourceLine" id="cb278-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Then bike crime as blue</span></a>
-<a class="sourceLine" id="cb278-3" title="3"><span class="kw">tm_shape</span>(bike_theft_<span class="dv">2019</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Then our stations as red</span></a>
-<a class="sourceLine" id="cb278-4" title="4"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a north arrow</span></a>
-<a class="sourceLine" id="cb278-5" title="5"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># And a scale bar</span></a>
-<a class="sourceLine" id="cb278-6" title="6"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="co"># Plot our London Wards first</span></a>
+<a class="sourceLine" id="cb281-2" title="2"><span class="kw">tm_shape</span>(london_ward_shp) <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Then bike crime as blue</span></a>
+<a class="sourceLine" id="cb281-3" title="3"><span class="kw">tm_shape</span>(bike_theft_<span class="dv">2019</span>) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Then our stations as red</span></a>
+<a class="sourceLine" id="cb281-4" title="4"><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Add a north arrow</span></a>
+<a class="sourceLine" id="cb281-5" title="5"><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># And a scale bar</span></a>
+<a class="sourceLine" id="cb281-6" title="6"><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-map-all-data-1.png" width="672" /></p>
 <p>Great - that looks familiar! This means we can move forward with our data analysis and theoretical content for this week.</p>
 </div>
@@ -538,19 +552,20 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol style="list-style-type: decimal">
 <li>Create our <code>spatstat</code> <code>ppp</code> object for use in our PPA:</li>
 </ol>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1"><span class="co"># First, let&#39;s set our window of observation as the entirety of London</span></a>
-<a class="sourceLine" id="cb279-2" title="2">window &lt;-<span class="st"> </span><span class="kw">as.owin</span>(london_ward_shp)</a>
-<a class="sourceLine" id="cb279-3" title="3"></a>
-<a class="sourceLine" id="cb279-4" title="4"><span class="co"># Next, extract the coordinates of our bike_theft_2019 sdf This stores our</span></a>
-<a class="sourceLine" id="cb279-5" title="5"><span class="co"># coordinates as a matrix</span></a>
-<a class="sourceLine" id="cb279-6" title="6">bike_theft_xy &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_coordinates</span>()</a>
-<a class="sourceLine" id="cb279-7" title="7"></a>
-<a class="sourceLine" id="cb279-8" title="8"><span class="co"># Create a ppp object, setting x and y equal to the respective columns in our</span></a>
-<a class="sourceLine" id="cb279-9" title="9"><span class="co"># matrix Set the window equal to our window variable</span></a>
-<a class="sourceLine" id="cb279-10" title="10">bike_theft_ppp &lt;-<span class="st"> </span><span class="kw">ppp</span>(<span class="dt">x =</span> bike_theft_xy[, <span class="dv">1</span>], <span class="dt">y =</span> bike_theft_xy[, <span class="dv">2</span>], <span class="dt">window =</span> window)</a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1"><span class="co"># First, let&#39;s set our window of observation as the entirety of London</span></a>
+<a class="sourceLine" id="cb282-2" title="2">window &lt;-<span class="st"> </span><span class="kw">as.owin</span>(london_ward_shp<span class="op">$</span>geometry)</a>
+<a class="sourceLine" id="cb282-3" title="3"></a>
+<a class="sourceLine" id="cb282-4" title="4"><span class="co"># Next, extract the coordinates of our bike_theft_2019 sdf This stores our</span></a>
+<a class="sourceLine" id="cb282-5" title="5"><span class="co"># coordinates as a matrix</span></a>
+<a class="sourceLine" id="cb282-6" title="6">bike_theft_xy &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb282-7" title="7"><span class="st">    </span><span class="kw">st_coordinates</span>()</a>
+<a class="sourceLine" id="cb282-8" title="8"></a>
+<a class="sourceLine" id="cb282-9" title="9"><span class="co"># Create a ppp object, setting x and y equal to the respective columns in our</span></a>
+<a class="sourceLine" id="cb282-10" title="10"><span class="co"># matrix Set the window equal to our window variable</span></a>
+<a class="sourceLine" id="cb282-11" title="11">bike_theft_ppp &lt;-<span class="st"> </span><span class="kw">ppp</span>(<span class="dt">x =</span> bike_theft_xy[, <span class="dv">1</span>], <span class="dt">y =</span> bike_theft_xy[, <span class="dv">2</span>], <span class="dt">window =</span> window)</a></code></pre></div>
 <pre><code>## Warning: data contain duplicated points</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="co"># Plot our ppp object</span></a>
-<a class="sourceLine" id="cb281-2" title="2"><span class="kw">plot</span>(bike_theft_ppp)</a></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1"><span class="co"># Plot our ppp object</span></a>
+<a class="sourceLine" id="cb284-2" title="2"><span class="kw">plot</span>(bike_theft_ppp)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-spatstat-ppp-object-1.png" width="672" /></p>
 <p>Our plot shows us our <code>bike_theft_ppp</code> ppp object, which includes both the coordinate points of our bike theft data and our London window.</p>
 <p>You should also see your <code>bike_theft_ppp</code> ppp object variable appear in your Environment window - as well as see a message stating that our data <em>contain duplicated points</em>.</p>
@@ -558,11 +573,11 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol start="2" style="list-style-type: decimal">
 <li>Check and count how many duplicated points our dataset contains:</li>
 </ol>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1"><span class="co"># Check for duplicates using the anyDuplicated function</span></a>
-<a class="sourceLine" id="cb282-2" title="2"><span class="kw">anyDuplicated</span>(bike_theft_ppp)</a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" title="1"><span class="co"># Check for duplicates using the anyDuplicated function</span></a>
+<a class="sourceLine" id="cb285-2" title="2"><span class="kw">anyDuplicated</span>(bike_theft_ppp)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1"><span class="co"># Count the number of duplicated points and sum this</span></a>
-<a class="sourceLine" id="cb284-2" title="2"><span class="kw">sum</span>(<span class="kw">multiplicity</span>(bike_theft_ppp) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1"><span class="co"># Count the number of duplicated points and sum this</span></a>
+<a class="sourceLine" id="cb287-2" title="2"><span class="kw">sum</span>(<span class="kw">multiplicity</span>(bike_theft_ppp) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 12323</code></pre>
 <p>This means we have 12,323 (out of 18,690!) duplicated points.</p>
 <div class="codetime">
@@ -585,14 +600,14 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol start="3" style="list-style-type: decimal">
 <li>Add a “jitter” (i.e. offset) to our <code>bike_theft_ppp</code> object - and then check for duplicates:</li>
 </ol>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="co"># Add an offset to our points using the rjitter function</span></a>
-<a class="sourceLine" id="cb286-2" title="2">bike_theft_ppp_jitter &lt;-<span class="st"> </span><span class="kw">rjitter</span>(bike_theft_ppp, <span class="dt">retry =</span> <span class="ot">TRUE</span>, <span class="dt">nsim =</span> <span class="dv">1</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb286-3" title="3"></a>
-<a class="sourceLine" id="cb286-4" title="4"><span class="co"># Count the number of duplicated points of the new jitter dataset</span></a>
-<a class="sourceLine" id="cb286-5" title="5"><span class="kw">anyDuplicated</span>(bike_theft_ppp_jitter)</a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1"><span class="co"># Add an offset to our points using the rjitter function</span></a>
+<a class="sourceLine" id="cb289-2" title="2">bike_theft_ppp_jitter &lt;-<span class="st"> </span><span class="kw">rjitter</span>(bike_theft_ppp, <span class="dt">retry =</span> <span class="ot">TRUE</span>, <span class="dt">nsim =</span> <span class="dv">1</span>, <span class="dt">drop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb289-3" title="3"></a>
+<a class="sourceLine" id="cb289-4" title="4"><span class="co"># Count the number of duplicated points of the new jitter dataset</span></a>
+<a class="sourceLine" id="cb289-5" title="5"><span class="kw">anyDuplicated</span>(bike_theft_ppp_jitter)</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="co"># Plot the resulting ppp object</span></a>
-<a class="sourceLine" id="cb288-2" title="2"><span class="kw">plot</span>(bike_theft_ppp_jitter)</a></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" title="1"><span class="co"># Plot the resulting ppp object</span></a>
+<a class="sourceLine" id="cb291-2" title="2"><span class="kw">plot</span>(bike_theft_ppp_jitter)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-jitter-jitter-jitter-1.png" width="672" /></p>
 <p>Great, we now have our bike theft data in a format ready to be analysed with our different PPA techniques using the <code>spatstat</code> library!</p>
 <div class="note">
@@ -620,12 +635,12 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol style="list-style-type: decimal">
 <li>Calculate the global density of our bike theft point data relative to London:</li>
 </ol>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1"><span class="co"># Calculate the global density of our bike points Try to understand this code</span></a>
-<a class="sourceLine" id="cb289-2" title="2"><span class="co"># yourself - I&#39;ll ask in the seminar how this equation works!</span></a>
-<a class="sourceLine" id="cb289-3" title="3">global_density &lt;-<span class="st"> </span><span class="kw">length</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>NAME)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">st_area</span>(london_ward_shp))</a>
-<a class="sourceLine" id="cb289-4" title="4"></a>
-<a class="sourceLine" id="cb289-5" title="5"><span class="co"># Return global_density to our console</span></a>
-<a class="sourceLine" id="cb289-6" title="6">global_density</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1"><span class="co"># Calculate the global density of our bike points Try to understand this code</span></a>
+<a class="sourceLine" id="cb292-2" title="2"><span class="co"># yourself - I&#39;ll ask in the seminar how this equation works!</span></a>
+<a class="sourceLine" id="cb292-3" title="3">global_density &lt;-<span class="st"> </span><span class="kw">length</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>NAME)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">st_area</span>(london_ward_shp))</a>
+<a class="sourceLine" id="cb292-4" title="4"></a>
+<a class="sourceLine" id="cb292-5" title="5"><span class="co"># Return global_density to our console</span></a>
+<a class="sourceLine" id="cb292-6" title="6">global_density</a></code></pre></div>
 <pre><code>## 1.172009e-05 [1/m^2]</code></pre>
 <p>We can see that we have a global density of 0.0000172 bike thefts per m^2 in London.</p>
 <p>This simple density analysis could be supported with further descriptive statistics, however we still would know little about the local density of our points.</p>
@@ -639,10 +654,10 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol style="list-style-type: decimal">
 <li>Calculate the number of bike thefts in our quadrats in London:</li>
 </ol>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" title="1"><span class="co"># quadratcount in a 15 x 15 grid across the observational window</span></a>
-<a class="sourceLine" id="cb291-2" title="2">biketheft_quadrat &lt;-<span class="st"> </span><span class="kw">quadratcount</span>(bike_theft_ppp_jitter, <span class="dt">nx =</span> <span class="dv">10</span>, <span class="dt">ny =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb291-3" title="3"><span class="co"># inspect</span></a>
-<a class="sourceLine" id="cb291-4" title="4"><span class="kw">plot</span>(biketheft_quadrat)</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1"><span class="co"># quadratcount in a 15 x 15 grid across the observational window</span></a>
+<a class="sourceLine" id="cb294-2" title="2">biketheft_quadrat &lt;-<span class="st"> </span><span class="kw">quadratcount</span>(bike_theft_ppp_jitter, <span class="dt">nx =</span> <span class="dv">10</span>, <span class="dt">ny =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb294-3" title="3"><span class="co"># inspect</span></a>
+<a class="sourceLine" id="cb294-4" title="4"><span class="kw">plot</span>(biketheft_quadrat)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-quadrat-count-1.png" width="672" /></p>
 <p>Our resulting quadrat count shows total counts of bike theft - we can see quite quickly that the quadrats in central London are likely to have a higher local density as their count is much higher than those on the outskirts of London.</p>
 <p>If we divided our count by the area covered by each quadrat, we’d also be able to calculate a precise local density. We won’t do this for now, as realistically, it is not often that you’d want to use quadrat analysis for actual PPA.</p>
@@ -667,18 +682,17 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol start="2" style="list-style-type: decimal">
 <li>Run a Chi-Squared Test of our data to confirm whether or not the data is randomly distributed:</li>
 </ol>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1"><span class="co"># Chi-square between observed point pattern of our data and Poisson sampled</span></a>
-<a class="sourceLine" id="cb292-2" title="2"><span class="co"># points</span></a>
-<a class="sourceLine" id="cb292-3" title="3"><span class="kw">quadrat.test</span>(bike_theft_ppp_jitter, <span class="dt">nx =</span> <span class="dv">10</span>, <span class="dt">ny =</span> <span class="dv">10</span>)</a></code></pre></div>
-<pre><code>## Warning: Some expected counts are small; chi^2 approximation may be inaccurate</code></pre>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1"><span class="co"># Chi-square between observed point pattern of our data and Poisson sampled</span></a>
+<a class="sourceLine" id="cb295-2" title="2"><span class="co"># points</span></a>
+<a class="sourceLine" id="cb295-3" title="3"><span class="kw">quadrat.test</span>(bike_theft_ppp_jitter, <span class="dt">nx =</span> <span class="dv">10</span>, <span class="dt">ny =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test of CSR using quadrat counts
 ## 
 ## data:  bike_theft_ppp_jitter
-## X2 = 56524, df = 80, p-value &lt; 2.2e-16
+## X2 = 105302, df = 99, p-value &lt; 2.2e-16
 ## alternative hypothesis: two.sided
 ## 
-## Quadrats: 81 tiles (irregular windows)</code></pre>
+## Quadrats: 10 by 10 grid of tiles</code></pre>
 <p>Our <span class="math inline">\(p\)</span> value is well below 0.05 (or 0.01 for that matter), which means there is a statistically signficant difference between the expected distribution (i.e. CSR) and the observed distribution (our bike theft point data).</p>
 <p>We can therefore reject the null hypothesis that our point data have been generated under complete spatial randomness and confirm that our point pattern was not generated in a random matter. This is hardly very suprising!</p>
 <p>However our completing both a quadrat analysis and the resulting Chi-Squared test is not exactly the most efficient way of looking to understand the relative local densities of our dataset - nor can we compare these results to the location of our train and tube stations to look into our original hypothesis: <em>that bike theft primarily occurs near tube and train stations</em>.</p>
@@ -700,17 +714,17 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol style="list-style-type: decimal">
 <li>Generate a KDE of our bike theft data, with a kernel of 100m:</li>
 </ol>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1"><span class="co"># Kernel density estimation of our bike theft ppp object Note sigma is defined in</span></a>
-<a class="sourceLine" id="cb295-2" title="2"><span class="co"># the same units as your CRS, in this case metres for BNG</span></a>
-<a class="sourceLine" id="cb295-3" title="3"><span class="kw">plot</span>(<span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">100</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="co"># Kernel density estimation of our bike theft ppp object Note sigma is defined in</span></a>
+<a class="sourceLine" id="cb297-2" title="2"><span class="co"># the same units as your CRS, in this case metres for BNG</span></a>
+<a class="sourceLine" id="cb297-3" title="3"><span class="kw">plot</span>(<span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">100</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-kde-ppp-1.png" width="672" /></p>
 <p>We can see from just our KDE that there are visible clusters present within our bike theft data, particularly in and around central London. We can even see our south-west cluster that we saw in our proportional symbols map last week.</p>
 <p>We can go ahead and vary our bandwidth to to see how that affects the density estimate.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Change the sigma to a bandwith of 500m:</li>
 </ol>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1"><span class="co"># Kernel density estimation of our bike theft ppp object with 500m bandwith</span></a>
-<a class="sourceLine" id="cb296-2" title="2"><span class="kw">plot</span>(<span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">500</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="co"># Kernel density estimation of our bike theft ppp object with 500m bandwith</span></a>
+<a class="sourceLine" id="cb298-2" title="2"><span class="kw">plot</span>(<span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">500</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-kde-ppp-2-1.png" width="672" /></p>
 <p>Our clusters now appear brighter and larger than our KDE with a 100m bandwidth - this is because changing the bandwidth enables your KDE to take into account more points within its calculation, resulting in a smoother surface.</p>
 <p>However, there are issues with oversmoothing your data - as you can see above, our clusters are not as well defined and therefore we may attribute high levels of bike theft to areas where there actually isn’t that much!</p>
@@ -754,13 +768,13 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol start="3" style="list-style-type: decimal">
 <li>Pipe the output of our <code>density.ppp()</code> function into the <code>raster()</code> function:</li>
 </ol>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="co"># Create a raster directly from the output of our KDE 400g stands for a 400m</span></a>
-<a class="sourceLine" id="cb297-2" title="2"><span class="co"># bandwidth, to match our distance from last week, with a gaussian kernel</span></a>
-<a class="sourceLine" id="cb297-3" title="3">kde_400g_raster &lt;-<span class="st"> </span><span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">400</span>, <span class="dt">edge =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb297-4" title="4"><span class="st">    </span><span class="kw">raster</span>()</a>
-<a class="sourceLine" id="cb297-5" title="5"></a>
-<a class="sourceLine" id="cb297-6" title="6"><span class="co"># Plot the resulting raster</span></a>
-<a class="sourceLine" id="cb297-7" title="7"><span class="kw">plot</span>(kde_400g_raster)</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1"><span class="co"># Create a raster directly from the output of our KDE 400g stands for a 400m</span></a>
+<a class="sourceLine" id="cb299-2" title="2"><span class="co"># bandwidth, to match our distance from last week, with a gaussian kernel</span></a>
+<a class="sourceLine" id="cb299-3" title="3">kde_400g_raster &lt;-<span class="st"> </span><span class="kw">density.ppp</span>(bike_theft_ppp_jitter, <span class="dt">sigma =</span> <span class="dv">400</span>, <span class="dt">edge =</span> T) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb299-4" title="4"><span class="st">    </span><span class="kw">raster</span>()</a>
+<a class="sourceLine" id="cb299-5" title="5"></a>
+<a class="sourceLine" id="cb299-6" title="6"><span class="co"># Plot the resulting raster</span></a>
+<a class="sourceLine" id="cb299-7" title="7"><span class="kw">plot</span>(kde_400g_raster)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-kde-raster-1.png" width="672" /></p>
 <p>We now have a standalone raster we can use with a) any (analysis-oriented) functions in the <code>raster()</code> library (more on this next week) and b) our visualisation libraries, including <code>tmap</code>.</p>
 <p>Before we go ahead, one issue we will face - although it is not clear in the plot above - is that our resulting raster does not have a Coordinate Reference System. Without a CRS, as we should know by now, that we’ll have issues with both any analysis or visualisation that we’d like to do with our raster, particularly if we use other datasets with our raster.</p>
@@ -768,8 +782,8 @@ We can either directly create a <code>ppp</code> object from a list of coordinat
 <ol start="4" style="list-style-type: decimal">
 <li>Check the CRS of our <code>kde_400g_raster</code>:</li>
 </ol>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="co"># Check the CRS of the `kde_400g_raster`</span></a>
-<a class="sourceLine" id="cb298-2" title="2"><span class="kw">crs</span>(kde_400g_raster)</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="co"># Check the CRS of the `kde_400g_raster`</span></a>
+<a class="sourceLine" id="cb300-2" title="2"><span class="kw">crs</span>(kde_400g_raster)</a></code></pre></div>
 <pre><code>## CRS arguments: NA</code></pre>
 <p>You should see an <strong>NA</strong> appear within our CRS arguments - the <code>kde_400g_raster</code> does not have a CRS, so we’ll need to set the CRS. We can use the same <code>crs()</code> function to set a raster’s CRS - unlike <code>sf</code>’s <code>st_crs()</code> function though, we need to provide our CRS as “a character string describing a projection and datum in the PROJ.4 format” (<code>raster</code> documentation), rather than only the EPSG code.</p>
 <div class="note">
@@ -780,11 +794,11 @@ You’re likely to have missed this link in our previous practical/lecture on CR
 <ol start="4" style="list-style-type: decimal">
 <li>Set the CRS of our <code>kde_400g_raster</code> using the Proj4 string from <a href="https://spatialreference.org" class="uri">https://spatialreference.org</a> and check the resulting raster CRS:</li>
 </ol>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="co"># Set the CRS of the `kde_400g_raster` to BNG</span></a>
-<a class="sourceLine" id="cb300-2" title="2"><span class="kw">crs</span>(kde_400g_raster) &lt;-<span class="st"> &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs &quot;</span></a>
-<a class="sourceLine" id="cb300-3" title="3"></a>
-<a class="sourceLine" id="cb300-4" title="4"><span class="co"># Check the CRS of the `kde_400g_raster`</span></a>
-<a class="sourceLine" id="cb300-5" title="5"><span class="kw">crs</span>(kde_400g_raster)</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1"><span class="co"># Set the CRS of the `kde_400g_raster` to BNG</span></a>
+<a class="sourceLine" id="cb302-2" title="2"><span class="kw">crs</span>(kde_400g_raster) &lt;-<span class="st"> &quot;+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs &quot;</span></a>
+<a class="sourceLine" id="cb302-3" title="3"></a>
+<a class="sourceLine" id="cb302-4" title="4"><span class="co"># Check the CRS of the `kde_400g_raster`</span></a>
+<a class="sourceLine" id="cb302-5" title="5"><span class="kw">crs</span>(kde_400g_raster)</a></code></pre></div>
 <pre><code>## CRS arguments:
 ##  +proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000
 ## +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs
@@ -797,8 +811,8 @@ You’re likely to have missed this link in our previous practical/lecture on CR
 <ol start="5" style="list-style-type: decimal">
 <li>Map our <code>kde_400g_raster</code> using <code>tmap</code>:</li>
 </ol>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1"><span class="co"># Map our kde_400g_raster using tmap</span></a>
-<a class="sourceLine" id="cb302-2" title="2"><span class="kw">tm_shape</span>(kde_400g_raster) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;layer&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;viridis&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1"><span class="co"># Map our kde_400g_raster using tmap</span></a>
+<a class="sourceLine" id="cb304-2" title="2"><span class="kw">tm_shape</span>(kde_400g_raster) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;layer&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;viridis&quot;</span>)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-kde-raster-map-1.png" width="672" /></p>
 <p>With our <code>kde_400g_raster</code> using <code>tmap</code>, we can go ahead and customise our map as we would do with our vector mapping - for example, changing the legend tile, adding a title, north arrow etc.</p>
 <p><em>Again, I highly recommend exploring the </em><code>tm_raster()</code> <em>Help documentation to see the different parameters you can provide within the function to change its visualisation with </em><code>tmap</code><em>.</em></p>
@@ -812,12 +826,12 @@ You’re likely to have missed this link in our previous practical/lecture on CR
 <ol start="6" style="list-style-type: decimal">
 <li>Generate a raster of OpenStreetMap that covers the bounding box of our <code>kde_400g_raster</code>:</li>
 </ol>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1"><span class="co"># Generate basemap for our kde raster, crop to its bounding box</span></a>
-<a class="sourceLine" id="cb303-2" title="2">osm_basemap &lt;-<span class="st"> </span><span class="kw">osm.raster</span>(kde_400g_raster, <span class="dt">crop =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb303-3" title="3"></a>
-<a class="sourceLine" id="cb303-4" title="4"><span class="co"># Plot the resulting basemap, using the tm_rgb to plot the three Red, Green, Blue</span></a>
-<a class="sourceLine" id="cb303-5" title="5"><span class="co"># layers together We&#39;ll explain a little more about RGB next week!</span></a>
-<a class="sourceLine" id="cb303-6" title="6"><span class="kw">tm_shape</span>(osm_basemap) <span class="op">+</span><span class="st"> </span><span class="kw">tm_rgb</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1"><span class="co"># Generate basemap for our kde raster, crop to its bounding box</span></a>
+<a class="sourceLine" id="cb305-2" title="2">osm_basemap &lt;-<span class="st"> </span><span class="kw">osm.raster</span>(kde_400g_raster, <span class="dt">crop =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb305-3" title="3"></a>
+<a class="sourceLine" id="cb305-4" title="4"><span class="co"># Plot the resulting basemap, using the tm_rgb to plot the three Red, Green, Blue</span></a>
+<a class="sourceLine" id="cb305-5" title="5"><span class="co"># layers together We&#39;ll explain a little more about RGB next week!</span></a>
+<a class="sourceLine" id="cb305-6" title="6"><span class="kw">tm_shape</span>(osm_basemap) <span class="op">+</span><span class="st"> </span><span class="kw">tm_rgb</span>()</a></code></pre></div>
 <pre><code>## Warning: Raster values found that are outside the range [0, 255]</code></pre>
 <p><img src="GEOG0030_files/figure-html/08-osm-basemap-1.png" width="672" /></p>
 <p>We can now see we have a base map for the whole of London that we can layer our <code>kde_400g_raster</code> upon - but as you might see, it needs a little bit of tidying up before we go ahead and use it as a basemap. We can see that we have some whitespace either side of our basemap, which we’d like to remove.</p>
@@ -825,8 +839,8 @@ You’re likely to have missed this link in our previous practical/lecture on CR
 <ol start="7" style="list-style-type: decimal">
 <li>Crop our OpenStreetMap basemap to our <code>london_ward_shp</code> spatial dataframe:</li>
 </ol>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1"><span class="co"># Crop our osm_basemap to the extent of our london_ward_shp</span></a>
-<a class="sourceLine" id="cb305-2" title="2">london_osm_basemap &lt;-<span class="st"> </span><span class="kw">crop</span>(osm_basemap, london_ward_shp)</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1"><span class="co"># Crop our osm_basemap to the extent of our london_ward_shp</span></a>
+<a class="sourceLine" id="cb307-2" title="2">london_osm_basemap &lt;-<span class="st"> </span><span class="kw">crop</span>(osm_basemap, london_ward_shp)</a></code></pre></div>
 <p>To crop our basemap to the precise shape of our <code>london_ward_shp</code> spatial dataframe, we’d need to look into generating something called a <em>mask</em> - we’ll not look at this week, but hopefully have time to quickly look at the process in Week 9!</p>
 <p>We should now have our OpenStreetMap basemap cropped to the right extent.</p>
 <p>But if we look back at our <code>kde_400g_raster</code> map, we can see that in its current format, we won’t exactly see much of London beneath our KDE:</p>
@@ -842,12 +856,12 @@ You’re likely to have missed this link in our previous practical/lecture on CR
 <ol start="8" style="list-style-type: decimal">
 <li>Reclass our low values to NA within our <code>kde_400g_raster</code> and set its opacity to for mapping on our OSM basemap:</li>
 </ol>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1"><span class="co"># Reclass our low raster values to NA using the base R approach</span></a>
-<a class="sourceLine" id="cb307-2" title="2">kde_400g_raster[kde_400g_raster <span class="op">&lt;</span><span class="st"> </span><span class="fl">1e-04</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb307-3" title="3"></a>
-<a class="sourceLine" id="cb307-4" title="4"><span class="co"># Layer two rasters together for final visualisation</span></a>
-<a class="sourceLine" id="cb307-5" title="5"><span class="kw">tm_shape</span>(london_osm_basemap) <span class="op">+</span><span class="st"> </span><span class="kw">tm_rgb</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(kde_400g_raster) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;layer&quot;</span>, </a>
-<a class="sourceLine" id="cb307-6" title="6">    <span class="dt">palette =</span> <span class="st">&quot;viridis&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1"><span class="co"># Reclass our low raster values to NA using the base R approach</span></a>
+<a class="sourceLine" id="cb309-2" title="2">kde_400g_raster[kde_400g_raster <span class="op">&lt;</span><span class="st"> </span><span class="fl">1e-04</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb309-3" title="3"></a>
+<a class="sourceLine" id="cb309-4" title="4"><span class="co"># Layer two rasters together for final visualisation</span></a>
+<a class="sourceLine" id="cb309-5" title="5"><span class="kw">tm_shape</span>(london_osm_basemap) <span class="op">+</span><span class="st"> </span><span class="kw">tm_rgb</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(kde_400g_raster) <span class="op">+</span><span class="st"> </span><span class="kw">tm_raster</span>(<span class="st">&quot;layer&quot;</span>, </a>
+<a class="sourceLine" id="cb309-6" title="6">    <span class="dt">palette =</span> <span class="st">&quot;viridis&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</a></code></pre></div>
 <pre><code>## Warning: Raster values found that are outside the range [0, 255]</code></pre>
 <p><img src="GEOG0030_files/figure-html/08-kde-reclass-map-1.png" width="672" /></p>
 <p>It looks like we have a map showing the kernel density estimation of bike theft in London! Great work!</p>
@@ -905,10 +919,10 @@ You’re likely to have missed this link in our previous practical/lecture on CR
 <ol style="list-style-type: decimal">
 <li>Calculate the average nearest neighbour for our bike theft data:</li>
 </ol>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1"><span class="co"># Calculate the average distance to nearest neighbour We calculate the nndist</span></a>
-<a class="sourceLine" id="cb310-2" title="2"><span class="co"># (NND) for each point, then take the mean for ANN</span></a>
-<a class="sourceLine" id="cb310-3" title="3"><span class="kw">mean</span>(<span class="kw">nndist</span>(bike_theft_ppp_jitter, <span class="dt">k =</span> <span class="dv">1</span>))</a></code></pre></div>
-<pre><code>## [1] 61.39365</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="co"># Calculate the average distance to nearest neighbour We calculate the nndist</span></a>
+<a class="sourceLine" id="cb312-2" title="2"><span class="co"># (NND) for each point, then take the mean for ANN</span></a>
+<a class="sourceLine" id="cb312-3" title="3"><span class="kw">mean</span>(<span class="kw">nndist</span>(bike_theft_ppp_jitter, <span class="dt">k =</span> <span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## [1] 63.12574</code></pre>
 <p>We can see that the average nearest neighbour for all points is 61.3 metres (1dp).</p>
 <p>To understand whether our dataset is clustered or dispersed, we now need to run a Monte Carlo simulation of running the ANN test for multiple (think hundreds) of Poisson distributions of our 18,690 bike thefts within our London ward in order to generate a graph as above. Then, similar to our Global Moran’s I calculation in Week 6, we would compare our mean to that of all of the means generated to determine whether our dataset is clustered or dispersed.</p>
 <p>The code and computing requirements to complete this analysis is quite complex, therefore, we look instead to different approach, which is to plot the ANN values for different order neighbours (i.e. first closest point, second closest point etc), to get an insight into the spatial ordering of all our points relative to one another.</p>
@@ -916,12 +930,12 @@ You’re likely to have missed this link in our previous practical/lecture on CR
 <ol start="2" style="list-style-type: decimal">
 <li>Calculate the average nearest neighbour to the <span class="math inline">\(k\)</span> nearest neighbours for our bike theft data:</li>
 </ol>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="co"># We can calculate the ANN for up to 100 neighbours using the apply function and</span></a>
-<a class="sourceLine" id="cb312-2" title="2"><span class="co"># providing k with a range as follows:</span></a>
-<a class="sourceLine" id="cb312-3" title="3">bike_theft_ann &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">nndist</span>(bike_theft_ppp_jitter, <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>), <span class="dv">2</span>, <span class="dt">FUN =</span> mean)</a>
-<a class="sourceLine" id="cb312-4" title="4"></a>
-<a class="sourceLine" id="cb312-5" title="5"><span class="co"># plot the results of k ANN</span></a>
-<a class="sourceLine" id="cb312-6" title="6"><span class="kw">plot</span>(bike_theft_ann <span class="op">~</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1"><span class="co"># We can calculate the ANN for up to 100 neighbours using the apply function and</span></a>
+<a class="sourceLine" id="cb314-2" title="2"><span class="co"># providing k with a range as follows:</span></a>
+<a class="sourceLine" id="cb314-3" title="3">bike_theft_ann &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">nndist</span>(bike_theft_ppp_jitter, <span class="dt">k =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>), <span class="dv">2</span>, <span class="dt">FUN =</span> mean)</a>
+<a class="sourceLine" id="cb314-4" title="4"></a>
+<a class="sourceLine" id="cb314-5" title="5"><span class="co"># plot the results of k ANN</span></a>
+<a class="sourceLine" id="cb314-6" title="6"><span class="kw">plot</span>(bike_theft_ann <span class="op">~</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-average-nearest-neighbours-1.png" width="672" /></p>
 <p>In our case, the plot does not reveal anything interesting in particular except that higher order points seem to be slightly closer than lower order points.</p>
 <p>Overall, the ANN is a good approach to conduct statistical tests on large datasets (if we were to run the Monte Carlo simulation explore above), but visually it does not tell us a huge amount about our dataset!</p>
@@ -946,9 +960,9 @@ Be careful with running Ripley’s K on large datasets as the function is essent
 <ol style="list-style-type: decimal">
 <li>Run a Ripley’s K function on our bike theft data using the <code>Kest()</code> function:</li>
 </ol>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1"><span class="co"># calculate Ripley&#39;s K for our bicycle theft locations, maximum radius of 1</span></a>
-<a class="sourceLine" id="cb313-2" title="2"><span class="co"># kilometre</span></a>
-<a class="sourceLine" id="cb313-3" title="3"><span class="kw">plot</span>(<span class="kw">Kest</span>(bike_theft_ppp_jitter, <span class="dt">correction =</span> <span class="st">&quot;border&quot;</span>, <span class="dt">rmax =</span> <span class="dv">5000</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1"><span class="co"># calculate Ripley&#39;s K for our bicycle theft locations, maximum radius of 1</span></a>
+<a class="sourceLine" id="cb315-2" title="2"><span class="co"># kilometre</span></a>
+<a class="sourceLine" id="cb315-3" title="3"><span class="kw">plot</span>(<span class="kw">Kest</span>(bike_theft_ppp_jitter, <span class="dt">correction =</span> <span class="st">&quot;border&quot;</span>, <span class="dt">rmax =</span> <span class="dv">5000</span>))</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-ripley-and-his-k-1.png" width="672" /></p>
 <p>The <em>Kpois(r)</em> line shows the theoretical value of K for each distance radius (r) under a Poisson assumption of Complete Spatial Randomness.</p>
 <p>When our observed/calculated K values are greater than the expected K, this indicates clustering of points at a given distance band.</p>
@@ -1012,20 +1026,20 @@ The following short video on YouTube explains the algorithm really effectively:
 <ol style="list-style-type: decimal">
 <li>Run a DBSCAN analysis on our bike theft data:</li>
 </ol>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1"><span class="co"># Run dbscan&#39;s DB-Scan function on our bike theft matrix, with eps and minPts set</span></a>
-<a class="sourceLine" id="cb314-2" title="2"><span class="co"># as follows We add dbscan:: prior to our dbscan function to ensure R uses the</span></a>
-<a class="sourceLine" id="cb314-3" title="3"><span class="co"># dbscan function from the dbscan library</span></a>
-<a class="sourceLine" id="cb314-4" title="4">bktheft_dbscan &lt;-<span class="st"> </span>dbscan<span class="op">::</span><span class="kw">dbscan</span>(bike_theft_xy, <span class="dt">eps =</span> <span class="dv">200</span>, <span class="dt">minPts =</span> <span class="dv">20</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="co"># Run dbscan&#39;s DB-Scan function on our bike theft matrix, with eps and minPts set</span></a>
+<a class="sourceLine" id="cb316-2" title="2"><span class="co"># as follows We add dbscan:: prior to our dbscan function to ensure R uses the</span></a>
+<a class="sourceLine" id="cb316-3" title="3"><span class="co"># dbscan function from the dbscan library</span></a>
+<a class="sourceLine" id="cb316-4" title="4">bktheft_dbscan &lt;-<span class="st"> </span>dbscan<span class="op">::</span><span class="kw">dbscan</span>(bike_theft_xy, <span class="dt">eps =</span> <span class="dv">200</span>, <span class="dt">minPts =</span> <span class="dv">20</span>)</a></code></pre></div>
 <p>If you investigate the result from the <code>dbscan</code> function, you’ll see that it is a “list” of three objects: a vector detailing the cluster for each of our bike theft observations / events, and two double objects that simply contain the <code>eps</code> and <code>minPts</code> parameter values used.</p>
 <p>We can go ahead and quickly plot our DBSCAN result from this list using the <strong>R base</strong> plotting as follows.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Plot our DBSCAN analysis:</li>
 </ol>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1"><span class="co"># Plot our bike theft points, styling them by the associated cluster in the</span></a>
-<a class="sourceLine" id="cb315-2" title="2"><span class="co"># bktheft_dbscan outpout</span></a>
-<a class="sourceLine" id="cb315-3" title="3"><span class="kw">plot</span>(bike_theft_xy, <span class="dt">col =</span> bktheft_dbscan<span class="op">$</span>cluster)</a>
-<a class="sourceLine" id="cb315-4" title="4"><span class="co"># Add our london_ward_shp file</span></a>
-<a class="sourceLine" id="cb315-5" title="5"><span class="kw">plot</span>(london_ward_shp<span class="op">$</span>geometry, <span class="dt">add =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1"><span class="co"># Plot our bike theft points, styling them by the associated cluster in the</span></a>
+<a class="sourceLine" id="cb317-2" title="2"><span class="co"># bktheft_dbscan outpout</span></a>
+<a class="sourceLine" id="cb317-3" title="3"><span class="kw">plot</span>(bike_theft_xy, <span class="dt">col =</span> bktheft_dbscan<span class="op">$</span>cluster)</a>
+<a class="sourceLine" id="cb317-4" title="4"><span class="co"># Add our london_ward_shp file</span></a>
+<a class="sourceLine" id="cb317-5" title="5"><span class="kw">plot</span>(london_ward_shp<span class="op">$</span>geometry, <span class="dt">add =</span> T)</a></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/08-db-scan-plot-dbscan-1.png" width="672" /></p>
 <p>These initial results are super ineresting. We can see some very defined clusters around the outskirts of central London - and of course, a few significantly large clusters within central London.</p>
 <p>Here we run into our main issue with DBSCAN, as outlined above, that it will not work too well if our clusters vary considerably in density.</p>
@@ -1043,9 +1057,10 @@ The following short video on YouTube explains the algorithm really effectively:
 <ol start="3" style="list-style-type: decimal">
 <li>Add the associated DBSCAN cluster number to each of the <code>bike_theft_2019</code> observations:</li>
 </ol>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="co"># Add the cluster number column to our monduli points data frame, store as new</span></a>
-<a class="sourceLine" id="cb316-2" title="2"><span class="co"># variable</span></a>
-<a class="sourceLine" id="cb316-3" title="3">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">dbcluster =</span> bktheft_dbscan<span class="op">$</span>cluster)</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="co"># Add the cluster number column to our monduli points data frame, store as new</span></a>
+<a class="sourceLine" id="cb318-2" title="2"><span class="co"># variable</span></a>
+<a class="sourceLine" id="cb318-3" title="3">bike_theft_<span class="dv">2019</span> &lt;-<span class="st"> </span>bike_theft_<span class="dv">2019</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb318-4" title="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">dbcluster =</span> bktheft_dbscan<span class="op">$</span>cluster)</a></code></pre></div>
 <p>Now we have each of our bike theft points in London associated with a specific cluster, we can generate a polygon that represents these clusters in space, as we can sort of see in our above plot.</p>
 <p>To do so, we will utilise a geometric operation from last week we did not use: the <code>st_convex_hull()</code> function.</p>
 <p>If you look at your <code>sf</code> cheatsheet, you’ll see that the <code>st_convex_hull()</code> function “creates geometry that represents the minimum convex geometry of x” (<code>sf</code> cheatsheet). I.e. it can be used to create a polygon that represents the minimum coverage of our individual clusters - as we’ll see below.</p>
@@ -1067,38 +1082,40 @@ The following short video on YouTube explains the algorithm really effectively:
 <ol start="4" style="list-style-type: decimal">
 <li>Run our <code>for</code> loop to generate a polygon dataset that represents our bike theft clusters:</li>
 </ol>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1"><span class="co"># First we create an empty list to store the resulting convex hull geometries Set</span></a>
-<a class="sourceLine" id="cb317-2" title="2"><span class="co"># the length of this list to the total number of clusters found</span></a>
-<a class="sourceLine" id="cb317-3" title="3">geometry_list &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="dt">length =</span> <span class="kw">max</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>dbcluster))</a>
-<a class="sourceLine" id="cb317-4" title="4"></a>
-<a class="sourceLine" id="cb317-5" title="5"><span class="co"># Create a counter, starting it at 0, our first cluster index</span></a>
-<a class="sourceLine" id="cb317-6" title="6">counter &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb317-7" title="7"></a>
-<a class="sourceLine" id="cb317-8" title="8"><span class="co"># Begin for loop, iterating across each clusters, cluster_index starts at 0, goes</span></a>
-<a class="sourceLine" id="cb317-9" title="9"><span class="co"># to 101 (our total number of clusters)</span></a>
-<a class="sourceLine" id="cb317-10" title="10"></a>
-<a class="sourceLine" id="cb317-11" title="11"><span class="cf">for</span> (cluster_index <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>dbcluster))) {</a>
-<a class="sourceLine" id="cb317-12" title="12">    </a>
-<a class="sourceLine" id="cb317-13" title="13">    <span class="co"># filter our entire bike_theft_2019 sdf by the cluster index returns only points</span></a>
-<a class="sourceLine" id="cb317-14" title="14">    <span class="co"># for *that* cluster</span></a>
-<a class="sourceLine" id="cb317-15" title="15">    biketheft_cluster_subset &lt;-<span class="st"> </span><span class="kw">filter</span>(bike_theft_<span class="dv">2019</span>, dbcluster <span class="op">==</span><span class="st"> </span>cluster_index)</a>
-<a class="sourceLine" id="cb317-16" title="16">    </a>
-<a class="sourceLine" id="cb317-17" title="17">    <span class="co"># for these points, first union them, then calculate the convex hull</span></a>
-<a class="sourceLine" id="cb317-18" title="18">    cluster_polygon &lt;-<span class="st"> </span>biketheft_cluster_subset <span class="op">%&gt;%</span><span class="st"> </span>st_union <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_convex_hull</span>()</a>
-<a class="sourceLine" id="cb317-19" title="19">    </a>
-<a class="sourceLine" id="cb317-20" title="20">    <span class="co"># at this point, you could export this single cluster polygon into a single</span></a>
-<a class="sourceLine" id="cb317-21" title="21">    <span class="co"># dataset if you wanted - but we&#39;d prefer not to have 101 shapefiles to then</span></a>
-<a class="sourceLine" id="cb317-22" title="22">    <span class="co"># union!  instead, we&#39;ll add the geometry of the polygon into our list.  store</span></a>
-<a class="sourceLine" id="cb317-23" title="23">    <span class="co"># these geometry of this polygon into its position within the list</span></a>
-<a class="sourceLine" id="cb317-24" title="24">    geometry_list[counter] &lt;-<span class="st"> </span>(cluster_polygon)</a>
-<a class="sourceLine" id="cb317-25" title="25">    </a>
-<a class="sourceLine" id="cb317-26" title="26">    <span class="co"># add one to the counter, to move to the next cluster and the next position</span></a>
-<a class="sourceLine" id="cb317-27" title="27">    <span class="co"># within the list</span></a>
-<a class="sourceLine" id="cb317-28" title="28">    counter &lt;-<span class="st"> </span>counter <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb317-29" title="29">}</a>
-<a class="sourceLine" id="cb317-30" title="30"></a>
-<a class="sourceLine" id="cb317-31" title="31"><span class="co"># Set our geometry list to a multi-polygon</span></a>
-<a class="sourceLine" id="cb317-32" title="32">bike_theft_clusters &lt;-<span class="st"> </span><span class="kw">st_sfc</span>(geometry_list, <span class="dt">crs =</span> <span class="dv">27700</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" title="1"><span class="co"># First we create an empty list to store the resulting convex hull geometries Set</span></a>
+<a class="sourceLine" id="cb319-2" title="2"><span class="co"># the length of this list to the total number of clusters found</span></a>
+<a class="sourceLine" id="cb319-3" title="3">geometry_list &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="dt">length =</span> <span class="kw">max</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>dbcluster))</a>
+<a class="sourceLine" id="cb319-4" title="4"></a>
+<a class="sourceLine" id="cb319-5" title="5"><span class="co"># Create a counter, starting it at 0, our first cluster index</span></a>
+<a class="sourceLine" id="cb319-6" title="6">counter &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb319-7" title="7"></a>
+<a class="sourceLine" id="cb319-8" title="8"><span class="co"># Begin for loop, iterating across each clusters, cluster_index starts at 0, goes</span></a>
+<a class="sourceLine" id="cb319-9" title="9"><span class="co"># to 101 (our total number of clusters)</span></a>
+<a class="sourceLine" id="cb319-10" title="10"></a>
+<a class="sourceLine" id="cb319-11" title="11"><span class="cf">for</span> (cluster_index <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">max</span>(bike_theft_<span class="dv">2019</span><span class="op">$</span>dbcluster))) {</a>
+<a class="sourceLine" id="cb319-12" title="12"></a>
+<a class="sourceLine" id="cb319-13" title="13">    <span class="co"># filter our entire bike_theft_2019 sdf by the cluster index returns only points</span></a>
+<a class="sourceLine" id="cb319-14" title="14">    <span class="co"># for *that* cluster</span></a>
+<a class="sourceLine" id="cb319-15" title="15">    biketheft_cluster_subset &lt;-<span class="st"> </span><span class="kw">filter</span>(bike_theft_<span class="dv">2019</span>, dbcluster <span class="op">==</span><span class="st"> </span>cluster_index)</a>
+<a class="sourceLine" id="cb319-16" title="16"></a>
+<a class="sourceLine" id="cb319-17" title="17">    <span class="co"># for these points, first union them, then calculate the convex hull</span></a>
+<a class="sourceLine" id="cb319-18" title="18">    cluster_polygon &lt;-<span class="st"> </span>biketheft_cluster_subset <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb319-19" title="19"><span class="st">        </span>st_union <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb319-20" title="20"><span class="st">        </span><span class="kw">st_convex_hull</span>()</a>
+<a class="sourceLine" id="cb319-21" title="21"></a>
+<a class="sourceLine" id="cb319-22" title="22">    <span class="co"># at this point, you could export this single cluster polygon into a single</span></a>
+<a class="sourceLine" id="cb319-23" title="23">    <span class="co"># dataset if you wanted - but we&#39;d prefer not to have 101 shapefiles to then</span></a>
+<a class="sourceLine" id="cb319-24" title="24">    <span class="co"># union!  instead, we&#39;ll add the geometry of the polygon into our list.  store</span></a>
+<a class="sourceLine" id="cb319-25" title="25">    <span class="co"># these geometry of this polygon into its position within the list</span></a>
+<a class="sourceLine" id="cb319-26" title="26">    geometry_list[counter] &lt;-<span class="st"> </span>(cluster_polygon)</a>
+<a class="sourceLine" id="cb319-27" title="27"></a>
+<a class="sourceLine" id="cb319-28" title="28">    <span class="co"># add one to the counter, to move to the next cluster and the next position</span></a>
+<a class="sourceLine" id="cb319-29" title="29">    <span class="co"># within the list</span></a>
+<a class="sourceLine" id="cb319-30" title="30">    counter &lt;-<span class="st"> </span>counter <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb319-31" title="31">}</a>
+<a class="sourceLine" id="cb319-32" title="32"></a>
+<a class="sourceLine" id="cb319-33" title="33"><span class="co"># Set our geometry list to a multi-polygon</span></a>
+<a class="sourceLine" id="cb319-34" title="34">bike_theft_clusters &lt;-<span class="st"> </span><span class="kw">st_sfc</span>(geometry_list, <span class="dt">crs =</span> <span class="dv">27700</span>)</a></code></pre></div>
 <p>And that is our <code>for</code> loop complete - if you didn’t quite understand it, do not worry as this is much more advanced programming than you’re expected to know in Geocomputation!</p>
 <p>There will be an optional tutorial released at the end of term that will go into more detail about the <code>for</code> loop construction - and if you take <em>Mining Social and Geographic Datasets</em> next year, you’re very likely to come across building <code>for</code> loops there!</p>
 </div>
@@ -1109,27 +1126,27 @@ The following short video on YouTube explains the algorithm really effectively:
 <ol start="5" style="list-style-type: decimal">
 <li>Map our bike theft clusters:</li>
 </ol>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="co"># Set tmap to view mode</span></a>
-<a class="sourceLine" id="cb318-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
-<a class="sourceLine" id="cb318-3" title="3"></a>
-<a class="sourceLine" id="cb318-4" title="4"><span class="co"># Map our bike theft clusters and their borders</span></a>
-<a class="sourceLine" id="cb318-5" title="5"><span class="kw">tm_shape</span>(bike_theft_clusters) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>()</a>
-<a class="sourceLine" id="cb318-6" title="6"></a>
-<a class="sourceLine" id="cb318-7" title="7"><span class="co"># Note, our interactive map will not load here to save on webpage processing</span></a>
-<a class="sourceLine" id="cb318-8" title="8"><span class="co"># requirements!</span></a></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" title="1"><span class="co"># Set tmap to view mode</span></a>
+<a class="sourceLine" id="cb320-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
+<a class="sourceLine" id="cb320-3" title="3"></a>
+<a class="sourceLine" id="cb320-4" title="4"><span class="co"># Map our bike theft clusters and their borders</span></a>
+<a class="sourceLine" id="cb320-5" title="5"><span class="kw">tm_shape</span>(bike_theft_clusters) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>()</a>
+<a class="sourceLine" id="cb320-6" title="6"></a>
+<a class="sourceLine" id="cb320-7" title="7"><span class="co"># Note, our interactive map will not load here to save on webpage processing</span></a>
+<a class="sourceLine" id="cb320-8" title="8"><span class="co"># requirements!</span></a></code></pre></div>
 <p>What do you think of the clusters? What do they tell you about the distribution of bike theft in London?</p>
 <p>Let’s go ahead and add our <code>london_stations_osm</code> dataset to our map - this will help highlight the location of the stations relative to our bike thefts.</p>
 <ol start="6" style="list-style-type: decimal">
 <li>Map our bike theft clusters and stations:</li>
 </ol>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" title="1"><span class="co"># Set tmap to view mode</span></a>
-<a class="sourceLine" id="cb319-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
-<a class="sourceLine" id="cb319-3" title="3"></a>
-<a class="sourceLine" id="cb319-4" title="4"><span class="co"># Map our bike theft clusters and their borders</span></a>
-<a class="sourceLine" id="cb319-5" title="5"><span class="kw">tm_shape</span>(bike_theft_clusters) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>()</a>
-<a class="sourceLine" id="cb319-6" title="6"></a>
-<a class="sourceLine" id="cb319-7" title="7"><span class="co"># Note, our interactive map will not load here to save on webpage processing</span></a>
-<a class="sourceLine" id="cb319-8" title="8"><span class="co"># requirements!</span></a></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="co"># Set tmap to view mode</span></a>
+<a class="sourceLine" id="cb321-2" title="2"><span class="kw">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</a>
+<a class="sourceLine" id="cb321-3" title="3"></a>
+<a class="sourceLine" id="cb321-4" title="4"><span class="co"># Map our bike theft clusters and their borders</span></a>
+<a class="sourceLine" id="cb321-5" title="5"><span class="kw">tm_shape</span>(bike_theft_clusters) <span class="op">+</span><span class="st"> </span><span class="kw">tm_borders</span>() <span class="op">+</span><span class="st"> </span><span class="kw">tm_shape</span>(london_stations_osm) <span class="op">+</span><span class="st"> </span><span class="kw">tm_dots</span>()</a>
+<a class="sourceLine" id="cb321-6" title="6"></a>
+<a class="sourceLine" id="cb321-7" title="7"><span class="co"># Note, our interactive map will not load here to save on webpage processing</span></a>
+<a class="sourceLine" id="cb321-8" title="8"><span class="co"># requirements!</span></a></code></pre></div>
 <p>So what does our data show? What can we conclude from our current analysis? What steps could we next complete with our bike theft analysis?</p>
 <p>These are all questions I’d like you to think about in preparation for our seminar in Week 10 - but essentially, as you can see, investigation a pheonomena like theft, in relation to another geographical feature, i.e. stations, can be quite open-ended and we can utilise a range of techniques to try to investigate and “proove” a relationship between our variables of interest. There are many more calculations we could do with our clusters and station data - I’ll be interested to hear if you think of any in our seminar in Week 10.</p>
 <p>Overall, I think the results of our analysis using DBSCAN present some really interesting insights into bike theft relative to train stations - particularly if you know anything about cycling in London, and typical areas of cycling (or rather road cycling) that certainly are present in the south-west area (e.g. Richmond Park etc.).</p>
